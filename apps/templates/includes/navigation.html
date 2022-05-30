@@ -132,7 +132,7 @@
                           <img class="avatar rounded-circle" alt="Image placeholder" src="{{ ASSETS_ROOT }}/img/team/profile-picture-3.jpg">
                           <div class="media-body ms-2 text-dark align-items-center d-none d-lg-block">
                             <span class="mb-0 font-small fw-bold text-gray-900">
-                              Current User: <strong>{{ request.user.username }}</strong>
+                              <strong>{{ request.user.last_name }} {{ request.user.first_name }}</strong>
                             </span>
                           </div>
                         </div>

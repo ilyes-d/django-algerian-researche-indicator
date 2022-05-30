@@ -1,17 +1,12 @@
-# -*- encoding: utf-8 -*-
-"""
-Copyright (c) 2019 - present AppSeed.us
-"""
-
-from django.urls import path, re_path
-from apps.home import views
-
+from django.urls import path, re_path, include
+from apps.home.views import _views , chef_eta
 urlpatterns = [
 
-    # The home page
-    path('', views.index, name='home'),
-
-    # Matches any html file
-    re_path(r'^.*\.*', views.pages, name='pages'),
-
+    path('', _views.index, name='home'),
+    path('etablisement/' ,include([
+        path('dashboard/' ,chef_eta.dash_etablisemnt  , name='dashboard_etablisement'),
+     ])),
+         
+    # re_path(r'^.*\.*', _views.pages, name='pages'),
+    path('settings/', _views.settings , name= "settings"),
 ]
