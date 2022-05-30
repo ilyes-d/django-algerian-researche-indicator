@@ -9,8 +9,15 @@ Les Division
 ## DSISM chef Division rachid aliradi
 
 password = aliradi123 email = "raliradi@mail.cerist.dz"
-
+"last_name": "",
+    "first_name": "",
+    "grade": "A.R",
+    "division": "DSISM",
+    "google_scholar_account": 
 Equipe Systèmes d'information et image en Santé S2IS - (chef d'équipe) Abdelkrim MEZIANE
+Equipe Systèmes d'information et image en Santé S2IS - (chef d'équipe) Abdelkrim MEZIANE
+    "email": ,
+Researcher.objects.create_user(email="raliradi@mail.cerist.dz",password="rachid123", last_name ="ALIRADI" ,first_name="Rachid", google_scholar_account="https://scholar.google.com/citations?hl=en&user=vLBwNvwAAAAJ")
 Researcher.objects.create_user(email="meziane@gmail.com",password="abdelkrim123", last_name ="MEZIANE" ,first_name="Abdelkrim", google_scholar_account="https://scholar.google.com/citations?hl=en&user=x4OzPQcAAAAJ")
 Researcher.objects.create_user(email="aouaa@gmail.com",password="noureddine123", last_name ="AOUAA" ,first_name="Noureddine", google_scholar_account="https://scholar.google.com/citations?hl=en&user=LgCh4kAAAAAJ")
 Researcher.objects.create_user(email="hadjadj@gmail.com",password="zineb123", last_name ="HADJADJ" ,first_name="Zineb", google_scholar_account="https://scholar.google.com/citations?hl=en&user=o5rk7VAAAAAJ")
@@ -27,7 +34,7 @@ Researcher.objects.create_user(email="hmellah@mail.cerist.dz",password="hakima12
 ## Division Recherche et Développement en Sciences de l'Information et Humanités Numériques DRDHN
 
 Chef Division hassina aliane email='haliane@mail.cerist.dz',
-email='haliane@mail.cerist.dz',password="hassina123",last_name='ALIANE', first_name='Hassina', grade='M.R.B', google_scholar_account='https://scholar.google.com/citations?hl=en&user=VOkaVCMAAAAJ'
+Researcher.objects.create_user(email='haliane@mail.cerist.dz',password="hassina123",last_name='ALIANE', first_name='Hassina', grade='M.R.B', google_scholar_account="https://scholar.google.com/citations?hl=en&user=VOkaVCMAAAAJ")
 
 ### Traitement Automatique des Langues et Contenus Numériques
 Chef Aliane hassina
