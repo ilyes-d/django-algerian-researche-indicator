@@ -93,3 +93,16 @@ def Dash_Division_calc(pk):
     
 def get_etablisement_id(request):
     return Etablisment.objects.get(chef_etablisement=request.user.pk).id
+
+
+def user_role(request):
+    if Etablisment.objects.filter(chef_etablisement__id=request.user.id):
+        return "etablisement"
+    if Division.objects.filter(chef_div__id=request.user.id):
+        return "division"
+    if Equipe.objects.filter(chef_equipe__id=request.user.id):
+        return "equipe"
+    return "membre"
+
+
+

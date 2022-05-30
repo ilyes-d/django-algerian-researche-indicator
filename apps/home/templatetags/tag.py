@@ -1,6 +1,6 @@
 from atexit import register
 from django import template
-from finalapp.models import *
+from apps.home.models import *
 register = template.Library()
 
 

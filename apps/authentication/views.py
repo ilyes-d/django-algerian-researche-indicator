@@ -1,8 +1,7 @@
-
-# Create your views here.
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
+from apps.home.views.fcts import *
 
 
 def login_view(request):
@@ -18,7 +17,10 @@ def login_view(request):
             user = authenticate(email=email, password=password)
             if user is not None:
                 login(request, user)
-                return redirect("/")
+                if request.user.is_superuser:
+                    return redirect("/organization/dashboard")
+                else:
+                    return redirect("/"+str(user_role(request))+"/dashboard")
             else:
                 msg = 'Invalid credentials'
         else:
@@ -48,3 +50,6 @@ def register_user(request):
         form = SignUpForm()
 
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+
+
+
