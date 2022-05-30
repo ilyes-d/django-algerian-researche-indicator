@@ -9,4 +9,5 @@ urlpatterns = [
          
     # re_path(r'^.*\.*', _views.pages, name='pages'),
     path('settings/', _views.settings , name= "settings"),
+    path('try/' , _views.trying, name='try')
 ]

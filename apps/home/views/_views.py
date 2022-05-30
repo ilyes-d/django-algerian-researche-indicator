@@ -4,6 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from django.shortcuts import render
+from requests import request
 
 
 @login_required(login_url="/login/")
@@ -40,4 +41,7 @@ def pages(request):
         return HttpResponse(html_template.render(context, request))
 
 def settings(request):
-    return render(request , 'home/settings.html' , )
+    return render(request , 'home/settings.html' )
+
+def trying(request):
+    return render(request , 'empty.html')
