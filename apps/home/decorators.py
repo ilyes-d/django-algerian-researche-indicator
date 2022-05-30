@@ -1,7 +1,7 @@
 from django.http import Http404 , HttpResponse
 from django.shortcuts import redirect, render
-
 from apps.home.models import Etablisment 
+from apps.home.views.fcts import *
 
 def is_chef_eta(function):
     def wrapper(request):
@@ -20,3 +20,12 @@ def is_superuser(function):
 
 def is_chef_division(request):
     pass
+
+
+def redirect_logged_in_user(func):
+    def wrapper(request):
+        if request.user.is_authenticated:
+            return redirect("/"+str(user_role(request)+"/dashboard"))
+        else:
+            return func(request)
+    return wrapper

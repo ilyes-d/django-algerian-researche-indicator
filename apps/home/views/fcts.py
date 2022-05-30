@@ -6,7 +6,7 @@ def ApiData(pk): # l'id du chercheur
     params = {
     "engine": "google_scholar_author",
     "author_id": r.get_google_id(),
-    "api_key": "5693539bbd7f27e4de0624ca01bc9ad9ecba73199cbc2ce132e589daa15f8e4a",
+    "api_key": "bfdde7462931844d6003e1d183494fad96f1011bdd6d192179f5bae85d0e16c1",
     "start": 0,
     "num": "100"
     }
@@ -21,7 +21,7 @@ def ApiData(pk): # l'id du chercheur
          params = {
            "engine": "google_scholar_author",
            "author_id": r.get_google_id(),
-           "api_key": "5693539bbd7f27e4de0624ca01bc9ad9ecba73199cbc2ce132e589daa15f8e4a",
+           "api_key": "bfdde7462931844d6003e1d183494fad96f1011bdd6d192179f5bae85d0e16c1",
            "start": flag,
            "num": str(flag+100)
          }
@@ -96,6 +96,8 @@ def get_etablisement_id(request):
 
 
 def user_role(request):
+    if request.user.is_superuser:
+        return "organisation"
     if Etablisment.objects.filter(chef_etablisement__id=request.user.id):
         return "etablisement"
     if Division.objects.filter(chef_div__id=request.user.id):
@@ -105,4 +107,27 @@ def user_role(request):
     return "membre"
 
 
+
+def Dash_Equipe_calc(pk):# on fait sous form de fonction pour utulistaion direct dans les autre dash board
+    
+    info_equipe = Equipe.objects.get(pk = pk)
+    researchers = Researcher.objects.filter(equipe_researchers = pk) # recupere les chercheur des equipe
+    nbr_cher_equipe = researchers.count()
+    nbr_Citation = 0
+    moy_indice_h = 0.0
+    moy_indice_i10 = 0.0
+    for i in researchers:
+        inter = ApiData(i.id)
+        nbr_Citation += inter["cited_by"]["table"][0]["citations"]["all"]
+        moy_indice_h += inter["cited_by"]["table"][1]["h_index"]["all"]  
+        moy_indice_i10 += inter["cited_by"]["table"][2]["i10_index"]["all"]
+    if nbr_cher_equipe == 0:
+         moy_indice_hs = 0.0
+         moy_indice_i10s = 0.0  
+    else:  
+       moy_indice_h = moy_indice_h/nbr_cher_equipe
+       moy_indice_i10 = moy_indice_i10/nbr_cher_equipe
+      
+    context ={'nbr_cher_equipe':nbr_cher_equipe ,'info_equipe': info_equipe,'nbr_Citation':nbr_Citation,'moy_indice_h':moy_indice_h,'moy_indice_i10':moy_indice_i10}
+    return context
 

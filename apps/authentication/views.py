@@ -2,25 +2,20 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm, SignUpForm
 from apps.home.views.fcts import *
+from apps.home.decorators import *
 
-
+@redirect_logged_in_user
 def login_view(request):
     form = LoginForm(request.POST or None)
-
     msg = None
-
     if request.method == "POST":
-
         if form.is_valid():
             email = form.cleaned_data.get("email")
             password = form.cleaned_data.get("password")
             user = authenticate(email=email, password=password)
             if user is not None:
                 login(request, user)
-                if request.user.is_superuser:
-                    return redirect("/organization/dashboard")
-                else:
-                    return redirect("/"+str(user_role(request))+"/dashboard")
+                return redirect("/"+str(user_role(request))+"/dashboard")
             else:
                 msg = 'Invalid credentials'
         else:

@@ -18815,6 +18815,7 @@ article .h1, article .h2, article .h3, article .h4, article .h5, article .h6 {
 
 [data-simplebar] {
   position: fixed;
+  background-color: #000;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
@@ -19065,3 +19066,4 @@ article .h1, article .h2, article .h3, article .h4, article .h5, article .h6 {
   z-index: 9999; }
 
 /*# sourceMappingURL=volt.css.map */
+        
