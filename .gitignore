@@ -11,6 +11,8 @@ __pycache__/
 *.sqlite3
 *.log
 
+**/migrations
+
 # venv
 env
 venv
