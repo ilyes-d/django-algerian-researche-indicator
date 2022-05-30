@@ -48,7 +48,9 @@
 
 </head>
 <body>
-    
+    {% if user.is_superuser %}
+    {%include 'includes/organization_sidebar.html'%}
+    {%endif%}
     {%if user|chef_etablisement == True %}    
     {% include 'includes/eta_sidebar.html' %}
     {% endif %}
