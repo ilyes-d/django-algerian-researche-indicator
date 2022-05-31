@@ -13,11 +13,7 @@ from apps.home.decorators import *
 def dash_etablisemnt(request):
     context = Dash_Eta_calc(get_etablisement_id(request))
     return render (request,'home/etablisement/dashboard.html',context)  
-
-
-def dash_division(request):
-    context = Dash_Division_calc(pk)
-    return render (request,'DashDivision.html',context)  
+ 
 
 @is_superuser
 def dash_etablisemnts(request,pk):
@@ -25,8 +21,6 @@ def dash_etablisemnts(request,pk):
     return render (request,'dashboardEta.html',context)
 
 
-def dash_divisions(request,pk):
-    context = Dash_Division_calc(pk)
-    return render (request,'DashDivision.html',context)
+
 
   
