@@ -1,5 +1,8 @@
+{%load tag %}
 {{request.path}}
 
 {% if request.path == '/try/' %}
 ko
 {% endif %}
+
+{{user|}}

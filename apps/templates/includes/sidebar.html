@@ -1,5 +1,5 @@
 {% load static %}
-<nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
+        <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
             <a class="navbar-brand me-lg-5" href="/">
                 <img class="navbar-brand-dark" src="{{ ASSETS_ROOT }}/img/brand/light.svg" alt="Volt logo" /> <img class="navbar-brand-light" src="{{ ASSETS_ROOT }}/img/brand/dark.svg" alt="Volt logo" />
             </a>
@@ -35,14 +35,6 @@
               </div>
             </div>
             <ul class="nav flex-column pt-3 pt-md-0">
-              <li class="nav-item">
-                <a href="/" class="nav-link d-flex align-items-center">
-                  <span class="sidebar-icon">
-                    <img src="{{ ASSETS_ROOT }}/img/brand/light.svg" height="20" width="20" alt="Volt Logo">
-                  </span>
-                  <span class="mt-1 ms-1 sidebar-text">Volt Overview</span>
-                </a>
-              </li>
               <li class="nav-item {% if 'dashboard' in segment %} active {% endif %}">
                 <a href="/dashboard.html" class="nav-link">
                   <span class="sidebar-icon">

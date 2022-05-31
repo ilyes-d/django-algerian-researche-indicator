@@ -4,12 +4,43 @@ from serpapi import GoogleSearch
 from  apps.home.models import *
 from datetime import datetime, timezone
 
+
+def serpapi_author(researcher_id):
+    params = {
+        "engine": "google_scholar_author",
+        "author_id": researcher_id,
+        "api_key": "bfdde7462931844d6003e1d183494fad96f1011bdd6d192179f5bae85d0e16c1"
+    }
+    search = GoogleSearch(params)
+    results = search.get_dict()
+    print(results )
+    print(researcher_id)
+    return results
+
+def check_gs_id(gs_id):
+    params = {
+        "engine": "google_scholar_author",
+        "author_id": gs_id,
+        "api_key": "016c19a111a3df750b7a37250aedf532683ef08faa73e2ab7f4aba7f2f2746be"
+    }
+    search = GoogleSearch(params)
+    results = search.get_dict()
+    if "author" in results:
+        return True
+    return False
+
+def get_gs_id(account):
+    return account.partition("user=")[2][:12]
+
 def ApiData(pk): # l'id du chercheur
     r  = Researcher.objects.get(pk = pk)
     params = {
     "engine": "google_scholar_author",
     "author_id": r.get_google_id(),
+
     "api_key": "05840cb02e8ba6f67538df2d4c51c859c362279184fdbcb7e66f308ad8115a21",
+
+   
     "start": 0,
     "num": "100"
     }
