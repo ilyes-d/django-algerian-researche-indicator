@@ -4,19 +4,32 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
 from apps.home.models import *
+from urllib.parse import urlparse
+from apps.home.views.fcts import *
 
 
 class UserCreationForm(forms.ModelForm):
-    """
-    """
-    password1 = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(
-        label='Password Confirmation', widget=forms.PasswordInput)
-
+    first_name = forms.CharField(widget=forms.TextInput( attrs={ "placeholder": "Entre votre Prenom", "class": "form-control"}))
+    last_name = forms.CharField(widget=forms.TextInput(attrs={ "placeholder": "Entre votre Nom", "class": "form-control" } ))
+    email = forms.EmailField(widget=forms.EmailInput(attrs={"placeholder": "Entre votre Email","class": "form-control"}))
+    speciality = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Entre votre Specialiy","class": "form-control"}))
+    grade = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Entre votre Grade ","class": "form-control"}))
+    google_scholar_account = forms.URLField(widget=forms.URLInput(attrs={"placeholder":"https://scholar.google.com/citations", "class":"form-control"}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password","class": "form-control"}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Confirm Password","class": "form-control"}))
     class Meta:
         model = Researcher
-        fields = ('email', 'first_name', 'last_name', 'speciality',
-                  'grade', 'google_scholar_account')
+        fields = ('email', 'first_name', 'last_name', 'speciality','grade', 'google_scholar_account')
+        
+    def clean_google_scholar_account(self):
+        cleaned_data = super().clean()
+        google_scholar_account = cleaned_data.get("google_scholar_account") 
+        domain = urlparse(google_scholar_account).netloc
+        if not domain == 'scholar.google.com' :
+            self.add_error('google_scholar_account' , "format du compte google scholar  fournit non valide")
+        elif not check_gs_id(get_gs_id(google_scholar_account)):
+            raise forms.ValidationError(" Le compte google scholar n\'est pas valide , prier de le vérifier !")
+        
 
     def clean_password2(self):
         password1 = self.cleaned_data["password1"]
@@ -27,8 +40,12 @@ class UserCreationForm(forms.ModelForm):
 
     def save(self, commit=True):
         user = super().save(commit=False)
+        
         user.set_password(self.cleaned_data["password1"])
+        
         if commit:
+            print("fdsa :")
+            print(user.google_scholar_account)
             user.save()
         return user
 

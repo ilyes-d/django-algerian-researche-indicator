@@ -61,7 +61,7 @@ class Researcher(AbstractBaseUser, PermissionsMixin):
     # extra info  
     image = models.ImageField(blank=True,default='D', upload_to='images')
     linkedin_account = models.URLField(blank=True)
-    google_scholar_account = models.URLField(blank=True,unique=True)
+    google_scholar_account = models.URLField(blank=True,unique=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     # Relationship between Database tables
     equipe_researchers = models.ForeignKey(
@@ -126,9 +126,6 @@ class Division(models.Model):
 
     def __str__(self):
         return self.nom
-
-
-
 
 
 class Equipe(models.Model):
