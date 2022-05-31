@@ -10,8 +10,11 @@ def org_dashboard(request):
     context["nbr_researcher"] = Researcher.objects.filter().count()
     return render(request , "home/organisation/1-dashboard.html" , context)
 
+def get_citation_total_etablisement(pk):
+    pass    
+
+
 def org_etablisements(request):
-    
     return render(request, 'home/organisation/filter_etablisements.html')
 
 def divisions_of_etablisement(request,pk):
