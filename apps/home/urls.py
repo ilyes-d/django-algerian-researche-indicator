@@ -6,11 +6,11 @@ urlpatterns = [
     path('', _views.index, name='home'),
          
     path('etablisement/' ,include([
-        path('dashboard/' , chef_eta.dash_etablisemnt  , name='dashboard_etablisement'),
-        path('division/liste/' , chef_eta.dash_etablisemnt  , name='division_etablisement'),
-        path('equipe/liste/' , chef_eta.dash_etablisemnt  , name='equipe_etablisement'),
-        path('chercheur/card/' , chef_eta.dash_etablisemnt  , name='chercheur_card_etablisement'),
-        path('chercheur/list/' , chef_eta.dash_etablisemnt  , name='dashboard_etablisement'),
+        path('dashboard/' , chef_eta.dash_etablisemnt  , name='dashboard-etablisement'),
+        path('divisions/liste/' , chef_eta.dash_etablisemnt  , name='divisions-of-etablisement'),
+        path('equipes/liste/' , chef_eta.dash_etablisemnt  , name='equipe-of-etablisement'),
+        path('chercheurs/card/' , chef_eta.dash_etablisemnt  , name='chercheur_card_etablisement'),
+        path('chercheurs/liste/' , chef_eta.dash_etablisemnt  , name='chercheurs_liste_etablisement'),
      ])),
      path('division/' ,include([
         path('dashboard/' , chef_div.dash_division  , name='dashboard_division'),
