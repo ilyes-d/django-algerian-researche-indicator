@@ -97,7 +97,7 @@ def Dash_Eta_calc(pk):
    else: 
        moy_indice_hL=round(moy_indice_hL/nbr_division_etablisment , 2)
        moy_indice_i10L=round(moy_indice_i10L/nbr_division_etablisment,2)    
-       nbr_chercheur_24 = (nbr_chercheur_24 * 100)/nbr_cher_etablisment    
+       nbr_chercheur_24 = round((nbr_chercheur_24 * 100)/nbr_cher_etablisment ,2)   
    context ={'nbr_equipe_etablisment':nbr_equipe_etablisment,
              'nbr_cher_etablisment':nbr_cher_etablisment ,
              'info_etablisment': info_etablisment,

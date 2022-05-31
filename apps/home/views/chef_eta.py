@@ -7,7 +7,7 @@ from django.contrib.auth import *
 from apps.home.decorators import *
 from apps.home.views.fcts import *
 from apps.home.decorators import *
-
+from apps.home.views.chef_div import *
 
 @is_chef_eta
 def dash_etablisemnt(request):
@@ -19,6 +19,16 @@ def dash_etablisemnt(request):
 def dash_etablisemnts(request,pk):
     context = Dash_Eta_calc(pk)
     return render (request,'dashboardEta.html',context)
+
+
+def Liste_division_Eta_aff_list(request):
+    inter=get_etablisement_id(request)
+    liste = DivsionList_Eta(inter)
+    info_etablisment = Etablisment.objects.get(pk = inter)
+    context ={'liste':liste}
+    context["info_etablisment"] = info_etablisment
+    return render (request,'home/etablisement/liste_div.html',context)
+
 
 
 

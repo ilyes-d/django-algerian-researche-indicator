@@ -12,3 +12,7 @@ def dash_division(request):
 def dash_divisions(request,pk):
     context = Dash_Division_calc(pk)
     return render (request,'DashDivision.html',context)
+
+def DivsionList_Eta(pk):
+    i = Division.objects.filter(etablisment = pk)
+    return i
