@@ -56,9 +56,12 @@
   }
   .user-card{
     position: fixed;
-    left: 30px;
     bottom: 0;
     background: #000;
+    width: 260px;
+    max-width: 260px;
+    padding-top: 10px;
+    
   }
   .user-card .avatar-lg{
     display: flex;
@@ -103,20 +106,11 @@
     {%include 'includes/user-card.html' %}
   </nav>
     <main class="content">
-
       {% include 'includes/navigation.html' %}
-
       {% block content %}{% endblock content %} 
-
-      {% include 'includes/settings-box.html' %}
-
       {% include 'includes/footer.html' %}
-
     </main>
-
   {% include 'includes/scripts.html' %}
-    
-  <!-- Specific Page JS goes HERE  -->
   {% block javascripts %}{% endblock javascripts %}  
       
 </body>
