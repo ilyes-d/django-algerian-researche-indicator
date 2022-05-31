@@ -52,12 +52,19 @@
 </head>
 <body>
     {% if user.is_superuser %}
-    {%include 'includes/organization_sidebar.html'%}
+    {%include 'includes/org_sidebar.html'%}
+    {%else%}
+        {%if user|chef_etablisement == True %}    
+        {% include 'includes/eta_sidebar.html' %}
+        {% endif %}
+        {% if user|chef_division == True %}
+        {% include 'includes/div_sidebar.html' %}
+        {% endif %}
+        {% if user|membre_simple == True %}
+        {% include 'includes/sidebar.html' %}
+        {% endif %}
     {%endif%}
-    {%if user|chef_etablisement == True %}    
-    {% include 'includes/eta_sidebar.html' %}
-    {% endif %}
-    
+
     <main class="content">
 
       {% include 'includes/navigation.html' %}

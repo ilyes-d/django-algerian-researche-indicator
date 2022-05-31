@@ -13,30 +13,24 @@
         top: 0;
         left: 25%;
         transform: translate(-50%);
-        height: 1200px;
+        height: 150vh;
         margin-bottom: 2px;
     }
     .container .content {
         width: 1200px;
     }
 </style>
-
 {% endblock stylesheets %}
-
 {% block content %}
-
     <main >
         <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
             <div class="container">
-                <p class="text-center">
-                    Open-source Django Dashboard
-                </p>
                 <div class="content row justify-content-center form-bg-image" data-background-lg="{{ ASSETS_ROOT }}/img/illustrations/signin.svg">
-                    <div class="col-12 d-flex align-items-center justify-content-center">
+                    <div class="col-12 d-flex align-items-center justify-content-center  m-20">
                         <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-900">
                             <div class="text-center text-md-center mb-4 mt-md-0">
                                 <h1 class="mb-0 h3">
-                                    Django Volt - Sign UP
+                                    Sign UP
                                 </h1>
                                 <br />
                                 <p>
@@ -48,9 +42,7 @@
                                 </p> 
                             </div>
                             <form method="post" action="" class="mt-4">
-                                
                                 {% csrf_token %}
-
                                 <div class="form-group mb-4">
                                     <div class="row">
                                         <div class="col">
@@ -183,30 +175,25 @@
             </div>
         </section>
     </main>
-
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
 <script>
-    $(document).ready(
-        function showHide(){
-
-            var passwordToggle= document.getElementById("passwordToggle");
-            passwordToggle.checked = false
-            var x = document.getElementById("id_password1");
-            var y = document.getElementById("id_password2");
-            if (x.type === 'password' && y.type === 'password' && passwordToggle.checked){
-                console.log("hello 1")
-                x.type = 'text';
-                y.type = 'text';
-            }
-            else{
-                console.log("hello 2")
-                x.type = 'password';
-                y.type = 'password';
-            }
+    function showHide(){
+        var passwordToggle= document.getElementById("passwordToggle");
+        var x = document.getElementById("id_password1");
+        var y = document.getElementById("id_password2");
+        if (passwordToggle.checked){
+            console.log("hello 1")
+            x.type = 'text';
+            y.type = 'text';
         }
-    )
+        else{
+            console.log("hello 2")
+            x.type = 'password';
+            y.type = 'password';
+        }
+    }
 </script>
 {% endblock javascripts %}
