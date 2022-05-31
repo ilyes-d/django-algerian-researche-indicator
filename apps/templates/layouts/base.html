@@ -1,4 +1,5 @@
 {% load tag %}
+{%load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,6 +41,7 @@
 
 <link type="text/css" href="{{ ASSETS_ROOT }}/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
 
+
 <link type="text/css" href="{{ ASSETS_ROOT }}/vendor/notyf/notyf.min.css" rel="stylesheet">
 <link type="text/css" href="{{ ASSETS_ROOT }}/css/volt.css" rel="stylesheet">
 
@@ -47,24 +49,59 @@
 <!-- js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <!-- Specific Page JS goes HERE  -->    
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style>  
+  .sidebar-inner {
+    height:150vh;
+  }
+  .user-card{
+    position: fixed;
+    left: 30px;
+    bottom: 0;
+    background: #000;
+  }
+  .user-card .avatar-lg{
+    display: flex;
+  }
+  .user-card img{
+    width: 50px;
+    height: 50px;
+  }
+  .collapse-close{
+    position: absolute;
+    top:0;
+    right: 0;
+    
+  }
+</style>
+{% endblock stylesheets %}
 
 </head>
 <body>
-    {% if user.is_superuser %}
-    {%include 'includes/org_sidebar.html'%}
-    {%else%}
-        {%if user|chef_etablisement == True %}    
-        {% include 'includes/eta_sidebar.html' %}
-        {% endif %}
-        {% if user|chef_division == True %}
-        {% include 'includes/div_sidebar.html' %}
-        {% endif %}
-        {% if user|membre_simple == True %}
-        {% include 'includes/sidebar.html' %}
-        {% endif %}
+  <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
+    <a class="navbar-brand me-lg-5" href="/">
+        <img class="navbar-brand-dark" src="{{ ASSETS_ROOT }}/img/brand/light.svg" alt="Volt logo" /> <img class="navbar-brand-light" src="{{ ASSETS_ROOT }}/img/brand/dark.svg" alt="Volt logo" />
+    </a>
+    <div class="d-flex align-items-center">
+        <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+  
+  <nav id="sidebarMenu" class="sidebar d-lg-block text-white collapse" data-simplebar>
+    {%if user|chef_etablisement == True %}    
+      {% include 'includes/eta_sidebar.html' %}
+    {% elif user.is_superuser %}
+      {%include 'includes/org_sidebar.html'%}
+    {% elif user|chef_division == True %}
+      {% include 'includes/div_sidebar.html' %}
+    {% elif user|membre_simple == True %}
+      {% include 'includes/sidebar.html' %}
     {%endif%}
-
+    
+    {%include 'includes/user-card.html' %}
+  </nav>
     <main class="content">
 
       {% include 'includes/navigation.html' %}

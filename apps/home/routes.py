@@ -5,6 +5,8 @@ urlpatterns = [
     #     path('dashboard/', chef_equipe.equipe_dashboard, name="equipe-dashboard"),
     #     path('members/', chef_equipe.equipe_members , name="equipe-memnbers"),
     # ])),
+    
+    #  those only for the superuser MESRS
     path('organisation/' ,include([
         path('dashboard/' , organization.org_dashboard, name="org-dashboard"),
         path('etablisements/', organization.org_etablisements , name="org-etablisements"),
@@ -16,6 +18,9 @@ urlpatterns = [
         path('equipes/', organization.org_equipes , name = "org-equipes"),
         path('equipe/<int:pk>/members/', organization.members_of_equipe, name="members-of-equipe")
     ])),
+    
+    
+    
     # path('member/', include([
     #     path('dashboard/', )
     # ]))    

@@ -10,6 +10,7 @@ def org_dashboard(request):
     return render(request , "home/organisation/dashboard.html" , context)
 
 def org_etablisements(request):
+    
     return render(request, 'home/organisation/filter_etablisements.html')
 
 def divisions_of_etablisement(request,pk):

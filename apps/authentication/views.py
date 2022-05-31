@@ -5,6 +5,8 @@ from apps.home.views.fcts import *
 from apps.home.decorators import *
 from django.contrib import messages
 from apps.home.admin import UserCreationForm
+
+
 @redirect_logged_in_user
 def login_view(request):
     form = LoginForm(request.POST or None)

@@ -11,3 +11,7 @@ def dash_equipe(request):
 def dash_divisions(request,pk):
     context = Dash_Equipe_calc(pk)
     return render (request,'DashDivision.html',context)
+
+def equipe_dashboard(request):
+    pass
+
