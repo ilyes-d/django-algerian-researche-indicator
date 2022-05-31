@@ -8,8 +8,9 @@ urlpatterns = [
     path('etablisement/' ,include([
         path('dashboard/' , chef_eta.dash_etablisemnt  , name='dashboard-etablisement'),
         path('divisions/liste/' , chef_eta.dash_etablisemnt  , name='divisions-of-etablisement'),
-        path('equipes/liste/' , chef_eta.dash_etablisemnt  , name='equipe-of-etablisement'),
-        path('chercheurs/card/' , chef_eta.dash_etablisemnt  , name='chercheur_card_etablisement'),
+        path('equipes/liste/' , chef_eta.equipes_of_etablisement  , name='equipes-of-etablisement'),
+      #   path('equipe/<int:pk>/chercheurs' , chef_eta.dash_etablisemnt  , name='cherch-of-etablisement'),
+        path('chercheurs/card/' , chef_eta.dash_etablisemnt  , name='chercheurs_card_etablisement'),
         path('chercheurs/liste/' , chef_eta.dash_etablisemnt  , name='chercheurs_liste_etablisement'),
      ])),
      path('division/' ,include([

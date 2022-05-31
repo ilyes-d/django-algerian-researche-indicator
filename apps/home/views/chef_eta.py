@@ -11,7 +11,8 @@ from apps.home.decorators import *
 
 @is_chef_eta
 def dash_etablisemnt(request):
-    context = Dash_Eta_calc(get_etablisement_id(request))
+    # context = Dash_Eta_calc(get_etablisement_id(request))
+    context = {}
     return render (request,'home/etablisement/dashboard.html',context)  
  
 
@@ -21,6 +22,7 @@ def dash_etablisemnts(request,pk):
     return render (request,'dashboardEta.html',context)
 
 
-
+def equipes_of_etablisement(request):
+    return render(request , 'home/etablisement/equipes_of_etablisement.html')
 
   
