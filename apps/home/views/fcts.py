@@ -201,6 +201,8 @@ def get_equipe_id(request):
 
 
 def user_role(request):
+    if request.user.is_superuser :
+        return "organisation"
     if Etablisment.objects.filter(chef_etablisement__id=request.user.id):
         return "etablisement"
     if Division.objects.filter(chef_div__id=request.user.id):
