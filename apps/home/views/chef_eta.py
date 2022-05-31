@@ -29,8 +29,18 @@ def Liste_division_Eta_aff_list(request):
     context["info_etablisment"] = info_etablisment
     return render (request,'home/etablisement/liste_div.html',context)
 
+def Liste_equipe_Eta_aff_list(request):
+    inter=get_etablisement_id(request)
+    liste = EquipeList_Eta(inter)
+    info_etablisment = Etablisment.objects.get(pk = inter)
+    context ={'liste':liste}
+    context["info_etablisment"] = info_etablisment
+    return render (request,'home/etablisement/liste_equipe.html',context)
 
 
+
+def equipes_of_etablisement(request):
+    return render(request , 'home/etablisement/equipes_of_etablisement.html')
 
 
   

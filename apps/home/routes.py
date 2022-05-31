@@ -15,6 +15,7 @@ urlpatterns = [
         # path('etablisement/<int:pk>/divisions/', organization.divisions_of_etablisement , name="divisions-of-etablisement"),
         path('divisions/', organization.org_divisions , name ="org-divisions"),
         path('division/<int:pk>/equipes/', organization.equipes_of_division, name="equipes-of-division"),
+        path('division/<int:pk>/chercheurs/', organization.chercheurs_of_division, name="chercheurs-of-division"),
         path('equipes/', organization.org_equipes , name = "org-equipes"),
         path('equipe/<int:pk>/members/', organization.members_of_equipe, name="members-of-equipe")
     ])),

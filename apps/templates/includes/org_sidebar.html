@@ -2,129 +2,129 @@
 {% block stylesheets %}
 {% endblock stylesheets %}
 
-  <div class="collapse-close d-md-none">
-    <a href="#sidebarMenu" data-bs-toggle="collapse"
-        data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="true"
-        aria-label="Toggle navigation">
-        <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-      </a>
-  </div>
+<div class="collapse-close d-md-none">
+<a href="#sidebarMenu" data-bs-toggle="collapse"
+    data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="true"
+    aria-label="Toggle navigation">
+    <svg class="icon icon-xs" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+  </a>
 </div>
-    <div class="sidebar-inner px-4 pt-3">
-      <ul class="nav flex-column pt-3 pt-md-0">
-        <li class="nav-item {% if request.path == '/organisation/dashboard/' %} active {% endif %}">
-          <a href="{% url 'org-dashboard' %}" class="nav-link">
-            <span class="sidebar-icon">
-              <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
-            </span> 
-            <span class="sidebar-text">Dashboard Org</span>
-          </a>
-        </li>
-        <li class="nav-item {% if '/etablisement' in request.path  %} active {% endif %}">
-          <span class="nav-link  collapsed  d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-app">
-            <span>
-              <span class="sidebar-icon">
-                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"></path></svg>
-              </span> 
-              <span class="sidebar-text">Etablisements</span>
-            </span>
-            <span class="link-arrow">
-              <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-            </span>
-          </span>
-          <div class="multi-level collapse show"
-            role="list" id="submenu-app" aria-expanded="false">
-            <ul class="flex-column nav">
-              <li class="nav-item {% if '/etablisements/' in request.path %} active {% endif %}">
-                <a class="nav-link" href="{% url 'org-etablisements'%}">
-                  <span class="sidebar-text">Global</span>
-                </a>
-              </li>
-              <li class="nav-item {% if '/etablisement/divisions/' in request.path %} active {% endif %}">
-                <a class="nav-link" href="{% url 'divisions-of-etablisement'%}">
-                  <span class="sidebar-text">Filter Divisions</span>
-                </a>
-              </li>
-              <li class="nav-item {% if '/etablisement/equipes/' in request.path %} active {% endif %}">
-                <a class="nav-link" href="{% url 'divisions-of-etablisement'%}">
-                  <span class="sidebar-text">Filter Equipes</span>
-                </a>
-              </li>
-              <li class="nav-item {% if '/etablisement/chercheurs/' in request.path %} active {% endif %}">
-                <a class="nav-link" href="{% url 'divisions-of-etablisement'%}">
-                  <span class="sidebar-text">Filter Chercheurs</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
-        <li class="nav-item {% if '/organisation/divisions/' in request.path %} active {% endif %}">
-          <span
-            class="nav-link  collapsed  d-flex justify-content-between align-items-center"
-            data-bs-toggle="collapse" data-bs-target="#submenu-pages">
-            <span>
-              <span class="sidebar-icon">
-                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"></path><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path></svg>
-              </span> 
-              <span class="sidebar-text">Divisions</span>
-            </span>
-            <span class="link-arrow">
-              <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-            </span>
-          </span>
-          <div class="multi-level collapse {% if 'rr' in request.path %} show {% endif %} " role="list"
-            id="submenu-pages" aria-expanded="false">
-            <ul class="flex-column nav">
-              <li class="nav-item">
-                <a class="nav-link" href="/page-sign-in.html">
-                  <span class="sidebar-text">Global</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/page-sign-up.html">
-                  <span class="sidebar-text">Filter Equipes</span>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/page-forgot-password.html">
-                  <span class="sidebar-text">Filter Chercheurs</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
-        <li class="nav-item {% if 'components-' in segment %} active {% endif %}">
-          <span
-            class="nav-link  collapsed  d-flex justify-content-between align-items-center"
-            data-bs-toggle="collapse" data-bs-target="#submenu-components">
-            <span>
-              <span class="sidebar-icon">
-                <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"></path><path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
-              </span> 
-              <span class="sidebar-text">Equipes</span>
-            </span>
-            <span class="link-arrow">
-              <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
-            </span>
-          </span>
-          <div class="multi-level collapse {% if 'components-' in segment %} show {% endif %}" role="list"
-            id="submenu-components" aria-expanded="false">
-            <ul class="flex-column nav">
-              <li class="nav-item {% if 'components-buttons' in segment %} active {% endif %}">
-                <a class="nav-link" href="/components-buttons.html">
-                  <span class="sidebar-text">Global</span>
-                </a>
-              </li>
-              <li class="nav-item {% if 'components-notifications' in segment %} active {% endif %}">
-                <a class="nav-link" href="/components-notifications.html">
-                  <span class="sidebar-text">Filter Chercheurs</span>
-                </a>
-              </li>
-            </ul>
-          </div>
-        </li>    
-      </ul>
-    </div>
+</div>
+<div class="sidebar-inner px-4 pt-3">
+  <ul class="nav flex-column pt-3 pt-md-0">
+    <li class="nav-item {% if request.path == '/organisation/dashboard/' %} active {% endif %}">
+      <a href="{% url 'org-dashboard' %}" class="nav-link">
+        <span class="sidebar-icon">
+          <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
+        </span> 
+        <span class="sidebar-text">Dashboard Org</span>
+      </a>
+    </li>
+    <li class="nav-item">
+      <span class="nav-link  collapsed  d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#submenu-etablisements">
+        <span>
+          <span class="sidebar-icon">
+            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"></path></svg>
+          </span> 
+          <span class="sidebar-text">Etablisements</span>
+        </span>
+        <span class="link-arrow">
+          <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        </span>
+      </span>
+      <div class="multi-level collapse show"
+        role="list" id="submenu-etablisements" aria-expanded="false">
+        <ul class="flex-column nav">
+          <li class="nav-item {% if  request.resolver_match.url_name == 'org-etablisements' %} active {% endif %}">
+            <a class="nav-link" href="{% url 'org-etablisements'%}">
+              <span class="sidebar-text">Global</span>
+            </a>
+          </li>
+          <li class="nav-item {% if '/etablisement/divisions/' in request.path %} active {% endif %}">
+            <a class="nav-link" href="{% url 'divisions-of-etablisement'%}">
+              <span class="sidebar-text">Filter Divisions</span>
+            </a>
+          </li>
+          <li class="nav-item {% if '/etablisement/equipes/' in request.path %} active {% endif %}">
+            <a class="nav-link" href="{% url 'divisions-of-etablisement'%}">
+              <span class="sidebar-text">Filter Equipes</span>
+            </a>
+          </li>
+          <li class="nav-item {% if '/etablisement/chercheurs/' in request.path %} active {% endif %}">
+            <a class="nav-link" href="{% url 'divisions-of-etablisement'%}">
+              <span class="sidebar-text">Filter Chercheurs</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
+    <li class="nav-item">
+      <span
+        class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+        data-bs-toggle="collapse" data-bs-target="#submenu-divisions">
+        <span>
+          <span class="sidebar-icon">
+            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z" clip-rule="evenodd"></path><path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z"></path></svg>
+          </span> 
+          <span class="sidebar-text">Divisions</span>
+        </span>
+        <span class="link-arrow">
+          <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        </span>
+      </span>
+      <div class="multi-level collapse {% if 'organisation/division' in request.path %} show {% endif %}" role="list"
+        id="submenu-divisions" aria-expanded="false">
+        <ul class="flex-column nav">
+          <li class="nav-item {% if request.resolver_match.url_name == 'org-divisions' %} active {%endif%}">
+            <a class="nav-link" href="{% url 'org-divisions' %}">
+              <span class="sidebar-text">Global</span>
+            </a>
+          </li>
+          <li class="nav-item {% if request.resolver_match.url_name == 'equipes-of-division' %} active {%endif%}">
+            <a class="nav-link" href="{%url 'equipes-of-division' pk=1 %}">
+              <span class="sidebar-text">Filter Equipes</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'chercheurs-of-division' pk=1 %}">
+              <span class="sidebar-text">Filter Chercheurs</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li role="separator" class="dropdown-divider mt-4 mb-3 border-gray-700"></li>
+    <li class="nav-item {% if 'components-' in segment %} active {% endif %}">
+      <span
+        class="nav-link  collapsed  d-flex justify-content-between align-items-center"
+        data-bs-toggle="collapse" data-bs-target="#submenu-equipes">
+        <span>
+          <span class="sidebar-icon">
+            <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z"></path><path fill-rule="evenodd" d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
+          </span> 
+          <span class="sidebar-text">Equipes</span>
+        </span>
+        <span class="link-arrow">
+          <svg class="icon icon-sm" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+        </span>
+      </span>
+      <div class="multi-level collapse {% if 'organisation/equipe' in request.path %} show {% endif %}" role="list"
+        id="submenu-equipes" aria-expanded="false">
+        <ul class="flex-column nav">
+          <li class="nav-item {% if request.resolver_match.url_name == 'org-equipes' %} active {% endif %}">
+            <a class="nav-link" href="{% url 'org-equipes' %}">
+              <span class="sidebar-text">Global</span>
+            </a>
+          </li>
+          <li class="nav-item {% if 'components-notifications' in segment %} active {% endif %}">
+            <a class="nav-link" href="/components-notifications.html">
+              <span class="sidebar-text">Filter Chercheurs</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </li>    
+  </ul>
+</div>
 

@@ -37,17 +37,15 @@ def ApiData(pk): # l'id du chercheur
     params = {
     "engine": "google_scholar_author",
     "author_id": r.get_google_id(),
-
     "api_key": "05840cb02e8ba6f67538df2d4c51c859c362279184fdbcb7e66f308ad8115a21",
-
-   
     "start": 0,
     "num": "100"
     }
     search = GoogleSearch(params)
     results = search.get_dict()
-    if results == {'error': 'Your searches for the month are exhausted. You can upgrade plans on SerpApi.com website.'}:
-        results ={}
+    print(results)
+    if checkKey(results,'error') :
+        return {}
     else:    
        articles_num = len(results["articles"])
        flag = 100
@@ -67,6 +65,9 @@ def ApiData(pk): # l'id du chercheur
          results["articles_num"] = articles_num
          print(r.date_joined)
          results["date_joined"] = r.date_joined
+         print(results)
+    if checkKey(results,'error') :
+        results ={}    
     return results 
 
 
@@ -160,8 +161,8 @@ def Dash_Equipe_calc(pk):# on fait sous form de fonction pour utulistaion direct
     nbr_chercheur_24 =0 
     for i in researchers:
         inter = ApiData(i.id)
-        if inter !={} or inter !=None :
-          
+        if inter !={} and inter !=None  :
+           print(inter)
            nbr_Citation += inter["cited_by"]["table"][0]["citations"]["all"]
            moy_indice_h += inter["cited_by"]["table"][1]["h_index"]["all"]  
            moy_indice_i10 += inter["cited_by"]["table"][2]["i10_index"]["all"]
@@ -217,3 +218,11 @@ def checkKey(dict, key):
         return True
     return False
   
+def EquipeList_Eta(pk):
+    inter = Division.objects.filter(etablisment = pk)
+    researchers = Equipe.objects.none()
+    i =[]
+    for i1 in inter:
+       researchers = Equipe.objects.filter(division = i1.id)
+       i +=researchers
+    return i
