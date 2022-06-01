@@ -226,3 +226,16 @@ def EquipeList_Eta(pk):
        researchers = Equipe.objects.filter(division = i1.id)
        i +=researchers
     return i
+
+def CherList_eta(pk):
+     inter = Division.objects.filter(etablisment = pk)
+     interEquipe = Equipe.objects.none()
+     inter2 =[]
+     for i in inter:
+        interEquipe = Equipe.objects.filter(division = i.id)
+        inter2 +=interEquipe 
+     final =[]
+     for i in inter2:
+        researchers = Researcher.objects.filter(equipe_researchers = i.id)
+        final +=researchers
+     return final

@@ -37,6 +37,21 @@ def Liste_equipe_Eta_aff_list(request):
     context["info_etablisment"] = info_etablisment
     return render (request,'home/etablisement/liste_equipe.html',context)
 
+def Liste_cher_Eta_aff(request):
+    inter=get_etablisement_id(request)
+    liste = CherList_eta(inter)
+    info_etablisment = Etablisment.objects.get(pk = inter)
+    context ={'liste':liste}
+    context["info_etablisment"] = info_etablisment
+    return render (request,'home/etablisement/liste_chercheur.html',context)
+
+def Liste_cher_Eta_aff_list(request):
+    inter=get_etablisement_id(request)
+    liste = CherList_eta(inter)
+    info_etablisment = Etablisment.objects.get(pk = inter)
+    context ={'liste':liste}
+    context["info_etablisment"] = info_etablisment
+    return render (request,'home/etablisement/liste_chercheur_card.html',context)
 
 
 def equipes_of_etablisement(request):

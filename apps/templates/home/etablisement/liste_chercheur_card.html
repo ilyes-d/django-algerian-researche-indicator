@@ -1,0 +1,129 @@
+{% extends "layouts/base.html" %} 
+{% load static %}
+{% load tag %}
+{% block content %}
+<div class="page-header">
+  <div class="row align-items-center">
+    <div class="col">
+      <h3 class="page-title">
+        Les Chercheurs  De L'etablisment {{info_etablisment.nom}}
+      </h3>
+      
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Effectifs</a></li>
+        <li class="breadcrumb-item active">Tous les Chercheurs</li>
+        <li class="breadcrumb-item active"></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<style>
+  
+    .rowpro {
+    width: 100%;
+    /* margin: auto; */
+    margin-bottom: 40px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* justify-items: center; */
+    justify-content: center;
+}
+    @media(max-width: 768px)
+    {
+        .rowpro{
+            width: 100%;
+        }
+    }
+    .profile-card {
+        border-radius: 31px;
+        background-color: #ffffff;
+        width: 244px;
+        height: 250px;
+        margin: 20px 10px 10px 10px;
+    }
+    @media(max-width: 468px)
+    {
+        .profile-card
+        {
+            width: 290px;
+            height: 250px;
+        }
+    }
+    .profile-content
+    {
+        padding:15px;
+    }
+    img{
+        width: 80px;
+        height: 80px;
+        border-radius: 50px;
+    }
+    .profile-image
+    {
+        text-align: center;
+    }
+    .desc
+    {
+        text-align: center;
+    }
+    .desc h2
+    {
+        color: black;
+        font-size: 20px;
+    }
+    .desc p{
+        font-size: 13px;
+        line-height: 1.3em;
+        margin-top: -10px;
+        color: #000000;
+         
+    }
+    .btnpr-div
+    {
+        text-align: center;
+    }
+    .btnpr
+    {
+        background-color: black;
+        color: #ffffff;
+        width: 150px;
+        cursor: pointer;
+        height: 38px;
+        font-size: 13px;
+        font-weight: 600;
+        box-shadow: 3px 3px 3px 3px #e6e6e6;
+        border-radius: 3px;
+        outline:none;
+        border:none;
+        text-transform: uppercase;
+    }</style>  
+
+    <div class="rowpro">
+        <!--First User design starts here-->
+        {% for i in liste %}
+        <div class="profile-card">
+            <div class="profile-content">
+                <div class="profile-image">
+                    <img src="{{ ASSETS_ROOT }}/img/team/profile-picture-1.jpg" alt="first user">
+                </div>
+                <br>
+                <div class="desc">
+                    <h2>{{i}}</h2>
+                    <p>{{i.speciality}}</p>
+                    <p>{{i.grade}}</p>
+                </div>
+               
+                <div class="btnpr-div">
+                    <button class="btnpr"></i>Profile</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+  
+</div>
+
+
+{% endblock content %} 
