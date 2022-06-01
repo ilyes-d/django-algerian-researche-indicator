@@ -129,7 +129,6 @@ class Directions(models.Model):
     chef_direction = models.OneToOneField(
         'Researcher', on_delete=models.SET_NULL, null=True)
     
-    
 class Location(models.Model):
     id = models.IntegerField(primary_key=True)
     state_name = models.CharField(max_length=30)

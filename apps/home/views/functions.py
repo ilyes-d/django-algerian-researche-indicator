@@ -60,7 +60,7 @@ def get_citations_all_etablisements():
 
 
 
-def final_years_citations_etablisement(eta_id):
+def final_8years_citations_eta(eta_id):
     citations_per_year = [
         {"year": 2015, "citations": 0},
         {"year": 2016, "citations": 0},
@@ -76,7 +76,6 @@ def final_years_citations_etablisement(eta_id):
         researcher_graph = serpapi_author(researcher.get_google_id())["cited_by"]["graph"]
         for i in range(0,8):
             year = citations_per_year[i]["year"]
-            print(year)
             for item in researcher_graph:
                 if item["year"] == year:
                     citations_per_year[i]["citations"] += item["citations"] 
@@ -85,7 +84,7 @@ def final_years_citations_etablisement(eta_id):
             
             
 
-def final_years_all_etablisement():
+def final_8years_citations_all_etas():
     citations_per_year_total = [
         {"year": 2015, "citations": 0},
         {"year": 2016, "citations": 0},
@@ -96,10 +95,31 @@ def final_years_all_etablisement():
         {"year": 2021, "citations": 0},
         {"year": 2022, "citations": 0},
     ]
-    
     for etablisement in Etablisment.objects.all():
-        eta_citations = final_years_citations_etablisement(etablisement.id)    
+        eta_citations = final_8years_citations_eta(etablisement.id)
         for i in range(0,8):
             citations_per_year_total[i]["citations"] += eta_citations[i]["citations"]
     
     return citations_per_year_total
+
+
+def all_researchers_citations_org():
+    researchers_citations = []
+    for researcher in Researcher.objects.all():
+        researchers_citations.append({
+            'id': researcher.id,
+            'name': researcher.__str__(),
+            'citations': get_researcher_citations(researcher)
+        })
+    return researchers_citations
+def top_10_researchers_citations_org():
+    
+    for researcher in Researcher.objects.all():
+        
+        pass    
+    
+def top_10_researchers_citations_eta(request):
+    pass
+def top_10_researchers_citations_div(request):
+    pass
+    

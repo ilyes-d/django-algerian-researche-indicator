@@ -52,16 +52,19 @@
 {% block stylesheets %}
 <style>  
   .sidebar-inner {
-    height:150vh;
+    height:95vh;
   }
+  
   .user-card{
-    position: fixed;
+    position: inherit; 
     bottom: 0;
-    background: #000;
+    background: #fff;
     width: 260px;
     max-width: 260px;
     padding-top: 10px;
-    
+  }
+  .user-card .h5{
+    color: #000;
   }
   .user-card .avatar-lg{
     display: flex;
@@ -70,6 +73,7 @@
     width: 50px;
     height: 50px;
   }
+
   .collapse-close{
     position: absolute;
     top:0;
@@ -101,13 +105,13 @@
     {% elif user|membre_simple == True %}
       {% include 'includes/sidebar.html' %}
     {%endif%}
-    
-    {%include 'includes/user-card.html' %}
   </nav>
     <main class="content">
       {% include 'includes/navigation.html' %}
       {% block content %}{% endblock content %} 
+      {%comment %}
       {% include 'includes/footer.html' %}
+      {%endcomment %}
     </main>
   {% include 'includes/scripts.html' %}
   {% block javascripts %}{% endblock javascripts %}  
