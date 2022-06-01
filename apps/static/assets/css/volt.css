@@ -805,7 +805,7 @@
   --bs-black-rgb: 17, 24, 39;
   --bs-body-color-rgb: 55, 65, 81;
   --bs-body-bg-rgb: 242, 244, 246;
-  --bs-font-sans-serif: "Inter", sans-serif;
+  --bs-font-sans-serif: 'Poppins';
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
@@ -826,7 +826,7 @@
 
 body {
   margin: 0;
-  font-family: var(--bs-body-font-family);
+  font-family: 'Poppins';
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -4034,7 +4034,10 @@ textarea.form-control-lg {
   .btn-outline-primary:disabled, .btn-outline-primary.disabled {
     color: #1F2937;
     background-color: transparent; }
-
+    table thead tr {
+      height: 60px;
+      background: #3ca0fe;
+  }
 .btn-outline-secondary {
   color: #f0bc74;
   border-color: #f0bc74; }
@@ -4881,7 +4884,7 @@ textarea.form-control-lg {
   .nav-link:hover, .nav-link:focus {
     color: #1F2937; }
   .nav-link.disabled {
-    color: #4B5563;
+    color: #fff;
     pointer-events: none;
     cursor: default; }
 
@@ -14801,8 +14804,11 @@ textarea.form-control-lg {
       color: #000;
       cursor: pointer; }
       .sidebar .nav-item .nav-link:hover {
-        color: #F2F4F6;
-        background-color: #10B0E0; }
+        color: #000;
+        background-color: #fff;
+        font-weight: bold;
+        letter-spacing: 1px;
+    }
   .sidebar .nav-link + .multi-level {
     margin-top: .2rem; }
   .sidebar .nav-link {
@@ -18463,7 +18469,7 @@ label {
  */
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
-  font-family: "Inter", sans-serif;
+  font-family: var(--bs-body-font-family);
   font-weight: 500; }
 
 p, ol li, ul li, .p {
@@ -18820,7 +18826,7 @@ article .h1, article .h2, article .h3, article .h4, article .h5, article .h6 {
   bottom: 10px;
   border-top-right-radius:12px ;
   border-bottom-right-radius:12px ;
-  background-color: #fff;
+  background-color: #3ca0fe;
   flex-direction: column;
   flex-wrap: wrap;
   justify-content: flex-start;
