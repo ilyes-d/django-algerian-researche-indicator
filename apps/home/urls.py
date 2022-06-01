@@ -19,6 +19,5 @@ urlpatterns = [
         path('chercheur/card/' , chef_div.dash_division  , name='chercheur_card_division'),
         path('chercheur/list/' , chef_div.dash_division  , name='chercheur_list_division'),
      ])),
-    path('settings/', _views.settings , name= "settings"),
     path('try/' , _views.trying, name='try')
 ]
