@@ -1,6 +1,8 @@
 from django.http import HttpResponse
 from django.shortcuts import render 
 from apps.home.models import *
+from django.db.models import F, Q
+from apps.home.views.functions import *
 
 def org_dashboard(request):
     context = {}
@@ -8,10 +10,8 @@ def org_dashboard(request):
     context["nbr_divisions"] = Division.objects.filter().count()
     context["nbr_equipes"] = Equipe.objects.filter().count()
     context["nbr_researcher"] = Researcher.objects.filter().count()
+    
     return render(request , "home/organisation/1-dashboard.html" , context)
-
-def get_citation_total_etablisement(pk):
-    pass    
 
 
 def org_etablisements(request):
@@ -25,7 +25,7 @@ def org_divisions(request):
     return render(request , 'home/organisation/3-1org-divisions.html')
 
 def equipes_of_division(request, pk):
-    return render(request , 'home/organisation/3-2equipes-divisions.html' )
+    return render(request , 'home/organisation/3-2equipes-divisions.html')
 
 
 def chercheurs_of_division(request):

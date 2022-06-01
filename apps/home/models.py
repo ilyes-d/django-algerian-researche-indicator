@@ -5,9 +5,6 @@ from django.db import models
 
 
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
-# to specify a range
-# from django.core.validators import MinValueValidator, MaxValueValidator
-
 
 class ResearcherUserManager(BaseUserManager):
     """
@@ -44,7 +41,6 @@ class ResearcherUserManager(BaseUserManager):
         if other_fields.get('is_superuser') is not True:
             raise ValueError("Superuser must be is_superuser")
         return self.create_user(first_name, last_name, email, password, **other_fields)
-
 
 # custom user
 class Researcher(AbstractBaseUser, PermissionsMixin):
@@ -89,15 +85,30 @@ class Researcher(AbstractBaseUser, PermissionsMixin):
     def get_username(self) -> str:
         return super().get_username()
 
+class Equipe(models.Model):
+    nom = models.CharField(max_length=200)
+    site_web=models.URLField(blank=True)
+    # Relationship
+    division = models.ForeignKey(
+        'Division', on_delete=models.CASCADE, null=True)
+    chef_equipe = models.OneToOneField(
+        'Researcher', on_delete=models.SET_NULL, null=True, blank=True)
 
-class Location(models.Model):
-    id = models.IntegerField(primary_key=True)
-    state_name = models.CharField(max_length=30)
-    # validators=[MinValueValidator(1), MaxValueValidator(58)],
+    def __str__(self):
+        return self.nom+" "+str(self.id)
 
-    def __str__(self) -> str:
-        return self.state_name
+class Division(models.Model):
+    nom = models.CharField(max_length=200, default='')
+    site_web=models.URLField(blank=True)
 
+    # relationshi
+    etablisment = models.ForeignKey(
+        'Etablisment', on_delete=models.CASCADE, null=True)
+    chef_div = models.OneToOneField(
+        'Researcher', on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return self.nom
 
 class Etablisment(models.Model):
     nom = models.CharField(max_length=200, default='')
@@ -113,36 +124,15 @@ class Etablisment(models.Model):
     def __str__(self):
         return self.nom
 
-
-class Division(models.Model):
-    nom = models.CharField(max_length=200, default='')
-    site_web=models.URLField(blank=True)
-
-    # relationshi
-    etablisment = models.ForeignKey(
-        'Etablisment', on_delete=models.CASCADE, null=True)
-    chef_div = models.OneToOneField(
-        'Researcher', on_delete=models.SET_NULL, null=True, blank=True)
-
-    def __str__(self):
-        return self.nom
-
-
-class Equipe(models.Model):
-    nom = models.CharField(max_length=200)
-    site_web=models.URLField(blank=True)
-    # Relationship
-    division = models.ForeignKey(
-        'Division', on_delete=models.CASCADE, null=True)
-    chef_equipe = models.OneToOneField(
-        'Researcher', on_delete=models.SET_NULL, null=True, blank=True)
-
-    def __str__(self):
-        return self.nom+" "+str(self.id)
-
-
 class Directions(models.Model):
     nom = models.CharField(max_length=150, )
     chef_direction = models.OneToOneField(
         'Researcher', on_delete=models.SET_NULL, null=True)
     
+class Location(models.Model):
+    id = models.IntegerField(primary_key=True)
+    state_name = models.CharField(max_length=30)
+    # validators=[MinValueValidator(1), MaxValueValidator(58)],
+
+    def __str__(self) -> str:
+        return self.state_name
