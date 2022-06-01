@@ -10,12 +10,14 @@ def org_dashboard(request):
     context["nbr_divisions"] = Division.objects.filter().count()
     context["nbr_equipes"] = Equipe.objects.filter().count()
     context["nbr_researcher"] = Researcher.objects.filter().count()
-    
+    context["all_etablisements_citations"] = final_8years_citations_all_etas()
     return render(request , "home/organisation/1-dashboard.html" , context)
 
 
 def org_etablisements(request):
-    return render(request, 'home/organisation/filter_etablisements.html')
+    context = {}
+    context["etablisements"] = query_all_etablisements()    
+    return render(request, 'home/organisation/filter_etablisements.html' , context)
 
 def divisions_of_etablisement(request,pk):
     return render(request, 'home/organisation/filter_divisions.html')

@@ -7,7 +7,6 @@
     .row{
         margin-top: 20px;
     }
-
 </style>
 {% endblock stylesheet %}
 <div class="row">
@@ -110,4 +109,35 @@
         </div>
     </div>
 </div>
+<div>
+    <canvas id="m"></canvas>
+</div>
+
+{{all_etablisements_citations}}
+
+
 {% endblock content %}
+{% block javascripts %}
+<script>
+    const labels = [{% for item in all_etablisements_citations %}'{{item.year}}',{%endfor%}];
+    const data={
+        labels: labels, 
+        datasets : [{
+            label : 'Final 8 years citations of all etablisements ', 
+            data : [{% for item in all_etablisements_citations %}{{item.citations}},{%endfor%} ],
+            backgroundColor: '#3ca0fe',
+            borderColor: '#3ca0fe',
+            maxBarThickness: 12,
+        }]
+    };
+    const config ={
+        type :'bar', 
+        data: data,
+        options : {}
+    };
+    const mychart = new Chart(
+        document.getElementById('m'),
+        config
+    );
+</script>
+{% endblock javascripts %}  

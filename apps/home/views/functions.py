@@ -44,6 +44,30 @@ def get_researcher_citations(researcher):
 def get_etablisement_researchers(eta_id):
     return Researcher.objects.filter(Q(division__etablisment__id=eta_id) | Q(equipe__division__etablisment__id=eta_id) | Q(equipe_researchers__division__etablisment__id=eta_id) | Q(etablisment__id=eta_id))
 
+
+def query_all_etablisements():
+    etablisements_info = {}
+    for etablisement in Etablisment.objects.all():
+        etablisements_info[etablisement.__str__()] = {
+            "chef_eta": etablisement.chef_etablisement.__str__() , 
+            "nbr_researchers" : get_etablisement_researchers(etablisement.id).count(),
+            "_citations" : get_citations_total_etablisement(etablisement.id),
+            "top_researcher_citation": top_researcher_citations(etablisement.id)["max"],
+        }
+    return etablisements_info
+
+
+def top_researcher_citations(eta_id):
+    context = {}
+    researchers = get_etablisement_researchers(eta_id)
+    researchers_citations = {}
+    for researcher in researchers:
+        researchers_citations[researcher.__str__()] = get_researcher_citations(researcher)
+    context["researcher_citations"] = researchers_citations
+    context["max"] = max(researchers_citations , key=researchers_citations.get)
+    return context
+    
+    
 def get_citations_total_etablisement(eta_id):
     total_citaions = 0
     researchers = list(get_etablisement_researchers(eta_id))
