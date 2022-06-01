@@ -61,6 +61,45 @@ def get_citations_all_etablisements():
 
 
 def final_years_citations_etablisement(eta_id):
-    pass        
+    citations_per_year = [
+        {"year": 2015, "citations": 0},
+        {"year": 2016, "citations": 0},
+        {"year": 2017, "citations": 0},
+        {"year": 2018, "citations": 0},
+        {"year": 2019, "citations": 0},
+        {"year": 2020, "citations": 0},
+        {"year": 2021, "citations": 0},
+        {"year": 2022, "citations": 0},
+    ]
+    researchers = get_etablisement_researchers(eta_id)
+    for researcher in researchers:
+        researcher_graph = serpapi_author(researcher.get_google_id())["cited_by"]["graph"]
+        for i in range(0,8):
+            year = citations_per_year[i]["year"]
+            print(year)
+            for item in researcher_graph:
+                if item["year"] == year:
+                    citations_per_year[i]["citations"] += item["citations"] 
+                    break
+    return citations_per_year
+            
+            
 
-
+def final_years_all_etablisement():
+    citations_per_year_total = [
+        {"year": 2015, "citations": 0},
+        {"year": 2016, "citations": 0},
+        {"year": 2017, "citations": 0},
+        {"year": 2018, "citations": 0},
+        {"year": 2019, "citations": 0},
+        {"year": 2020, "citations": 0},
+        {"year": 2021, "citations": 0},
+        {"year": 2022, "citations": 0},
+    ]
+    
+    for etablisement in Etablisment.objects.all():
+        eta_citations = final_years_citations_etablisement(etablisement.id)    
+        for i in range(0,8):
+            citations_per_year_total[i]["citations"] += eta_citations[i]["citations"]
+    
+    return citations_per_year_total
