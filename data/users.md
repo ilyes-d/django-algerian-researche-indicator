@@ -42,3 +42,29 @@ Les members
 Researcher.objects.create_user(email="mchaa@cerist.dz",password="chaa123",last_name = "Chaa", first_name = "Messaoud", google_scholar_account = "https://scholar.google.com/citations?hl=en&user=M64Rs8UAAAAJ", equipe_researchers_id = 1)
 Researcher.objects.create_user(email="lchalabi@cerist.dz",password="chalabi123",last_name = "Chalabi", first_name = "Lydia",google_scholar_account = "https://scholar.google.com/citations?hl=en&user=cQzs_JQAAAAJ", equipe_researchers_id = 1)
 Researcher.objects.create_user(email="nleila@mail.cerist.dz",password="nouri123",last_name = "Nouri", first_name = "Leila",google_scholar_account = "https://scholar.google.com/citations?hl=en&user=FqKD0NcAAAAJ", equipe_researchers_id = 1)
+
+
+
+
+
+
+
+
+# Etablisement CDER Dz 
+ Directeur : 
+  email="a.hadjarab@cder.dz" password = "amar123"
+  first_name = "amar" last_name = "hadj-arab" speciality = "Energies Renouvelables"
+  grade = "directeur"
+  google_scholar_account = "https://scholar.google.com/citations?hl=en&user=UCrtS_oAAAAJ"
+
+## Divisions 
+1. Division Energie Solaire Thermique et Thermodynamique Solaire
+* chef :
+`email ="s.ouali@cder.dz" password = "salima123" ,first_name = "Salima" ,last_name = "Ouali", speciality="Géothermie",google_scholar_account = "https://scholar.google.com/citations?hl=en&user=RRyeMSoAAAAJ"`
+2. Division Energie Eolienn
+* chef  Ouahiba Guerri
+`email="o.guerri@cder.dz", password="ouhiba123", first_name = "Ouahiba" , last_name ="Guerri", google_scholar_account="https://scholar.google.com/citations?hl=en&user=JUOmDDsAAAAJ", speciality = " Wind Energy" `
+
+
+query all etablisements researcher who arent leads
+Researcher.objects.filter(equipe_researchers__division__etablisment__id=1)
