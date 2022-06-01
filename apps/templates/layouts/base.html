@@ -81,6 +81,9 @@
     top:0;
     right: 0;
   }
+  .content{
+    height: 100vh;
+  }
 </style>
 {% endblock stylesheets %}
 
@@ -111,9 +114,8 @@
     <main class="content">
       {% include 'includes/navigation.html' %}
       {% block content %}{% endblock content %} 
-      {%comment %}
       {% include 'includes/footer.html' %}
-      {%endcomment %}
+      
     </main>
   {% include 'includes/scripts.html' %}
   {% block javascripts %}{% endblock javascripts %}  
