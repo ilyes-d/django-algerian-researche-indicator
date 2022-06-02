@@ -10,7 +10,7 @@ def ApiData(pk): # l'id du chercheur
     params = {
     "engine": "google_scholar_author",
     "author_id": r.get_google_id(),
-    "api_key": "016c19a111a3df750b7a37250aedf532683ef08faa73e2ab7f4aba7f2f2746be",
+    "api_key": "2c4f4ce6c429d7399649b280e13d0c519c0f088732d1bb9861dd514675b6374f",
     "start": 0,
     "num": "100"
     }
@@ -28,7 +28,8 @@ def ApiData(pk): # l'id du chercheur
            "author_id": r.get_google_id(),
            "api_key": "016c19a111a3df750b7a37250aedf532683ef08faa73e2ab7f4aba7f2f2746be",
            "start": flag,
-           "num": str(flag+100)
+           "num": str(flag+100),
+           "sort": "pubdate"
          }
          flag += 100
          search = GoogleSearch(params)
@@ -43,6 +44,36 @@ def ApiData(pk): # l'id du chercheur
         results ={}    
     return results 
 
+
+def researcher_nbrarticles(researcher):
+    params = {
+        "engine": "google_scholar_author",
+        "author_id": researcher.get_google_id(),
+        "api_key": "bfdde7462931844d6003e1d183494fad96f1011bdd6d192179f5bae85d0e16c1",
+        "start": 0,
+        "num": "100",
+        "sort": "pubdate"
+    }
+    search = GoogleSearch(params)
+    results = search.get_dict()
+    if 'articles' in results:
+        articles_num = len(results["articles"])
+    else: articles_num = 0
+    flag = 100
+    while "articles" in results:
+        params = {
+            "engine": "google_scholar_author",
+            "author_id": researcher.get_google_id(),
+            "api_key": "bfdde7462931844d6003e1d183494fad96f1011bdd6d192179f5bae85d0e16c1",
+            "start": flag,
+            "num": str(flag+100)
+        }
+        flag += 100
+        search = GoogleSearch(params)
+        results = search.get_dict()
+        if "articles" in results:
+            articles_num += len(results["articles"])
+    return articles_num
 
 def Dash_Eta_calc(pk):
    info_etablisment = Etablisment.objects.get(pk = pk)

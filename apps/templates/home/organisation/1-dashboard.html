@@ -6,7 +6,20 @@
 <style>
     .row{
         margin-top: 20px;
+        margin-bottom: 20px;
     }
+    .anychart-embed{
+        width: 100vw;
+        height: 100vh;
+        border-radius: 50px;
+    }
+     #container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
 </style>
 {% endblock stylesheet %}
 <div class="row">
@@ -109,11 +122,163 @@
         </div>
     </div>
 </div>
-<div>
-    <canvas id="m"></canvas>
+
+<div id="container">
 </div>
 
-{{all_etablisements_citations}}
+<!-- {{all_etablisements_citations}} -->
+<!-- <div id="anychart-embed-countries-algeria" class="anychart-embed anychart-embed-countries-algeria">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-map.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+    <script src="https://cdn.anychart.com/geodata/2.1.1/countries/algeria/algeria.js"></script>
+    <div id="ac_style_countries-algeria" style="display:none;">
+     #container {
+        width: 90%;
+        height: 90%;
+        margin: 0;
+        padding: 0;
+    }
+    </div>
+    <script>
+        (function(){
+    function ac_add_to_head(el){
+        var head = document.getElementsByTagName('head')[0];
+        head.insertBefore(el,head.firstChild);
+    }
+    function ac_add_link(url){
+        var el = document.createElement('link');
+        el.rel='stylesheet';el.type='text/css';el.media='all';el.href=url;
+        ac_add_to_head(el);
+    }
+    function ac_add_style(css){
+        var ac_style = document.createElement('style');
+        if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+        else ac_style.appendChild(document.createTextNode(css));
+        ac_add_to_head(ac_style);
+    }
+    ac_add_link('https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css');
+    ac_add_style(document.getElementById("ac_style_countries-algeria").innerHTML);
+    ac_add_style(".anychart-embed-countries-algeria{width:600px;height:450px;}");
+    })();
+    </script>
+    <div id="container">
+    </div>
+    <script>
+    anychart.onDocumentReady(function() {
+      // create map
+      var map = anychart.map();
+    
+      // create data set
+      var dataSet = anychart.data.set(
+          [{"id":"DZ.AR","value":0},
+                {"id":"DZ.AT","value":1},
+                {"id":"DZ.OR","value":2},
+                {"id":"DZ.SB","value":3},
+                {"id":"DZ.TL","value":4},
+                {"id":"DZ.BC","value":5},
+                {"id":"DZ.NA","value":6},
+                {"id":"DZ.TN","value":7},
+                {"id":"DZ.AN","value":8},
+                {"id":"DZ.ET","value":9},
+                {"id":"DZ.JJ","value":10},
+                {"id":"DZ.SK","value":11},
+                {"id":"DZ.IL","value":12},
+                {"id":"DZ.TM","value":13},
+                {"id":"DZ.EB","value":14},
+                {"id":"DZ.1950","value":15},
+                {"id":"DZ.GR","value":16},
+                {"id":"DZ.LG","value":17},
+                {"id":"DZ.OG","value":18},
+                {"id":"DZ.AL","value":19},
+                {"id":"DZ.BM","value":20},
+                {"id":"DZ.TO","value":21},
+                {"id":"DZ.TP","value":22},
+                {"id":"DZ.AD","value":23},
+                {"id":"DZ.CH","value":24},
+                {"id":"DZ.MC","value":25},
+                {"id":"DZ.MG","value":26},
+                {"id":"DZ.RE","value":27},
+                {"id":"DZ.SD","value":28},
+                {"id":"DZ.TR","value":29},
+                {"id":"DZ.TS","value":30},
+                {"id":"DZ.BB","value":31},
+                {"id":"DZ.BJ","value":32},
+                {"id":"DZ.BL","value":33},
+                {"id":"DZ.BU","value":34},
+                {"id":"DZ.BS","value":35},
+                {"id":"DZ.DJ","value":36},
+                {"id":"DZ.MD","value":37},
+                {"id":"DZ.MS","value":38},
+                {"id":"DZ.SF","value":39},
+                {"id":"DZ.BT","value":40},
+                {"id":"DZ.CO","value":41},
+                {"id":"DZ.GL","value":42},
+                {"id":"DZ.KH","value":43},
+                {"id":"DZ.ML","value":44},
+                {"id":"DZ.OB","value":45},
+                {"id":"DZ.SA","value":46},
+                {"id":"DZ.TB","value":47}]
+      );
+    
+      // create choropleth series
+      series = map.choropleth(dataSet);
+    
+      // set geoIdField to 'id', this field contains in geo data meta properties
+      series.geoIdField('id');
+    
+      // set map color settings
+      series.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
+      series.hovered().fill('#addd8e');
+    
+      // set geo data, you can find this map in our geo maps collection
+      // https://cdn.anychart.com/#maps-collection
+      map.geoData(anychart.maps['algeria']);
+    
+      //set map container id (div)
+      map.container('container');
+    
+      //initiate map drawing
+      map.draw();
+    });
+    </script>
+</div> -->
+
+
+<div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+    <div class="card">
+      <div class="row row-bordered g-0">
+        <div class="col">
+          <h5 class="card-header m-0 me-2 pb-3">les citations finale de les derniers 8 anness</h5>
+          <div id="totalRevenueChart" class="px-2">
+            <canvas id="m"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h3> Top 10 Etablisement Citations </h3>
+{% include 'components/org/top10-citations-etas.html' %}
+
+<h3>Top 10 divisions Citations</h3>
+
+<h3>Top 10 equipes Citations </h3>
+
+<h3>Top 10 researchers Citations</h3>
+
+<h3>Top Etablisement Citations</h3>
+
+<h3>Top division Citations</h3>
+
+<h3>Top equipe Citations </h3>
+
+<h3>Top researcher citations</h3>
+
+
+
 
 
 {% endblock content %}
@@ -125,7 +290,10 @@
         datasets : [{
             label : 'Final 8 years citations of all etablisements ', 
             data : [{% for item in all_etablisements_citations %}{{item.citations}},{%endfor%} ],
-            backgroundColor: '#3ca0fe',
+            backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            ],
             borderColor: '#3ca0fe',
             maxBarThickness: 12,
         }]
@@ -139,5 +307,81 @@
         document.getElementById('m'),
         config
     );
+    anychart.onDocumentReady(function() {
+        // create map
+        var map = anychart.map();
+      
+        // create data set
+        var dataSet = anychart.data.set(
+            [{"id":"DZ.AR","value":0},
+                  {"id":"DZ.AT","value":1},
+                  {"id":"DZ.OR","value":2},
+                  {"id":"DZ.SB","value":3},
+                  {"id":"DZ.TL","value":4},
+                  {"id":"DZ.BC","value":5},
+                  {"id":"DZ.NA","value":6},
+                  {"id":"DZ.TN","value":7},
+                  {"id":"DZ.AN","value":8},
+                  {"id":"DZ.ET","value":9},
+                  {"id":"DZ.JJ","value":10},
+                  {"id":"DZ.SK","value":11},
+                  {"id":"DZ.IL","value":12},
+                  {"id":"DZ.TM","value":13},
+                  {"id":"DZ.EB","value":14},
+                  {"id":"DZ.1950","value":15},
+                  {"id":"DZ.GR","value":16},
+                  {"id":"DZ.LG","value":17},
+                  {"id":"DZ.OG","value":18},
+                  {"id":"DZ.AL","value":19},
+                  {"id":"DZ.BM","value":20},
+                  {"id":"DZ.TO","value":21},
+                  {"id":"DZ.TP","value":22},
+                  {"id":"DZ.AD","value":23},
+                  {"id":"DZ.CH","value":24},
+                  {"id":"DZ.MC","value":25},
+                  {"id":"DZ.MG","value":26},
+                  {"id":"DZ.RE","value":27},
+                  {"id":"DZ.SD","value":28},
+                  {"id":"DZ.TR","value":29},
+                  {"id":"DZ.TS","value":30},
+                  {"id":"DZ.BB","value":31},
+                  {"id":"DZ.BJ","value":32},
+                  {"id":"DZ.BL","value":33},
+                  {"id":"DZ.BU","value":34},
+                  {"id":"DZ.BS","value":35},
+                  {"id":"DZ.DJ","value":36},
+                  {"id":"DZ.MD","value":37},
+                  {"id":"DZ.MS","value":38},
+                  {"id":"DZ.SF","value":39},
+                  {"id":"DZ.BT","value":40},
+                  {"id":"DZ.CO","value":41},
+                  {"id":"DZ.GL","value":42},
+                  {"id":"DZ.KH","value":43},
+                  {"id":"DZ.ML","value":44},
+                  {"id":"DZ.OB","value":45},
+                  {"id":"DZ.SA","value":46},
+                  {"id":"DZ.TB","value":47}]
+        );
+      
+        // create choropleth series
+        series = map.choropleth(dataSet);
+      
+        // set geoIdField to 'id', this field contains in geo data meta properties
+        series.geoIdField('id');
+      
+        // set map color settings
+        series.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
+        series.hovered().fill('#addd8e');
+      
+        // set geo data, you can find this map in our geo maps collection
+        // https://cdn.anychart.com/#maps-collection
+        map.geoData(anychart.maps['algeria']);
+      
+        //set map container id (div)
+        map.container('container');
+      
+        //initiate map drawing
+        map.draw();
+      });
 </script>
 {% endblock javascripts %}  

@@ -68,3 +68,51 @@ Researcher.objects.create_user(email="nleila@mail.cerist.dz",password="nouri123"
 
 query all etablisements researcher who arent leads
 Researcher.objects.filter(equipe_researchers__division__etablisment__id=1)
+
+
+# Centre national de Recherche en biotechnologie 
+site-web: http://www.crbt.dz/index.php/component/finder/search.html?q=email&Itemid=790
+[done]chef Eta : email ='a.azioune@gmail.com' , password ='amar123',grade='DR',first_name = 'Ammar',last_name= 'AZIOUNE' , google_scholar_account='https://scholar.google.com/citations?hl=en&user=y0aXgggAAAAJ'
+## Division Biotechnologie et Agriculture
+site-web = http://www.crbt.dz/index.php/r-d/divisions-de-recherche/biotechnologie-agriculture.html
+chef div :email='',password='boualem123' first_name ='Boualem',last_name='HARFI',google_scholar_account='https://scholar.google.com/citations?hl=en&user=ZpRVFgcAAAAJ',
+1. Réponses des plantes aux stress
+   * chef : ZAROURI Belkacem MRB google_scholar_account='https://scholar.google.com/citations?hl=en&user=ulaHk78AAAAJ'
+   *  	KERROUM Fatima 	MRB equipe_researchers=, google_scholar_account = 'https://scholar.google.com/citations?hl=en&user=PTahZ6AAAAAJ'
+        <!-- NADJEM Kamel 	AR 	equipe_researchers=, google_scholar_account = '' -->
+        BOUDIAR Ridha 	AR 	equipe_researchers=, google_scholar_account = 'https://scholar.google.com/citations?hl=en&user=BWyMeRgAAAAJ'
+2. Facteurs de croissance et développement des plantes
+   * chef : BENAHMED Amira MRB https://scholar.google.com/citations?hl=en&user=t4fbYlgAAAAJ
+   *  	HARFI Boualem 	Maitre de recherche A 	Membre 'google_scholar_account'='https://scholar.google.com/citations?hl=en&user=ZpRVFgcAAAAJ'
+        KARKOUR Larbi 	Attaché de recherche 	Membre 'google_scholar_account'='https://scholar.google.com/citations?hl=en&user=LzqK75cAAAAJ'
+        GAAD Djouher 	Maitre de recherche B 	Membre 'google_scholar_account'='https://scholar.google.com/citations?hl=en&user=Qv9-GxgAAAAJ'
+
+3. Bio-contrôle des maladies des plantes et micro-organismes bénéfiques
+   * chef : DEBBI Ali AR google_scholar_account = 'https://scholar.google.com/citations?hl=en&user=eZWuw8EAAAAJ'
+   *  	FELLAK Ahmed 	Attaché de recherche 	Membre google_scholar_account ='https://scholar.google.com/citations?hl=en&user=KlitBpwAAAAJ'
+        <!-- ZERROUMDA Med. El-Fateh 	Attaché de recherche 	Membre -->
+4. Production animale 
+   * chef: DOUH Mourad https://scholar.google.com/citations?hl=en&user=qHchT0gAAAAJ
+   <!-- *  	REBAI Nouari 	Attaché de recherche 	Membre 
+        CHACHA Fayçal 	Attaché de recherche 	Membre -->
+    AHMED-LALOUI Hamza 	Attaché de recherche 	Membre 'account': 'https://scholar.google.com/citations?hl=en&user=cy-qk5IAAAAJ'
+    RAHMANI Abderrahmane 	Attaché de recherche 	Membre 'account': 'https://scholar.google.com/citations?hl=en&user=YzTodV8AAAAJ'
+    SMADI Mustapha Adnane 	Attaché de recherche 	Membre 'account': 'https://scholar.google.com/citations?hl=en&user=7N5qqsAAAAAJ'
+
+# Centre national de Recherche en Biotechnologie alger 
+[done]chef email='b.halima@gmail.com',password='halima123',first_name='Halima',grade='DR',speciality='AG-Biotech',last_name='Benbouza',google_scholar_account='https://scholar.google.com/citations?hl=en&user=dizpqi8AAAAJ'
+
+# Centre de recherche en technologies industrielles -CRTI-
+[done]directreur 
+email='r.badji@crti.dz',password='riad123',last_name='BADJI', first_name='Riad',grade='DR',google_scholar_account ='https://scholar.google.com/citations?hl=en&user=NBHg1NYAAAAJ'
+
+# Centre de Recherche Scientifique et Technique en Analyses Physico – Chimique
+site-web https://crapc.dz/
+[done]chef email='k.bachari@gmail.com',password='bachari123',grade='DR',last_name='BACHARI', first_name='Khaldoun',google_scholar_account='https://scholar.google.com/citations?hl=en&user=rViVHf8AAAAJ'
+
+
+# Centre de recherche en anthropologie sociale et culturelle
+[done]chef email='a.manaa@gmail.com',password='manaa123',grade='DR',last_name='MANAA',first_name='Ammar',google_scholar_account='https://scholar.google.com/citations?hl=en&user=2Wdur60AAAAJ'
+
+# Centre de Recherche Scientifique et Technique sur les Régions Arides
+Mohamed KECHEBAR https://scholar.google.com/citations?hl=en&user=N1RAvO8AAAAJ
