@@ -11,9 +11,6 @@ urlpatterns = [
         path('divisions/liste/' , chef_eta.Liste_division_Eta_aff_list  , name='divisions-of-etablisement'),
         path('equipes/liste/' , chef_eta.Liste_equipe_Eta_aff_list  , name='equipe-of-etablisement'),
         path('chercheurs/card/' , chef_eta.Liste_cher_Eta_aff_list  , name='chercheur_card_etablisement'),
-
-       
-
         path('chercheurs/liste/' , chef_eta.Liste_cher_Eta_aff  , name='chercheurs_liste_etablisement'),
      ])),
      path('division/' ,include([

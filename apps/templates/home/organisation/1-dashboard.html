@@ -22,6 +22,9 @@
 
 </style>
 {% endblock stylesheet %}
+
+<h1>Les donnes de <span id="dataset">All Wilayas</span></h1>
+
 <div class="row">
     <div class="col">
         <div class="card border-0 shadow">
@@ -196,11 +199,13 @@
     const nbrDivs = document.getElementById("nbr_divs")
     const nbrEquipes = document.getElementById("nbr_equipes")
     const nbrResearchers = document.getElementById("nbr_researchers")
+    const dataset = document.getElementById("dataset")
     function initdata(){
         nbrEtas.innerHTML = {{nbr_etablisements|safe}},
         nbrDivs.innerHTML = {{nbr_divisions|safe}},
         nbrEquipes.innerHTML = {{nbr_equipes|safe}}
         nbrResearchers.innerHTML = {{nbr_researchers|safe}}
+        dataset.innerHTML = "ALL Wilayas"
     }
     anychart.onDocumentReady(function() {
         // create map
@@ -226,14 +231,17 @@
         // https://cdn.anychart.com/#maps-collection
         map.geoData(anychart.maps['algeria']);
         var func_listen = function(e){
-            console.log(e)
+            
+            console.log(Object.values(e.iterator.f)[0])
             nbrEtas.innerHTML = e.iterator.f.value
             nbrDivs.innerHTML = e.iterator.f.nbr_divs
             nbrEquipes.innerHTML = e.iterator.f.nbr_equipes
             nbrResearchers.innerHTML = e.iterator.f.nbr_researchers
+            dataset.innerHTML = Object.values(e.iterator.f)[0]
         }
         //map.labels(true);
         //set map container id (div)
+        map.interactivity().zoomOnMouseWheel(true);
         map.listen('pointClick', func_listen);
         map.container('container');
 
