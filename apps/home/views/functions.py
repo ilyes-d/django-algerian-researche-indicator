@@ -1,4 +1,5 @@
 from __future__ import division
+from multiprocessing import context
 from django.http import Http404, HttpResponse
 from serpapi import GoogleSearch
 from ..models import *
@@ -20,7 +21,7 @@ def serpapi_author(gs_id):
     params = {
         "engine": "google_scholar_author",
         "author_id": gs_id,
-        "api_key": "2c4f4ce6c429d7399649b280e13d0c519c0f088732d1bb9861dd514675b6374f"
+        "api_key": "e51e1b84ed0d64498438b99d1b6e05cc12b96200a761a1f8f8eff7644407aa49"
     }
     search = GoogleSearch(params)
     results = search.get_dict()
@@ -32,7 +33,7 @@ def serp_params(gs_id,start,sort):
     return {
         "engine": "google_scholar_author",
         "author_id": gs_id,
-        "api_key": "2c4f4ce6c429d7399649b280e13d0c519c0f088732d1bb9861dd514675b6374f",
+        "api_key": "e51e1b84ed0d64498438b99d1b6e05cc12b96200a761a1f8f8eff7644407aa49",
         "start": start,
         "num": str(start+100),
         "sort": sort
@@ -287,9 +288,91 @@ def top_10_researchers_citations_eta(request):
 def top_10_researchers_citations_div(request):
     pass
 
+# value == nbr etablisement 
 
-    
+def etablisement_dash():
+    pass
+
+def etablisements_dash(wilaya):
+    context = {
+        'nbr_etablisement':0,
+        'nbr_divisions': 0 ,
+        'nbr_equipes': 0 ,
+        'nbr_researchers':0
+    }
+    etablisements= Etablisment.objects.filter(location__id=wilaya)
+    if etablisements:
+        for eta in etablisements:
+            context['nbr_divisions'] += Division.objects.filter(etablisment__id=eta.id).count()
+            context['nbr_equipes'] += Equipe.objects.filter(division__etablisment__id=eta.id).count()
+            context['nbr_researchers'] += get_etablisement_researchers(eta.id).count()
+        context['nbr_etablisement'] = etablisements.count()
+    return context
+            
+            
+            
     
         
+def wilaya_dash():
+    for wilaya in wilaya48:
+        wilaya_nbr = int(list(wilaya.keys())[0])
+        etas = etablisements_dash(wilaya_nbr)
+        wilaya["value"] = etas['nbr_etablisement']
+        wilaya["nbr_divs"] = etas['nbr_divisions']
+        wilaya["nbr_equipes"] = etas['nbr_equipes']
+        wilaya["nbr_researchers"] = etas['nbr_researchers']
+    return wilaya48
+        
+        
+wilaya48 = [
+ {'01': 'Adrar', 'id': 'DZ.AR'},
+ {'02': 'Chlef', 'id': 'DZ.CH'},
+ {'03': 'Laghouat', 'id': 'DZ.LG'},
+ {'04': 'Oum El Bouaghi', 'id':'DZ.OB'},
+ {'05': 'Batna', 'id': 'DZ.BT'},
+ {'06': 'Béjaïa', 'id': 'DZ.BJ'},
+ {'07': 'Biskra', 'id': 'DZ.BS'},
+ {'08': 'Béchar', 'id': 'DZ.BC'},
+ {'09': 'Blida', 'id': 'DZ.BL'},
+ {'10': 'Bouira', 'id': 'DZ.BU'},
+ {'11': 'Tamanrasset', 'id':'DZ.TM'},
+ {'12': 'Tébessa', 'id': 'DZ.TB'},
+ {'13': 'Tlemcen', 'id': 'DZ.TL'},
+ {'14': 'Tiaret', 'id': 'DZ.TR'},
+ {'15': 'Tizi Ouzou', 'id': 'DZ.TO'},
+ {'16': 'Alger', 'id': 'DZ.AL'},
+ {'17': 'Djelfa', 'id': 'DZ.DJ'},
+ {'18': 'Jijel', 'id': 'DZ.JJ'},
+ {'19': 'Sétif', 'id': 'DZ.SF'},
+ {'20': 'Saïda', 'id': 'DZ.SD'},
+ {'21': 'Skikda', 'id': 'DZ.SK'},
+ {'22': 'Sidi Bel Abbès', 'id': 'DZ.SB'},
+ {'23': 'Annaba', 'id': 'DZ.AN'},
+ {'24': 'Guelma', 'id': 'DZ.GL'},
+ {'25': 'Constantine', 'id': 'DZ.CO'},
+ {'26': 'Médéa', 'id': 'DZ.MD'},
+ {'27': 'Mostaganem', 'id': 'DZ.MG'},
+ {'28': "M'Sila", 'id': 'DZ.MS'},
+ {'29': 'Mascara', 'id': 'DZ.MC'},
+ {'30': 'Ouargla', 'id': 'DZ.OG'},
+ {'31': 'Oran', 'id': 'DZ.OR'},
+ {'32': 'El Bayadh', 'id': 'DZ.EB'},
+ {'33': 'Illizi', 'id': 'DZ.IL'},
+ {'34': 'Bordj Bou Arreridj' , 'id' : "DZ.BB"},
+ {'35': 'Boumerdès', 'id': 'DZ.BM'},
+ {'36': 'El Tarf', 'id': 'DZ.ET'},
+ {'37': 'Tindouf', 'id': 'DZ.TN'},
+ {'38': 'Tissemsilt', 'id': 'DZ.TS'},
+ {'39': 'El Oued', 'id': 'DZ.1950'},
+ {'40': 'Khenchela', 'id': 'DZ.KH'},
+ {'41': 'Souk Ahras', 'id': 'DZ.SA'},
+ {'42': 'Tipaza', 'id': 'DZ.TP'},
+ {'43': 'Mila', 'id': 'DZ.ML'},
+ {'44': 'Aïn Defla', 'id': 'DZ.AD'},
+ {'45': 'Naâma', 'id': 'DZ.NA'},
+ {'46': 'Aïn Témouchent', 'id': 'DZ.AT'},
+ {'47': 'Ghardaïa', 'id': 'DZ.GR'},
+ {'48': 'Relizane', 'id': 'DZ.RE'}
+]
     
         

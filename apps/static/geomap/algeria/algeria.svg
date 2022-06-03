@@ -1,0 +1,965 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="700" height="700">
+  <g id="algeria">
+    <path d="M 360.7013 314.0299 361.8059 341.7842 355.178 397.8451 341.0938 409.582 326.0429 411.1009 317.8961 416.4861 326.5953 428.2229 327.2857 438.0267 333.6374 443.8261 331.9804 565.3375 334.3278 568.7895 414.4148 617.3941 417.0384 621.1223 418.143 629.5452 418.6954 684.9157 402.5399 688.0916 395.6358 683.673 394.3931 681.4637 399.9163 672.7646 397.707 656.7472 388.8698 652.1905 369.6766 647.91 362.7725 639.9013 358.2158 642.1106 351.8641 641.2821 343.8554 635.0684 343.3031 630.5118 340.4034 627.6121 333.4993 625.4028 331.29 622.5031 326.3191 622.2269 326.181 608.833 212.8164 525.1559 97.7949 435.8174 191.9662 377.5472 168.7685 325.3525 175.3964 325.0764 192.3804 335.4324 199.2845 337.0894 230.905 320.5197 261.1448 316.2392 265.5634 313.2014 286.8279 286.4136 307.1258 250.9268 321.6243 236.8425 361.6679 216.5446 360.9774 246.232 356.5589 274.6768 360.7013 314.0299 Z" id="DZ.AR" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.AR</code_hasc>
+        <name>Adrar</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344604</woe_id>
+        <longitude>0</longitude>
+        <woe_name>Adrar</woe_name>
+        <fips>AG34</fips>
+        <woe_label>Adrar, DZ, Algeria</woe_label>
+        <latitude>25</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>AR</postal>
+        <type>Wilaya</type>
+        <id>DZ.AR</id>
+      </desc>
+    </path>
+    <path d="M 278.8192 77.7731 272.1913 80.3966 271.7771 83.9867 268.325 86.4722 258.107 82.1917 257.5547 77.3589 265.8396 66.4504 268.7393 70.4548 266.8061 74.183 277.5765 72.1118 280.0619 74.8734 278.8192 77.7731 Z" id="DZ.AT" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.AT</code_hasc>
+        <name>Aïn Témouchent</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344606</woe_id>
+        <longitude>0</longitude>
+        <woe_name>Aïn Témouchent</woe_name>
+        <fips>AG36</fips>
+        <woe_label>'AÃ¯n Temouchent, DZ, Algeria</woe_label>
+        <latitude>35</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>AT</postal>
+        <type>Wilaya</type>
+        <id>DZ.AT</id>
+      </desc>
+    </path>
+    <path d="M 296.2174 61.3414 296.2174 61.4795 282.6855 75.0115 280.2 78.8777 278.8192 77.7731 280.0619 74.8734 277.5765 72.1118 266.8061 74.183 268.7393 70.4548 265.8396 66.4504 275.3672 61.2034 281.3046 62.9984 285.4471 57.199 289.3134 56.6467 291.1084 59.6845 296.2174 61.3414 Z" id="DZ.OR" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.OR</code_hasc>
+        <name>Oran</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344584</woe_id>
+        <longitude>0</longitude>
+        <woe_name>Oran</woe_name>
+        <fips>AG09</fips>
+        <woe_label>Oran, DZ, Algeria</woe_label>
+        <latitude>35</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>OR</postal>
+        <type>Wilaya</type>
+        <id>DZ.OR</id>
+      </desc>
+    </path>
+    <path d="M 293.87 86.058 291.2465 87.1626 290.418 94.2047 287.3802 95.3094 294.9747 102.6277 296.4936 107.5986 282.9616 119.0593 280.2 115.8835 272.0532 119.1974 263.3541 116.712 271.0866 109.8079 270.5343 106.7701 275.2291 100.8326 271.3628 99.4518 269.0154 92.4097 270.3962 88.1292 268.325 86.4722 271.7771 83.9867 272.1913 80.3966 278.8192 77.7731 280.2 78.8777 282.6855 75.0115 285.1709 74.3211 285.0328 77.0827 293.4558 79.5682 293.87 86.058 Z" id="DZ.SB" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.SB</code_hasc>
+        <name>Sidi Bel Abbès</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344601</woe_id>
+        <longitude>0</longitude>
+        <woe_name>Sidi Bel Abbès</woe_name>
+        <fips>AG30</fips>
+        <woe_label>Sidi Bel Abbes, DZ, Algeria</woe_label>
+        <latitude>34</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>SB</postal>
+        <type>Wilaya</type>
+        <id>DZ.SB</id>
+      </desc>
+    </path>
+    <path d="M 268.325 86.4722 270.3962 88.1292 269.0154 92.4097 271.3628 99.4518 275.2291 100.8326 270.5343 106.7701 271.0866 109.8079 263.3541 116.712 245.9559 122.6495 242.2277 112.0172 245.6797 108.289 240.7088 103.5943 244.1608 98.3472 231.5955 87.9911 230.905 84.6772 239.0518 85.6437 257.5547 77.3589 258.107 82.1917 268.325 86.4722 Z" id="DZ.TL" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.TL</code_hasc>
+        <name>Tlemcen</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344589</woe_id>
+        <longitude>-1</longitude>
+        <woe_name>Tlemcen</woe_name>
+        <fips>AG15</fips>
+        <woe_label>Tlemcen, DZ, Algeria</woe_label>
+        <latitude>34</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>TL</postal>
+        <type>Wilaya</type>
+        <id>DZ.TL</id>
+      </desc>
+    </path>
+    <path d="M 307.1258 250.9268 286.8279 286.4136 265.5634 313.2014 261.1448 316.2392 230.905 320.5197 199.2845 337.0894 192.3804 335.4324 175.3964 325.0764 168.7685 325.3525 117.8166 335.7086 97.5187 282.5474 105.5274 281.857 106.494 285.309 112.4315 285.7232 125.5492 269.7058 144.1901 259.3498 152.8892 251.6172 176.9153 245.5416 176.7773 240.7088 180.3674 236.5664 175.1203 228.0053 171.5302 228.0053 172.911 221.7917 177.4677 220.1347 178.5723 210.469 205.36 206.6028 202.3223 196.9371 215.9923 194.4516 257.2785 197.9037 257.4166 195.4182 254.3788 195.5563 255.4835 192.6566 263.9064 192.9327 267.3585 197.7656 294.6985 190.3092 282.1331 224.8295 289.7276 235.0475 307.1258 250.9268 Z" id="DZ.BC" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.BC</code_hasc>
+        <name>Béchar</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344608</woe_id>
+        <longitude>-2</longitude>
+        <woe_name>Béchar</woe_name>
+        <fips>AG38</fips>
+        <woe_label>Bechar, DZ, Algeria</woe_label>
+        <latitude>30</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>BC</postal>
+        <type>Wilaya</type>
+        <id>DZ.BC</id>
+      </desc>
+    </path>
+    <path d="M 282.9616 119.0593 286.4136 130.7962 293.4558 124.7207 295.6651 125.273 295.9412 128.5869 300.4979 126.3776 298.979 153.8558 293.0415 181.3339 295.9412 184.3717 294.6985 190.3092 267.3585 197.7656 263.9064 192.9327 255.4835 192.6566 257.5547 186.7191 263.4922 183.129 251.6172 173.3252 247.6129 166.0069 249.6841 161.4502 244.2989 153.3035 246.7844 142.8093 243.0562 137.148 245.9559 122.6495 263.3541 116.712 272.0532 119.1974 280.2 115.8835 282.9616 119.0593 Z" id="DZ.NA" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.NA</code_hasc>
+        <name>Naâma</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344619</woe_id>
+        <longitude>0</longitude>
+        <woe_name>Naâma</woe_name>
+        <fips>AG49</fips>
+        <woe_label>Naama, DZ, Algeria</woe_label>
+        <latitude>33</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>NA</postal>
+        <type>Wilaya</type>
+        <id>DZ.NA</id>
+      </desc>
+    </path>
+    <path d="M 168.7685 325.3525 191.9662 377.5472 97.7949 435.8174 1 360.8394 6.7994 307.2639 43.8051 285.1709 52.6423 286.1375 59.6845 281.9951 71.4214 285.4471 74.3211 283.0997 97.5187 282.5474 117.8166 335.7086 168.7685 325.3525 Z" id="DZ.TN" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.TN</code_hasc>
+        <name>Tindouf</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344624</woe_id>
+        <longitude>-5</longitude>
+        <woe_name>Tindouf</woe_name>
+        <fips>AG54</fips>
+        <woe_label>Tindouf, DZ, Algeria</woe_label>
+        <latitude>27</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>TN</postal>
+        <type>Wilaya</type>
+        <id>DZ.TN</id>
+      </desc>
+    </path>
+    <path d="M 533.5788 18.2601 530.2649 26.9592 526.9509 28.8924 522.2562 24.888 517.9757 12.0465 531.6457 15.6366 534.1312 14.3939 533.5788 18.2601 Z" id="DZ.AN" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>9</labelrank>
+        <code_hasc>DZ.AN</code_hasc>
+        <name>Annaba</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344607</woe_id>
+        <longitude>7</longitude>
+        <woe_name>Annaba</woe_name>
+        <fips>AG37</fips>
+        <woe_label>Annaba, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>AN</postal>
+        <type>Wilaya</type>
+        <id>DZ.AN</id>
+      </desc>
+    </path>
+    <path d="M 546.2823 32.4825 542.0018 35.9345 540.8971 33.0348 530.2649 26.9592 533.5788 18.2601 537.7213 19.5029 547.2489 14.9462 554.291 16.7412 558.2954 15.0843 559.6762 18.8125 553.0483 21.1598 553.7387 25.7165 546.2823 32.4825 Z" id="DZ.ET" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.ET</code_hasc>
+        <name>El Tarf</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344614</woe_id>
+        <longitude>8</longitude>
+        <woe_name>El Tarf</woe_name>
+        <fips>AG44</fips>
+        <woe_label>El Tarf, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>ET</postal>
+        <type>Wilaya</type>
+        <id>DZ.ET</id>
+      </desc>
+    </path>
+    <path d="M 494.64 31.5159 489.669 29.997 472.9612 33.1729 467.1618 34.4156 465.0906 32.0682 463.5717 29.3066 471.9947 23.093 481.6603 21.7122 487.874 18.5363 495.0542 28.202 494.64 31.5159 Z" id="DZ.JJ" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.JJ</code_hasc>
+        <name>Jijel</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344596</woe_id>
+        <longitude>5</longitude>
+        <woe_name>Jijel</woe_name>
+        <fips>AG24</fips>
+        <woe_label>Jijel, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>JJ</postal>
+        <type>Wilaya</type>
+        <id>DZ.JJ</id>
+      </desc>
+    </path>
+    <path d="M 517.9757 12.0465 522.2562 24.888 509.2766 36.4868 505.6864 35.3822 508.31 31.7921 500.4394 30.2732 496.0208 31.5159 494.64 31.5159 495.0542 28.202 487.874 18.5363 488.5644 15.2224 494.0876 12.3227 498.3682 16.7412 507.7577 19.3648 515.076 18.2601 517.9757 14.8081 515.6283 11.9084 517.9757 12.0465 Z" id="DZ.SK" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.SK</code_hasc>
+        <name>Skikda</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344602</woe_id>
+        <longitude>6</longitude>
+        <woe_name>Skikda</woe_name>
+        <fips>AG31</fips>
+        <woe_label>Skikda, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>SK</postal>
+        <type>Wilaya</type>
+        <id>DZ.SK</id>
+      </desc>
+    </path>
+    <path d="M 688.9201 492.1545 585.6354 497.4016 579.1456 489.2548 559.5381 484.6981 548.2154 476.5513 537.5832 472.9612 530.1268 465.0906 529.1602 458.0485 531.7838 451.4206 525.7082 443.55 524.0512 434.0224 509.8289 429.3276 501.8202 419.5238 497.4016 417.1765 500.1632 404.473 489.531 394.5312 484.2839 376.8568 486.0789 371.7478 498.6443 360.0109 508.7242 355.178 506.653 347.7217 487.874 333.2231 514.7998 318.4485 526.6748 319.1389 597.2342 271.7771 607.7284 286.6898 613.942 304.2261 615.599 316.9296 614.2182 336.5371 620.2938 351.1737 614.3563 372.4382 618.6368 386.6605 621.6746 389.4222 620.4318 401.4352 608.2807 408.4773 604.9668 415.5195 627.8882 445.7592 629.6833 463.4336 635.3446 467.1618 637.9682 473.5136 643.3533 477.1037 653.019 473.3755 681.3256 480.8318 688.9201 492.1545 Z" id="DZ.IL" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.IL</code_hasc>
+        <name>Illizi</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344616</woe_id>
+        <longitude>8</longitude>
+        <woe_name>Illizi</woe_name>
+        <fips>AG46</fips>
+        <woe_label>Illizi, DZ, Algeria</woe_label>
+        <latitude>26</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>IL</postal>
+        <type>Wilaya</type>
+        <id>DZ.IL</id>
+      </desc>
+    </path>
+    <path d="M 487.874 333.2231 506.653 347.7217 508.7242 355.178 498.6443 360.0109 486.0789 371.7478 484.2839 376.8568 489.531 394.5312 500.1632 404.473 497.4016 417.1765 501.8202 419.5238 509.8289 429.3276 524.0512 434.0224 525.7082 443.55 531.7838 451.4206 529.1602 458.0485 530.1268 465.0906 537.5832 472.9612 548.2154 476.5513 559.5381 484.6981 579.1456 489.2548 585.6354 497.4016 688.9201 492.1545 699 509.6908 623.8839 563.4044 547.3869 615.4609 489.2548 669.7268 418.6954 684.9157 418.143 629.5452 417.0384 621.1223 414.4148 617.3941 334.3278 568.7895 331.9804 565.3375 333.6374 443.8261 327.2857 438.0267 326.5953 428.2229 317.8961 416.4861 326.0429 411.1009 341.0938 409.582 355.178 397.8451 361.8059 341.7842 360.7013 314.0299 390.2506 310.854 417.5907 332.2566 448.2447 335.1563 487.874 333.2231 Z" id="DZ.TM" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.TM</code_hasc>
+        <name>Tamanghasset</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344623</woe_id>
+        <longitude>6</longitude>
+        <woe_name>Tamanghasset</woe_name>
+        <fips>AG53</fips>
+        <woe_label>Tamanghasset, DZ, Algeria</woe_label>
+        <latitude>23</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>TM</postal>
+        <type>Wilaya</type>
+        <id>DZ.TM</id>
+      </desc>
+    </path>
+    <path d="M 339.1606 126.5157 342.0603 130.9343 352.8307 135.491 360.149 147.9183 358.7682 155.6508 368.4338 177.8819 369.9527 198.8702 365.8103 206.6028 366.6388 212.2641 361.6679 216.5446 321.6243 236.8425 307.1258 250.9268 289.7276 235.0475 282.1331 224.8295 294.6985 190.3092 295.9412 184.3717 293.0415 181.3339 298.979 153.8558 300.4979 126.3776 305.3308 119.8878 321.6243 112.4315 328.2522 114.6408 330.0473 116.2977 329.633 121.6829 336.1228 121.821 339.1606 126.5157 Z" id="DZ.EB" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.EB</code_hasc>
+        <name>El Bayadh</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344612</woe_id>
+        <longitude>0</longitude>
+        <woe_name>El Bayadh</woe_name>
+        <fips>AG42</fips>
+        <woe_label>El Bayadh, DZ, Algeria</woe_label>
+        <latitude>32</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>EB</postal>
+        <type>Wilaya</type>
+        <id>DZ.EB</id>
+      </desc>
+    </path>
+    <path d="M 504.858 113.398 506.5149 116.1596 518.8042 120.8544 531.3695 122.0971 530.1268 131.7628 537.8593 147.9183 538.6878 154.6843 550.2866 159.2409 556.9145 168.6305 558.9858 180.0912 581.6311 194.5897 583.15 198.456 527.6413 201.0795 518.528 199.5606 506.9292 182.8528 496.435 153.1654 490.4975 151.0942 453.4918 149.5753 456.9438 144.7424 463.2955 134.3864 463.8479 122.3733 458.1865 115.4692 462.0528 110.0841 483.3173 113.398 489.8071 111.8791 499.749 115.7454 504.858 113.398 Z" id="DZ.1950" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.</code_hasc>
+        <name>El Oued</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344613</woe_id>
+        <longitude>7</longitude>
+        <woe_name>El Oued</woe_name>
+        <fips/>
+        <woe_label>El Oued, DZ, Algeria</woe_label>
+        <latitude>33</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal/>
+        <type>Wilaya</type>
+        <id>DZ.1950</id>
+      </desc>
+    </path>
+    <path d="M 452.9395 172.0825 445.6212 183.6813 433.7462 194.0374 426.0136 211.4356 416.7622 278.543 406.4061 291.7988 401.9875 304.088 390.2506 310.854 360.7013 314.0299 356.5589 274.6768 360.9774 246.232 361.6679 216.5446 366.6388 212.2641 365.8103 206.6028 369.9527 198.8702 368.4338 177.8819 393.9788 172.911 400.8829 174.8441 414.0006 166.5592 427.6706 165.3165 452.9395 172.0825 Z" id="DZ.GR" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.GR</code_hasc>
+        <name>Ghardaïa</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344615</woe_id>
+        <longitude>3</longitude>
+        <woe_name>Ghardaïa</woe_name>
+        <fips>AG45</fips>
+        <woe_label>Ghardaia, DZ, Algeria</woe_label>
+        <latitude>31</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>GR</postal>
+        <type>Wilaya</type>
+        <id>DZ.GR</id>
+      </desc>
+    </path>
+    <path d="M 427.6706 165.3165 414.0006 166.5592 400.8829 174.8441 393.9788 172.911 368.4338 177.8819 358.7682 155.6508 360.149 147.9183 352.8307 135.491 342.0603 130.9343 339.1606 126.5157 348.8263 119.6117 353.9353 112.5695 366.7769 104.2847 371.0574 103.5943 368.9862 112.9838 374.7856 125.1349 374.5094 132.3151 379.6184 132.7294 380.1707 125.6872 385.1416 124.3064 389.146 119.6117 393.7027 120.5782 397.9832 131.3486 423.9424 157.1697 427.6706 165.3165 Z" id="DZ.LG" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.LG</code_hasc>
+        <name>Laghouat</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344597</woe_id>
+        <longitude>2</longitude>
+        <woe_name>Laghouat</woe_name>
+        <fips>AG25</fips>
+        <woe_label>Laghouat, DZ, Algeria</woe_label>
+        <latitude>33</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>LG</postal>
+        <type>Wilaya</type>
+        <id>DZ.LG</id>
+      </desc>
+    </path>
+    <path d="M 583.15 198.456 601.6528 263.7683 594.3345 268.325 597.2342 271.7771 526.6748 319.1389 514.7998 318.4485 487.874 333.2231 448.2447 335.1563 417.5907 332.2566 390.2506 310.854 401.9875 304.088 406.4061 291.7988 416.7622 278.543 426.0136 211.4356 433.7462 194.0374 445.6212 183.6813 452.9395 172.0825 451.8348 157.1697 453.4918 149.5753 490.4975 151.0942 496.435 153.1654 506.9292 182.8528 518.528 199.5606 527.6413 201.0795 583.15 198.456 Z" id="DZ.OG" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.OG</code_hasc>
+        <name>Ouargla</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344620</woe_id>
+        <longitude>6</longitude>
+        <woe_name>Ouargla</woe_name>
+        <fips>AG50</fips>
+        <woe_label>Ouargla, DZ, Algeria</woe_label>
+        <latitude>31</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>OG</postal>
+        <type>Wilaya</type>
+        <id>DZ.OG</id>
+      </desc>
+    </path>
+    <path d="M 395.912 27.3735 397.707 29.4447 393.7027 30.8255 391.4934 28.4781 390.2506 24.6119 395.912 27.3735 Z" id="DZ.AL" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>9</labelrank>
+        <code_hasc>DZ.AL</code_hasc>
+        <name>Alger</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344579</woe_id>
+        <longitude>3</longitude>
+        <woe_name>Alger</woe_name>
+        <fips>AG01</fips>
+        <woe_label>Alger, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>AL</postal>
+        <type>Wilaya</type>
+        <id>DZ.AL</id>
+      </desc>
+    </path>
+    <path d="M 421.8712 21.436 418.6954 26.2688 419.5238 28.6162 413.1721 30.4113 412.7579 32.3444 409.9962 32.6206 410.1343 29.1685 405.0253 29.3066 397.707 29.4447 395.912 27.3735 397.5689 24.75 404.6111 26.1308 415.5195 20.8837 421.8712 21.436 Z" id="DZ.BM" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.BM</code_hasc>
+        <name>Boumerdès</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344610</woe_id>
+        <longitude>3</longitude>
+        <woe_name>Boumerdès</woe_name>
+        <fips>AG40</fips>
+        <woe_label>Boumerdes, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>BM</postal>
+        <type>Wilaya</type>
+        <id>DZ.BM</id>
+      </desc>
+    </path>
+    <path d="M 438.4409 21.2979 440.0979 24.888 437.0601 26.9592 438.579 29.997 431.9511 37.0392 418.9715 37.1773 412.7579 32.3444 413.1721 30.4113 419.5238 28.6162 418.6954 26.2688 421.8712 21.436 438.4409 21.2979 Z" id="DZ.TO" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.TO</code_hasc>
+        <name>Tizi Ouzou</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344588</woe_id>
+        <longitude>4</longitude>
+        <woe_name>Tizi Ouzou</woe_name>
+        <fips>AG14</fips>
+        <woe_label>Tizi Ouzou, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>TO</postal>
+        <type>Wilaya</type>
+        <id>DZ.TO</id>
+      </desc>
+    </path>
+    <path d="M 390.2506 24.6119 391.4934 28.4781 391.6315 30.2732 385.832 31.2398 375.0617 39.2485 354.4876 38.6961 352.1403 41.0435 350.069 38.1438 351.726 34.4156 370.6431 31.2398 378.7899 32.7587 390.2506 24.6119 Z" id="DZ.TP" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.TP</code_hasc>
+        <name>Tipaza</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344625</woe_id>
+        <longitude>2</longitude>
+        <woe_name>Tipaza</woe_name>
+        <fips>AG55</fips>
+        <woe_label>Tipaza, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>TP</postal>
+        <type>Wilaya</type>
+        <id>DZ.TP</id>
+      </desc>
+    </path>
+    <path d="M 375.0617 39.2485 376.4425 41.4578 380.585 41.4578 375.3379 45.324 376.5806 47.8095 379.8946 48.2237 369.9527 59.8226 360.7013 57.8894 356.0065 59.9606 351.726 57.6133 347.1693 41.5958 350.069 38.1438 352.1403 41.0435 354.4876 38.6961 375.0617 39.2485 Z" id="DZ.AD" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.AD</code_hasc>
+        <name>Aïn Defla</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344605</woe_id>
+        <longitude>2</longitude>
+        <woe_name>Aïn Defla</woe_name>
+        <fips>AG35</fips>
+        <woe_label>Ain Defla, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>AD</postal>
+        <type>Wilaya</type>
+        <id>DZ.AD</id>
+      </desc>
+    </path>
+    <path d="M 351.726 34.4156 350.069 38.1438 347.1693 41.5958 351.726 57.6133 347.0313 54.4374 342.6127 60.513 339.0226 55.8182 335.0182 56.5086 328.6665 53.1947 327.2857 46.981 321.4863 47.2572 322.729 41.5958 331.9804 36.2107 351.726 34.4156 Z" id="DZ.CH" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.CH</code_hasc>
+        <name>Chlef</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344611</woe_id>
+        <longitude>1</longitude>
+        <woe_name>Chlef</woe_name>
+        <fips>AG41</fips>
+        <woe_label>Chlef, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>CH</postal>
+        <type>Wilaya</type>
+        <id>DZ.CH</id>
+      </desc>
+    </path>
+    <path d="M 306.5735 65.0696 309.197 70.3167 324.524 75.0115 326.181 77.0827 324.2479 80.1205 318.0342 81.087 314.0299 87.9911 305.3308 90.2004 302.4311 87.3007 298.4267 88.4053 295.8032 84.8152 293.87 86.058 293.4558 79.5682 285.0328 77.0827 285.1709 74.3211 282.6855 75.0115 296.2174 61.4795 298.2886 64.2411 302.8453 62.7223 304.2261 65.4839 306.5735 65.0696 Z" id="DZ.MC" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.MC</code_hasc>
+        <name>Mascara</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344598</woe_id>
+        <longitude>0</longitude>
+        <woe_name>Mascara</woe_name>
+        <fips>AG26</fips>
+        <woe_label>Mascara, DZ, Algeria</woe_label>
+        <latitude>35</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>MC</postal>
+        <type>Wilaya</type>
+        <id>DZ.MC</id>
+      </desc>
+    </path>
+    <path d="M 321.4863 47.2572 315.963 55.2659 313.6156 55.8182 312.6491 60.7891 306.5735 65.0696 304.2261 65.4839 302.8453 62.7223 298.2886 64.2411 296.2174 61.4795 296.2174 61.3414 300.9122 58.7179 303.95 51.8138 310.5778 46.1525 322.729 41.5958 321.4863 47.2572 Z" id="DZ.MG" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.MG</code_hasc>
+        <name>Mostaganem</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344583</woe_id>
+        <longitude>0</longitude>
+        <woe_name>Mostaganem</woe_name>
+        <fips>AG07</fips>
+        <woe_label>Mostaganem, DZ, Algeria</woe_label>
+        <latitude>35</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>MG</postal>
+        <type>Wilaya</type>
+        <id>DZ.MG</id>
+      </desc>
+    </path>
+    <path d="M 342.6127 60.513 338.4702 62.8603 337.5037 67.6932 330.3234 70.1786 324.524 75.0115 309.197 70.3167 306.5735 65.0696 312.6491 60.7891 313.6156 55.8182 315.963 55.2659 321.4863 47.2572 327.2857 46.981 328.6665 53.1947 335.0182 56.5086 339.0226 55.8182 342.6127 60.513 Z" id="DZ.RE" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.RE</code_hasc>
+        <name>Relizane</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344621</woe_id>
+        <longitude>0</longitude>
+        <woe_name>Relizane</woe_name>
+        <fips>AG51</fips>
+        <woe_label>Relizane, DZ, Algeria</woe_label>
+        <latitude>35</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>RE</postal>
+        <type>Wilaya</type>
+        <id>DZ.RE</id>
+      </desc>
+    </path>
+    <path d="M 314.0299 87.9911 318.8627 87.9911 322.729 92.5478 319.1389 97.2425 324.6621 110.0841 321.6243 112.4315 305.3308 119.8878 300.4979 126.3776 295.9412 128.5869 295.6651 125.273 293.4558 124.7207 286.4136 130.7962 282.9616 119.0593 296.4936 107.5986 294.9747 102.6277 287.3802 95.3094 290.418 94.2047 291.2465 87.1626 293.87 86.058 295.8032 84.8152 298.4267 88.4053 302.4311 87.3007 305.3308 90.2004 314.0299 87.9911 Z" id="DZ.SD" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.SD</code_hasc>
+        <name>Saïda</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344585</woe_id>
+        <longitude>0</longitude>
+        <woe_name>Saïda</woe_name>
+        <fips>AG10</fips>
+        <woe_label>Saida, DZ, Algeria</woe_label>
+        <latitude>34</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>SD</postal>
+        <type>Wilaya</type>
+        <id>DZ.SD</id>
+      </desc>
+    </path>
+    <path d="M 367.8815 71.2833 368.9862 75.84 371.7478 84.5391 379.2042 91.0289 376.1664 92.2716 371.0574 103.5943 366.7769 104.2847 353.9353 112.5695 348.8263 119.6117 339.1606 126.5157 336.1228 121.821 329.633 121.6829 330.0473 116.2977 328.2522 114.6408 321.6243 112.4315 324.6621 110.0841 319.1389 97.2425 322.729 92.5478 318.8627 87.9911 314.0299 87.9911 318.0342 81.087 324.2479 80.1205 326.181 77.0827 324.524 75.0115 330.3234 70.1786 337.5037 67.6932 338.8845 68.7978 340.5414 66.1743 349.931 71.5594 367.8815 71.2833 Z" id="DZ.TR" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.TR</code_hasc>
+        <name>Tiaret</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344587</woe_id>
+        <longitude>1</longitude>
+        <woe_name>Tiaret</woe_name>
+        <fips>AG13</fips>
+        <woe_label>Tiaret, DZ, Algeria</woe_label>
+        <latitude>34</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>TR</postal>
+        <type>Wilaya</type>
+        <id>DZ.TR</id>
+      </desc>
+    </path>
+    <path d="M 351.726 57.6133 356.0065 59.9606 360.7013 57.8894 369.9527 59.8226 365.258 66.1743 367.8815 71.2833 349.931 71.5594 340.5414 66.1743 338.8845 68.7978 337.5037 67.6932 338.4702 62.8603 342.6127 60.513 347.0313 54.4374 351.726 57.6133 Z" id="DZ.TS" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.TS</code_hasc>
+        <name>Tissemsilt</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344626</woe_id>
+        <longitude>1</longitude>
+        <woe_name>Tissemsilt</woe_name>
+        <fips>AG56</fips>
+        <woe_label/>
+        <latitude>35</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>TS</postal>
+        <type>Wilaya</type>
+        <id>DZ.TS</id>
+      </desc>
+    </path>
+    <path d="M 445.0688 40.3531 445.6212 42.9767 452.111 42.7005 458.7389 46.8429 455.7011 59.6845 453.0775 62.5842 447.002 59.1321 435.2651 60.9272 437.4744 56.7848 435.9555 53.6089 432.5035 54.9897 423.5282 53.747 431.675 42.0101 433.7462 46.2906 436.3697 46.2906 439.9598 45.186 440.0979 42.0101 443.4119 38.8342 445.0688 40.3531 Z" id="DZ.BB" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.BB</code_hasc>
+        <name>Bordj Bou Arréridj</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344609</woe_id>
+        <longitude>4</longitude>
+        <woe_name>Bordj Bou Arréridj</woe_name>
+        <fips>AG39</fips>
+        <woe_label>Bordj Bou Arreridj, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>BB</postal>
+        <type>Wilaya</type>
+        <id>DZ.BB</id>
+      </desc>
+    </path>
+    <path d="M 463.5717 29.3066 465.0906 32.0682 464.8144 35.3822 460.1197 39.6627 456.6677 38.9723 456.6677 34.5537 453.906 32.7587 449.3494 35.6584 450.5921 37.1773 448.659 39.9389 445.0688 40.3531 443.4119 38.8342 440.0979 42.0101 439.9598 45.186 436.3697 46.2906 433.7462 46.2906 431.675 42.0101 431.9511 37.0392 438.579 29.997 437.0601 26.9592 440.0979 24.888 438.4409 21.2979 444.2404 21.1598 453.768 25.1642 453.4918 27.6497 457.9104 29.997 463.5717 29.3066 Z" id="DZ.BJ" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.BJ</code_hasc>
+        <name>Béjaïa</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344590</woe_id>
+        <longitude>4</longitude>
+        <woe_name>Béjaïa</woe_name>
+        <fips>AG18</fips>
+        <woe_label>Bejaia, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>BJ</postal>
+        <type>Wilaya</type>
+        <id>DZ.BJ</id>
+      </desc>
+    </path>
+    <path d="M 405.0253 29.3066 406.13 31.7921 399.2259 36.763 390.6649 41.872 388.0413 39.5246 380.585 41.4578 376.4425 41.4578 375.0617 39.2485 385.832 31.2398 391.6315 30.2732 391.4934 28.4781 393.7027 30.8255 397.707 29.4447 405.0253 29.3066 Z" id="DZ.BL" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.BL</code_hasc>
+        <name>Blida</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344592</woe_id>
+        <longitude>2</longitude>
+        <woe_name>Blida</woe_name>
+        <fips>AG20</fips>
+        <woe_label>Blida, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>BL</postal>
+        <type>Wilaya</type>
+        <id>DZ.BL</id>
+      </desc>
+    </path>
+    <path d="M 412.7579 32.3444 418.9715 37.1773 431.9511 37.0392 431.675 42.0101 423.5282 53.747 421.7331 59.8226 409.8582 57.7513 407.7869 53.0566 407.5108 39.2485 403.5064 39.8008 399.2259 36.763 406.13 31.7921 405.0253 29.3066 410.1343 29.1685 409.9962 32.6206 412.7579 32.3444 Z" id="DZ.BU" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.BU</code_hasc>
+        <name>Bouira</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344593</woe_id>
+        <longitude>3</longitude>
+        <woe_name>Bouira</woe_name>
+        <fips>AG21</fips>
+        <woe_label>Bouira, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>BU</postal>
+        <type>Wilaya</type>
+        <id>DZ.BU</id>
+      </desc>
+    </path>
+    <path d="M 500.9917 98.4853 504.858 97.9329 505.9626 100.2803 504.858 113.398 499.749 115.7454 489.8071 111.8791 483.3173 113.398 462.0528 110.0841 458.1865 115.4692 463.8479 122.3733 463.2955 134.3864 456.9438 144.7424 433.0558 130.7962 428.361 120.5782 431.3988 119.7498 427.2564 110.3602 430.018 105.9416 434.8508 100.4184 452.111 96.276 453.2156 88.5434 460.3958 90.7527 468.4045 88.8196 470.7519 87.1626 468.8188 84.1248 477.2417 80.2586 482.6269 82.4679 480.4176 88.6815 482.4888 91.305 484.8362 88.5434 487.874 91.0289 495.7446 87.9911 496.435 96.414 500.9917 98.4853 Z" id="DZ.BS" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.BS</code_hasc>
+        <name>Biskra</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344591</woe_id>
+        <longitude>5</longitude>
+        <woe_name>Biskra</woe_name>
+        <fips>AG19</fips>
+        <woe_label>Biskra, DZ, Algeria</woe_label>
+        <latitude>34</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>BS</postal>
+        <type>Wilaya</type>
+        <id>DZ.BS</id>
+      </desc>
+    </path>
+    <path d="M 402.2637 64.2411 411.9294 74.5972 411.1009 81.2251 405.3015 86.3341 407.0965 90.2004 409.4439 89.6481 409.1678 96.414 411.3771 100.0042 418.8334 101.1088 423.1139 116.1596 428.361 120.5782 433.0558 130.7962 456.9438 144.7424 453.4918 149.5753 451.8348 157.1697 452.9395 172.0825 427.6706 165.3165 423.9424 157.1697 397.9832 131.3486 393.7027 120.5782 389.146 119.6117 385.1416 124.3064 380.1707 125.6872 379.6184 132.7294 374.5094 132.3151 374.7856 125.1349 368.9862 112.9838 371.0574 103.5943 376.1664 92.2716 379.2042 91.0289 371.7478 84.5391 368.9862 75.84 376.3045 73.4926 381.2754 75.2876 387.489 69.074 387.7652 62.5842 390.2506 62.4461 393.2884 67.1409 396.7405 66.3124 398.5355 62.5842 402.2637 64.2411 Z" id="DZ.DJ" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.DJ</code_hasc>
+        <name>Djelfa</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344594</woe_id>
+        <longitude>3</longitude>
+        <woe_name>Djelfa</woe_name>
+        <fips>AG22</fips>
+        <woe_label>Djelfa, DZ, Algeria</woe_label>
+        <latitude>34</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>DJ</postal>
+        <type>Wilaya</type>
+        <id>DZ.DJ</id>
+      </desc>
+    </path>
+    <path d="M 409.8582 57.7513 407.0965 62.7223 407.2346 67.1409 403.5064 62.308 402.2637 64.2411 398.5355 62.5842 396.7405 66.3124 393.2884 67.1409 390.2506 62.4461 387.7652 62.5842 387.489 69.074 381.2754 75.2876 376.3045 73.4926 368.9862 75.84 367.8815 71.2833 365.258 66.1743 369.9527 59.8226 379.8946 48.2237 376.5806 47.8095 375.3379 45.324 380.585 41.4578 388.0413 39.5246 390.6649 41.872 399.2259 36.763 403.5064 39.8008 407.5108 39.2485 407.7869 53.0566 409.8582 57.7513 Z" id="DZ.MD" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.MD</code_hasc>
+        <name>Médéa</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344582</woe_id>
+        <longitude>2</longitude>
+        <woe_name>Médéa</woe_name>
+        <fips>AG06</fips>
+        <woe_label>Medea, DZ, Algeria</woe_label>
+        <latitude>35</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>MD</postal>
+        <type>Wilaya</type>
+        <id>DZ.MD</id>
+      </desc>
+    </path>
+    <path d="M 453.0775 62.5842 463.1575 67.8313 456.9438 72.526 447.9685 72.1118 448.3828 80.5347 445.2069 85.3676 453.2156 88.5434 452.111 96.276 434.8508 100.4184 430.018 105.9416 427.2564 110.3602 431.3988 119.7498 428.361 120.5782 423.1139 116.1596 418.8334 101.1088 411.3771 100.0042 409.1678 96.414 409.4439 89.6481 407.0965 90.2004 405.3015 86.3341 411.1009 81.2251 411.9294 74.5972 402.2637 64.2411 403.5064 62.308 407.2346 67.1409 407.0965 62.7223 409.8582 57.7513 421.7331 59.8226 423.5282 53.747 432.5035 54.9897 435.9555 53.6089 437.4744 56.7848 435.2651 60.9272 447.002 59.1321 453.0775 62.5842 Z" id="DZ.MS" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.MS</code_hasc>
+        <name>M'Sila</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344599</woe_id>
+        <longitude>4</longitude>
+        <woe_name>M'Sila</woe_name>
+        <fips>AG32</fips>
+        <woe_label>M'sila, DZ, Algeria</woe_label>
+        <latitude>35</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>MS</postal>
+        <type>Wilaya</type>
+        <id>DZ.MS</id>
+      </desc>
+    </path>
+    <path d="M 472.9612 33.1729 474.342 37.4534 477.2417 38.6961 480.9699 56.7848 479.8653 58.7179 473.9278 57.8894 473.7897 62.308 468.8188 60.7891 463.1575 67.8313 453.0775 62.5842 455.7011 59.6845 458.7389 46.8429 452.111 42.7005 445.6212 42.9767 445.0688 40.3531 448.659 39.9389 450.5921 37.1773 449.3494 35.6584 453.906 32.7587 456.6677 34.5537 456.6677 38.9723 460.1197 39.6627 464.8144 35.3822 465.0906 32.0682 467.1618 34.4156 472.9612 33.1729 Z" id="DZ.SF" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>9</labelrank>
+        <code_hasc>DZ.SF</code_hasc>
+        <name>Sétif</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344586</woe_id>
+        <longitude>5</longitude>
+        <woe_name>Sétif</woe_name>
+        <fips>AG12</fips>
+        <woe_label>Setif, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>SF</postal>
+        <type>Wilaya</type>
+        <id>DZ.SF</id>
+      </desc>
+    </path>
+    <path d="M 486.217 57.199 495.8827 58.856 496.5731 61.2034 501.544 60.513 505.2722 64.5173 505.8245 69.074 500.3013 73.9068 501.544 78.4635 498.3682 85.9199 500.9917 98.4853 496.435 96.414 495.7446 87.9911 487.874 91.0289 484.8362 88.5434 482.4888 91.305 480.4176 88.6815 482.6269 82.4679 477.2417 80.2586 468.8188 84.1248 470.7519 87.1626 468.4045 88.8196 460.3958 90.7527 453.2156 88.5434 445.2069 85.3676 448.3828 80.5347 447.9685 72.1118 456.9438 72.526 463.1575 67.8313 468.8188 60.7891 473.7897 62.308 473.9278 57.8894 479.8653 58.7179 480.9699 56.7848 486.217 57.199 Z" id="DZ.BT" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.BT</code_hasc>
+        <name>Batna</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344580</woe_id>
+        <longitude>5</longitude>
+        <woe_name>Batna</woe_name>
+        <fips>AG03</fips>
+        <woe_label>Batna, DZ, Algeria</woe_label>
+        <latitude>35</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>BT</postal>
+        <type>Wilaya</type>
+        <id>DZ.BT</id>
+      </desc>
+    </path>
+    <path d="M 509.2766 36.4868 512.7286 42.1482 511.9001 46.7048 508.5862 48.638 504.7199 45.6002 499.0586 48.9141 496.9873 46.8429 495.3304 42.9767 490.7737 39.5246 495.4684 37.1773 496.0208 31.5159 500.4394 30.2732 508.31 31.7921 505.6864 35.3822 509.2766 36.4868 Z" id="DZ.CO" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.CO</code_hasc>
+        <name>Constantine</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344581</woe_id>
+        <longitude>6</longitude>
+        <woe_name>Constantine</woe_name>
+        <fips>AG48</fips>
+        <woe_label>Constantine, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>CO</postal>
+        <type>Wilaya</type>
+        <id>DZ.CO</id>
+      </desc>
+    </path>
+    <path d="M 530.2649 26.9592 540.8971 33.0348 535.0977 34.968 535.9262 40.077 521.5658 47.3953 518.3899 46.8429 514.1094 50.8473 511.9001 46.7048 512.7286 42.1482 509.2766 36.4868 522.2562 24.888 526.9509 28.8924 530.2649 26.9592 Z" id="DZ.GL" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.GL</code_hasc>
+        <name>Guelma</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344595</woe_id>
+        <longitude>7</longitude>
+        <woe_name>Guelma</woe_name>
+        <fips>AG23</fips>
+        <woe_label>Guelma, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>GL</postal>
+        <type>Wilaya</type>
+        <id>DZ.GL</id>
+      </desc>
+    </path>
+    <path d="M 529.2983 72.3879 525.432 74.8734 525.7082 83.4344 520.185 91.4431 521.7039 95.7236 521.5658 91.5812 524.6036 90.7527 526.1225 98.7614 518.8042 120.8544 506.5149 116.1596 504.858 113.398 505.9626 100.2803 504.858 97.9329 500.9917 98.4853 498.3682 85.9199 501.544 78.4635 500.3013 73.9068 505.8245 69.074 505.2722 64.5173 507.0673 66.7266 512.4524 66.3124 514.1094 68.2455 520.5992 66.3124 522.1181 69.3501 524.1893 67.9693 529.2983 72.3879 Z" id="DZ.KH" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.KH</code_hasc>
+        <name>Khenchela</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344617</woe_id>
+        <longitude>7</longitude>
+        <woe_name>Khenchela</woe_name>
+        <fips>AG47</fips>
+        <woe_label>Khenchela, DZ, Algeria</woe_label>
+        <latitude>34</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>KH</postal>
+        <type>Wilaya</type>
+        <id>DZ.KH</id>
+      </desc>
+    </path>
+    <path d="M 494.64 31.5159 496.0208 31.5159 495.4684 37.1773 490.7737 39.5246 495.3304 42.9767 496.9873 46.8429 493.6734 49.0522 492.983 52.7804 486.217 57.199 480.9699 56.7848 477.2417 38.6961 474.342 37.4534 472.9612 33.1729 489.669 29.997 494.64 31.5159 Z" id="DZ.ML" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>6</labelrank>
+        <code_hasc>DZ.ML</code_hasc>
+        <name>Mila</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344618</woe_id>
+        <longitude>6</longitude>
+        <woe_name>Mila</woe_name>
+        <fips>AG48</fips>
+        <woe_label>Mila, DZ, Algeria</woe_label>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>ML</postal>
+        <type>Wilaya</type>
+        <id>DZ.ML</id>
+      </desc>
+    </path>
+    <path d="M 511.9001 46.7048 514.1094 50.8473 518.3899 46.8429 521.5658 47.3953 522.9466 51.9519 529.1602 57.7513 532.0599 57.7513 534.2692 53.8851 538.2736 56.5086 537.9974 65.76 529.2983 72.3879 524.1893 67.9693 522.1181 69.3501 520.5992 66.3124 514.1094 68.2455 512.4524 66.3124 507.0673 66.7266 505.2722 64.5173 501.544 60.513 496.5731 61.2034 495.8827 58.856 486.217 57.199 492.983 52.7804 493.6734 49.0522 496.9873 46.8429 499.0586 48.9141 504.7199 45.6002 508.5862 48.638 511.9001 46.7048 Z" id="DZ.OB" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>7</labelrank>
+        <code_hasc>DZ.OB</code_hasc>
+        <name>Oum el Bouaghi</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344600</woe_id>
+        <longitude>7</longitude>
+        <woe_name>Oum el Bouaghi</woe_name>
+        <fips>AG29</fips>
+        <woe_label/>
+        <latitude>35</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>OB</postal>
+        <type>Wilaya</type>
+        <id>DZ.OB</id>
+      </desc>
+    </path>
+    <path d="M 550.2866 51.8138 542.2779 52.2281 538.2736 56.5086 534.2692 53.8851 532.0599 57.7513 529.1602 57.7513 522.9466 51.9519 521.5658 47.3953 535.9262 40.077 535.0977 34.968 540.8971 33.0348 542.0018 35.9345 546.2823 32.4825 552.0817 34.4156 550.2866 51.8138 Z" id="DZ.SA" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>9</labelrank>
+        <code_hasc>DZ.SA</code_hasc>
+        <name>Souk Ahras</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344622</woe_id>
+        <longitude>7</longitude>
+        <woe_name>Souk Ahras</woe_name>
+        <fips>AG52</fips>
+        <woe_label/>
+        <latitude>36</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>SA</postal>
+        <type>Wilaya</type>
+        <id>DZ.SA</id>
+      </desc>
+    </path>
+    <path d="M 550.2866 51.8138 550.0105 58.7179 553.3244 67.8313 552.3579 75.84 556.7765 78.7397 553.0483 85.3676 551.9436 101.1088 539.9306 110.4983 538.1355 116.85 531.3695 122.0971 518.8042 120.8544 526.1225 98.7614 524.6036 90.7527 521.5658 91.5812 521.7039 95.7236 520.185 91.4431 525.7082 83.4344 525.432 74.8734 529.2983 72.3879 537.9974 65.76 538.2736 56.5086 542.2779 52.2281 550.2866 51.8138 Z" id="DZ.TB" fill="#cee3f5" stroke="#6e6e6e" stroke-width="0.4">
+      <desc>
+        <labelrank>9</labelrank>
+        <code_hasc>DZ.TB</code_hasc>
+        <name>Tébessa</name>
+        <admin>Algeria</admin>
+        <type_en>Province</type_en>
+        <region/>
+        <woe_id>2344603</woe_id>
+        <longitude>7</longitude>
+        <woe_name>Tébessa</woe_name>
+        <fips>AG33</fips>
+        <woe_label>Tebessa, DZ, Algeria</woe_label>
+        <latitude>34</latitude>
+        <iso_a2>DZ</iso_a2>
+        <postal>TB</postal>
+        <type>Wilaya</type>
+        <id>DZ.TB</id>
+      </desc>
+    </path>
+  </g>
+</svg>

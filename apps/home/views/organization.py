@@ -6,10 +6,11 @@ from apps.home.views.functions import *
 
 def org_dashboard(request):
     context = {}
-    context["nbr_etablisement"] = Etablisment.objects.filter().count()
+    context["nbr_etablisements"] = Etablisment.objects.filter().count()
     context["nbr_divisions"] = Division.objects.filter().count()
     context["nbr_equipes"] = Equipe.objects.filter().count()
-    context["nbr_researcher"] = Researcher.objects.filter().count()
+    context["nbr_researchers"] = Researcher.objects.filter().count()
+    context["wilaya_etas"] = wilaya_dash()
     # context["top_10_etas_citations"]
     # context["all_etablisements_citations"] = final_8years_citations_all_etas()
     # context['top10_etablisements_citations'] = top_10_citations_etas()
