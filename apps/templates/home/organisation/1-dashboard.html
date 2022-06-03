@@ -6,6 +6,18 @@
 <style>
     .row{
         margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .anychart-embed{
+        width: 100vw;
+        height: 100vh;
+        border-radius: 50px;
+    }
+     #container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
     }
 
 </style>
@@ -28,7 +40,7 @@
                     <div class="col-12 col-xl-7 px-xl-0">
                         <div class="d-none d-sm-block">
                             <h2 class="h6 text-gray-400 mb-0">Etablisements</h2>
-                            <h3 class="fw-extrabold mb-2">{{nbr_etablisement}}</h3>
+                            <h3 class="fw-extrabold mb-2" id="nbr_etas">{{nbr_etablisements}}</h3>
                         </div>
                     </div>
                 </div>
@@ -52,7 +64,7 @@
                     <div class="col-12 col-xl-7 px-xl-0">
                         <div class="d-none d-sm-block">
                             <h2 class="h6 text-gray-400 mb-0">Divisions</h2>
-                            <h3 class="fw-extrabold mb-2">{{nbr_divisions}}</h3>
+                            <h3 class="fw-extrabold mb-2" id="nbr_divs">{{nbr_divisions}}</h3>
                         </div>
     
                     </div>
@@ -77,7 +89,7 @@
                     <div class="col-12 col-xl-7 px-xl-0">
                         <div class="d-none d-sm-block">
                             <h2 class="h6 text-gray-400 mb-0">Equipes</h2>
-                            <h3 class="fw-extrabold mb-2">{{nbr_equipes}}</h3>
+                            <h3 class="fw-extrabold mb-2" id="nbr_equipes">{{nbr_equipes}}</h3>
                         </div>
                     </div>
                 </div>
@@ -101,7 +113,7 @@
                     <div class="col-12 col-xl-7 px-xl-0">
                         <div class="d-none d-sm-block">
                             <h2 class="h6 text-gray-400 mb-0">Chercheurs</h2>
-                            <h3 class="fw-extrabold mb-2">{{nbr_researcher}}</h3>
+                            <h3 class="fw-extrabold mb-2" id="nbr_researchers">{{nbr_researchers}}</h3>
                         </div>
     
                     </div>
@@ -110,4 +122,126 @@
         </div>
     </div>
 </div>
+
+<button onclick='initdata()'>all wilayas</button>
+
+<div id="container">
+</div>
+
+<!-- {{all_etablisements_citations}} -->
+
+<div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+    <div class="card">
+      <div class="row row-bordered g-0">
+        <div class="col">
+          <h5 class="card-header m-0 me-2 pb-3">les citations finale de les derniers 8 anness</h5>
+          <div id="totalRevenueChart" class="px-2">
+            <canvas id="m"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<h3> Top 10 Etablisement Citations </h3>
+{% include 'components/org/top10-citations-etas.html' %}
+
+<h3>Top 10 divisions Citations</h3>
+
+{{wilaya_etas}}
+
+<h3>Top 10 equipes Citations </h3>
+
+<h3>Top 10 researchers Citations</h3>
+
+<h3>Top Etablisement Citations</h3>
+
+<h3>Top division Citations</h3>
+
+<h3>Top equipe Citations </h3>
+
+<h3>Top researcher citations</h3>
+
+
+
+
+
 {% endblock content %}
+{% block javascripts %}
+<script>
+    const labels = [{% for item in all_etablisements_citations %}'{{item.year}}',{%endfor%}];
+    const data={
+        labels: labels, 
+        datasets : [{
+            label : 'Final 8 years citations of all etablisements ', 
+            data : [{% for item in all_etablisements_citations %}{{item.citations}},{%endfor%} ],
+            backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            ],
+            borderColor: '#3ca0fe',
+            maxBarThickness: 12,
+        }]
+    };
+    const config ={
+        type :'bar', 
+        data: data,
+        options : {}
+    };
+    const mychart = new Chart(
+        document.getElementById('m'),
+        config
+    );
+    const nbrEtas = document.getElementById("nbr_etas")
+    const nbrDivs = document.getElementById("nbr_divs")
+    const nbrEquipes = document.getElementById("nbr_equipes")
+    const nbrResearchers = document.getElementById("nbr_researchers")
+    function initdata(){
+        nbrEtas.innerHTML = {{nbr_etablisements|safe}},
+        nbrDivs.innerHTML = {{nbr_divisions|safe}},
+        nbrEquipes.innerHTML = {{nbr_equipes|safe}}
+        nbrResearchers.innerHTML = {{nbr_researchers|safe}}
+    }
+    anychart.onDocumentReady(function() {
+        // create map
+        var map = anychart.map();
+        var _data = {{wilaya_etas|safe }};
+        console.log(_data)
+        // create data set
+        var dataSet = anychart.data.set(
+            _data
+            );
+      
+        // create choropleth series
+        series = map.choropleth(dataSet);
+      
+        // set geoIdField to 'id', this field contains in geo data meta properties
+        series.geoIdField('id');
+      
+        // set map color settings
+        series.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
+        series.hovered().fill('#3ca0fe');
+      
+        // set geo data, you can find this map in our geo maps collection
+        // https://cdn.anychart.com/#maps-collection
+        map.geoData(anychart.maps['algeria']);
+        var func_listen = function(e){
+            console.log(e)
+            nbrEtas.innerHTML = e.iterator.f.value
+            nbrDivs.innerHTML = e.iterator.f.nbr_divs
+            nbrEquipes.innerHTML = e.iterator.f.nbr_equipes
+            nbrResearchers.innerHTML = e.iterator.f.nbr_researchers
+        }
+        //map.labels(true);
+        //set map container id (div)
+        map.listen('pointClick', func_listen);
+        map.container('container');
+
+      
+        //initiate map drawing
+        map.draw();
+      });
+
+
+    </script>
+{% endblock javascripts %}  
