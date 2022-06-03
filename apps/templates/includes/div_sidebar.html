@@ -66,11 +66,11 @@
         </span>
       </span>
       <!-- sub menu chercheurs  -->
-      <div class="multi-level collapse {% if request.resolver_match.url_name == 'chercheurs_card_etablisementt' %} show {%endif%}" role="list" 
+      <div class="multi-level collapse {% if request.resolver_match.url_name == 'chercheur_list_division' %} show {%endif%}" role="list" 
       id="submenu-chercheurs" aria-expanded="false">
         <ul class="flex-column nav">
-          <li class="nav-item {% if request.resolver_match.url_name == 'chercheurs_card_etablisement'  %} active {%endif%}">
-            <a class="nav-link" href="{% url 'chercheurs_card_etablisement' %}">
+          <li class="nav-item {% if request.resolver_match.url_name == 'chercheur_list_division'  %} active {%endif%}">
+            <a class="nav-link" href="{% url 'chercheur_list_division' %}">
               <span class="sidebar-text">Global</span>
             </a>
           </li>

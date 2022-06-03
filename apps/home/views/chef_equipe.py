@@ -8,10 +8,18 @@ def dash_equipe(request):
     return render (request,'home/equipe/dashboard.html',context) 
 
 
-def dash_divisions(request,pk):
-    context = Dash_Equipe_calc(pk)
-    return render (request,'DashDivision.html',context)
 
 def equipe_dashboard(request):
     pass
 
+def Liste_cher_Equipe_aff_list(request):
+    inter=get_equipe_id(request)
+    liste = CherList_equipe (inter)
+    info_equipe = Equipe.objects.get(pk = inter)
+    context ={'liste':liste}
+    context["info_equipe"] = info_equipe
+    return render (request,'home/equipe/liste_chercheur.html',context)
+
+def Dash_Equipe(request,pk):
+    context = Dash_Equipe_calc(pk)
+    return render (request,'home/equipe/dashboard.html',context)

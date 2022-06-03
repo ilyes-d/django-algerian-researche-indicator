@@ -108,7 +108,7 @@
       id="submenu-chercheurs" aria-expanded="false">
         <ul class="flex-column nav">
           <li class="nav-item {% if request.resolver_match.url_name == 'chercheurs_card_etablisement'  %} active {%endif%}">
-            <a class="nav-link" href="{% url 'chercheurs_liste_etablisement' %}">
+            <a class="nav-link" href="{% url 'chercheurs_card_etablisement' %}">
               <span class="sidebar-text">Global</span>
             </a>
           </li>

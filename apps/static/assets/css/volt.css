@@ -849,7 +849,7 @@ hr:not([size]) {
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-weight: 500;
+  font-weight: bold;
   line-height: 1.3;
   color: #1F2937; }
 
@@ -18470,7 +18470,7 @@ label {
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: var(--bs-body-font-family);
-  font-weight: 500; }
+  font-weight: bold; }
 
 p, ol li, ul li, .p {
   font-family: var(--bs-font-sans-serif);

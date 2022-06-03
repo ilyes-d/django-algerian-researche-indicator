@@ -1,0 +1,60 @@
+{% extends "layouts/base.html" %} 
+{%load static%}
+{% load tag %}
+{% block content %}
+<div class="page-header">
+  <div class="row align-items-center">
+    <div class="col">
+      <h3  >
+        Les Chercheurs  De L'equipe : {{info_equipe.nom}}
+      
+      </h3>
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Effectifs</a></li>
+        <li class="breadcrumb-item active">Tous les Chercheurs</li>
+        <li class="breadcrumb-item active">Liste</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<br>
+<style>
+
+    table100{width:100%;min-height:100vh;background:linear-gradient;background:-o-linear-gradient(45deg,#30f9d2,#749d88);background:-moz-linear-gradient(45deg,#30f9d2,#749d88);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;align-items:center;align-content:flex-start;justify-content:center;flex-wrap:wrap;padding:33px 30px}.wrap-table100{width:100px}table{border-spacing:1;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;width:100%;margin:0 auto;position:relative}table *{position:relative}table td,table th{padding-left:8px}table thead tr{height:60px;background:#3ca0fe}table tbody tr{height:50px}table tbody tr:last-child{border:0}table td,table th{text-align:left}table td.l,table th.l{text-align:right}table td.c,table th.c{text-align:center}table td.r,table th.r{text-align:center}.table100-head th{font-size:18px;color:#212529;line-height:1.2;font-weight:unset}tbody tr:nth-child(even){background-color:#f5f5f5}tbody tr{font-size:15px;color:grey;line-height:1.2;font-weight:unset}tbody tr:hover{color:#555;background-color:#f5f5f5;cursor:pointer}.column1{width:260px;padding-left:40px}.column2{width:400px}.column3{width:682px}.column4{width:110px;text-align:right}.column5{width:170px;text-align:right}.column6{width:222px;    padding-left: 38px;padding-right:30px}@media screen and (max-width:992px){table{display:block}table td,table th,table tr,table>*{display:block}table thead{color:#212529;display:none}table tbody tr{height:auto;padding:37px 0}table tbody tr td{padding-left:40%!important;margin-bottom:24px}table tbody tr td:last-child{margin-bottom:0}table tbody tr td:before{font-size:14px;color:#999;line-height:1.2;font-weight:unset;position:absolute;width:40%;left:30px;top:0}table tbody tr td:nth-child(1):before{content:"Chercheur"}table tbody tr td:nth-child(2):before{content:"Spécialité"}table tbody tr td:nth-child(3):before{content:"Grade"}table tbody tr td:nth-child(4):before{content:"Email"}table tbody tr td:nth-child(5):before{content:"Quantity"}table tbody tr td:nth-child(6):before{content:"Total"}.column4,.column5,.column6{text-align:left}.column1,.column2,.column3,.column4,.column5,.column6{width:100%}tbody tr{font-size:14px}}@media (max-width:576px){.container-table100{padding-left:15px;padding-right:15px}}*{font-family:var(--bs-font-sans-serif)}    
+  </style>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <div class="table100">
+          <table style="width: 900px">
+            <thead>
+              <tr>
+                <th class="column1">Chercheur</th>
+                <th class="column6">Spécialité</th>
+                <th class="column6">Grade</th>
+                <th class="column6">Email</th>
+                <th class="column6">Profil</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in liste %}
+              <tr>
+                <td class="column6">{{i}}</td>
+                <td class="column6">{{i.speciality}}</td>
+                <td class="column6">{{i.grade}}</td>
+                <td class="column6">{{i.email}}</td>
+                <td class="column6">
+                  <a href=""
+                    ><button type="button" class="btn btn-outline-info">
+                      Profile
+                      <i class="bi bi-arrow-up-right-square-fill"></i></button
+                  ></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+{% endblock content %} 

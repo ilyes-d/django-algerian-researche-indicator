@@ -1,0 +1,108 @@
+{% extends "layouts/base.html" %} 
+{%load static%}
+{% load tag %}
+{% block content %}
+
+<div class="page-header">
+    <div class="row align-items-center">
+      <div class="col">
+        <h3 class="page-title">
+          Les Equipes De La : {{info_division.nom}}
+        </h3>
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Effectifs</a></li>
+          <li class="breadcrumb-item active">Tous les Equipes</li>
+          <li class="breadcrumb-item active">Liste</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <br>
+  <style>
+    table100{width:100%;min-height:100vh;background:linear-gradient;background:-o-linear-gradient(45deg,#30f9d2,#749d88);background:-moz-linear-gradient(45deg,#30f9d2,#749d88);display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex;align-items:center;align-content:flex-start;justify-content:center;flex-wrap:wrap;padding:33px 30px}.wrap-table100{width:100px}table{border-spacing:1;border-collapse:collapse;background:#fff;border-radius:10px;overflow:hidden;width:100%;margin:0 auto;position:relative}table *{position:relative}table td,table th{padding-left:8px}table tbody tr{height:50px}table tbody tr:last-child{border:0}table td,table th{text-align:left}table td.l,table th.l{text-align:right}table td.c,table th.c{text-align:center}table td.r,table th.r{text-align:center}.table100-head th{font-size:18px;color:#212529;line-height:1.2;font-weight:unset}tbody tr:nth-child(even){background-color:#f5f5f5}tbody tr{font-size:15px;color:grey;line-height:1.2;font-weight:unset}tbody tr:hover{color:#555;background-color:#f5f5f5;cursor:pointer}.column1{width:260px;padding-left:40px}.column2{width:400px}.column3{width:682px}.column4{width:110px;text-align:right}.column5{width:170px;text-align:right}.column6{width:222px;    padding-left: 38px;padding-right:30px}@media screen and (max-width:992px){table{display:block}table td,table th,table tr,table>*{display:block}table thead{color:#212529;display:none}table tbody tr{height:auto;padding:37px 0}table tbody tr td{padding-left:40%!important;margin-bottom:24px}table tbody tr td:last-child{margin-bottom:0}table tbody tr td:before{font-size:14px;color:#999;line-height:1.2;font-weight:unset;position:absolute;width:40%;left:30px;top:0}table tbody tr td:nth-child(1):before{content:"Chercheur"}table tbody tr td:nth-child(2):before{content:"Spécialité"}table tbody tr td:nth-child(3):before{content:"Grade"}table tbody tr td:nth-child(4):before{content:"Email"}table tbody tr td:nth-child(5):before{content:"Quantity"}table tbody tr td:nth-child(6):before{content:"Total"}.column4,.column5,.column6{text-align:left}.column1,.column2,.column3,.column4,.column5,.column6{width:100%}tbody tr{font-size:14px}}@media (max-width:576px){.container-table100{padding-left:15px;padding-right:15px}}*{font-family:var(--bs-font-sans-serif)}        
+
+  </style>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <div class="table100">
+          <table style="width: 950px;">
+            <thead>
+              <tr>
+                <th class="column1">#</th>
+                <th class="column3">Equipe</th>
+                <th class="column2">Chef Equipe</th>
+                <th class="column2">Classment</th>
+                <th class="column2">Tableau de bord</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in liste %}
+              <tr>
+                <td class="column1">{{i.id}}</td>
+                <td class="column3">{{i.nom}}</td>
+                <td class="column2">{{i.chef_equipe}}</td>
+                <td class="column2">#45</td>
+                <td class="column2">
+                  <a href=""
+                    ><button type="button" class="btn btn-outline-info">
+                      Tableau de bord
+                      <i class="bi bi-arrow-up-right-square-fill"></i></button
+                  ></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+<!-- <h3 class="page-title">
+    Les Division De L'etablisment {{info_etablisment.nom}}
+  </h3>
+<div class="card border-0 shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-centered table-nowrap mb-0 rounded">
+                <thead class="thead-light">
+                <tr>
+                        <th class="border-0 rounded-start">#</th>
+                        <th class="border-0">Division</th>
+            
+                        <th class="border-0">Chef</th>
+                        <th class="border-0">Global Rank</th>
+                        <th class="border-0">Tableau de Board</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in liste %}
+                <tr>
+        <td><a href="#" class="text-primary fw-bold">{{i.id}}</a> </td>
+        <td class="fw-bold d-flex align-items-center">
+            <svg class="icon icon-xxs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"></path></svg>
+            {{i.nom}}
+        </td>
+
+        <td>
+            {{i.chef_div}}
+        </td>
+        <td>
+            --
+        </td>
+    
+        <td>
+            <a href=""
+                  ><button type="button" class="btn btn-outline-secondary">
+                    Tableau de bord
+                    <i class="bi bi-arrow-up-right-square-fill"></i></button
+                ></a>
+        </td>
+                    </tr>
+                    {% endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> -->
+{% endblock content %} 
