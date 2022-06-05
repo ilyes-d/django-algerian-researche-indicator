@@ -9,7 +9,9 @@
 {%if request.resolver_match.url_name == 'try' %}
 okok
 {%endif%}
-<div id="anychart-embed-samples-maps-events-01" class="anychart-embed anychart-embed-samples-maps-events-01">
+
+{% comment %} <div id="anychart-embed-samples-maps-events-01" class="anychart-embed anychart-embed-samples-maps-events-01">
+
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-map.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
     <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-exports.min.js?hcode=a0c21fc77e1449cc86299c5faa067dc4"></script>
@@ -86,3 +88,13 @@ okok
     });
     </script>
     </div>
+
+
+ {% endcomment %}
+<form  method="get">
+    {{filter.form.as_p}}
+    <input type="submit" >
+</form>
+{%for obj in filter.qs %}
+    {{obj.nom}}
+{%endfor%}

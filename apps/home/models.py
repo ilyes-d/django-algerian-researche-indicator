@@ -114,8 +114,7 @@ class Etablisment(models.Model):
     nom = models.CharField(max_length=200, default='')
     logo = models.ImageField(null=True, blank=True)
     site_web=models.URLField(blank=True)
-    location = models.ForeignKey(
-        'Location', on_delete=models.CASCADE, null=True)
+    location = models.ForeignKey('Location', on_delete=models.CASCADE, null=True)
     chef_etablisement = models.OneToOneField(
         'Researcher', on_delete=models.SET_NULL, null=True, blank=True)
     # directions = models.ForeignKey(
@@ -132,7 +131,5 @@ class Directions(models.Model):
 class Location(models.Model):
     id = models.IntegerField(primary_key=True)
     state_name = models.CharField(max_length=30)
-    # validators=[MinValueValidator(1), MaxValueValidator(58)],
-
     def __str__(self) -> str:
         return self.state_name

@@ -1,20 +1,4 @@
-/*
-
-=========================================================
-* Volt - Free Bootstrap 5 Dashboard
-=========================================================
-
-* Product Page: https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard
-* Copyright 2021 Themesberg (https://www.themesberg.com)
-
-* Designed and coded by https://themesberg.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal. Contact us if you want to remove it.
-
-*/
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 .datepicker {
   display: none; }
   .datepicker.active {
@@ -779,7 +763,7 @@
   --bs-gray-700: #374151;
   --bs-gray-800: #1F2937;
   --bs-gray-900: #111827;
-  --bs-primary-rgb: 31, 41, 55;
+  --bs-primary-rgb: 60,160,254;
   --bs-secondary-rgb: 240, 188, 116;
   --bs-tertiary-rgb: 49, 49, 106;
   --bs-success-rgb: 16, 185, 129;
@@ -813,7 +797,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #374151;
-  --bs-body-bg: #F2F4F6; }
+  --bs-body-bg: #deebf7; }
 
 *,
 *::before,
@@ -826,7 +810,7 @@
 
 body {
   margin: 0;
-  font-family: 'Poppins';
+  font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -849,7 +833,7 @@ hr:not([size]) {
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin-top: 0;
   margin-bottom: 0.5rem;
-  font-weight: 500;
+  font-weight: bold;
   line-height: 1.3;
   color: #1F2937; }
 
@@ -2898,7 +2882,7 @@ textarea.form-control-lg {
     .form-select {
       transition: none; } }
   .form-select:focus {
-    border-color: #4d6689;
+    border-color: #3ca0fe;
     outline: 0;
     box-shadow: inset 0 1px 2px rgba(17, 24, 39, 0.0125), 0 0 0 0.18rem rgba(31, 41, 55, 0.25); }
   .form-select[multiple], .form-select[size]:not([size="1"]) {
@@ -2957,12 +2941,12 @@ textarea.form-control-lg {
   .form-check-input:active {
     filter: brightness(90%); }
   .form-check-input:focus {
-    border-color: #4d6689;
+    border-color: #3ca0fe;
     outline: 0;
     box-shadow: 0 0 0 0.18rem rgba(31, 41, 55, 0.25); }
   .form-check-input:checked {
-    background-color: #1F2937;
-    border-color: #1F2937; }
+    background-color: #3ca0fe;
+    border-color: #3ca0fe; }
     .form-check-input:checked[type="checkbox"] {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e"); }
     .form-check-input:checked[type="radio"] {
@@ -4034,10 +4018,7 @@ textarea.form-control-lg {
   .btn-outline-primary:disabled, .btn-outline-primary.disabled {
     color: #1F2937;
     background-color: transparent; }
-    table thead tr {
-      height: 60px;
-      background: #3ca0fe;
-  }
+
 .btn-outline-secondary {
   color: #f0bc74;
   border-color: #f0bc74; }
@@ -14562,7 +14543,7 @@ textarea.form-control-lg {
   border-radius: 0.5rem; }
 
 .navbar-theme-primary:not(.headroom) {
-  background-color: #1F2937; }
+  background-color: #3ca0fe; }
 
 /**
  * = Sections
@@ -16613,7 +16594,7 @@ label {
   margin-bottom: 0; }
 
 .custom-control-input:active ~ .custom-control-label::before {
-  border-color: #1F2937; }
+  border-color: #3ca0fe; }
 
 .custom-file-label {
   background-color: #f3f3f5; }
@@ -18473,7 +18454,7 @@ label {
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: var(--bs-body-font-family);
-  font-weight: 500; }
+  font-weight: bold; }
 
 p, ol li, ul li, .p {
   font-family: var(--bs-font-sans-serif);

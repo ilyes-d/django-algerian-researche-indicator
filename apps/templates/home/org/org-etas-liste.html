@@ -1,0 +1,95 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<h1>la liste d'etablisements dans l'Alegrie</h1>
+
+{% comment %} filter {% endcomment %}
+<div class="card border-0 shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-centered table-nowrap mb-0 rounded">
+                <thead class="thead-light">
+                    <tr>
+                        <div class="mb-4">
+                        <form class="navbar-search pull-left">
+                        <th class="border-0 rounded-start">
+                                <label for="exampleInputIconLeft">Icon Left</label>
+                                <div class="input-group">
+                                    <span class="input-group-text" id="basic-addon1">
+                                        <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>  
+                                    </span>
+                                    <input type="text" class="form-control" id="exampleInputIconLeft" placeholder="Search" aria-label="Search">
+                                </div>
+                            
+                        </th>
+                        <th class="border-0">
+                                <label class="my-1 me-2" for="country">Country</label>
+                                <select class="form-select" id="country" aria-label="Default select example">
+                                    <option selected>Open this select menu</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                </select>
+                            </th>
+                        </form>
+                    </div>
+                        <th class="border-0 rounded-end">
+                            <button class="btn btn-pill btn-outline-info" type="button">Search</button>
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+            
+        </div>
+    </div>
+</div>
+
+
+<div class="card border-0 shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-centered table-nowrap mb-0 rounded">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="border-0 rounded-start">Nom d'Etablisement</th>
+                        <th class="border-0">Directeur</th>
+                        <th class="border-0">Location</th>
+                        <th class="border-0">Nbr Divisions</th>
+                        <th class="border-0">Nbr Equipe</th>
+                        <th class="border-0 rounded-end">Nbr Chercheurs</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for eta,value in etablisements.items %}
+                    <tr>
+                        <td class="fw-bold d-flex align-items-center">
+                            {{eta.logo}}
+                            <img src="{{eta.logo}}" alt="{{eta.logo}}" class="icon icon-xxs text-gray-500 me-2">
+                            {{eta}}
+                        </td>
+                        <td>
+                            {{value.chef_eta}}
+                        </td>
+                        <td>
+                            {{value.location}}
+                        </td>
+                        <td>
+                            {{value.nbr_divisions}}
+                        </td>
+                        <td>
+                            {{value.nbr_equipes}}
+                        </td>
+                        <td>
+                            {{value.nbr_researchers}}
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+{%endblock%}
+
+{% block javascripts %}
+{% endblock javascripts %}

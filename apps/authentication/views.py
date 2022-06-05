@@ -18,6 +18,8 @@ def login_view(request):
             user = authenticate(email=email, password=password)
             if user is not None:
                 login(request, user)
+                if user_role(request) == 'membre':
+                    return redirect('/profile/')
                 return redirect("/"+str(user_role(request))+"/dashboard")
             else:
                 msg = 'Invalid credentials'
@@ -41,6 +43,8 @@ def register_user(request):
             user = authenticate(email=email, password=raw_password , google_scholar_account = google_scholar_account)
             if user is not None :
                 login(request, user)
+                if user_role(request) == 'membre':
+                    return redirect('/profile/')
                 return redirect("/"+str(user_role(request))+"/dashboard")
             else:
                 msg = 'Invalid credentials'   

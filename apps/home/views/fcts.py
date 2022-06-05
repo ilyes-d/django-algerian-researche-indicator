@@ -5,18 +5,43 @@ from  apps.home.models import *
 from datetime import datetime, timezone
 
 
+def serpapi_author(researcher_id):
+    params = {
+        "engine": "google_scholar_author",
+        "author_id": researcher_id,
+        "api_key": "bfdde7462931844d6003e1d183494fad96f1011bdd6d192179f5bae85d0e16c1"
+    }
+    search = GoogleSearch(params)
+    results = search.get_dict()
+    return results
+
+def check_gs_id(gs_id):
+    params = {
+        "engine": "google_scholar_author",
+        "author_id": gs_id,
+        "api_key": "016c19a111a3df750b7a37250aedf532683ef08faa73e2ab7f4aba7f2f2746be"
+    }
+    search = GoogleSearch(params)
+    results = search.get_dict()
+    if "author" in results:
+        return True
+    return False
+
+def get_gs_id(account):
+    return account.partition("user=")[2][:12]
+
 def ApiData(pk): # l'id du chercheur
     r  = Researcher.objects.get(pk = pk)
     params = {
     "engine": "google_scholar_author",
     "author_id": r.get_google_id(),
-    "api_key": "2c4f4ce6c429d7399649b280e13d0c519c0f088732d1bb9861dd514675b6374f",
+    "api_key": "f9ffc985971aeb0fa999e81c7ab6a9c502d5c24b7633a90ba34924857d88167a",
     "start": 0,
     "num": "100"
     }
     search = GoogleSearch(params)
     results = search.get_dict()
-    print(results)
+
     if checkKey(results,'error') :
         return {}
     else:    
@@ -26,7 +51,7 @@ def ApiData(pk): # l'id du chercheur
          params = {
            "engine": "google_scholar_author",
            "author_id": r.get_google_id(),
-           "api_key": "016c19a111a3df750b7a37250aedf532683ef08faa73e2ab7f4aba7f2f2746be",
+           "api_key": "05840cb02e8ba6f67538df2d4c51c859c362279184fdbcb7e66f308ad8115a21",
            "start": flag,
            "num": str(flag+100),
            "sort": "pubdate"
@@ -37,9 +62,7 @@ def ApiData(pk): # l'id du chercheur
          if "articles" in results:
             articles_num += len(results["articles"])
          results["articles_num"] = articles_num
-         print(r.date_joined)
          results["date_joined"] = r.date_joined
-         print(results)
     if checkKey(results,'error') :
         results ={}    
     return results 
@@ -85,6 +108,7 @@ def Dash_Eta_calc(pk):
    moy_indice_hL = 200
    moy_indice_i10L = 0.0
    nbr_chercheur_24=0
+   articles_num= 0
    for i in divisions:
        inter = Dash_Division_calc(i.id)
        if inter !={} and inter !=None :
@@ -94,7 +118,7 @@ def Dash_Eta_calc(pk):
           moy_indice_i10L += inter["moy_indice_i10"]
           nbr_cher_etablisment += inter["nbr_cher_division"]
           nbr_chercheur_24 += inter["nbr_chercheur_24"]
-        
+          articles_num += inter["articles_num"]
    if  nbr_division_etablisment == 0:
        moy_indice_hL = 0.0
        moy_indice_i10L = 0.0  
@@ -110,6 +134,7 @@ def Dash_Eta_calc(pk):
              'nbr_Citation':nbr_CitationL,
              'moy_indice_h':moy_indice_hL,
              'moy_indice_i10':moy_indice_i10L,
+             'articles_num':articles_num,
              'nbr_chercheur_24':nbr_chercheur_24}
    return context
 
@@ -125,6 +150,7 @@ def Dash_Division_calc(pk):
     moy_indice_i10L = 0.0
     nbr_chercheur_24 = 0
     nbr_chercheur_24_final =0 
+    articles_num =0
     for i in equipes:
         inter = Dash_Equipe_calc(i.id)
         if inter !={} and inter !=None :
@@ -133,6 +159,7 @@ def Dash_Division_calc(pk):
            moy_indice_i10L += inter["moy_indice_i10"]
            nbr_cher_division += inter["nbr_cher_equipe"]
            nbr_chercheur_24 += inter["nbr_chercheur_24"]
+           articles_num += inter["articles_num"]
     if  nbr_equipe_division == 0:
         moy_indice_hL = 0.0
         moy_indice_i10L = 0.0
@@ -149,6 +176,7 @@ def Dash_Division_calc(pk):
                'info_division': info_division,
                'nbr_Citation':nbr_CitationL,
                'moy_indice_h':moy_indice_hL,
+               'articles_num':articles_num,
                'moy_indice_i10':moy_indice_i10L}
     print(nbr_chercheur_24)
     return context
@@ -160,9 +188,10 @@ def Dash_Equipe_calc(pk):# on fait sous form de fonction pour utulistaion direct
     researchers = Researcher.objects.filter(equipe_researchers = pk) # recupere les chercheur des equipe
     nbr_cher_equipe = researchers.count()
     nbr_Citation = 0
-    moy_indice_h = 0.0
-    moy_indice_i10 = 0.0
+    moy_indice_h = 0
+    moy_indice_i10 = 0
     nbr_chercheur_24 =0 
+    articles_num = 0
     for i in researchers:
         inter = ApiData(i.id)
         if inter !={} and inter !=None  :
@@ -170,7 +199,9 @@ def Dash_Equipe_calc(pk):# on fait sous form de fonction pour utulistaion direct
            nbr_Citation += inter["cited_by"]["table"][0]["citations"]["all"]
            moy_indice_h += inter["cited_by"]["table"][1]["h_index"]["all"]  
            moy_indice_i10 += inter["cited_by"]["table"][2]["i10_index"]["all"]
+           articles_num = inter["articles_num"]
            now = datetime.now(timezone.utc)
+           
            if len(str( now - inter["date_joined"] )) < 16:
                nbr_chercheur_24 +=1
     if nbr_cher_equipe == 0:
@@ -181,13 +212,12 @@ def Dash_Equipe_calc(pk):# on fait sous form de fonction pour utulistaion direct
        moy_indice_i10 = moy_indice_i10/nbr_cher_equipe
     if nbr_cher_equipe != 0:
         nbr_chercheur_24_final =(nbr_chercheur_24 *100)/nbr_cher_equipe
-           
-    print(nbr_chercheur_24)  
     context ={'nbr_cher_equipe':nbr_cher_equipe,
               'nbr_chercheur_24':nbr_chercheur_24 ,
               'nbr_chercheur_24_final':nbr_chercheur_24_final ,
               'info_equipe': info_equipe,
               'nbr_Citation':nbr_Citation,
+              'articles_num':articles_num,
               'moy_indice_h':moy_indice_h,
               'moy_indice_i10':moy_indice_i10}
     return context
@@ -231,15 +261,18 @@ def EquipeList_Eta(pk):
        i +=researchers
     return i
 
-def CherList_eta(pk):
-     inter = Division.objects.filter(etablisment = pk)
-     interEquipe = Equipe.objects.none()
-     inter2 =[]
-     for i in inter:
-        interEquipe = Equipe.objects.filter(division = i.id)
-        inter2 +=interEquipe 
-     final =[]
-     for i in inter2:
-        researchers = Researcher.objects.filter(equipe_researchers = i.id)
-        final +=researchers
-     return final
+def EquipeList_Div(pk):#pk d'un labo
+    i = Equipe.objects.filter(division = pk)
+    return i
+def CherList_div(pk):
+    inter = Equipe.objects.filter(division = pk)
+    researchers = Researcher.objects.none()
+    inter2 =[]
+    for i in inter:
+       researchers = Researcher.objects.filter(equipe_researchers = i.id)
+       inter2 +=researchers
+    return inter2
+
+def CherList_equipe(pk):# pk represent l'id de l'equipe (rest a test)
+    researchers = Researcher.objects.filter(equipe_researchers = pk)
+    return researchers

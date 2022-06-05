@@ -1,0 +1,56 @@
+{% extends "layouts/base.html" %}
+{%load static%}
+{% load tag %}
+{% block content %}
+<div class="page-header">
+  <div class="row align-items-center">
+    <div class="col">
+      <h3  >
+        Les Chercheurs  De L'equipe : {{info_equipe.nom}}
+      
+      </h3>
+      <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="index.html">Effectifs</a></li>
+        <li class="breadcrumb-item active">Tous les Chercheurs</li>
+        <li class="breadcrumb-item active">Liste</li>
+      </ul>
+    </div>
+  </div>
+</div>
+<br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <div class="table100">
+          <table style="width: 900px">
+            <thead>
+              <tr>
+                <th class="column1">Chercheur</th>
+                <th class="column6">Spécialité</th>
+                <th class="column6">Grade</th>
+                <th class="column6">Email</th>
+                <th class="column6">Profil</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for i in liste %}
+              <tr>
+                <td class="column6">{{i}}</td>
+                <td class="column6">{{i.speciality}}</td>
+                <td class="column6">{{i.grade}}</td>
+                <td class="column6">{{i.email}}</td>
+                <td class="column6">
+                  <a href=""
+                    ><button type="button" class="btn btn-outline-info">
+                      Profile
+                      <i class="bi bi-arrow-up-right-square-fill"></i></button
+                  ></a>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+{% endblock content %} 

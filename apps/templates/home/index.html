@@ -3,55 +3,23 @@
 
 <head> 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
 <title>
-    Django Volt Dashboard - Presentation | AppSeed    
+    Algerian Research Indicators 
 </title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="title" content="Volt - Free Bootstrap 5 Admin Dashboard">
-<meta name="author" content="Themesberg">
-<meta name="description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
 <meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard" />
 <link rel="canonical" href="https://themesberg.com/product/admin-dashboard/volt-premium-bootstrap-5-dashboard">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://demo.themesberg.com/volt-pro">
-<meta property="og:title" content="Volt - Free Bootstrap 5 Admin Dashboard">
-<meta property="og:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
-<meta property="og:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://demo.themesberg.com/volt-pro">
-<meta property="twitter:title" content="Volt - Free Bootstrap 5 Admin Dashboard">
-<meta property="twitter:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
-<meta property="twitter:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
-
-<!-- Favicon -->
-<link rel="apple-touch-icon" sizes="120x120" href="{{ ASSETS_ROOT }}/img/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ ASSETS_ROOT }}/img/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ ASSETS_ROOT }}/img/favicon/favicon-16x16.png">
-<link rel="manifest" href="{{ ASSETS_ROOT }}/img/favicon/site.webmanifest">
-<link rel="mask-icon" href="{{ ASSETS_ROOT }}/img/favicon/safari-pinned-tab.svg" color="#ffffff">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="theme-color" content="#ffffff">
-
-<!-- Sweet Alert -->
 <link type="text/css" href="{{ ASSETS_ROOT }}/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-
-<!-- Notyf -->
 <link type="text/css" href="{{ ASSETS_ROOT }}/vendor/notyf/notyf.min.css" rel="stylesheet">
-
-<!-- Volt CSS -->
 <link type="text/css" href="{{ ASSETS_ROOT }}/css/volt.css" rel="stylesheet">
-
-<!-- NOTICE: You can use the _analytics.html partial to include production code specific code & trackers -->
-
 </head>
+<style>
+    .modal-backdrop {
+        z-index: 12;
+    }
+</style>
 <body>
-
     <header class="header-global">
         <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary pt-4 navbar-dark">
             <div class="container position-relative">
@@ -86,47 +54,71 @@
                         </li>                        
                     </ul>
                 </div>
-                <div class="d-flex align-items-center ms-auto">
-                    <a href="https://appseed.us/admin-dashboards/django-dashboard-volt" 
-                       target="_blank" 
-                       class="btn btn-outline-white d-inline-flex align-items-center me-md-3">
-                        <svg class="icon icon-xxs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z" clip-rule="evenodd"></path></svg>
-                        Download
-                    </a>
+                <div class="d-flex align-items-center col-lg-4" >
+                    <button type="button" class="btn btn-block btn-gray-800 mb-3" data-bs-toggle="modal" data-bs-target="#modal-form">Sign In</button>
+                    <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body p-0">
+                                    <div class="card p-3 p-lg-4">
+                                        <button type="button" class="btn-close ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        <div class="text-center text-md-center mb-4 mt-md-0">
+                                            <h1 class="mb-0 h4">Log In</h1>
+                                        </div>
+                                        <form action="#" class="mt-4">
+                                            <div class="form-group mb-4">
+                                                <label for="email">Email</label>
+                                                <div class="input-group">
+                                                    <span class="input-group-text" id="basic-addon1">
+                                                        <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path></svg>
+                                                    </span>
+                                                    <input type="email" class="form-control" placeholder="example@company.com" id="email" autofocus required>
+                                                </div>  
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="form-group mb-4">
+                                                    <label for="password">Mot de passe</label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text" id="basic-addon2">
+                                                            <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path></svg>
+                                                        </span>
+                                                        <input type="password" placeholder="Password" class="form-control" id="password" required>
+                                                    </div>  
+                                                </div>
+                                            </div>
+                                            <div class="d-grid">
+                                                <button type="submit" class="btn btn-gray-800">Sign in</button>
+                                            </div>
+                                        </form>
+                                        <div class="d-flex justify-content-center align-items-center mt-4">
+                                            <span class="fw-normal">
+                                                Not registered?
+                                                <a href="{%url 'register'%}" class="fw-bold">Create account</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-
     <main>
-
-        <!-- Hero -->
         <section class="section-header overflow-hidden pt-7 pt-lg-8 pb-9 pb-lg-12 bg-primary text-white">
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
-                        <div class="bootstrap-big-icon d-none d-lg-block">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="700" height="622" class="d-block my-1" viewBox="0 0 118 94" role="img"><title>Bootstrap</title><path fill-rule="evenodd" clip-rule="evenodd" d="M24.509 0c-6.733 0-11.715 5.893-11.492 12.284.214 6.14-.064 14.092-2.066 20.577C8.943 39.365 5.547 43.485 0 44.014v5.972c5.547.529 8.943 4.649 10.951 11.153 2.002 6.485 2.28 14.437 2.066 20.577C12.794 88.106 17.776 94 24.51 94H93.5c6.733 0 11.714-5.893 11.491-12.284-.214-6.14.064-14.092 2.066-20.577 2.009-6.504 5.396-10.624 10.943-11.153v-5.972c-5.547-.529-8.934-4.649-10.943-11.153-2.002-6.484-2.28-14.437-2.066-20.577C105.214 5.894 100.233 0 93.5 0H24.508zM80 57.863C80 66.663 73.436 72 62.543 72H44a2 2 0 01-2-2V24a2 2 0 012-2h18.437c9.083 0 15.044 4.92 15.044 12.474 0 5.302-4.01 10.049-9.119 10.88v.277C75.317 46.394 80 51.21 80 57.863zM60.521 28.34H49.948v14.934h8.905c6.884 0 10.68-2.772 10.68-7.727 0-4.643-3.264-7.207-9.012-7.207zM49.948 49.2v16.458H60.91c7.167 0 10.964-2.876 10.964-8.281 0-5.406-3.903-8.178-11.425-8.178H49.948z" fill="currentColor"></path></svg>
-                        </div>
-                        <h1 class="fw-bolder">Volt Bootstrap 5 Dashboard</h1>
+                        <h1 class="fw-bolder">le recueil d'indicateurs</h1>
                         <h2 class="lead fw-normal text-muted mb-5">
-                            Open-source Seed Project
+                            Le premier platforme dans l'Algerie de le recueil d'indicateurs de la recherche nationale.
                         </h2>
-                        <!-- Button Modal -->
                         <div class="d-flex align-items-center justify-content-center mb-5">
-                            <a href="/dashboard.html" class="btn btn-secondary d-inline-flex align-items-center me-4">
+                            <a href="{%url 'register'%}" class="btn btn-secondary d-inline-flex align-items-center me-4">
                                 <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z" clip-rule="evenodd"></path></svg>
-                                Dashboard Demo
+                                Get Started
                             </a>                            
-                        </div>
-                        <div class="d-flex justify-content-center flex-column mb-6 mb-lg-5">
-                            <a href="https://themesberg.com" target="_blank">
-                                <img src="{{ ASSETS_ROOT }}/img/themesberg.svg" class="d-block mx-auto mb-3" height="25" width="25" alt="Themesberg Logo">
-                                <span class="text-muted font-small">
-                                    &copy; Themesberg
-                                </span>
-                                <a target="_blank" href="https://appseed.us">Coded by AppSeed</a>
-                            </a>
                         </div>
                     </div>
                 </div>
@@ -142,7 +134,7 @@
                 </div>
             </div>
         </div>
-
+        
         <section class="section section-lg bg-soft pt-0">
             <div class="container">
                 <div class="row justify-content-center mb-5 mb-lg-6">
@@ -752,6 +744,5 @@
     </footer>
 
     {% include 'includes/scripts.html' %}
-
 </body>
 </html>
