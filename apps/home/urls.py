@@ -2,6 +2,7 @@ from django.urls import path, include
 from apps.home.views import _views, chef_div , chef_eta ,chef_equipe
 from django.shortcuts import render 
 from .views.users import *
+
 def handler404(request, exception=None):
     return render(request,'404.html')
     
@@ -20,7 +21,7 @@ urlpatterns = [
         path('equipes/dashboard/',chef_eta.eta_equipes_dash  , name='eta-equipes-dash'),
         path('equipes/liste/',chef_eta.eta_equipes_liste  ,    name='eta-equipes-liste'),
         # 
-        path('chercheurs/card/' , chef_eta.eta_chers_dash  , name='eta-chers-liste'),
+        # path('chercheurs/card/' , chef_eta.eta_chers_dash  , name='eta-chers-liste'),
         path('chercheurs/card/' , chef_eta.Liste_cher_Eta_aff_list  , name='chercheur-list-'),
         path('chercheurs/liste/' , chef_eta.eta_chers_liste, name='eta-chers-liste'),
      ])),

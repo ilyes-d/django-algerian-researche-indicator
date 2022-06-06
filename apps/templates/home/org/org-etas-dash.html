@@ -1,4 +1,48 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
 Etas Dash 
+
+<div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
+    <div class="card">
+      <div class="row row-bordered g-0">
+        <div class="col">
+          <h5 class="card-header m-0 me-2 pb-3">les citations finale de les derniers 8 anness</h5>
+          <div id="totalRevenueChart" class="px-2">
+            <canvas id="m"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<h3> Top 10 Etablisement Citations </h3>
+{% include 'components/org/top10-citations-etas.html' %}
 {% endblock content %}
+
+
+{% block javascripts %}
+const labels = [{% for item in all_etablisements_citations %}'{{item.year}}',{%endfor%}];
+<script>
+    const data={
+        labels: labels,
+        datasets : [{
+            label : 'Final 8 years citations of all etablisements ',
+            data : [{% for item in all_etablisements_citations %}{{item.citations}},{%endfor%} ],
+            backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            ],
+            borderColor: '#3ca0fe',
+            maxBarThickness: 12,
+        }]
+    };
+    const config ={
+        type :'bar',
+        data: data,
+        options : {}
+    };
+    const mychart = new Chart(
+        document.getElementById('m'),
+        config
+    );
+</script>
+{% endblock javascripts %}

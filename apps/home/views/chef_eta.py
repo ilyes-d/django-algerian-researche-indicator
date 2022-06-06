@@ -4,9 +4,9 @@ from django.shortcuts import get_object_or_404, redirect, render
 from apps.home.models import *
 from apps.home.forms import *
 from apps.home.decorators import *
-from apps.home.views.fcts import *
-from apps.home.decorators import *
 from apps.home.views.chef_div import *
+from apps.home.decorators import *
+from apps.home.views.fcts import *
 
 def eta_dash(request):
     context = Dash_Eta_calc(get_etablisement_id(request))

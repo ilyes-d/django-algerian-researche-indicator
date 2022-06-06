@@ -5316,7 +5316,7 @@ textarea.form-control-lg {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  word-wrap: break-word;
+  word-wrap: unset;
   background-color: #ffffff;
   background-clip: border-box;
   border: 0.0625rem solid rgba(17, 24, 39, 0.125);
@@ -14802,7 +14802,7 @@ textarea.form-control-lg {
     border-radius: 0.5rem; }
     .sidebar .nav-link .sidebar-icon {
       margin-right: .5rem;
-      color: #9CA3AF; }
+      color: #000000; }
     .sidebar .nav-link .link-arrow {
       font-size: 0.875rem; }
     .sidebar .nav-link[data-bs-toggle=collapse][aria-expanded=true] .link-arrow {
@@ -18245,7 +18245,15 @@ label {
 .table td,
 .table th {
   font-size: 0.875rem;
-  white-space: nowrap; }
+  white-space: nowrap; 
+}
+
+tr:nth-child(even){
+  background-color: rgba(0, 140, 255, 0.26);
+}
+tr:nth-child(even) td{
+  border-top-left-radius: 20px;
+}
 
 .table.user-table thead th {
   border-top: 0; }

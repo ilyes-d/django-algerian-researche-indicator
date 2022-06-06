@@ -161,6 +161,7 @@ def nbr_chercheurs_eta(eta_id):
     return Researcher.objects.filter(Q(division__etablisment__id=eta_id) | Q(equipe__division__etablisment__id=eta_id) | Q(equipe_researchers__division__etablisment__id=eta_id) | Q(etablisment__id=eta_id))
 # "_citations" : get_citations_total_etablisement(etablisement.id),
 # "top_researcher_citation": top_researcher_citations(etablisement.id)["max"],
+
 def query_all_etablisements():  
     etablisements_info = {}
     for etablisement in Etablisment.objects.all():
@@ -173,6 +174,17 @@ def query_all_etablisements():
             "nbr_researchers" : nbr_chercheurs_eta(etablisement.id).count(),
         }
     return etablisements_info
+
+def query_all_divs():
+    div_info = {}
+    for div in Division.objects.all():
+        div_info[div.__str__()] = {
+            "chef_div":div.chef_div.__str__(),
+            "etablisement":Etablisment.objects.get(division=div.id).__str__(),
+            "nbr_equipes":Equipe.objects.filter(division=div.id).count(),
+            "nbr_chers": Researcher.objects.filter(Q(equipe__division=div.id)|Q(equipe_researchers__division=div.id)).count()
+        }
+    return div_info
 
 def nbr_divisions_eta(eta_id):
     return Division.objects.filter(etablisment=eta_id).count()

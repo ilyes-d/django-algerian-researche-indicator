@@ -115,25 +115,27 @@ def who_can_see_profile(function):
     everyone can see his profile 
     """  
     def wrapper(request,pk):
+            if not request.user.is_authenticated :
+                raise Http404("not authenticated ")
             if not request.user.is_superuser:
                 if request.user.id == pk:
                     return function(request,pk)
                 if is_chef_eta(request):
                     if is_profile_in_your_eta(request,pk):
                         return function(request,pk)
-                    raise Http404
+                    raise Http404("you don't have access")
                         # HttpResponse("the user you requested is out of your div")
                 if is_chef_div(request):
                     if is_profile_in_your_div(request,pk):
                         return function(request,pk)
-                    raise Http404
+                    raise Http404("you don't have access")
                         # HttpResponse("this user out of your division ")
                 if is_chef_equipe(request):
                     if is_profile_in_your_equipe(request,pk):
                         return function(request,pk)
-                    raise Http404
+                    raise Http404("you don't have access")
                         # HttpResponse("this user out of your equipe ")
-                return Http404
+                raise Http404("you don't have access")
                 # HttpResponse('you arent a part of any etablisement or div or equipe')
             return function(request,pk)
     return wrapper

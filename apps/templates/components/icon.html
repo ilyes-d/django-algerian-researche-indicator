@@ -1,0 +1,27 @@
+{%load static%}
+{% block stylesheets %}
+<style>
+    .icon-app{
+        display:flex;
+        width: 212px;
+        height: 43px; 
+        border-radius: 7px;
+        margin-bottom :12px;
+      }
+      .icon-label{
+        background-color : #fff;
+        border-radius : 4px;
+      }
+      .icon-name{
+        font-size:28px;
+      }
+</style>
+{% endblock stylesheets %}
+<a href="{%url 'index' %}">
+    <span class="icon-app">
+      <h2 class="icon-label" style="color:#3ca0fe;">
+        DZ
+      </h2>
+      <h2 class="icon-name">Researchers</h2>
+    </span>
+</a>

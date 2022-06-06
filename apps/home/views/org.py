@@ -5,6 +5,15 @@ from ..decorators import *
 from django.views.generic.list import ListView
 
 
+def org_carte(request):
+    context = {}
+    context["nbr_etablisements"] = Etablisment.objects.filter().count()
+    context["nbr_divisions"] = Division.objects.filter().count()
+    context["nbr_equipes"] = Equipe.objects.filter().count()
+    context["nbr_researchers"] = Researcher.objects.filter().count()
+    context["wilaya_etas"] = wilaya_dash()
+    return render(request , "home/org/org-carte.html" , context)
+
 # @is_superuser
 def org_dashboard(request):
     context = {}
@@ -12,13 +21,12 @@ def org_dashboard(request):
     context["nbr_divisions"] = Division.objects.filter().count()
     context["nbr_equipes"] = Equipe.objects.filter().count()
     context["nbr_researchers"] = Researcher.objects.filter().count()
-    context["wilaya_etas"] = wilaya_dash()
+    
     # context["top_10_etas_citations"]
     # context["all_etablisements_citations"] = final_8years_citations_all_etas()
     # context['top10_etablisements_citations'] = top_10_citations_etas()
     return render(request , "home/org/org-dashboard.html" , context)
-
-
+    
 
 def org_etas_dash(request):
     context = {
@@ -40,6 +48,7 @@ def org_divs_dash(request):
 
 def org_divs_liste(request):
     context = {}
+    context["divisions"] = query_all_divs()
     return render(request, 'home/org/org-divs-liste.html',context)
 
 def org_equipes_dash(request):
