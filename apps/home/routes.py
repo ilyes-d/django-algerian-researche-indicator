@@ -17,7 +17,10 @@ urlpatterns = [
         path('equipes/dashboard/', org.org_equipes_dash , name = "org-equipes-dash"),
         path('equipe/liste/', org.org_equipes_liste, name="org-equipes-liste"),
         path('chercheurs/dashboard/', org.org_equipes_dash , name = "org-chers-dash"),
-        path('chercheurs/liste/', org.org_equipes_liste, name="org-chers-liste")
+        path('chercheurs/members/liste/', org.org_members_liste, name="org-members-liste"),
+        path('chercheurs/chef-eta/liste/', org.org_chef_eta_liste, name="org-chefeta-liste"),
+        path('chercheurs/chef-div/liste/', org.org_chef_div_liste, name="org-chefdiv-liste"),
+        path('chercheurs/chef-equ/liste/', org.org_chef_equ_liste, name="org-chefequ-liste"),
     ])),
     
     path('try/', filters.etablisement_list),

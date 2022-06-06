@@ -25,6 +25,12 @@
   .btn-outline-info svg:hover{
       filL:#fff;
   }
+  .card .row{
+    background-color: transparent;
+  }
+  .shadow {
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15) !important;
+  }
 </style>
 {% endblock stylesheet %}
 
@@ -41,48 +47,91 @@
   </div>
 </div>
 
-{% comment %} <div class="row">
-  <div class="col">
-    <div class="card">
-      <div class="row row-bordered g-0">
-        <h5 class="card-header m-0 me-2 pb-3 d-flex flex-row">
-          Filtrer les resultas par rapport a la wilaya
-          <div class="d-flex flex-row-reverse">
-            <button
-              class="btn btn-outline-info"
-              type="button"
-              onclick="initdata()"
-            >
-              <svg
-                fill="#1f57b8"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 30 30"
-                width="30px"
-                height="30px"
-              >
-                <path
-                  d="M 15 3 C 12.031398 3 9.3028202 4.0834384 7.2070312 5.875 A 1.0001 1.0001 0 1 0 8.5058594 7.3945312 C 10.25407 5.9000929 12.516602 5 15 5 C 20.19656 5 24.450989 8.9379267 24.951172 14 L 22 14 L 26 20 L 30 14 L 26.949219 14 C 26.437925 7.8516588 21.277839 3 15 3 z M 4 10 L 0 16 L 3.0507812 16 C 3.562075 22.148341 8.7221607 27 15 27 C 17.968602 27 20.69718 25.916562 22.792969 24.125 A 1.0001 1.0001 0 1 0 21.494141 22.605469 C 19.74593 24.099907 17.483398 25 15 25 C 9.80344 25 5.5490109 21.062074 5.0488281 16 L 8 16 L 4 10 z"
-                />
-              </svg>
-            </button>
+<div class="card shadow mb-4">
+  <a class="d-block card-header py-3" 
+      role="button" data-bs-toggle="collapse" data-bs-target="#collapseCardExample" aria-expanded="true" aria-controls="collapseCardExample">
+      <h6 class="m-0 font-weight-bold text-primary">Les etablisements</h6>
+  </a>
+  <!-- Card Content - Collapse -->
+  <div class="collapse show" >
+      <div class="card-body">
+          This is a collapsable card example using Bootstrap's built in collapse
+          functionality. <strong>Click on the card header</strong> to see the card body
+          collapse and expand!
+      </div>
+  </div>
+  <div class="card-body card-body-cards">
+    <div class="row collapse show" id="collapseCardExample">
+      <!-- Area Chart -->
+      <div class="col-xl-8 col-lg-7">
+          <div class="card shadow mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+              </div>
+              <div class="card-body">
+                  <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                      <canvas id="myAreaChart" style="display: block; width: 1037px; height: 320px;" width="1037" height="320" class="chartjs-render-monitor"></canvas>
+                  </div>
+              </div>
           </div>
-        </h5>
+      </div>
+      <!-- Pie Chart -->
+      <div class="col-xl-4 col-lg-5">
+          <div class="card shadow mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+              </div>
+              <div class="card-body">
+                  <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                      <canvas id="myPieChart" style="display: block; width: 486px; height: 245px;" width="486" height="245" class="chartjs-render-monitor"></canvas>
+                  </div>
+                  <div class="mt-4 text-center small">
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-primary"></i> Direct
+                      </span>
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-success"></i> Social
+                      </span>
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-info"></i> Referral
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
 
-        <div id="container"></div>
-      </div>
+<div class="row">
+  <div class="col card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+    </div>
+    <div class="card-body">
+        <div class="chart-bar"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+            <canvas id="myBarChart" style="display: block; height: 320px; width: 611px;" width="916" height="480" class="chartjs-render-monitor"></canvas>
+        </div>
+        <hr>
+        Styling for the bar chart can be found in the
+        <code>/js/demo/chart-bar-demo.js</code> file.
     </div>
   </div>
-  <div class="col">
-    <div class="card">
-      <div class="row row-bordered g-0">
-        <h5 class="card-header m-0 me-2 pb-3">
-          Filtrer les resultas par rapport a la wilaya
-        </h5>
-        <div class="w-100 p-3" id="do"></div>
-      </div>
+  <div class="col card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+    </div>
+    <div class="card-body">
+        <div class="chart-bar"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+            <canvas id="myBarChart" style="display: block; height: 320px; width: 611px;" width="916" height="480" class="chartjs-render-monitor"></canvas>
+        </div>
+        <hr>
+        Styling for the bar chart can be found in the
+        <code>/js/demo/chart-bar-demo.js</code> file.
     </div>
   </div>
-</div> {% endcomment %}
+</div> 
 
 <div class="row">
   <div class="col">
@@ -90,17 +139,6 @@
     <div class="col-12 px-0 mb-3" id="do"></div>
   </div>
 </div>
-<!-- anychart js  -->
-{% comment %}
-<div class="row">
-  <div class="col-12 col-xl-8">
-    <div id="container"></div>
-  </div>
-  <div class="col-12 col-xl-4">
-    <div class="col-12 px-0 mb-3" id="do"></div>
-  </div>
-</div>
-{% endcomment %}
 
 <h3>Top Etablisement Citations</h3>
 
@@ -109,6 +147,7 @@
 <h3>Top equipe Citations</h3>
 
 <h3>Top researcher citations</h3>
+
 
 {% endblock content %} 
 {% block javascripts %}

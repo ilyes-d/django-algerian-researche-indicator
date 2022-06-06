@@ -10,7 +10,7 @@ def researcher_profile(request, pk):
         researcher = Researcher.objects.get(id = pk)
     except Researcher.DoesNotExist:
         return render(request,'404.html',context)
-    context['researcher'] = researcher 
+    context['researcher'] = researcher
     return render(request,'home/profile.html',context)
     
 def eta_dash_id(request,pk):

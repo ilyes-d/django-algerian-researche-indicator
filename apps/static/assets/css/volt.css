@@ -729,6 +729,7 @@
   --bs-green: #10B981;
   --bs-teal: #1E90FF;
   --bs-cyan: #63b1bd;
+  --bs-light-blue: rgba(0, 140, 255, 0.26);
   --bs-white: #ffffff;
   --bs-gray: #4B5563;
   --bs-gray-dark: #1F2937;
@@ -5342,6 +5343,12 @@ textarea.form-control-lg {
 .card-body {
   flex: 1 1 auto;
   padding: 1.25rem 1.5rem; }
+
+.card-body-cards{
+  background-color: var(--bs-light-blue);
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+}
 
 .card-title {
   margin-bottom: 0.875rem; }
@@ -14859,7 +14866,9 @@ textarea.form-control-lg {
   overflow-y: hidden; }
 
 .sidebar-heading {
-  font-size: .75rem;
+  margin-top:20px ;
+  opacity: 0.8;
+  font-size: .9rem;
   text-transform: uppercase; }
 
 .user-card {
@@ -18250,9 +18259,6 @@ label {
 
 tr:nth-child(even){
   background-color: rgba(0, 140, 255, 0.26);
-}
-tr:nth-child(even) td{
-  border-top-left-radius: 20px;
 }
 
 .table.user-table thead th {

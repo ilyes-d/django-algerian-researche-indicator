@@ -62,7 +62,20 @@ def org_equipes_liste(request):
 def org_chers_dash(request):
     context = {}
     return render(request , 'home/org/org-chers-dash.html',context)
+def org_members_liste(request):
+    context = {}
+    # context["researchers"] = query_all_researchers()
+    return render(request , 'home/org/org-chers-liste.html', context)
 
+def org_chef_eta_liste(request):
+    context = {}
+    return render(request ,'home/chers/chef-eta.html',context)
+def org_chef_div_liste(request):
+    context = {}
+    return render(request ,'home/chers/chef-div.html',context)
+def org_chef_equ_liste(request):
+    context = {}
+    return render(request ,'home/chers/chef-equ.html',context)
 
 # Try 
 class EtablisementListView(ListView):

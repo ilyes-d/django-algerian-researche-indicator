@@ -387,3 +387,19 @@ def top_10_researchers_citations_eta(request):
     pass
 def top_10_researchers_citations_div(request):
     pass
+
+
+
+
+# def query_all_researchers():
+#     chers_info = {}
+#     for cher in Researcher.objects.all():
+#         div_info[div.__str__()] = {
+#             "nom":cher.nom,
+#             "etablisement":,
+#             "division":,
+#             "etablisement":Etablisment.objects.get(division=div.id).__str__(),
+#             "nbr_equipes":Equipe.objects.filter(division=div.id).count(),
+#             "nbr_chers": Researcher.objects.filter(Q(equipe__division=div.id)|Q(equipe_researchers__division=div.id)).count()
+#         }
+#     return div_info

@@ -1,8 +1,8 @@
 {% extends "layouts/base.html" %} 
 {%load static%} 
 {% load tag %} 
-{% block content %} 
-{%block stylesheet%}
+
+{%block stylesheets%}
 <style>
 .anychart-embed {
     width: 100vw;
@@ -24,7 +24,10 @@
   margin-bottom:12px;
 }
 </style>
-{% endblock stylesheet %}
+{% endblock stylesheets %}
+
+
+{% block content %} 
 <div class="page-header">
   <div class="row align-items-center">
     <div class="col">

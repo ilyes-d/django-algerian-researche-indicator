@@ -56,6 +56,7 @@
         </div>
     </div>
 </div>
+
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
@@ -92,7 +93,7 @@
                         <td>
                             {{value.nbr_researchers}}
                         </td>
-                        <td>
+                        <td class="rounded-end">
                             <a class="btn btn-pill btn-outline-info" href="{%url 'eta-id-dash' pk=2 %}">Dash</a>
                         </td>
                     </tr>
@@ -105,5 +106,3 @@
 
 {%endblock%}
 
-{% block javascripts %}
-{% endblock javascripts %}
