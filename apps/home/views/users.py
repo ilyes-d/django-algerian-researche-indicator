@@ -19,7 +19,12 @@ def researcher_profile(request, pk):
     
     context['researcher'] = researcher
     # researcher.
-    researcher_gs = serpapi_config(researcher.get_google_id())   
+    researcher_gs = serpapi_author(researcher.get_google_id())
+    print(researcher.citations)
+    print("second")
+    print(researcher_gs["cited_by"]["table"][0]["citations"]["all"])
+    researcher.citations = researcher_gs["cited_by"]["table"][0]["citations"]["all"]
+    researcher.save()
     
     return render(request,'home/profile.html',context)
     
