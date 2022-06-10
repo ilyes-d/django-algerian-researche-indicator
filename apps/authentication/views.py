@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
@@ -59,4 +60,11 @@ def register_user(request):
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
 
 
-
+def see_user_data(request):
+    context = {}
+    user = Researcher.objects.get(id=request.user.id)
+    user.first_name = "ana howa"
+    user.save()
+    context["first_name"] = request.user.first_name
+    context["userd"] = user
+    return render(request , 'empty.html',context)

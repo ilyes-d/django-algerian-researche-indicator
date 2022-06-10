@@ -52,21 +52,63 @@
       role="button" data-bs-toggle="collapse" data-bs-target="#collapseCardExample" aria-expanded="true" aria-controls="collapseCardExample">
       <h6 class="m-0 font-weight-bold text-primary">Les etablisements</h6>
   </a>
-  <!-- Card Content - Collapse -->
-  <div class="collapse show" >
-      <div class="card-body">
-          This is a collapsable card example using Bootstrap's built in collapse
-          functionality. <strong>Click on the card header</strong> to see the card body
-          collapse and expand!
-      </div>
-  </div>
+
   <div class="card-body card-body-cards">
     <div class="row collapse show" id="collapseCardExample">
       <!-- Area Chart -->
       <div class="col-xl-8 col-lg-7">
           <div class="card shadow mb-4">
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Citations par annees</h6>
+              </div>
+              <div class="card-body">
+                  <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                      <canvas id="citations-chart" style="display: block; width: 1037px; height: 320px;" width="1037" height="320" class="chartjs-render-monitor"></canvas>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Pie Chart -->
+      <div class="col-xl-4 col-lg-5">
+          <div class="card shadow mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Meilleure etablisement</h6>
+              </div>
+              <div class="card-body">
+                  {% comment %} <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                      <canvas id="myPieChart" style="display: block; width: 486px; height: 245px;" width="486" height="245" class="chartjs-render-monitor"></canvas>
+                  </div> {% endcomment %}
+                  <div class="mt-4 text-center small">
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-primary"></i> Direct
+                      </span>
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-success"></i> Social
+                      </span>
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-info"></i> Referral
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<div class="card shadow mb-4">
+  <a class="d-block card-header py-3" 
+      role="button" data-bs-toggle="collapse" data-bs-target="#collapseCardExample" aria-expanded="true" aria-controls="collapseCardExample">
+      <h6 class="m-0 font-weight-bold text-primary">Les Divisions</h6>
+  </a>
+
+  <div class="card-body card-body-cards">
+    <div class="row collapse show" id="collapseCardExample">
+      <!-- Area Chart -->
+      <div class="col-xl-8 col-lg-7">
+          <div class="card shadow mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Citations par annees</h6>
               </div>
               <div class="card-body">
                   <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
@@ -79,7 +121,7 @@
       <div class="col-xl-4 col-lg-5">
           <div class="card shadow mb-4">
               <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                  <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Meilleure etablisement</h6>
               </div>
               <div class="card-body">
                   <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
@@ -100,24 +142,110 @@
           </div>
       </div>
     </div>
-  </div>
-  
+  </div>  
 </div>
 
+<div class="card shadow mb-4">
+  <a class="d-block card-header py-3" 
+      role="button" data-bs-toggle="collapse" data-bs-target="#collapseCardExample" aria-expanded="true" aria-controls="collapseCardExample">
+      <h6 class="m-0 font-weight-bold text-primary">Les Equipes</h6>
+  </a>
+
+  <div class="card-body card-body-cards">
+    <div class="row collapse show" id="collapseCardExample">
+      <!-- Area Chart -->
+      <div class="col-xl-8 col-lg-7">
+          <div class="card shadow mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Citations par annees</h6>
+              </div>
+              <div class="card-body">
+                  <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                      <canvas id="myAreaChart" style="display: block; width: 1037px; height: 320px;" width="1037" height="320" class="chartjs-render-monitor"></canvas>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Pie Chart -->
+      <div class="col-xl-4 col-lg-5">
+          <div class="card shadow mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Meilleure etablisement</h6>
+              </div>
+              <div class="card-body">
+                  <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                      <canvas id="myPieChart" style="display: block; width: 486px; height: 245px;" width="486" height="245" class="chartjs-render-monitor"></canvas>
+                  </div>
+                  <div class="mt-4 text-center small">
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-primary"></i> Direct
+                      </span>
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-success"></i> Social
+                      </span>
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-info"></i> Referral
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+<div class="card shadow mb-4">
+  <a class="d-block card-header py-3" 
+      role="button" data-bs-toggle="collapse" data-bs-target="#collapseCardExample" aria-expanded="true" aria-controls="collapseCardExample">
+      <h6 class="m-0 font-weight-bold text-primary">Les Chercheurs</h6>
+  </a>
+
+  <div class="card-body card-body-cards">
+    <div class="row collapse show" id="collapseCardExample">
+      <!-- Area Chart -->
+      <div class="col-xl-8 col-lg-7">
+          <div class="card shadow mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Citations par annees</h6>
+              </div>
+              <div class="card-body">
+                  <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                      <canvas id="myAreaChart" style="display: block; width: 1037px; height: 320px;" width="1037" height="320" class="chartjs-render-monitor"></canvas>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <!-- Pie Chart -->
+      <div class="col-xl-4 col-lg-5">
+          <div class="card shadow mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Meilleure etablisement</h6>
+              </div>
+              <div class="card-body">
+                  <div class="chart-pie pt-4 pb-2"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                      <canvas id="myPieChart" style="display: block; width: 486px; height: 245px;" width="486" height="245" class="chartjs-render-monitor"></canvas>
+                  </div>
+                  <div class="mt-4 text-center small">
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-primary"></i> Direct
+                      </span>
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-success"></i> Social
+                      </span>
+                      <span class="mr-2">
+                          <i class="fas fa-circle text-info"></i> Referral
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>  
+</div>
+
+
+
 <div class="row">
-  <div class="col card shadow mb-4">
-    <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
-    </div>
-    <div class="card-body">
-        <div class="chart-bar"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-            <canvas id="myBarChart" style="display: block; height: 320px; width: 611px;" width="916" height="480" class="chartjs-render-monitor"></canvas>
-        </div>
-        <hr>
-        Styling for the bar chart can be found in the
-        <code>/js/demo/chart-bar-demo.js</code> file.
-    </div>
-  </div>
   <div class="col card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
@@ -133,12 +261,7 @@
   </div>
 </div> 
 
-<div class="row">
-  <div class="col">
-    <h5 class="card-header m-0 me-2 pb-3">citations</h5>
-    <div class="col-12 px-0 mb-3" id="do"></div>
-  </div>
-</div>
+{{all_etablisements_citations}}
 
 <h3>Top Etablisement Citations</h3>
 
@@ -157,7 +280,7 @@
           {x: 'Firefox', value: 7},
           {x: 'Safari', value: 3},
           {x: 'IE', value: 2}
-      ]
+      ] 
       var chart = anychart.pie(pie_data);
 
       var outline = chart.hovered().outline();
@@ -169,5 +292,97 @@
       chart.container('do');
       chart.draw();
       chart.hover(0);
+
+      var ctx = document.getElementById("citations-chart");
+      var myLineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [{%for item in total_citations%} '{{item.year}}', {%endfor%}],
+          datasets: [{
+            label: "citations",
+            lineTension: 0.3,
+            backgroundColor: "rgba(78, 115, 223, 0.05)",
+            borderColor: "rgba(78, 115, 223, 1)",
+            pointRadius: 3,
+            pointBackgroundColor: "rgba(78, 115, 223, 1)",
+            pointBorderColor: "rgba(78, 115, 223, 1)",
+            pointHoverRadius: 3,
+            pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+            pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+            pointHitRadius: 10,
+            pointBorderWidth: 2,
+            data: [{% for item in total_citations %} {{item.citations}}, {%endfor%}],
+          }],
+        },
+        options: {
+          maintainAspectRatio: false,
+          layout: {
+            padding: {
+              left: 10,
+              right: 25,
+              top: 25,
+              bottom: 0
+            }
+          },
+          scales: {
+            xAxes: [{
+              time: {
+                unit: 'date'
+              },
+              gridLines: {
+                display: false,
+                drawBorder: false
+              },
+              ticks: {
+                maxTicksLimit: 7
+              }
+            }],
+            yAxes: [{
+              ticks: {
+                maxTicksLimit: 5,
+                padding: 10,
+                // Include a dollar sign in the ticks
+                callback: function(value, index, values) {
+                  return number_format(value);
+                }
+              },
+              gridLines: {
+                color: "rgb(234, 236, 244)",
+                zeroLineColor: "rgb(234, 236, 244)",
+                drawBorder: false,
+                borderDash: [2],
+                zeroLineBorderDash: [2]
+              }
+            }],
+          },
+          legend: {
+            display: false
+          },
+          tooltips: {
+            backgroundColor: "rgb(255,255,255)",
+            bodyFontColor: "#858796",
+            titleMarginBottom: 10,
+            titleFontColor: '#6e707e',
+            titleFontSize: 14,
+            borderColor: '#dddfeb',
+            borderWidth: 1,
+            xPadding: 15,
+            yPadding: 15,
+            displayColors: false,
+            intersect: false,
+            mode: 'index',
+            caretPadding: 10,
+            callbacks: {
+              label: function(tooltipItem, chart) {
+                var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+                return datasetLabel + ': '+number_format(tooltipItem.yLabel);
+              }
+            }
+          }
+        }
+      });
+      
+      
+
 </script>
 {% endblock javascripts %}

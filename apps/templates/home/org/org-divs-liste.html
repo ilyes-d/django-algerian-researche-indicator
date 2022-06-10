@@ -43,7 +43,6 @@
                     </tr>
                 </thead>
             </table>
-            
         </div>
     </div>
 </div>
@@ -63,20 +62,19 @@
                 <tbody>
                     {%for div,value in divisions.items %}
                     <tr>
-                        <td class="fw-bold d-flex align-items-center h-12">
+                        <td class="rounded-start">
                             {{div}}
                         </td>
-                        <td class="h-12">
+                        <td>
                             {{value.chef_div}}
                         </td>
-                        <td class="h-12">
-                            {% comment %} <a href="{% url 'eta-profile' %}">{{value.etablisement}}</a> {% endcomment %}
+                        <td>
                             {{value.etablisement}}
                         </td>
-                        <td class="h-12">
+                        <td>
                             {{value.nbr_equipes}}
                         </td>
-                        <td class="h-12">
+                        <td class="h-12 rounded-end">
                             {{value.nbr_chers}}
                         </td>
                     </tr>

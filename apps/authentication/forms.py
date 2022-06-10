@@ -17,5 +17,5 @@ class SignUpForm(UserCreationForm):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Confirm Password","class": "form-control"}))
     class Meta:
         model = Researcher
-        fields = ('email', 'first_name','last_name','speciality','grade','google_scholar_account','password1', 'password2',)
+        fields = ('email', 'first_name','last_name','speciality','grade','password1', 'password2',)
         

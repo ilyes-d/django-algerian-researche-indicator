@@ -53,12 +53,21 @@ class Researcher(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email adress'), unique=True)
     speciality = models.CharField(max_length=150, blank=True)
     grade = models.CharField(max_length=200, blank=True)
-
+    
+    # google scholar info 
+    h_index = models.PositiveIntegerField(blank=True, null=True,default=0)
+    i10_index = models.PositiveIntegerField(blank=True, null=True,default=0)
+    citations = models.PositiveIntegerField(blank=True, null=True,default=0)
+    graph_citation = models.JSONField(null=True,blank=True)
+    nbr_pubs = models.PositiveIntegerField(blank=True, null=True,default=0)
+    graph_pub = models.JSONField(null=True,blank=True)
+    
     # extra info  
     image = models.ImageField(blank=True,default='D', upload_to='images')
     linkedin_account = models.URLField(blank=True)
     google_scholar_account = models.URLField(blank=True,unique=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
+    
     # Relationship between Database tables
     equipe_researchers = models.ForeignKey(
         'Equipe', on_delete=models.SET_NULL, null=True, blank=True)

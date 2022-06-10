@@ -1,21 +1,7 @@
-{%load tag %}
-
-{{user|chef_equipe}}
-
-{{request}}
-
 <br>
+
+this is the first_name changed
+{{first_name}}
 <br>
-{%if request.resolver_match.url_name == 'try' %}
-okok
-{%endif%}
-
-
- {% endcomment %}
-<form  method="get">
-    {{filter.form.as_p}}
-    <input type="submit" >
-</form>
-{%for obj in filter.qs %}
-    {{obj.nom}}
-{%endfor%}
+this is the user 
+{{userd}}

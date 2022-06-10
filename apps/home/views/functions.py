@@ -9,13 +9,19 @@ import os
 load_dotenv()
 api_key = os.getenv("api_key")
 
-def serpapi_config(gs_id):
-    params = {
+def serp_params(gs_id,start,sort):
+    return {
         "engine": "google_scholar_author",
         "author_id": gs_id,
-        "api_key": api_key
-        # "api_key": "e51e1b84ed0d64498438b99d1b6e05cc12b96200a761a1f8f8eff7644407aa49"
+        "api_key": api_key,
+        "start": start,
+        "num": str(start+100),
+        "sort": sort
     }
+
+
+def serpapi_config(gs_id):
+    params = serp_params(gs_id,0,"pubdate")
     search = GoogleSearch(params)
     results = search.get_dict()
     if "author" in results:
@@ -26,7 +32,6 @@ def serpapi_author(gs_id):
     params = {
         "engine": "google_scholar_author",
         "author_id": gs_id,
-        # "api_key": "e51e1b84ed0d64498438b99d1b6e05cc12b96200a761a1f8f8eff7644407aa49"
         "api_key": api_key
     }
     search = GoogleSearch(params)
@@ -34,17 +39,6 @@ def serpapi_author(gs_id):
     if "error" in results :
         raise Http404("api kmel")
     return results
-
-def serp_params(gs_id,start,sort):
-    return {
-        "engine": "google_scholar_author",
-        "author_id": gs_id,
-        # "api_key": "e51e1b84ed0d64498438b99d1b6e05cc12b96200a761a1f8f8eff7644407aa49",
-        "api_key": api_key,
-        "start": start,
-        "num": str(start+100),
-        "sort": sort
-    }
 
 def researcher_articles7years(researcher,start,sort):
     years = ["2022","2021","2020","2019","2018","2017","2016"]
@@ -197,6 +191,7 @@ def top_researcher_citations(eta_id):
     researchers = nbr_chercheurs_eta(eta_id)
     researchers_citations = {}
     for researcher in researchers:
+        print(researcher)
         researchers_citations[researcher.__str__()] = get_researcher_citations(researcher)
     context["researcher_citations"] = researchers_citations
     context["max"] = max(researchers_citations , key=researchers_citations.get)
@@ -254,6 +249,7 @@ def final_8years_citations_eta(eta_id):
     ]
     researchers = nbr_chercheurs_eta(eta_id)
     for researcher in researchers:
+        print(researcher)
         researcher_gs = serpapi_author(researcher.get_google_id())
         if not 'graph' in researcher_gs["cited_by"]:
             if not 'cited_by' in researcher_gs:

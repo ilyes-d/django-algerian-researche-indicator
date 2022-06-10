@@ -17,7 +17,8 @@ def is_superuser(function):
         return function(request)    
     return wrapper 
 
-  
+
+
 def redirect_logged_in_user(func):
     def wrapper(request):
         if request.user.is_authenticated:
@@ -27,6 +28,9 @@ def redirect_logged_in_user(func):
         else:
             return func(request)
     return wrapper
+
+
+# this is only for who can see profile 
 
 def is_chef_eta(request):
     try:
@@ -105,7 +109,6 @@ def is_profile_in_your_equipe(request,pk):
         profile_equipe = None
     if profile_equipe==None:
         return False
-        
     
 def who_can_see_profile(function):
     """
@@ -116,7 +119,7 @@ def who_can_see_profile(function):
     """  
     def wrapper(request,pk):
             if not request.user.is_authenticated :
-                raise Http404("not authenticated ")
+                return redirect("/login/")
             if not request.user.is_superuser:
                 if request.user.id == pk:
                     return function(request,pk)
@@ -138,13 +141,9 @@ def who_can_see_profile(function):
                 raise Http404("you don't have access")
                 # HttpResponse('you arent a part of any etablisement or div or equipe')
             return function(request,pk)
-    return wrapper
-    
-    
-    
-    
-    
-    
+    return wrapper    
+def only_chef_eta():
+    pass
     
     
     

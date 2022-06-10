@@ -3,8 +3,9 @@ from apps.home.models import *
 from apps.home.views.functions import *
 from ..decorators import *
 from django.views.generic.list import ListView
+from django.contrib.auth.decorators import *
 
-
+@login_required
 def org_carte(request):
     context = {}
     context["nbr_etablisements"] = Etablisment.objects.filter().count()
@@ -14,7 +15,7 @@ def org_carte(request):
     context["wilaya_etas"] = wilaya_dash()
     return render(request , "home/org/org-carte.html" , context)
 
-# @is_superuser
+@login_required
 def org_dashboard(request):
     context = {}
     context["nbr_etablisements"] = Etablisment.objects.filter().count()
@@ -23,11 +24,11 @@ def org_dashboard(request):
     context["nbr_researchers"] = Researcher.objects.filter().count()
     
     # context["top_10_etas_citations"]
-    # context["all_etablisements_citations"] = final_8years_citations_all_etas()
+    context["total_citations"] = final_8years_citations_all_etas()
     # context['top10_etablisements_citations'] = top_10_citations_etas()
     return render(request , "home/org/org-dashboard.html" , context)
     
-
+@login_required
 def org_etas_dash(request):
     context = {
         'top-10-etas-citations':[],
@@ -37,11 +38,14 @@ def org_etas_dash(request):
     }
     return render(request, 'home/org/org-etas-dash.html', context)
 
+@login_required
 def org_etas_liste(request):
     context = {}
     context["etablisements"] = query_all_etablisements()
     return render(request, 'home/org/org-etas-liste.html' , context)
 
+
+@login_required
 def org_divs_dash(request):
     context = {}
     return render(request , 'home/org/org-divs-dash.html')
@@ -73,6 +77,7 @@ def org_chef_eta_liste(request):
 def org_chef_div_liste(request):
     context = {}
     return render(request ,'home/chers/chef-div.html',context)
+
 def org_chef_equ_liste(request):
     context = {}
     return render(request ,'home/chers/chef-equ.html',context)
