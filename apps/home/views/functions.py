@@ -29,11 +29,12 @@ def serpapi_config(gs_id):
     return False
 
 def serpapi_author(gs_id):
-    params = {
-        "engine": "google_scholar_author",
-        "author_id": gs_id,
-        "api_key": api_key
-    }
+    # params = {
+    #     "engine": "google_scholar_author",
+    #     "author_id": gs_id,
+    #     "api_key": api_key
+    # }
+    params = serp_params(gs_id,0,"pubdate")
     search = GoogleSearch(params)
     results = search.get_dict()
     if "error" in results :
