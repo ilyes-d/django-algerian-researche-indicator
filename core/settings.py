@@ -1,9 +1,12 @@
 import os, environ
-from   unipath import Path
+# from   unipath import Path
+from pathlib import Path
+
 
 env = environ.Env(DEBUG=(bool, True))
 
-BASE_DIR = Path(__file__).parent.parent
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+BASE_DIR = Path(__file__).resolve().parent.parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
@@ -25,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'apps.home',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -39,7 +43,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'core.urls'
-LOGOUT_REDIRECT_URL = "home"  # Route defined in home/urls.py
+LOGOUT_REDIRECT_URL = "login"  # Route defined in home/urls.py
 TEMPLATE_DIR = os.path.join(CORE_DIR, "apps/templates")  # ROOT dir for templates
 
 TEMPLATES = [
@@ -114,20 +118,19 @@ USE_L10N = True
 
 USE_TZ = True
 
-#############################################################
-# SRC: https://devcenter.heroku.com/articles/django-assets
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = BASE_DIR / 'apps/static/media'
+MEDIA_URL = '/apps/static/media/'
 # Extra places for collectstatic to find static files.
 STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
 )
-
-
-
 AUTH_USER_MODEL = "home.Researcher" 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_URL = '/login/'

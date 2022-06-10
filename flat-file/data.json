@@ -1,0 +1,22 @@
+# this will trigger in hard refrech    
+etablisements.json:
+   etablisement-name:
+   nbr-divisions:
+   nbr-equipes:
+   nbr-chercheurs:
+   citations-global:
+
+divisions.json:
+   division-name:
+     nbr-equipe:
+     nbr-chercheurs:
+     citations-global:
+   nbr-equipe-total:
+   nbr-chercheurs-total:
+   citations-total:
+
+equipes.json:
+   equipe-name/id:
+     nbr-chercheurs:
+     citation:
+   nbr-chercheurs-total:

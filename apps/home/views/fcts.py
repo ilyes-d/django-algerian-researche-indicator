@@ -35,7 +35,7 @@ def ApiData(pk): # l'id du chercheur
     params = {
     "engine": "google_scholar_author",
     "author_id": r.get_google_id(),
-    "api_key": "2c4f4ce6c429d7399649b280e13d0c519c0f088732d1bb9861dd514675b6374f",
+    "api_key": "f9ffc985971aeb0fa999e81c7ab6a9c502d5c24b7633a90ba34924857d88167a",
     "start": 0,
     "num": "100"
     }

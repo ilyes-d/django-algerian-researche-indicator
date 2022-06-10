@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import LoginForm
@@ -18,6 +19,8 @@ def login_view(request):
             user = authenticate(email=email, password=password)
             if user is not None:
                 login(request, user)
+                if user_role(request) == 'membre':
+                    return redirect('/profile/')
                 return redirect("/"+str(user_role(request))+"/dashboard")
             else:
                 msg = 'Invalid credentials'
@@ -41,6 +44,8 @@ def register_user(request):
             user = authenticate(email=email, password=raw_password , google_scholar_account = google_scholar_account)
             if user is not None :
                 login(request, user)
+                if user_role(request) == 'membre':
+                    return redirect('/profile/')
                 return redirect("/"+str(user_role(request))+"/dashboard")
             else:
                 msg = 'Invalid credentials'   
@@ -55,4 +60,11 @@ def register_user(request):
     return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
 
 
-
+def see_user_data(request):
+    context = {}
+    user = Researcher.objects.get(id=request.user.id)
+    user.first_name = "ana howa"
+    user.save()
+    context["first_name"] = request.user.first_name
+    context["userd"] = user
+    return render(request , 'empty.html',context)

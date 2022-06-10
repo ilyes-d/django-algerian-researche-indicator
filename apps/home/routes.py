@@ -1,5 +1,5 @@
 from django.urls import path, include
-from apps.home.views import _views , chef_eta , organization, chef_equipe
+from apps.home.views import _views , chef_eta , chef_equipe,filters,org,users
 urlpatterns = [
     # path('equipe/', include([
     #     path('dashboard/', chef_equipe.equipe_dashboard, name="equipe-dashboard"),
@@ -8,19 +8,25 @@ urlpatterns = [
     
     #  those only for the superuser MESRS
     path('organisation/' ,include([
-        path('dashboard/' , organization.org_dashboard, name="org-dashboard"),
-        path('etablisements/', organization.org_etablisements , name="org-etablisements"),
-        path('etablisement/divisions/', organization.divisions_of_etablisement , name="divisions-of-etablisement"),
-        path('etablisement/equipes/', organization.divisions_of_etablisement , name="divisions-of-etablisement"),
-        # path('etablisement/<int:pk>/divisions/', organization.divisions_of_etablisement , name="divisions-of-etablisement"),
-        path('divisions/', organization.org_divisions , name ="org-divisions"),
-        path('division/<int:pk>/equipes/', organization.equipes_of_division, name="equipes-of-division"),
-        path('division/<int:pk>/chercheurs/', organization.chercheurs_of_division, name="chercheurs-of-division"),
-        path('equipes/', organization.org_equipes , name = "org-equipes"),
-        path('equipe/<int:pk>/members/', organization.members_of_equipe, name="members-of-equipe")
+        path('carte/' , org.org_carte, name="org-carte"),
+        path('dashboard/' , org.org_dashboard, name="org-dashboard"),
+        path('etablisement/dashboard/', org.org_etas_dash , name="org-etas-dash"),
+        path('etablisements/liste/', org.org_etas_liste, name="org-etas-liste"),
+        path('divisions/dashboard/', org.org_divs_dash, name ="org-divs-dash"),
+        path('division/liste/', org.org_divs_liste, name="org-divs-liste"),
+        path('equipes/dashboard/', org.org_equipes_dash , name = "org-equipes-dash"),
+        path('equipe/liste/', org.org_equipes_liste, name="org-equipes-liste"),
+        path('chercheurs/dashboard/', org.org_equipes_dash , name = "org-chers-dash"),
+        path('chercheurs/members/liste/', org.org_members_liste, name="org-members-liste"),
+        path('chercheurs/chef-eta/liste/', org.org_chef_eta_liste, name="org-chefeta-liste"),
+        path('chercheurs/chef-div/liste/', org.org_chef_div_liste, name="org-chefdiv-liste"),
+        path('chercheurs/chef-equ/liste/', org.org_chef_equ_liste, name="org-chefequ-liste"),
     ])),
     
+    path('try/', filters.etablisement_list),
+    # profiles 
     
+    path('etablisement/dashboard/eta=<int:pk>',users.eta_dash_id ,name='eta-id-dash')
     
     # path('member/', include([
     #     path('dashboard/', )

@@ -53,12 +53,21 @@ class Researcher(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(_('email adress'), unique=True)
     speciality = models.CharField(max_length=150, blank=True)
     grade = models.CharField(max_length=200, blank=True)
-
+    
+    # google scholar info 
+    h_index = models.PositiveIntegerField(blank=True, null=True,default=0)
+    i10_index = models.PositiveIntegerField(blank=True, null=True,default=0)
+    citations = models.PositiveIntegerField(blank=True, null=True,default=0)
+    graph_citation = models.JSONField(null=True,blank=True)
+    nbr_pubs = models.PositiveIntegerField(blank=True, null=True,default=0)
+    graph_pub = models.JSONField(null=True,blank=True)
+    
     # extra info  
     image = models.ImageField(blank=True,default='D', upload_to='images')
     linkedin_account = models.URLField(blank=True)
     google_scholar_account = models.URLField(blank=True,unique=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
+    
     # Relationship between Database tables
     equipe_researchers = models.ForeignKey(
         'Equipe', on_delete=models.SET_NULL, null=True, blank=True)
@@ -114,8 +123,7 @@ class Etablisment(models.Model):
     nom = models.CharField(max_length=200, default='')
     logo = models.ImageField(null=True, blank=True)
     site_web=models.URLField(blank=True)
-    location = models.ForeignKey(
-        'Location', on_delete=models.CASCADE, null=True)
+    location = models.ForeignKey('Location', on_delete=models.CASCADE, null=True)
     chef_etablisement = models.OneToOneField(
         'Researcher', on_delete=models.SET_NULL, null=True, blank=True)
     # directions = models.ForeignKey(
@@ -132,7 +140,5 @@ class Directions(models.Model):
 class Location(models.Model):
     id = models.IntegerField(primary_key=True)
     state_name = models.CharField(max_length=30)
-    # validators=[MinValueValidator(1), MaxValueValidator(58)],
-
     def __str__(self) -> str:
         return self.state_name

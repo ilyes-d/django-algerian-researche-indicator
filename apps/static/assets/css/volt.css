@@ -1,20 +1,4 @@
-/*
-
-=========================================================
-* Volt - Free Bootstrap 5 Dashboard
-=========================================================
-
-* Product Page: https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard
-* Copyright 2021 Themesberg (https://www.themesberg.com)
-
-* Designed and coded by https://themesberg.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal. Contact us if you want to remove it.
-
-*/
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
 .datepicker {
   display: none; }
   .datepicker.active {
@@ -745,6 +729,7 @@
   --bs-green: #10B981;
   --bs-teal: #1E90FF;
   --bs-cyan: #63b1bd;
+  --bs-light-blue: rgba(0, 140, 255, 0.26);
   --bs-white: #ffffff;
   --bs-gray: #4B5563;
   --bs-gray-dark: #1F2937;
@@ -779,7 +764,7 @@
   --bs-gray-700: #374151;
   --bs-gray-800: #1F2937;
   --bs-gray-900: #111827;
-  --bs-primary-rgb: 31, 41, 55;
+  --bs-primary-rgb: 60,160,254;
   --bs-secondary-rgb: 240, 188, 116;
   --bs-tertiary-rgb: 49, 49, 106;
   --bs-success-rgb: 16, 185, 129;
@@ -813,7 +798,7 @@
   --bs-body-font-weight: 400;
   --bs-body-line-height: 1.5;
   --bs-body-color: #374151;
-  --bs-body-bg: #F2F4F6; }
+  --bs-body-bg: #deebf7; }
 
 *,
 *::before,
@@ -826,7 +811,7 @@
 
 body {
   margin: 0;
-  font-family: 'Poppins';
+  font-family: var(--bs-body-font-family);
   font-size: var(--bs-body-font-size);
   font-weight: var(--bs-body-font-weight);
   line-height: var(--bs-body-line-height);
@@ -2898,7 +2883,7 @@ textarea.form-control-lg {
     .form-select {
       transition: none; } }
   .form-select:focus {
-    border-color: #4d6689;
+    border-color: #3ca0fe;
     outline: 0;
     box-shadow: inset 0 1px 2px rgba(17, 24, 39, 0.0125), 0 0 0 0.18rem rgba(31, 41, 55, 0.25); }
   .form-select[multiple], .form-select[size]:not([size="1"]) {
@@ -2957,12 +2942,12 @@ textarea.form-control-lg {
   .form-check-input:active {
     filter: brightness(90%); }
   .form-check-input:focus {
-    border-color: #4d6689;
+    border-color: #3ca0fe;
     outline: 0;
     box-shadow: 0 0 0 0.18rem rgba(31, 41, 55, 0.25); }
   .form-check-input:checked {
-    background-color: #1F2937;
-    border-color: #1F2937; }
+    background-color: #3ca0fe;
+    border-color: #3ca0fe; }
     .form-check-input:checked[type="checkbox"] {
       background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M6 10l3 3l6-6'/%3e%3c/svg%3e"); }
     .form-check-input:checked[type="radio"] {
@@ -4034,10 +4019,7 @@ textarea.form-control-lg {
   .btn-outline-primary:disabled, .btn-outline-primary.disabled {
     color: #1F2937;
     background-color: transparent; }
-    table thead tr {
-      height: 60px;
-      background: #3ca0fe;
-  }
+
 .btn-outline-secondary {
   color: #f0bc74;
   border-color: #f0bc74; }
@@ -5335,7 +5317,7 @@ textarea.form-control-lg {
   display: flex;
   flex-direction: column;
   min-width: 0;
-  word-wrap: break-word;
+  word-wrap: unset;
   background-color: #ffffff;
   background-clip: border-box;
   border: 0.0625rem solid rgba(17, 24, 39, 0.125);
@@ -5361,6 +5343,12 @@ textarea.form-control-lg {
 .card-body {
   flex: 1 1 auto;
   padding: 1.25rem 1.5rem; }
+
+.card-body-cards{
+  background-color: var(--bs-light-blue);
+  border-bottom-left-radius: 9px;
+  border-bottom-right-radius: 9px;
+}
 
 .card-title {
   margin-bottom: 0.875rem; }
@@ -14562,7 +14550,7 @@ textarea.form-control-lg {
   border-radius: 0.5rem; }
 
 .navbar-theme-primary:not(.headroom) {
-  background-color: #1F2937; }
+  background-color: #3ca0fe; }
 
 /**
  * = Sections
@@ -14821,7 +14809,7 @@ textarea.form-control-lg {
     border-radius: 0.5rem; }
     .sidebar .nav-link .sidebar-icon {
       margin-right: .5rem;
-      color: #9CA3AF; }
+      color: #000000; }
     .sidebar .nav-link .link-arrow {
       font-size: 0.875rem; }
     .sidebar .nav-link[data-bs-toggle=collapse][aria-expanded=true] .link-arrow {
@@ -14878,7 +14866,9 @@ textarea.form-control-lg {
   overflow-y: hidden; }
 
 .sidebar-heading {
-  font-size: .75rem;
+  margin-top:20px ;
+  opacity: 0.8;
+  font-size: .9rem;
   text-transform: uppercase; }
 
 .user-card {
@@ -16613,7 +16603,7 @@ label {
   margin-bottom: 0; }
 
 .custom-control-input:active ~ .custom-control-label::before {
-  border-color: #1F2937; }
+  border-color: #3ca0fe; }
 
 .custom-file-label {
   background-color: #f3f3f5; }
@@ -18264,7 +18254,12 @@ label {
 .table td,
 .table th {
   font-size: 0.875rem;
-  white-space: nowrap; }
+  white-space: nowrap; 
+}
+
+tr:nth-child(even){
+  background-color: rgba(0, 140, 255, 0.26);
+}
 
 .table.user-table thead th {
   border-top: 0; }

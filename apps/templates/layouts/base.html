@@ -2,133 +2,55 @@
 {%load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head> 
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>
-    Django Volt Dashboard - {% block title %}{% endblock %} | AppSeed
-</title>
-
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="title" content="Volt - Free Bootstrap 5 Dashboard">
-<meta name="author" content="Themesberg">
-<meta name="description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
-<meta name="keywords" content="bootstrap 5, bootstrap, bootstrap 5 admin dashboard, bootstrap 5 dashboard, bootstrap 5 charts, bootstrap 5 calendar, bootstrap 5 datepicker, bootstrap 5 tables, bootstrap 5 datatable, vanilla js datatable, themesberg, themesberg dashboard, themesberg admin dashboard" />
-<link rel="canonical" href="https://appseed.us/admin-dashboards/django-dashboard-volt">
-
-<!-- Open Graph / Facebook -->
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://demo.themesberg.com/volt-pro">
-<meta property="og:title" content="Volt - Free Bootstrap 5 Dashboard">
-<meta property="og:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
-<meta property="og:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
-
-<!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image">
-<meta property="twitter:url" content="https://demo.themesberg.com/volt-pro">
-<meta property="twitter:title" content="Volt - Free Bootstrap 5 Dashboard">
-<meta property="twitter:description" content="Volt Pro is a Premium Bootstrap 5 Admin Dashboard featuring over 800 components, 10+ plugins and 20 example pages using Vanilla JS.">
-<meta property="twitter:image" content="https://themesberg.s3.us-east-2.amazonaws.com/public/products/volt-pro-bootstrap-5-dashboard/volt-pro-preview.jpg">
-<script src="https://kit.fontawesome.com/a81368914c.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&family=Poppins:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet">    
-
-<!-- Favicon -->
-<link rel="apple-touch-icon" sizes="120x120" href="{{ ASSETS_ROOT }}/img/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="{{ ASSETS_ROOT }}/img/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="{{ ASSETS_ROOT }}/img/favicon/favicon-16x16.png">
-<link rel="manifest" href="{{ ASSETS_ROOT }}/img/favicon/site.webmanifest">
-<link rel="mask-icon" href="{{ ASSETS_ROOT }}/img/favicon/safari-pinned-tab.svg" color="#ffffff">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
-<meta name="msapplication-TileColor" content="#ffffff">
-<meta name="theme-color" content="#ffffff">
-
-<link type="text/css" href="{{ ASSETS_ROOT }}/vendor/sweetalert2/dist/sweetalert2.min.css" rel="stylesheet">
-
-
-<link type="text/css" href="{{ ASSETS_ROOT }}/vendor/notyf/notyf.min.css" rel="stylesheet">
-<link type="text/css" href="{{ ASSETS_ROOT }}/css/volt.css" rel="stylesheet">
-<link  href="{%static  'geomap/css/anychart-ui.min.css' %}">
-
-
-<!-- js -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<!-- Specific Page JS goes HERE  -->    
-{% block stylesheets %}
-<style>  
-  .sidebar-inner {
-    height:95vh;
-    /*overflow-y: scroll ;*/
-  }
-    h3 {
-     font-weight:bold;
-   }
-  .user-card{
-    position: inherit; 
-    bottom: 0;
-    background: #fff;
-    width: 260px;
-    max-width: 260px;
-    padding-top: 10px;
-  }
-  .user-card .h5{
-    color: #000;
-  }
-  .user-card .avatar-lg{
-    display: flex;
-  }
-  .user-card img{
-    width: 50px;
-    height: 50px;
-  }
-
-  .collapse-close{
-    position: absolute;
-    top:0;
-    right: 0;
-  }
-  .content{
-    height: 100vh;
-<<<<<<< HEAD
-    overflow-y:scroll;
-=======
-    overflow-y: scroll;
->>>>>>> 2f6f3c8632d222f8819a1c686c9dea3efe86b25f
-  }
-</style>
-{% endblock stylesheets %}
+  {% include 'includes/links.html'%}
+  {% block stylesheets %}
+  <style>  
+    .sidebar-inner {
+      height:95vh;
+      /*overflow-y: scroll ;*/
+    }
+      h3 {
+      font-weight:bold;
+    }
+    .content{
+      height: 100vh;
+      overflow-y: scroll;
+    }
+  </style>
+  {% endblock stylesheets %}
 
 </head>
 <body>
-  <nav class="navbar navbar-dark navbar-theme-primary px-4 col-12 d-lg-none">
-    <a class="navbar-brand me-lg-5" href="/">
-        <img class="navbar-brand-dark" src="{{ ASSETS_ROOT }}/img/brand/light.svg" alt="Volt logo" /> <img class="navbar-brand-light" src="{{ ASSETS_ROOT }}/img/brand/dark.svg" alt="Volt logo" />
-    </a>
-    <div class="d-flex align-items-center">
-        <button class="navbar-toggler d-lg-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-</nav>
-  
   <nav id="sidebarMenu" class="sidebar d-lg-block text-white collapse" data-simplebar>
-    {%if user|chef_etablisement == True %}    
-      {% include 'includes/eta_sidebar.html' %}
-    {% elif user.is_superuser %}
-      {%include 'includes/org_sidebar.html'%}
-    {% elif user|chef_division == True %}
-      {% include 'includes/div_sidebar.html' %}
-    {% elif user|membre_simple == True %}
-      {% include 'includes/sidebar.html' %}
-    {%endif%}
+    <div class="sidebar-inner px-4 pt-3">
+      <ul class="nav flex-column pt-3 pt-md-0">
+        {%include 'components/icon.html'%}
+        {% if user.is_superuser %}
+          {%include 'includes/org_sidebar.html'%}
+        {% else %}
+          {%if user|chef_etablisement == True %}
+            {% include 'includes/eta_sidebar.html' %}
+          {%endif%}
+          {% if user|chef_division == True %}
+            {% include 'includes/div_sidebar.html' %}
+          {%endif%}
+          {% if user|chef_equipe == True %}
+            {% include 'includes/equ_sidebar.html' %}
+          {%endif%}
+        {%endif%}
+        {% if user|membre_simple == True %}
+        {% include 'includes/sidebar.html' %}
+        {%endif%}
+      </ul>
+    </div>
   </nav>
-    <main class="content">
-      {% include 'includes/navigation.html' %}
-      {% block content %}{% endblock content %} 
-      {% include 'includes/footer.html' %}
-      
-    </main>
+  <main class="content">
+    {% include 'includes/navigation.html' %}
+    {% block content %}{% endblock content %} 
+    {% include 'includes/footer.html' %}
+    
+  </main>
   {% include 'includes/scripts.html' %}
   {% block javascripts %}{% endblock javascripts %}  
       

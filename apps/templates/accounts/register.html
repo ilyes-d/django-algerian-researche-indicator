@@ -1,180 +1,166 @@
 {% extends "layouts/base-fullscreen.html" %}
-
+{%load static%}
 {% block title %} Sign UP {% endblock %} 
 
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
 <style>
     section{
-        overflow: scroll;
+        width:100vw;
+        height:100vh;
+        background-image: radial-gradient(circle at 40% 91%,hsla(0,0%,98.4%,.04) 0,hsla(0,0%,98.4%,.04) 50%,hsla(0,0%,89.8%,.04) 0,hsla(0,0%,89.8%,.04) 100%),radial-gradient(circle at 66% 97%,rgba(36,36,36,.04) 0,rgba(36,36,36,.04) 50%,rgba(46,46,46,.04) 0,rgba(46,46,46,.04) 100%),radial-gradient(circle at 86% 7%,rgba(40,40,40,.04) 0,rgba(40,40,40,.04) 50%,hsla(0,0%,78.4%,.04) 0,hsla(0,0%,78.4%,.04) 100%),radial-gradient(circle at 15% 16%,rgba(99,99,99,.04) 0,rgba(99,99,99,.04) 50%,rgba(45,45,45,.04) 0,rgba(45,45,45,.04) 100%),radial-gradient(circle at 75% 99%,hsla(0,0%,95.3%,.04) 0,hsla(0,0%,95.3%,.04) 50%,rgba(37,37,37,.04) 0,rgba(37,37,37,.04) 100%),linear-gradient(90deg,#22deed,#2544b3);
     }
-    .container{
-        position: absolute;
-        top: 0;
-        left: 25%;
-        transform: translate(-50%);
-        height: 150vh;
-        margin-bottom: 2px;
-    }
-    .container .content {
-        width: 1200px;
-    }
+    
 </style>
 {% endblock stylesheets %}
 {% block content %}
-    <main >
-        <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
-            <div class="container">
-                <div class="content row justify-content-center form-bg-image" data-background-lg="{{ ASSETS_ROOT }}/img/illustrations/signin.svg">
-                    <div class="col-12 d-flex align-items-center justify-content-center  m-20">
-                        <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-900">
-                            <div class="text-center text-md-center mb-4 mt-md-0">
-                                <h1 class="mb-0 h3">
-                                    Sign UP
-                                </h1>
-                                <br />
-                                <p>
-                                    {% if msg %}
-                                        {{ msg | safe }}
-                                    {% else %}
-                                        Add your credentials
-                                    {% endif %}                                     
-                                </p> 
-                            </div>
-                            <form method="post" action="" class="mt-4">
-                                {% csrf_token %}
-                                <div class="form-group mb-4">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="last_name">Nom</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon1">
-                                                    <span class="fas fa-user-circle"></span>
-                                                </span>
-                                                {{ form.last_name }}
-                                            </div>
-                                            <span class="text-error">{{ form.last_name.errors }}</span>
-                                        </div>  
-                                        <div class="col">
-                                            <label for="first_name">Prenom</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon1">
-                                                    <span class="fas fa-user-circle"></span>
-                                                </span>
-                                            {{ form.first_name }}
-                                            </div>  
-                                            <span class="text-error">{{ form.first_name.errors }}</span>
-                                        </div>
-                                        </div>
-                                </div>
-                                
-
-                                <div class="form-group mb-4">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label for="speciality">Speciality</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon1">
-                                                    <span class="fas fa-user-circle"></span>
-                                                </span>
-                                                {{ form.speciality }}
-                                            </div>
-                                            <span class="text-error">{{ form.speciality.errors }}</span>
-                                        </div>
-                                        <div class="col">
-                                            <label for="grade">Grade</label>
-                                            <div class="input-group">
-                                                <span class="input-group-text" id="basic-addon1">
-                                                    <span class="fas fa-user-circle"></span>
-                                                </span>
-                                                {{ form.grade }}
-                                            </div>
-                                            <span class="text-error">{{ form.grade.errors }}</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-4">
-                                    <label for="google_scholar_account">Compte Google Scholar </label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">
-                                            <span class="fas fa-user-circle"></span>
-                                        </span>
-                                        {{ form.google_scholar_account }}
-                                    </div>  
-                                    <span class="text-error">{{ form.google_scholar_account.errors }}</span>
-                                    {%if messages %}
-                                    {% for message in messages %} {{message}} {%endfor%}
-                                    {% endif %}
-                                </div>
-                                <!-- Form -->
-                                <div class="form-group mb-4">
-                                    <label for="email">Your Email</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">
-                                            <span class="fas fa-envelope"></span>
-                                        </span>
-                                        {{ form.email }}
-                                    </div>  
-                                    <span class="text-error">{{ form.email.errors }}</span>
-                                </div>
-                                
-                                <div class="form-group">
-                                    <!-- Form -->
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="form-group mb-4">
-                                                <label for="password">Your Password</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-text" id="basic-addon2">
-                                                        <span class="fas fa-unlock-alt"></span>
-                                                    </span>
-                                                    {{ form.password1 }}
-                                                </div>
-                                                <span class="text-error">{{ form.password1.errors }}</span>
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <div class="form-group mb-4">
-                                                <label for="password">Password Confirmation</label>
-                                                <div class="input-group">
-                                                    <span class="input-group-text" id="basic-addon2">
-                                                        <span class="fas fa-unlock-alt"></span>
-                                                    </span>
-                                                    {{ form.password2 }}
-                                                </div>
-                                                <span class="text-error">{{ form.password2.errors }}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="mb-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="" id="passwordToggle" onclick="showHide()">
-                                            <label class="form-check-label fw-normal mb-0">
-                                                Show/Hide password
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-grid">
-                                    <button type="submit" name="register" class="btn btn-gray-800">Sign UP</button>
-                                </div>
-                            </form>
+<main>
+    <section class="vh-lg-100 mt-5 mt-lg-0 bg-soft d-flex align-items-center">
+        <div class="container">
+            <div class="content row justify-content-center form-bg-image">
+                <div class="col-12 d-flex align-items-center justify-content-center  m-20">
+                    <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-900">
+                        <div class="text-center text-md-center mb-4 mt-md-0">
+                            <h1 class="mb-0 h3">
+                                Sign UP
+                            </h1>
                             <br />
-                            <div class="d-flex justify-content-center align-items-center mt-4">
-                                <span class="fw-normal">
-                                    Already have an account? 
-                                    <a href="{% url 'login' %}" class="fw-bold">Sign IN</a>
-                                </span>
-                            </div>
-                            {% for message in messages %}
-                            <p id="messages" style="margin-bottom: -91px; margin-right: 263px; text-align:left; color: red;">{{message}}</p>
-                            {% endfor %}
+                            <p>
+                                {% if msg %}
+                                    {{ msg | safe }}
+                                {% else %}
+                                    Add your credentials
+                                {% endif %}
+                            </p>
                         </div>
+                        <form method="post" action="" class="mt-4">
+                            {% csrf_token %}
+                            <div class="form-group mb-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="last_name">Nom</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <span class="fas fa-user-circle"></span>
+                                            </span>
+                                            {{ form.last_name }}
+                                        </div>
+                                        <span class="text-error">{{ form.last_name.errors }}</span>
+                                    </div>
+                                    <div class="col">
+                                        <label for="first_name">Prenom</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <span class="fas fa-user-circle"></span>
+                                            </span>
+                                        {{ form.first_name }}
+                                        </div>
+                                        <span class="text-error">{{ form.first_name.errors }}</span>
+                                    </div>
+                                    <div class="col">
+                                        <label for="speciality">Speciality</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <span class="fas fa-user-circle"></span>
+                                            </span>
+                                            {{ form.speciality }}
+                                        </div>
+                                        <span class="text-error">{{ form.speciality.errors }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="grade">Grade</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <span class="fas fa-user-circle"></span>
+                                            </span>
+                                            {{ form.grade }}
+                                        </div>
+                                        <span class="text-error">{{ form.grade.errors }}</span>
+                                    </div>
+                                    <div class="col">
+                                        <label for="google_scholar_account">Compte Google Scholar </label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <span class="fas fa-user-circle"></span>
+                                            </span>
+                                            {{ form.google_scholar_account }}
+                                        </div>
+                                        <span class="text-error">{{ form.google_scholar_account.errors }}</span>
+                                        {%if messages %}
+                                        {% for message in messages %} {{message}} {%endfor%}
+                                        {% endif %}
+                                    </div>
+                                    <div class="col">
+                                        <label for="email">Your Email</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <span class="fas fa-envelope"></span>
+                                            </span>
+                                            {{ form.email }}
+                                        </div>
+                                        <span class="text-error">{{ form.email.errors }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group mb-4">
+                                            <label for="password">Your Password</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <span class="fas fa-unlock-alt"></span>
+                                                </span>
+                                                {{ form.password1 }}
+                                            </div>
+                                            <span class="text-error">{{ form.password1.errors }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group mb-4">
+                                            <label for="password">Password Confirmation</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text" id="basic-addon2">
+                                                    <span class="fas fa-unlock-alt"></span>
+                                                </span>
+                                                {{ form.password2 }}
+                                            </div>
+                                            <span class="text-error">{{ form.password2.errors }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mb-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" value="" id="passwordToggle" onclick="showHide()">
+                                        <label class="form-check-label fw-normal mb-0">
+                                            Show/Hide password
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-grid">
+                                <button type="submit" name="register" class="btn btn-gray-800">Sign UP</button>
+                            </div>
+                        </form>
+                        <div class="d-flex justify-content-center align-items-center mt-4">
+                            <span class="fw-normal">
+                                Already have an account?
+                                <a href="{% url 'login' %}" class="fw-bold">Sign IN</a>
+                            </span>
+                        </div>
+                        {% for message in messages %}
+                        <p id="messages" style="margin-bottom: -91px; margin-right: 263px; text-align:left; color: red;">{{message}}</p>
+                        {% endfor %}
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->

@@ -21,6 +21,7 @@ django-bootstrap-v5==1.0.11
 django-cors-headers==3.11.0
 django-crispy-forms==1.14.0
 django-environ==0.8.1
+django-filter==21.1
 django-rest-framework==0.1.0
 django-templated-mail==1.1.1
 django-webpack-loader==1.4.1
@@ -58,6 +59,7 @@ Pygments==2.11.2
 PyJWT==2.3.0
 python-dateutil==2.8.2
 python-decouple==3.5
+python-dotenv==0.20.0
 python3-openid==3.2.0
 pytz==2021.3
 pywin32==303

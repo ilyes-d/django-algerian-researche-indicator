@@ -25,6 +25,6 @@ def chef_equipe(user):
 
 @register.filter
 def membre_simple(user):
-    if (not chef_etablisement(user) and not chef_division(user) and not chef_equipe(user)):
+    if (not chef_etablisement(user) and not chef_division(user) and not chef_equipe(user) and not user.is_superuser):
         return True
     return False
