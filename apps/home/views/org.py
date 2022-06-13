@@ -31,6 +31,7 @@ def org_carte(request):
         citations_array = [str(citation_year["year"]),citation_year["citations"]]
         total_citations.append(citations_array)
     context["total_citations"] = total_citations
+    
     return render(request , "home/org/org-carte.html" , context)
 
 @login_required

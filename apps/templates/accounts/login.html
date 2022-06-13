@@ -41,13 +41,13 @@
                                         <label for="email">Email</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon1">
-                                                <span class="fas fa-user-circle"></span>
+                                                <span class="fas fa-envelope"></span>
                                             </span>
                                             {{ form.email }}
                                         </div>  
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label for="password">Your Password</label>
+                                        <label for="password">Votre Mot de pass</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon2">
                                                 <span class="fas fa-unlock-alt"></span>
@@ -62,8 +62,8 @@
                             </form>
                             <div class="d-flex justify-content-center align-items-center mt-4">
                                 <span class="fw-normal">
-                                    Not registered?
-                                    <a href="{% url 'register' %}" class="fw-bold">Create account</a>
+                                    Non enregistré?
+                                    <a href="{% url 'register' %}" class="fw-bold" style="text-decoration:underline">Créer un compte</a>
                                 </span>
                             </div>
                         </div>

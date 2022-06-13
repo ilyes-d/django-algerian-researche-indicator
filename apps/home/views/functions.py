@@ -1,11 +1,10 @@
-from array import array
-from multiprocessing import context
 from django.http import Http404
 from serpapi import GoogleSearch
 from ..models import *
 from django.db.models import Q, F
 from dotenv import *
 from  django.shortcuts import *
+from .queries import *
 import os
 
 load_dotenv()
@@ -94,8 +93,6 @@ def graph_articles(gs_id):
     return graph_article
 
 
-def chercheurs_of_eta(eta_id):
-    return Researcher.objects.filter(Q(division__etablisment__id=eta_id) | Q(equipe__division__etablisment__id=eta_id) | Q(equipe_researchers__division__etablisment__id=eta_id) | Q(etablisment__id=eta_id))
 
 
 
@@ -108,9 +105,9 @@ def query_all_etablisements():
             "logo":etablisement.logo,
             "chef_eta": etablisement.chef_etablisement.__str__() , 
             "location":etablisement.location.__str__(),
-            "nbr_divisions" : nbr_divisions_eta(etablisement.id),
-            "nbr_equipes": nbr_equipe_eta(etablisement.id),
-            "nbr_researchers" : chercheurs_of_eta(etablisement.id).count(),
+            "nbr_divisions" : eta_divs(etablisement.id).count() ,
+            "nbr_equipes": eta_equipes(etablisement.id).count(),
+            "nbr_researchers" : eta_chers(etablisement.id).count(),
         }
     return etablisements_info
 
@@ -140,7 +137,7 @@ def query_all_equipes():
 
 def eta_total_citations(eta_id):
     context={'nom':Etablisment.objects.get(id=eta_id).nom}
-    chers=chercheurs_of_eta(eta_id)
+    chers=eta_chers(eta_id)
     total = 0
     for cher in chers:
         total += cher.citations
@@ -155,14 +152,8 @@ def all_etas_citations():
     return context
 
 
-def etablisement_divisions(eta_id):
-    return Division.objects.filter(etablisement=eta_id)
 
-def division_researchers(div_id):
-    return Researcher.objects.filter(division=div_id)
 
-def equipe_researchers(equipe_id):
-    return Researcher.objects.filter(Q(equipe_researchers=equipe_id) | Q(equipe=equipe_id))
 
 
 # citations of a group of researchers 
@@ -237,7 +228,7 @@ def final_8years_citations_eta(eta_id):
     max = 0
     top_researchers = []
     top_researcher = None
-    researchers = chercheurs_of_eta(eta_id)
+    researchers = eta_chers(eta_id)
     for researcher in researchers:
         print(researcher)
         researcher_graph = researcher.graph_citations
@@ -266,12 +257,9 @@ def final_8years_citations_eta(eta_id):
             citations_per_year["top_researcher"] = top_researcher
     return citations_per_year"""
     
-    researchers = chercheurs_of_eta(eta_id)
+    researchers = eta_chers(eta_id)
     return citations_researchers_8years(researchers)
         
-
-
-
 def final_8years_citations_all_etas():
     citations_per_year_total = {
         "citations":[
@@ -329,7 +317,7 @@ def etablisements_dash(wilaya):
         for eta in etablisements:
             context['nbr_divisions'] += Division.objects.filter(etablisment__id=eta.id).count()
             context['nbr_equipes'] += Equipe.objects.filter(division__etablisment__id=eta.id).count()
-            context['nbr_researchers'] += chercheurs_of_eta(eta.id).count()
+            context['nbr_researchers'] += eta_chers(eta.id).count()
         context['nbr_etablisement'] = etablisements.count()
     return context
 
@@ -401,22 +389,4 @@ wilaya48 = [
  {'47': 'Ghardaïa', 'id': 'DZ.GR'},
  {'48': 'Relizane', 'id': 'DZ.RE'}
 ]
-            
-def top_10_researchers_citations_eta():
-    _list = list(chercheurs_of_eta(1).order_by(F("citations").desc()))
-    return _list
 
-
-def nbr_divisions_eta(eta_id):
-    return Division.objects.filter(etablisment=eta_id).count()
-
-def nbr_equipe_eta(eta_id):
-    return Equipe.objects.filter(division__etablisment=eta_id).count()
-
-    
-
-
-
-
-
-# trash 

@@ -33,3 +33,9 @@ def membre_simple(user):
     if (not chef_etablisement(user) and not chef_division(user) and not chef_equipe(user) and not user.is_superuser):
         return True
     return False
+
+@register.simple_tag
+def count_percentage(total,value):
+    if total == 0:
+        return "0"
+    return str(round(value*100/total , 2)) +'%'

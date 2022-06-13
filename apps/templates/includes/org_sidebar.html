@@ -28,7 +28,7 @@
   </a>
 </li>
 <li role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
-<li class="nav-item {% if  request.resolver_match.url_name == 'org-etas-liste' %} active {% endif %}">
+<li class="nav-item {% if 'organisation/etablisement' in request.path %} active {% endif %}">
   <a href="{% url 'org-etas-liste'%}" class="nav-link">
     <span>
       <span class="sidebar-icon">

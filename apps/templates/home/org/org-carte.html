@@ -6,41 +6,51 @@
 <style>
   #container-table {
     width: 100%;
-    height: 100vh;
+    height: 130vh;
     margin: 0;
     padding: 0;
   }
-.anychart-embed {
+  .anychart-embed {
     width: 100vw;
     height: 100vh;
     border-radius: 50px;
     }
-#container {
+  #container {
     width: 100%;
     height: 150vh;
     margin: 0;
     padding: 0;
-}
-.btn-outline-info svg:hover{
+  }
+  .btn-outline-info svg:hover{
     filL:#fff;
-}
-.carte{
-  height: 150vh;
-  margin-top: 12px;
-  margin-bottom:12px;
-}
-
+  }
+  .carte{
+    height: 150vh;
+    margin-top: 12px;
+    margin-bottom:12px;
+  }
+  .anychart-zoom{
+    position: absolute;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .toggle-label{
+    position: absolute;
+    top: 30px;
+    right:50%;
+  }
+  .anychart-button{
+    margin-bottom :3px;
+  }
 </style>
 {% endblock stylesheets %}
 
 
 {% block content %} 
-{{total_citations}}
-<br>
-{{total_citations_graph}}
 <div class="page-header">
   <div class="row align-items-center relative-pos">
-    <button type="button" class="btn btn-block btn-gray-800 mb-3 absolute-pos left-button" data-bs-toggle="modal" data-bs-target="#modal-notification">Refrecher</button>
+    <button type="button" class="btn btn-outline-info mb-3 absolute-pos left-button" data-bs-toggle="modal" data-bs-target="#modal-notification" >Refrecher</button>
     <div class="col">
       <h3>La carte de L'organisation <b>MESRS</b><br></h3>
   </h3>
@@ -52,7 +62,6 @@
   </div>
 </div>
 
-<!--  -->
 <div class="col-lg-4">
   <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
       <div class="modal-dialog modal-info modal-dialog-centered" role="document">
@@ -113,9 +122,9 @@
           <div
             class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
           >
-            <div class="icon-shape icon-shape-secondary rounded me-4 me-sm-0">
+            <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
               <svg version="1.1" id="Layer_1" fill="currentColor" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">
-                <g><g><path d="M495.432,359.148h-51.841v-43.29c0-13.851-11.268-25.119-25.119-25.119H263.98l0.032-52.376h111.704 c4.427,0,8.017-3.589,8.017-8.017v-34.205c0-4.427-3.589-8.017-8.017-8.017h-9.086V92.994h9.086c4.427,0,8.017-3.589,8.017-8.017 V59.324c0-3.388-2.13-6.41-5.321-7.55L258.696,9.018c-1.743-0.623-3.649-0.623-5.393,0L133.587,51.774 c-3.19,1.139-5.32,4.161-5.32,7.55v25.653c0,4.427,3.589,8.017,8.017,8.017h9.086v95.132h-9.086c-4.427,0-8.017,3.589-8.017,8.017 v34.205c0,4.427,3.589,8.017,8.017,8.017h111.694l-0.032,52.376H93.528c-13.851,0-25.119,11.268-25.119,25.119v43.29H16.568 C7.432,359.148,0,366.58,0,375.716v76.96c0,9.136,7.432,16.568,16.568,16.568h34.739v18.171h-9.086 c-4.427,0-8.017,3.589-8.017,8.017c0,4.427,3.589,8.017,8.017,8.017h68.409c4.427,0,8.017-3.589,8.017-8.017 c0-4.427-3.589-8.017-8.017-8.017h-9.086v-18.171h34.739c9.136,0,16.568-7.432,16.568-16.568v-76.96 c0-9.136-7.432-16.568-16.568-16.568H84.443v-43.29c0-5.01,4.076-9.086,9.086-9.086h154.409l-0.032,52.376h-51.763 c-9.136,0-16.568,7.432-16.568,16.568v76.96c0,9.136,7.432,16.568,16.568,16.568h34.739v18.171h-9.086 c-4.427,0-8.017,3.589-8.017,8.017c0,4.427,3.589,8.017,8.017,8.017h68.409c4.427,0,8.017-3.589,8.017-8.017 c0-4.427-3.589-8.017-8.017-8.017h-9.086v-18.171h34.739c9.136,0,16.568-7.432,16.568-16.568v-76.96 c0-9.136-7.432-16.568-16.568-16.568h-51.919l0.032-52.376h154.501c5.01,0,9.086,4.076,9.086,9.086v43.29h-51.841 c-9.136,0-16.568,7.432-16.568,16.568v76.96c0,9.136,7.432,16.568,16.568,16.568h34.739v18.171h-9.086 c-4.427,0-8.017,3.589-8.017,8.017c0,4.427,3.589,8.017,8.017,8.017h68.409c4.427,0,8.017-3.589,8.017-8.017 c0-4.427-3.589-8.017-8.017-8.017h-9.086v-18.171h34.739c9.136,0,16.568-7.432,16.568-16.568v-76.96 C512,366.58,504.568,359.148,495.432,359.148z M85.511,487.416H67.34v-18.171h18.171V487.416z M136.284,375.182 c0.295,0,0.534,0.239,0.534,0.534v76.96c0,0.295-0.239,0.534-0.534,0.534H16.568c-0.295,0-0.534-0.239-0.534-0.534v-76.96 c0-0.295,0.239-0.534,0.534-0.534H136.284z M144.301,76.96V64.973L256,25.08l111.699,39.893V76.96H144.301z M350.597,92.994 v95.132h-18.171V92.994H350.597z M316.393,92.994v95.132h-18.171V92.994H316.393z M282.188,92.994v95.132h-18.171V92.994H282.188z  M247.983,92.994v95.132h-18.171V92.994H247.983z M213.779,92.994v95.132h-18.171V92.994H213.779z M179.574,92.994v95.132h-18.171 V92.994H179.574z M265.086,487.416h-18.171v-18.171h18.171V487.416z M315.858,375.182c0.295,0,0.534,0.239,0.534,0.534v76.96 c0,0.295-0.239,0.534-0.534,0.534H196.142c-0.295,0-0.534-0.239-0.534-0.534v-76.96c0-0.295,0.239-0.534,0.534-0.534H315.858z  M144.301,222.33v-18.171h223.399v18.171H144.301z M444.66,487.416h-18.171v-18.171h18.171V487.416z M495.967,452.677 c0,0.295-0.239,0.534-0.534,0.534H375.716c-0.295,0-0.534-0.239-0.534-0.534v-76.96c0-0.295,0.239-0.534,0.534-0.534h119.716 c0.295,0,0.534,0.239,0.534,0.534V452.677z" /></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
+                <g><g><path stroke="black" stroke-width="5" d="M495.432,359.148h-51.841v-43.29c0-13.851-11.268-25.119-25.119-25.119H263.98l0.032-52.376h111.704 c4.427,0,8.017-3.589,8.017-8.017v-34.205c0-4.427-3.589-8.017-8.017-8.017h-9.086V92.994h9.086c4.427,0,8.017-3.589,8.017-8.017 V59.324c0-3.388-2.13-6.41-5.321-7.55L258.696,9.018c-1.743-0.623-3.649-0.623-5.393,0L133.587,51.774 c-3.19,1.139-5.32,4.161-5.32,7.55v25.653c0,4.427,3.589,8.017,8.017,8.017h9.086v95.132h-9.086c-4.427,0-8.017,3.589-8.017,8.017 v34.205c0,4.427,3.589,8.017,8.017,8.017h111.694l-0.032,52.376H93.528c-13.851,0-25.119,11.268-25.119,25.119v43.29H16.568 C7.432,359.148,0,366.58,0,375.716v76.96c0,9.136,7.432,16.568,16.568,16.568h34.739v18.171h-9.086 c-4.427,0-8.017,3.589-8.017,8.017c0,4.427,3.589,8.017,8.017,8.017h68.409c4.427,0,8.017-3.589,8.017-8.017 c0-4.427-3.589-8.017-8.017-8.017h-9.086v-18.171h34.739c9.136,0,16.568-7.432,16.568-16.568v-76.96 c0-9.136-7.432-16.568-16.568-16.568H84.443v-43.29c0-5.01,4.076-9.086,9.086-9.086h154.409l-0.032,52.376h-51.763 c-9.136,0-16.568,7.432-16.568,16.568v76.96c0,9.136,7.432,16.568,16.568,16.568h34.739v18.171h-9.086 c-4.427,0-8.017,3.589-8.017,8.017c0,4.427,3.589,8.017,8.017,8.017h68.409c4.427,0,8.017-3.589,8.017-8.017 c0-4.427-3.589-8.017-8.017-8.017h-9.086v-18.171h34.739c9.136,0,16.568-7.432,16.568-16.568v-76.96 c0-9.136-7.432-16.568-16.568-16.568h-51.919l0.032-52.376h154.501c5.01,0,9.086,4.076,9.086,9.086v43.29h-51.841 c-9.136,0-16.568,7.432-16.568,16.568v76.96c0,9.136,7.432,16.568,16.568,16.568h34.739v18.171h-9.086 c-4.427,0-8.017,3.589-8.017,8.017c0,4.427,3.589,8.017,8.017,8.017h68.409c4.427,0,8.017-3.589,8.017-8.017 c0-4.427-3.589-8.017-8.017-8.017h-9.086v-18.171h34.739c9.136,0,16.568-7.432,16.568-16.568v-76.96 C512,366.58,504.568,359.148,495.432,359.148z M85.511,487.416H67.34v-18.171h18.171V487.416z M136.284,375.182 c0.295,0,0.534,0.239,0.534,0.534v76.96c0,0.295-0.239,0.534-0.534,0.534H16.568c-0.295,0-0.534-0.239-0.534-0.534v-76.96 c0-0.295,0.239-0.534,0.534-0.534H136.284z M144.301,76.96V64.973L256,25.08l111.699,39.893V76.96H144.301z M350.597,92.994 v95.132h-18.171V92.994H350.597z M316.393,92.994v95.132h-18.171V92.994H316.393z M282.188,92.994v95.132h-18.171V92.994H282.188z  M247.983,92.994v95.132h-18.171V92.994H247.983z M213.779,92.994v95.132h-18.171V92.994H213.779z M179.574,92.994v95.132h-18.171 V92.994H179.574z M265.086,487.416h-18.171v-18.171h18.171V487.416z M315.858,375.182c0.295,0,0.534,0.239,0.534,0.534v76.96 c0,0.295-0.239,0.534-0.534,0.534H196.142c-0.295,0-0.534-0.239-0.534-0.534v-76.96c0-0.295,0.239-0.534,0.534-0.534H315.858z  M144.301,222.33v-18.171h223.399v18.171H144.301z M444.66,487.416h-18.171v-18.171h18.171V487.416z M495.967,452.677 c0,0.295-0.239,0.534-0.534,0.534H375.716c-0.295,0-0.534-0.239-0.534-0.534v-76.96c0-0.295,0.239-0.534,0.534-0.534h119.716 c0.295,0,0.534,0.239,0.534,0.534V452.677z" /></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
               </svg>
             </div>
           </div>
@@ -136,7 +145,7 @@
           <div
             class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
           >
-            <div class="icon-shape icon-shape-primary rounded me-4 me-sm-0">
+            <div class="icon-shape icon-shape-info rounded me-4 me-sm-0">
               <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
             </div>
           </div>
@@ -159,7 +168,7 @@
           <div
             class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center"
           >
-            <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
+            <div class="icon-shape icon-shape-success rounded me-4 me-sm-0">
               <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 360 480" style="enable-background:new 0 0 512.002 512.002;" xml:space="preserve">
                 <g><g><path d="M327.991,373.247l-58.371-17.512l-15.501-23.251c-1.222-1.833-3.145-3.083-5.317-3.455 c-0.628-0.108-1.261-0.13-1.888-0.089v-16.759l4.365-3.638c7.841-6.535,13.049-15.685,14.662-25.765l0.998-6.24h6.162 c13.851,0,25.119-11.268,25.119-25.119v-17.102c0-12.299-8.886-22.554-20.574-24.699l3.045-19.031 c2.26-14.121,1.595-28.178-1.964-41.82c1.127-2.757,1.523-5.854,0.999-9.02l-5.804-35.046l33.917-6.463v43.869 c-9.93,3.354-17.102,12.752-17.102,23.8v34.205c0,4.427,3.589,8.017,8.017,8.017h34.205c4.427,0,8.017-3.589,8.017-8.017v-34.205 c0-11.048-7.172-20.446-17.102-23.8V95.185l15.925-3.034c5.727-1.091,9.728-5.925,9.728-11.755c0-5.831-4-10.664-9.728-11.756 L186.997,39.535c-5.242-0.998-10.557-0.998-15.799,0L18.393,68.641c-5.727,1.091-9.728,5.925-9.728,11.756 s4.001,10.664,9.728,11.755l65.765,12.526l-5.807,35.067c-0.524,3.167-0.128,6.264,0.999,9.02 c-3.558,13.643-4.223,27.7-1.964,41.82l3.045,19.032c-11.688,2.146-20.574,12.401-20.574,24.7v17.102 c0,13.851,11.268,25.119,25.119,25.119h6.162l0.998,6.24c1.613,10.08,6.82,19.229,14.662,25.765l4.365,3.638v16.759 c-0.626-0.042-1.259-0.019-1.888,0.089c-2.172,0.372-4.095,1.622-5.317,3.455l-15.501,23.251l-58.371,17.512 C12.091,378.646,0,394.898,0,413.688v34.409c0,13.851,11.268,25.119,25.119,25.119H332.96c13.851,0,25.119-11.268,25.119-25.119 v-34.409C358.079,394.898,345.988,378.646,327.991,373.247z M254.811,362.428l-34.619,48.467l-28.064-22.452l53.351-40.013 L254.811,362.428z M264.861,188.054l-3.383,21.145h-7.018c-0.254,0-0.475-0.181-0.524-0.43l-4.427-22.134 c-1.854-9.273-8.753-16.512-17.472-19.125l32.589-8.28C266.328,168.689,266.414,178.349,264.861,188.054z M187.056,162.396v-41.15 l71.112-13.545l5.741,34.664c0.046,0.277-0.124,0.537-0.395,0.606L187.056,162.396z M275.112,225.464 c4.046,0.917,7.076,4.535,7.076,8.854v17.102c0,5.01-4.076,9.086-9.086,9.086h-3.597L275.112,225.464z M324.944,165.909v26.188 h-18.171v-26.188c0-5.01,4.076-9.086,9.086-9.086C320.868,156.823,324.944,160.899,324.944,165.909z M84.977,260.506 c-5.01,0-9.086-4.076-9.086-9.086v-17.102c0-4.318,3.03-7.935,7.075-8.854l5.606,35.042H84.977z M42.368,80.397l131.829-25.11 c3.252-0.619,6.549-0.62,9.801,0l131.83,25.11l-131.83,25.11c-3.252,0.619-6.549,0.619-9.801,0L42.368,80.397z M171.023,121.224 v41.173l-76.458-19.426c-0.271-0.068-0.441-0.329-0.396-0.605l5.744-34.686L171.023,121.224z M93.218,188.054 c-1.553-9.705-1.466-19.364,0.235-28.823l32.589,8.281c-8.719,2.612-15.618,9.852-17.472,19.125l-4.427,22.135 c-0.049,0.249-0.269,0.429-0.524,0.429h-7.018L93.218,188.054z M107.967,280.246l-8.8-55.014h4.453 c7.871,0,14.704-5.601,16.246-13.318l4.427-22.134c0.847-4.232,4.593-7.304,8.908-7.304h91.676c4.316,0,8.063,3.072,8.908,7.304 l4.427,22.132c1.542,7.717,8.375,13.32,16.246,13.32h4.453l-8.802,55.014c-1,6.252-4.231,11.928-9.094,15.981l-34.32,28.6 c-3.163,2.636-7.173,4.087-11.291,4.087h-29.636c-6.114,0-12.068-2.156-16.766-6.07l-31.942-26.619 C112.198,292.173,108.967,286.497,107.967,280.246z M112.6,348.43l53.351,40.013l-28.064,22.452l-34.619-48.467L112.6,348.43z  M59.858,457.182H25.119c-5.01,0-9.086-4.076-9.086-9.086v-34.409c0-4.596,1.181-8.938,3.278-12.727l34.2,28.501 c4.032,3.361,6.346,8.299,6.346,13.548V457.182z M171.023,457.182H75.891V443.01c0-10.023-4.416-19.451-12.115-25.866 l-32.618-27.182c1.135-0.525,2.31-0.989,3.539-1.356l55.641-16.694l39.422,55.191c1.279,1.791,3.241,2.978,5.421,3.28 c0.367,0.051,0.735,0.076,1.102,0.076c1.81,0,3.579-0.612,5.008-1.757l29.731-23.784V457.182z M127.198,339.336v-13.793 l11.542,9.618c7.572,6.311,17.172,9.786,27.029,9.786h29.636c7.861,0,15.516-2.772,21.555-7.804l13.92-11.6v13.793l-51.841,38.881 L127.198,339.336z M282.188,443.008v14.172h-95.132v-52.265l29.731,23.785c1.429,1.144,3.198,1.757,5.008,1.757 c0.367,0,0.734-0.025,1.102-0.076c2.182-0.302,4.142-1.489,5.421-3.28l39.422-55.191l55.642,16.692 c1.228,0.37,2.404,0.833,3.539,1.357l-32.618,27.182C286.604,423.558,282.188,432.987,282.188,443.008z M342.046,448.096 c0,5.01-4.076,9.086-9.086,9.086h-34.739V443.01c0-5.25,2.313-10.188,6.346-13.548l34.2-28.501 c2.097,3.79,3.278,8.131,3.278,12.727V448.096z" /></g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g>
               </svg>
@@ -193,56 +202,15 @@
             </svg>
           </button>
         </div>
-        {% comment %} <div id="container"></div> {% endcomment %}
-        <div id="container-table"></div>
+        <div id="container-table">
+          <div class="toggle-label">
+            <input type="checkbox" name="toggle-label" id="toggleLabels" onclick="toggleLabels()">Toggle labels</div>
+          {% comment %} <button class="toogle-label" onclick='toggleLabels()'>toggle labels</button> {% endcomment %}
+        </div>
         </div>
       </div>
     </div>
 </div>
-
-
-<div id="anychart-embed-src-maps-in-dashboard-sales-by-region" class="anychart-embed anychart-embed-src-maps-in-dashboard-sales-by-region">
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-circular-gauge.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-map.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-table.min.js"></script>
-  <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script>
-  <script src="https://cdn.anychart.com/geodata/latest/countries/france/france.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
-  <div id="ac_style_src-maps-in-dashboard-sales-by-region" style="display:none;"></div>
-  
-  <script>(function(){
-      function ac_add_to_head(el){
-        var head = document.getElementsByTagName('head')[0];
-        head.insertBefore(el,head.firstChild);
-      }
-      function ac_add_link(url){
-        var el = document.createElement('link');
-        el.rel='stylesheet';el.type='text/css';el.media='all';el.href=url;
-        ac_add_to_head(el);
-      }
-      function ac_add_style(css){
-        var ac_style = document.createElement('style');
-        if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
-        else ac_style.appendChild(document.createTextNode(css));
-        ac_add_to_head(ac_style);
-      }
-      ac_add_link('https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css');
-      ac_add_link('https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css');
-      ac_add_style(document.getElementById("ac_style_src-maps-in-dashboard-sales-by-region").innerHTML);
-      ac_add_style(".anychart-embed-src-maps-in-dashboard-sales-by-region{width:600px;height:450px;}");
-    })();
-  </script>
-  </div>
-
-
-
-
-
-
-
 {% endblock content %} 
 
 {% block javascripts %}
@@ -253,17 +221,51 @@
   const nbrResearchers = document.getElementById("nbr_researchers")
   const dataset = document.getElementById("dataset")
   const citations_data = {{total_citations|safe}};
-  anychart.onDocumentReady(function(){
-    function initdata(){
-      nbrEtas.innerHTML = {{nbr_etablisements|safe}},
-      nbrDivs.innerHTML = {{nbr_divisions|safe}},
-      nbrEquipes.innerHTML = {{nbr_equipes|safe}}
-      nbrResearchers.innerHTML = {{nbr_researchers|safe}}
-      dataset.innerHTML = "Total"
+  const toggleLabels_id = document.getElementById("toggleLabels")
+  var showLabels =true
+  function initdata(){
+    nbrEtas.innerHTML = {{nbr_etablisements|safe}},
+    nbrDivs.innerHTML = {{nbr_divisions|safe}},
+    nbrEquipes.innerHTML = {{nbr_equipes|safe}}
+    nbrResearchers.innerHTML = {{nbr_researchers|safe}}
+    dataset.innerHTML = "Total"
+    }
+    function toggleLabels(){
+      if (toggleLabels_id.checked == false ){
+        console.log("false")
+        showLabels  = false
+        return false 
       }
+      else{
+        console.log("true")
+        showLabels=true
+        return true
+      }
+      
+    }
+  
       var regionsData =  {{wilaya_etas|safe}};
       //console.log(regionsData)
-      regionsData[15]["label"] =  {x: 0, y: 70, positionMode: "offset"}
+      if (showLabels){
+        regionsData[01]["label"] =  {x: -30, y: 90, positionMode: "offset"}
+        regionsData[03]["label"] =  {x: 110, y: 80, positionMode: "offset"}
+        regionsData[05]["label"] =  {x: 30, y: 70, positionMode: "offset"}
+        regionsData[11]["label"] =  {x: 110, y: 70, positionMode: "offset"}
+        regionsData[15]["label"] =  {x: 0, y: 50, positionMode: "offset"}
+        regionsData[12]["label"] =  {x: -65, y: 70, positionMode: "offset"}
+        regionsData[21]["label"] =  {x: -95, y: 90, positionMode: "offset"}
+        regionsData[45]["label"] =  {x: -60, y: 70, positionMode: "offset"}
+        regionsData[30]["label"] =  {x: -40, y: 80, positionMode: "offset"}
+        regionsData[26]["label"] =  {x: -30, y: 85, positionMode: "offset"}
+        regionsData[34]["label"] =  {x: 15, y: 70, positionMode: "offset"}
+        regionsData[35]["label"] =  {x: 89, y: 70, positionMode: "offset"}
+        regionsData[22]["label"] =  {x: 80, y: 80, positionMode: "offset"}
+        regionsData[20]["label"] =  {x: 65, y: 80, positionMode: "offset"}
+        regionsData[17]["label"] =  {x: 55, y: 80, positionMode: "offset"}
+        regionsData[18]["label"] =  {x: 3, y: 40, positionMode: "offset"}
+        regionsData[40]["label"] =  {x: 89, y: 90, positionMode: "offset"}
+        regionsData[41]["label"] =  {x: -20, y: 70, positionMode: "offset"}
+      }
       var selectedPoint;
       var mapChart;
       var revenueChart;
@@ -271,20 +273,21 @@
       var marketShareChart;
       var drawMapChart = function () {
         var map = anychart.map();
-        var zoomController = anychart.ui.zoom();
-        
+        //var zoomController = anychart.ui.zoom();
         map.geoData(anychart.maps['algeria']);
-        map.labels(true)
         map.title().enabled(true).useHtml(true).text('<span style="color: #212121;">Données de recherche par wilaya</span>')
           .fontSize(18)
           .padding([15, 0, 15, 0]);
         var s1 = map.choropleth();
         //s1.labels(true);
         s1.geoIdField('id');
-        s1.labels()
-          .useHtml(true)
-          .fontSize(15)
-          .fontWeight(700);
+        if(toggleLabels()){
+          console.log("kifah lhkaya")
+          map.labels(true)
+        }
+        else{
+          map.labels(false)
+        }
         s1.hovered().fill('#3ca0fe 0.6');
         s1.selected().fill('#0b49e6');
         s1.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
@@ -315,15 +318,14 @@
         map.getSeries(0).data(regionsData);
         map.listen('pointsselect', function (e) {
           selectedPoint = e.currentPoint;
-          //console.log(e.currentPoint.series.iterator.f)
           if (selectedPoint) {
             changeContents(selectedPoint.index);
           }
         });
-
-        //zoomController.target(s1);
-        //zoomController.render();
-
+        var zoomController = anychart.ui.zoom();
+        console.log(zoomController)
+        zoomController.target(map);
+        zoomController.render();
         return map;
       };
 
@@ -380,6 +382,7 @@
           .zIndex(1);
         return gauge;
       }
+
       var changeContents = function (index) {
         var total_eta = regionsData[index].value/{{nbr_etablisements|safe}};
         nbrEtas.innerHTML = regionsData[index].value
@@ -427,7 +430,7 @@
       revenueChart = drawRevenueChart(citations_data);
       totalShareChart = createSolidChart({{nbr_etablisements|safe}});
       marketShareChart = createSolidChart({{total_citations_graph.citations_total|safe}});
-
+      
       function fillInMainTable(flag) {
         if (flag === 'wide') {
           layoutTable.contents(
@@ -458,7 +461,6 @@
         layoutTable.draw();
       }
 
-      // Setting layout table
       var layoutTable = anychart.standalones.table();
       layoutTable.cellBorder(null);
       layoutTable.container('container-table');
@@ -468,8 +470,8 @@
         fillInMainTable('slim');
       }
 
-      mapChart.getSeries(0).select(5);
-      changeContents(5);
+      //mapChart.getSeries(0).select(5);
+      //changeContents(5);
       // On resize changing layout to mobile version or conversely
       window.onresize = function () {
         if (layoutTable.colsCount() === 2 && window.innerWidth > 767) {
@@ -481,61 +483,5 @@
           fillInMainTable('slim');
         }
       };
-    
-      /*
-    var map = anychart.map();
-    var _data = {{wilaya_etas|safe}};
-    console.log(_data);
-    // create data set
-    var dataSet = anychart.data.set(_data);
-    series = map.choropleth(dataSet);
-    series.geoIdField('id');
-    series.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
-    series.hovered().fill('#3ca0fe');
-    // https://cdn.anychart.com/#maps-collection
-    map.geoData(anychart.maps['algeria']);
-    var func_listen = function(e){
-        nbrEtas.innerHTML = e.iterator.f.value
-        nbrDivs.innerHTML = e.iterator.f.nbr_divs
-        nbrEquipes.innerHTML = e.iterator.f.nbr_equipes
-        nbrResearchers.innerHTML = e.iterator.f.nbr_researchers
-        dataset.innerHTML = Object.values(e.iterator.f)[0]
-        //console.log(Object.values(e.iterator.f)[0])
-    }
-    map.tooltip().useHtml(true);
-    map.tooltip().title().useHtml(true);
-    map.tooltip().format(function () {
-        var data = getDataId(this.id);
-        return (
-          '<span style="font-size: 12px; color: #fff">Etablisement: </span>' +
-          data.value +
-          "<br/>" +
-          '<span style="font-size: 12px; color: #fff">Nbr Divisions: </span>' +
-          data.nbr_divs +
-          "<br/>" +
-          '<span style="font-size: 12px; color: #fff">Nbr Equipes: </span>' +
-          data.nbr_equipes +
-          "<br/>" +
-          '<span style="font-size: 12px; color: #fff">Nbr Chercheurs: </span>' +
-          data.nbr_researchers
-        );
-      });
-
-      function getDataId(id) {
-        for (var i = 0; i < _data.length; i++) {
-          if (_data[i].id === id) return _data[i];
-        }
-      }
-        map.width('100%');
-        map.height('100%');
-        map.listen('pointClick', func_listen);
-        map.container('container');
-        map.draw();
-      */
-});
-
-    
 </script>
 {% endblock javascripts %}
-
-

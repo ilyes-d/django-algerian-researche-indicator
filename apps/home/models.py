@@ -109,7 +109,7 @@ class Equipe(models.Model):
 class Division(models.Model):
     nom = models.CharField(max_length=200, default='')
     site_web=models.URLField(blank=True)
-
+    long_nom = models.CharField(max_length=200,blank=True,null=True)
     # relationshi
     etablisment = models.ForeignKey(
         'Etablisment', on_delete=models.CASCADE, null=True)

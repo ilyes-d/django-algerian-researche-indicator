@@ -2,7 +2,7 @@
 {%load tag%}
 {% block stylesheets %}
 {% endblock stylesheets %}
-<li class="nav-item {% if request.path == '/etablisement/dashboard/' %} active {% endif %}">
+<li class="nav-item {% if '/dashboard/' in request.path  %} active {% endif %}">
   <a href="{% url 'eta-dash' eta_id=user|eta_id %}" class="nav-link">
     <span class="sidebar-icon">
       <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path><path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path></svg>
@@ -13,7 +13,7 @@
 <li role="separator" class="dropdown-divider mt-2 mb-2 border-gray-700"></li>
 
 <li class="nav-item {% if request.resolver_match.url_name == 'eta-divs-liste' %} active {%endif%}">
-  <a href="{%url 'eta-divs-liste' %}" class="nav-link">
+  <a href="{%url 'eta-divs-liste' eta_id=user|eta_id %}" class="nav-link">
       <span>
         <span class="sidebar-icon">
           <svg version="1.1" id="Layer_1" fill="currentColor" width="30px" height="30px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512" style="enable-background:new 0 0 512 512;" xml:space="preserve">

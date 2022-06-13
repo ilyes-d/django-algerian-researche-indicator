@@ -1,21 +1,50 @@
+from django.db.models import *
 from django.contrib.auth import *
 from django.forms import inlineformset_factory
 from django.shortcuts import get_object_or_404, redirect, render
+from requests import request
 from apps.home.models import *
 from apps.home.forms import *
 from apps.home.decorators import *
 from apps.home.views.div import *
 from apps.home.decorators import *
 from apps.home.views.fcts import *
+from .functions import *
+from .queries import *
 
-
-
+# nbr citations par divisions 
+# 
 
 def eta_dash(request,eta_id):
-    context = {}    
+    context = {}
+    context["eta"] = Etablisment.objects.get(id=eta_id)
+    context["nbr_divisions"] = eta_divs(eta_id).count()
+    context["nbr_equipes"] = eta_equipes(eta_id).count()
+    context["nbr_chers"] = eta_chers(eta_id).count()
+    context["citations"] = eta_chers(eta_id).aggregate(Sum("citations"))["citations__sum"]
+    context["eta_divs_citations"] = eta_divs_citations(eta_id)
+    context["citations_total_8year"] = citations_researchers_8years(eta_chers(eta_id))
+    context["chers5_citations"]=  top_10_researchers_citations_eta(eta_id)
+    context["chers5_hindex"] = top_10_researchers_hindex_eta(eta_id)
+    context["chers5_i10index"] = top_10_researchers_i10_index_eta(eta_id)
+    # context["graph_"]
+    # context = Dash_Eta_calc(get_etablisement_id(request))
+    return render (request,'home/eta/eta-dash.html',context)
+
+
+
+def eta_divs_citations(eta_id):
+    context = []
+    for div in eta_divs(eta_id):
+        div_citations = div_chers(div.id).aggregate(Sum("citations"))["citations__sum"]
+        context.append({"div" : div , "div_citations":div_citations})
+    return context
+
+def eta_divs_liste(request, eta_id):
+    context = {}
+    return render(request,'home/eta/eta-divs-liste.html',context)
     
-    context = Dash_Eta_calc(get_etablisement_id(request))
-    return render (request,'home/eta/eta-dash.html',context)  
+
 # def eta_dash(request,pk):
 #     context = Dash_Eta_calc(get_etablisement_id(request))
 #     return render (request,'home/eta/eta-dash.html',context)  

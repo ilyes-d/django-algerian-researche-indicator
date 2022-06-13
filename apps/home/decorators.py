@@ -140,7 +140,7 @@ def redirect_logged_in_user(func):
             if request.user.is_superuser :
                 return redirect('org-carte')
             if is_chef_eta(request.user):
-                return redirect('eta-dash')
+                return redirect('eta-dash',eta_id=Etablisment.objects.get(chef_etablisement=request.user.id).id)
             if is_chef_div(request.user):
                 return redirect('div-dash')
             if is_chef_equipe(request.user):
