@@ -1,9 +1,21 @@
 from django.shortcuts import render
+from requests import request
 from apps.home.models import *
 from apps.home.views.functions import *
 from ..decorators import *
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import *
+
+
+def refrech_database(request):
+    researchers_list = Researcher.objects.filter(Q(google_scholar_account__isnull=False))
+    if researchers_list:
+        for researcher in researchers_list:
+            print(researcher)
+            load_reseacher_gs_data(researcher)
+        return redirect('org-carte')
+    return render(request , 'refrech.html')
+    
 
 @login_required
 def org_carte(request):
@@ -13,6 +25,12 @@ def org_carte(request):
     context["nbr_equipes"] = Equipe.objects.filter().count()
     context["nbr_researchers"] = Researcher.objects.filter().count()
     context["wilaya_etas"] = wilaya_dash()
+    context["total_citations_graph"]= final_8years_citations_all_etas()
+    total_citations = []
+    for citation_year in final_8years_citations_all_etas()["citations"]:
+        citations_array = [str(citation_year["year"]),citation_year["citations"]]
+        total_citations.append(citations_array)
+    context["total_citations"] = total_citations
     return render(request , "home/org/org-carte.html" , context)
 
 @login_required
@@ -22,11 +40,10 @@ def org_dashboard(request):
     context["nbr_divisions"] = Division.objects.filter().count()
     context["nbr_equipes"] = Equipe.objects.filter().count()
     context["nbr_researchers"] = Researcher.objects.filter().count()
-    
-    # context["top_10_etas_citations"]
     context["total_citations"] = final_8years_citations_all_etas()
-    # context['top10_etablisements_citations'] = top_10_citations_etas()
+    context["all_etas_citations"] = all_etas_citations()
     return render(request , "home/org/org-dashboard.html" , context)
+
     
 @login_required
 def org_etas_dash(request):
@@ -61,6 +78,7 @@ def org_equipes_dash(request):
 
 def org_equipes_liste(request):
     context = {}
+    context["equipes"] = query_all_equipes()
     return render(request , 'home/org/org-equipes-liste.html',context)
 
 def org_chers_dash(request):

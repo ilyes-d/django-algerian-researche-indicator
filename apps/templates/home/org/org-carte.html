@@ -4,17 +4,11 @@
 
 {%block stylesheets%}
 <style>
-  .relative-pos{
-    margin-top: 12px;
-    position: relative;
-  }
-  .absolute-pos{
-    position: absolute;
-  }
-  .left-button{
-    width: 120px;
-    right:25px;
-    top:0;
+  #container-table {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
   }
 .anychart-embed {
     width: 100vw;
@@ -41,6 +35,9 @@
 
 
 {% block content %} 
+{{total_citations}}
+<br>
+{{total_citations_graph}}
 <div class="page-header">
   <div class="row align-items-center relative-pos">
     <button type="button" class="btn btn-block btn-gray-800 mb-3 absolute-pos left-button" data-bs-toggle="modal" data-bs-target="#modal-notification">Refrecher</button>
@@ -74,7 +71,7 @@
                   </div>
               </div>
               <div class="modal-footer">
-                <a class="btn btn-sm btn-white" href="{%url 'login' %}" >procéder</a>
+                <a class="btn btn-sm btn-white" href="{%url 'refrech' %}" >procéder</a>
               </div>
           </div>
       </div>
@@ -186,33 +183,65 @@
   <div class="col">
     <div class="card">
       <div class="row row-bordered g-0 d-flex flex-row">
-        <h5 class="card-header m-0 me-2 pb-3 d-flex flex-row">
-          Cliquer sur l'un des wilayas
-        </h5>
-        <div class="d-flex flex-row-reverse">
-            <button
-              class="btn btn-outline-info"
-              type="button"
-              onclick="initdata()"
-            >
-              <svg
-                fill="#1f57b8"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 30 30"
-                width="30px"
-                height="30px"
-              >
-                <path
-                  d="M 15 3 C 12.031398 3 9.3028202 4.0834384 7.2070312 5.875 A 1.0001 1.0001 0 1 0 8.5058594 7.3945312 C 10.25407 5.9000929 12.516602 5 15 5 C 20.19656 5 24.450989 8.9379267 24.951172 14 L 22 14 L 26 20 L 30 14 L 26.949219 14 C 26.437925 7.8516588 21.277839 3 15 3 z M 4 10 L 0 16 L 3.0507812 16 C 3.562075 22.148341 8.7221607 27 15 27 C 17.968602 27 20.69718 25.916562 22.792969 24.125 A 1.0001 1.0001 0 1 0 21.494141 22.605469 C 19.74593 24.099907 17.483398 25 15 25 C 9.80344 25 5.5490109 21.062074 5.0488281 16 L 8 16 L 4 10 z"
-                />
-              </svg>
-            </button>
-          </div>
-          <div id="container"></div>
+        <div class="d-flex flex-row">
+          <h5 class="card-header m-0 me-2 pb-3 d-flex flex-row w-100">
+            Cliquer sur l'un des wilayas
+          </h5>
+          <button class="btn btn-outline-info me-3 mt-1" type="button" onclick="initdata()">
+            <svg fill="#1f57b8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px">
+              <path d="M 15 3 C 12.031398 3 9.3028202 4.0834384 7.2070312 5.875 A 1.0001 1.0001 0 1 0 8.5058594 7.3945312 C 10.25407 5.9000929 12.516602 5 15 5 C 20.19656 5 24.450989 8.9379267 24.951172 14 L 22 14 L 26 20 L 30 14 L 26.949219 14 C 26.437925 7.8516588 21.277839 3 15 3 z M 4 10 L 0 16 L 3.0507812 16 C 3.562075 22.148341 8.7221607 27 15 27 C 17.968602 27 20.69718 25.916562 22.792969 24.125 A 1.0001 1.0001 0 1 0 21.494141 22.605469 C 19.74593 24.099907 17.483398 25 15 25 C 9.80344 25 5.5490109 21.062074 5.0488281 16 L 8 16 L 4 10 z"/>
+            </svg>
+          </button>
+        </div>
+        {% comment %} <div id="container"></div> {% endcomment %}
+        <div id="container-table"></div>
         </div>
       </div>
     </div>
 </div>
+
+
+<div id="anychart-embed-src-maps-in-dashboard-sales-by-region" class="anychart-embed anychart-embed-src-maps-in-dashboard-sales-by-region">
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-circular-gauge.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-map.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-table.min.js"></script>
+  <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script>
+  <script src="https://cdn.anychart.com/geodata/latest/countries/france/france.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+  <div id="ac_style_src-maps-in-dashboard-sales-by-region" style="display:none;"></div>
+  
+  <script>(function(){
+      function ac_add_to_head(el){
+        var head = document.getElementsByTagName('head')[0];
+        head.insertBefore(el,head.firstChild);
+      }
+      function ac_add_link(url){
+        var el = document.createElement('link');
+        el.rel='stylesheet';el.type='text/css';el.media='all';el.href=url;
+        ac_add_to_head(el);
+      }
+      function ac_add_style(css){
+        var ac_style = document.createElement('style');
+        if (ac_style.styleSheet) ac_style.styleSheet.cssText = css;
+        else ac_style.appendChild(document.createTextNode(css));
+        ac_add_to_head(ac_style);
+      }
+      ac_add_link('https://cdn.anychart.com/releases/v8/css/anychart-ui.min.css');
+      ac_add_link('https://cdn.anychart.com/releases/v8/fonts/css/anychart-font.min.css');
+      ac_add_style(document.getElementById("ac_style_src-maps-in-dashboard-sales-by-region").innerHTML);
+      ac_add_style(".anychart-embed-src-maps-in-dashboard-sales-by-region{width:600px;height:450px;}");
+    })();
+  </script>
+  </div>
+
+
+
+
+
+
 
 {% endblock content %} 
 
@@ -223,74 +252,290 @@
   const nbrEquipes = document.getElementById("nbr_equipes")
   const nbrResearchers = document.getElementById("nbr_researchers")
   const dataset = document.getElementById("dataset")
-  function initdata(){
+  const citations_data = {{total_citations|safe}};
+  anychart.onDocumentReady(function(){
+    function initdata(){
       nbrEtas.innerHTML = {{nbr_etablisements|safe}},
       nbrDivs.innerHTML = {{nbr_divisions|safe}},
       nbrEquipes.innerHTML = {{nbr_equipes|safe}}
       nbrResearchers.innerHTML = {{nbr_researchers|safe}}
       dataset.innerHTML = "Total"
-  }
-    anychart.onDocumentReady(function() {
-      // create map
-      var map = anychart.map();
-      var _data = {{wilaya_etas|safe}};
-      console.log(_data);
-      // create data set
-      var dataSet = anychart.data.set(
-          _data
-          );
-      // create choropleth series
-      series = map.choropleth(dataSet);
-
-      // set geoIdField to 'id', this field contains in geo data meta properties
-      series.geoIdField('id');
-
-      // set map color settings
-      series.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
-      series.hovered().fill('#3ca0fe');
-      // https://cdn.anychart.com/#maps-collection
-      map.geoData(anychart.maps['algeria']);
-      var func_listen = function(e){
-          nbrEtas.innerHTML = e.iterator.f.value
-          nbrDivs.innerHTML = e.iterator.f.nbr_divs
-          nbrEquipes.innerHTML = e.iterator.f.nbr_equipes
-          nbrResearchers.innerHTML = e.iterator.f.nbr_researchers
-          dataset.innerHTML = Object.values(e.iterator.f)[0]
-          //console.log(Object.values(e.iterator.f)[0])
       }
-      map.tooltip().useHtml(true);
-      map.tooltip().title().useHtml(true);
-      map.tooltip().format(function () {
-          var data = getDataId(this.id);
-          return (
-            '<span style="font-size: 12px; color: #fff">Etablisement: </span>' +
-            data.value +
-            "<br/>" +
-            '<span style="font-size: 12px; color: #fff">Nbr Divisions: </span>' +
-            data.nbr_divs +
-            "<br/>" +
-            '<span style="font-size: 12px; color: #fff">Nbr Equipes: </span>' +
-            data.nbr_equipes +
-            "<br/>" +
-            '<span style="font-size: 12px; color: #fff">Nbr Chercheurs: </span>' +
-            data.nbr_researchers
-          );
+      var regionsData =  {{wilaya_etas|safe}};
+      //console.log(regionsData)
+      regionsData[15]["label"] =  {x: 0, y: 70, positionMode: "offset"}
+      var selectedPoint;
+      var mapChart;
+      var revenueChart;
+      var totalShareChart;
+      var marketShareChart;
+      var drawMapChart = function () {
+        var map = anychart.map();
+        var zoomController = anychart.ui.zoom();
+        
+        map.geoData(anychart.maps['algeria']);
+        map.labels(true)
+        map.title().enabled(true).useHtml(true).text('<span style="color: #212121;">Données de recherche par wilaya</span>')
+          .fontSize(18)
+          .padding([15, 0, 15, 0]);
+        var s1 = map.choropleth();
+        //s1.labels(true);
+        s1.geoIdField('id');
+        s1.labels()
+          .useHtml(true)
+          .fontSize(15)
+          .fontWeight(700);
+        s1.hovered().fill('#3ca0fe 0.6');
+        s1.selected().fill('#0b49e6');
+        s1.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
+        s1.hovered().fill('#3ca0fe');
+        s1.tooltip().title().fontSize(16);
+        s1.tooltip().titleFormat(function () {
+          return this.name;
         });
-      
-        function getDataId(id) {
-          for (var i = 0; i < _data.length; i++) {
-            if (_data[i].id === id) return _data[i];
+        s1.tooltip()
+          .useHtml(true)
+          .format(function () {
+            return (
+              '<span style="color:#fff">data:</span> $<br/>' +
+              '<span style="font-size: 12px; color: #d9d9d9">Etablisement: </span>' +
+              parseInt(this.value)+
+              "<br/>" +
+              '<span style="font-size: 12px; color: #d9d9d9">Nbr Divisions: </span>' +
+              parseInt(this.nbr_divs) +
+              "<br/>" +
+              '<span style="font-size: 12px; color: #d9d9d9">Nbr Equipes: </span>' +
+              parseInt(this.nbr_equipes)+
+              "<br/>" +
+              '<span style="font-size: 12px; color: #d9d9d9">Nbr Chercheurs: </span>' +
+              parseInt(this.nbr_researchers) 
+            );
+          });
+        map.padding(0, 30, 5, 0).margin(0);
+        map.getSeries(0).data(regionsData);
+        map.listen('pointsselect', function (e) {
+          selectedPoint = e.currentPoint;
+          //console.log(e.currentPoint.series.iterator.f)
+          if (selectedPoint) {
+            changeContents(selectedPoint.index);
           }
-        }
-      //map.labels(true);
-      //set map container id (div)
-      //map.interactivity().zoomOnMouseWheel(true);
-      map.width('100%');
-      map.height('100%');
-      map.listen('pointClick', func_listen);
-      map.container('container');
-      map.draw();
-    });
+        });
 
+        //zoomController.target(s1);
+        //zoomController.render();
+
+        return map;
+      };
+
+      var drawRevenueChart = function (data) {
+        var chart = anychart.column();
+        var series = chart.column(data);
+        chart.title().enabled(true).useHtml(true).padding([0, 0, 15, 0]);
+        chart.xAxis().title("Annees");
+        chart.yAxis().title("Nombre citaitons");
+        return chart 
+      };
+
+      function createSolidChart(max) {
+        var gauge = anychart.gauges.circular();
+        gauge.background(null);
+        gauge.fill(null);
+        gauge.stroke(null);
+        gauge.padding([30, 0, 0, 0]);
+        gauge.title().enabled(true).useHtml(true).padding([0, 0, 15, 0]);
+        var axis = gauge.axis().radius(70).width(1).fill(null);
+        axis
+          .scale()
+          .minimum(0)
+          .maximum(max)
+          .ticks({ interval: 1 })
+          .minorTicks({ interval: 1 });
+        axis.labels().enabled(false);
+        axis.ticks().enabled(false);
+        axis.minorTicks().enabled(false);
+        var stroke = '0.5 #e5e4e4';
+        gauge
+          .bar(0)
+          .dataIndex(0)
+          .radius(70)
+          .width(40)
+          .fill('#64b5f6')
+          .stroke(null)
+          .zIndex(5);
+        gauge
+          .bar(1)
+          .dataIndex(1)
+          .radius(70)
+          .width(40)
+          .fill('#F5F4F4')
+          .stroke(stroke)
+          .zIndex(4);
+        gauge
+          .label()
+          .text('')
+          .fontSize(20)
+          .hAlign('center')
+          .anchor('center')
+          .padding(0)
+          .zIndex(1);
+        return gauge;
+      }
+      var changeContents = function (index) {
+        var total_eta = regionsData[index].value/{{nbr_etablisements|safe}};
+        nbrEtas.innerHTML = regionsData[index].value
+        nbrDivs.innerHTML = regionsData[index].nbr_divs
+        nbrEquipes.innerHTML = regionsData[index].nbr_equipes
+        nbrResearchers.innerHTML = regionsData[index].nbr_researchers
+        dataset.innerHTML = Object.values(regionsData[index])[0]
+        
+        console.log(Object.values(regionsData[index])[0])
+        console.log(regionsData[index])
+        
+        totalShareChart.data([regionsData[index].value,{{nbr_etablisements|safe}}]);
+        totalShareChart.label().text((total_eta*100).toFixed(2) + '%');
+        totalShareChart.title().text(
+            'Nombre d\'etablisements dans <br/><span style="color: #212121; text-decoration: underline">' +
+              Object.values(regionsData[index])[0] +
+            '</span> par rapport au pays'
+          );
+        var total_citations = {{total_citations_graph.citations_total|safe}}
+        var wilaya_citations = regionsData[index].wilaya_citations
+        var per = wilaya_citations == 0 ? 0 : wilaya_citations/total_citations*100;
+        marketShareChart.data([wilaya_citations,total_citations]);
+        console.log(per)
+        marketShareChart
+          .label()
+          .text((per).toFixed(2) + '%');
+        marketShareChart
+          .title()
+          .text(
+            'Nombre de citations dans <br/><span style="color: #212121; text-decoration: underline">' +
+              Object.values(regionsData[index])[0] +
+            '</span> par rapport au pays'
+          );
+        revenueChart
+          .title()
+          .text(
+            'Nombre de citations de dernier 8 annees de <span style="color: #212121; text-decoration: underline">' +
+              Object.values(regionsData[index])[0] +
+            '</span>'
+          );
+          revenueChart.data(regionsData[index].citations_total_8year)
+      };
+      
+      mapChart = drawMapChart();
+      revenueChart = drawRevenueChart(citations_data);
+      totalShareChart = createSolidChart({{nbr_etablisements|safe}});
+      marketShareChart = createSolidChart({{total_citations_graph.citations_total|safe}});
+
+      function fillInMainTable(flag) {
+        if (flag === 'wide') {
+          layoutTable.contents(
+            [
+              [mapChart, revenueChart, null],
+              [null, totalShareChart, marketShareChart]
+            ],
+            true
+          );
+          layoutTable.getCell(0, 1).colSpan(2);
+          layoutTable.getCell(0, 0).rowSpan(3);
+          layoutTable.getCol(0).width('50%');
+          layoutTable.getRow(0).height(null);
+        } else {
+          layoutTable.contents(
+            [
+              [mapChart, null],
+              [totalShareChart, marketShareChart],
+              [revenueChart, null],
+            ],
+            true
+          );
+          layoutTable.getCell(0, 0).colSpan(2);
+          layoutTable.getCell(1, 0).colSpan(2);
+          layoutTable.getCol(0).width(null);
+          layoutTable.getRow(0).height(400);
+        }
+        layoutTable.draw();
+      }
+
+      // Setting layout table
+      var layoutTable = anychart.standalones.table();
+      layoutTable.cellBorder(null);
+      layoutTable.container('container-table');
+
+      if (window.innerWidth > 768) fillInMainTable('wide');
+      else {
+        fillInMainTable('slim');
+      }
+
+      mapChart.getSeries(0).select(5);
+      changeContents(5);
+      // On resize changing layout to mobile version or conversely
+      window.onresize = function () {
+        if (layoutTable.colsCount() === 2 && window.innerWidth > 767) {
+          fillInMainTable('wide');
+        } else if (
+          layoutTable.colsCount() === 3 &&
+          window.innerWidth <= 767
+        ) {
+          fillInMainTable('slim');
+        }
+      };
+    
+      /*
+    var map = anychart.map();
+    var _data = {{wilaya_etas|safe}};
+    console.log(_data);
+    // create data set
+    var dataSet = anychart.data.set(_data);
+    series = map.choropleth(dataSet);
+    series.geoIdField('id');
+    series.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
+    series.hovered().fill('#3ca0fe');
+    // https://cdn.anychart.com/#maps-collection
+    map.geoData(anychart.maps['algeria']);
+    var func_listen = function(e){
+        nbrEtas.innerHTML = e.iterator.f.value
+        nbrDivs.innerHTML = e.iterator.f.nbr_divs
+        nbrEquipes.innerHTML = e.iterator.f.nbr_equipes
+        nbrResearchers.innerHTML = e.iterator.f.nbr_researchers
+        dataset.innerHTML = Object.values(e.iterator.f)[0]
+        //console.log(Object.values(e.iterator.f)[0])
+    }
+    map.tooltip().useHtml(true);
+    map.tooltip().title().useHtml(true);
+    map.tooltip().format(function () {
+        var data = getDataId(this.id);
+        return (
+          '<span style="font-size: 12px; color: #fff">Etablisement: </span>' +
+          data.value +
+          "<br/>" +
+          '<span style="font-size: 12px; color: #fff">Nbr Divisions: </span>' +
+          data.nbr_divs +
+          "<br/>" +
+          '<span style="font-size: 12px; color: #fff">Nbr Equipes: </span>' +
+          data.nbr_equipes +
+          "<br/>" +
+          '<span style="font-size: 12px; color: #fff">Nbr Chercheurs: </span>' +
+          data.nbr_researchers
+        );
+      });
+
+      function getDataId(id) {
+        for (var i = 0; i < _data.length; i++) {
+          if (_data[i].id === id) return _data[i];
+        }
+      }
+        map.width('100%');
+        map.height('100%');
+        map.listen('pointClick', func_listen);
+        map.container('container');
+        map.draw();
+      */
+});
+
+    
 </script>
 {% endblock javascripts %}
+
+

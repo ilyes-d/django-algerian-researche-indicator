@@ -63,12 +63,13 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
     list_display = ('__str__', 'email', 'first_name', 'is_staff', 'last_name', 'speciality',
-                    'citations','h_index','i10_index',"graph_citation",'nbr_pubs','graph_pub',
+                    "h_index",
                     'grade', 'linkedin_account', 'google_scholar_account', 'equipe_researchers')
     list_filter = ('is_staff',)
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name', 'speciality',
+                                      'citations','h_index','i10_index',"graph_citations",'nbr_pubs','graph_pub',
                                       'grade', 'linkedin_account', 'google_scholar_account',)}),
         ('Permissions', {'fields': ('is_active', 'is_staff',
          'is_superuser', 'groups', 'user_permissions',)}),

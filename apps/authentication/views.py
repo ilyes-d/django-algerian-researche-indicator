@@ -20,8 +20,8 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 if user_role(request) == 'membre':
-                    return redirect('/profile/')
-                return redirect("/"+str(user_role(request))+"/dashboard")
+                    return redirect('profile/user='+request.user.id)
+                return redirect_users_after_login(request)
             else:
                 msg = 'Invalid credentials'
         else:
@@ -30,6 +30,7 @@ def login_view(request):
     return render(request, "accounts/login.html", {"form": form, "msg": msg})
 
 
+@redirect_logged_in_user
 def register_user(request):
     msg = None
     success = False

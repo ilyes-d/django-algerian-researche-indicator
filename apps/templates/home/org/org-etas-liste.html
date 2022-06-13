@@ -58,8 +58,8 @@
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-centered table-nowrap mb-0 rounded">
-                <thead class="thead-light">
+            <table class="table table-centered mb-0 rounded align-middle">
+                <thead class="thead-light align-middle">
                     <tr>
                         <th class="border-0 rounded-start">Nom d'Etablisement</th>
                         <th class="border-0">Directeur</th>
@@ -67,14 +67,14 @@
                         <th class="border-0">Nbr Divisions</th>
                         <th class="border-0">Nbr Equipe</th>
                         <th class="border-0 ">Nbr Chercheurs</th>
-                        <th class="border-0 rounded-end">Dashboard</th>
+                        <th class="border-0 rounded-end">Tableau de bord</th>
                     </tr>
                 </thead>
                 <tbody>
                     {%for eta,value in etablisements.items %}
                     <tr>
-                        <td class="rounded-start">
-                            <a href="{%url 'eta-id-dash' pk=2 %}">{{eta}}</a>
+                        <td class=" border-0 rounded-start">
+                            <a href="{%url 'eta-dash' eta_id=eta.id %}">{{eta}}</a>
                         </td>
                         <td>
                             {{value.chef_eta}}
@@ -92,7 +92,7 @@
                             {{value.nbr_researchers}}
                         </td>
                         <td class="rounded-end">
-                            <a class="btn btn-pill btn-outline-info" href="{%url 'eta-id-dash' pk=2 %}">Dash</a>
+                            <a class="btn btn-pill btn-outline-info" href="{%url 'eta-dash' eta_id=eta.id %}">consulter</a>
                         </td>
                     </tr>
                     {%endfor%}

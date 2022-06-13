@@ -18254,7 +18254,7 @@ label {
 .table td,
 .table th {
   font-size: 0.875rem;
-  white-space: nowrap; 
+  white-space: normal; 
 }
 
 tr:nth-child(even){
@@ -19077,4 +19077,16 @@ article .h1, article .h2, article .h3, article .h4, article .h5, article .h6 {
   z-index: 9999; }
 
 /*# sourceMappingURL=volt.css.map */
-        
+
+.relative-pos{
+  margin-top: 12px;
+  position: relative;
+}
+.absolute-pos{
+  position: absolute;
+}
+.left-button{
+  width: 120px;
+  right:25px;
+  top:0;
+}

@@ -1,8 +1,6 @@
 {% extends "layouts/base-fullscreen.html" %}
 {%load static%}
 {% block title %} Sign UP {% endblock %} 
-
-<!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}
 <style>
     section{
@@ -10,7 +8,6 @@
         height:100vh;
         background-image: radial-gradient(circle at 40% 91%,hsla(0,0%,98.4%,.04) 0,hsla(0,0%,98.4%,.04) 50%,hsla(0,0%,89.8%,.04) 0,hsla(0,0%,89.8%,.04) 100%),radial-gradient(circle at 66% 97%,rgba(36,36,36,.04) 0,rgba(36,36,36,.04) 50%,rgba(46,46,46,.04) 0,rgba(46,46,46,.04) 100%),radial-gradient(circle at 86% 7%,rgba(40,40,40,.04) 0,rgba(40,40,40,.04) 50%,hsla(0,0%,78.4%,.04) 0,hsla(0,0%,78.4%,.04) 100%),radial-gradient(circle at 15% 16%,rgba(99,99,99,.04) 0,rgba(99,99,99,.04) 50%,rgba(45,45,45,.04) 0,rgba(45,45,45,.04) 100%),radial-gradient(circle at 75% 99%,hsla(0,0%,95.3%,.04) 0,hsla(0,0%,95.3%,.04) 50%,rgba(37,37,37,.04) 0,rgba(37,37,37,.04) 100%),linear-gradient(90deg,#22deed,#2544b3);
     }
-    
 </style>
 {% endblock stylesheets %}
 {% block content %}
@@ -22,14 +19,14 @@
                     <div class="bg-white shadow border-0 rounded border-light p-4 p-lg-5 w-100 fmxw-900">
                         <div class="text-center text-md-center mb-4 mt-md-0">
                             <h1 class="mb-0 h3">
-                                Sign UP
+                                Inscription
                             </h1>
                             <br />
                             <p>
                                 {% if msg %}
                                     {{ msg | safe }}
                                 {% else %}
-                                    Add your credentials
+                                    Ajoutez vos informations
                                 {% endif %}
                             </p>
                         </div>
@@ -40,29 +37,29 @@
                                     <div class="col">
                                         <label for="last_name">Nom</label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon1">
+                                            {% comment %} <span class="input-group-text" id="basic-addon1">
                                                 <span class="fas fa-user-circle"></span>
-                                            </span>
+                                            </span> {% endcomment %}
                                             {{ form.last_name }}
                                         </div>
                                         <span class="text-error">{{ form.last_name.errors }}</span>
                                     </div>
                                     <div class="col">
-                                        <label for="first_name">Prenom</label>
+                                        <label for="first_name">Prénom</label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon1">
+                                            {% comment %} <span class="input-group-text" id="basic-addon1">
                                                 <span class="fas fa-user-circle"></span>
-                                            </span>
+                                            </span> {% endcomment %}
                                         {{ form.first_name }}
                                         </div>
                                         <span class="text-error">{{ form.first_name.errors }}</span>
                                     </div>
                                     <div class="col">
-                                        <label for="speciality">Speciality</label>
+                                        <label for="speciality">spécialité</label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon1">
+                                            {% comment %} <span class="input-group-text" id="basic-addon1">
                                                 <span class="fas fa-user-circle"></span>
-                                            </span>
+                                            </span> {% endcomment %}
                                             {{ form.speciality }}
                                         </div>
                                         <span class="text-error">{{ form.speciality.errors }}</span>
@@ -74,9 +71,9 @@
                                     <div class="col">
                                         <label for="grade">Grade</label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon1">
+                                            {% comment %} <span class="input-group-text" id="basic-addon1">
                                                 <span class="fas fa-user-circle"></span>
-                                            </span>
+                                            </span> {% endcomment %}
                                             {{ form.grade }}
                                         </div>
                                         <span class="text-error">{{ form.grade.errors }}</span>
@@ -84,9 +81,9 @@
                                     <div class="col">
                                         <label for="google_scholar_account">Compte Google Scholar </label>
                                         <div class="input-group">
-                                            <span class="input-group-text" id="basic-addon1">
+                                            {% comment %} <span class="input-group-text" id="basic-addon1">
                                                 <span class="fas fa-user-circle"></span>
-                                            </span>
+                                            </span> {% endcomment %}
                                             {{ form.google_scholar_account }}
                                         </div>
                                         <span class="text-error">{{ form.google_scholar_account.errors }}</span>
@@ -110,7 +107,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group mb-4">
-                                            <label for="password">Your Password</label>
+                                            <label for="password">Le mot de passe</label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon2">
                                                     <span class="fas fa-unlock-alt"></span>
@@ -122,7 +119,7 @@
                                     </div>
                                     <div class="col">
                                         <div class="form-group mb-4">
-                                            <label for="password">Password Confirmation</label>
+                                            <label for="password">Confirmez Le mot de passe</label>
                                             <div class="input-group">
                                                 <span class="input-group-text" id="basic-addon2">
                                                     <span class="fas fa-unlock-alt"></span>
@@ -148,8 +145,8 @@
                         </form>
                         <div class="d-flex justify-content-center align-items-center mt-4">
                             <span class="fw-normal">
-                                Already have an account?
-                                <a href="{% url 'login' %}" class="fw-bold">Sign IN</a>
+                                Vous avez déjà un compte? 
+                                <a href="{% url 'login' %}" class="fw-bold" style="text-decoration:underline;">S'identifier</a>
                             </span>
                         </div>
                         {% for message in messages %}

@@ -1,5 +1,6 @@
 from pickle import NONE
 from traceback import print_tb
+from django.shortcuts import redirect
 from serpapi import GoogleSearch 
 from  apps.home.models import *
 from datetime import datetime, timezone
@@ -182,8 +183,8 @@ def Dash_Division_calc(pk):
     return context
  
 
-def Dash_Equipe_calc(pk):# on fait sous form de fonction pour utulistaion direct dans les autre dash board
-    
+# on fait sous form de fonction pour utulistaion direct dans les autre dash board
+def Dash_Equipe_calc(pk):
     info_equipe = Equipe.objects.get(pk = pk)
     researchers = Researcher.objects.filter(equipe_researchers = pk) # recupere les chercheur des equipe
     nbr_cher_equipe = researchers.count()
@@ -244,6 +245,22 @@ def user_role(request):
         return "division"
     if Equipe.objects.filter(chef_equipe__id=request.user.id):
         return "equipe"
+    return "membre"
+
+def redirect_users_after_login(request):
+    if request.user.is_superuser :
+        return redirect('org-carte')
+    try:
+        eta = Etablisment.objects.get(chef_etablisement__id=request.user.id)
+        return redirect('eta-dash' , eta_id=eta.id)
+    except Etablisment.DoesNotExist:
+        eta=None
+    # if Etablisment.objects.filter(chef_etablisement__id=request.user.id):
+        # return redirect('eta-dash-pk' , pk=1)
+    if Division.objects.filter(chef_div__id=request.user.id):
+        return redirect('div-dash')
+    if Equipe.objects.filter(chef_equipe__id=request.user.id):
+        return redirect('equipe-dash')
     return "membre"
 
 

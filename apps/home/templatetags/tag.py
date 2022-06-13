@@ -1,6 +1,7 @@
 from atexit import register
 from django import template
 from apps.home.models import *
+from ..decorators import is_chef_eta
 register = template.Library()
 
 
@@ -10,6 +11,10 @@ def chef_etablisement(user):
         return True
     return False
 
+@register.filter
+def eta_id(user):
+    if is_chef_eta(user):
+        return Etablisment.objects.get(chef_etablisement=user.id).id
 
 @register.filter
 def chef_division(user):

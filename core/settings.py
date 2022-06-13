@@ -16,6 +16,7 @@ SECRET_KEY = env('SECRET_KEY', default='S#perS3crEt_007')
 DEBUG = env('DEBUG')
 
 ASSETS_ROOT = os.getenv('ASSETS_ROOT', '/static/assets') 
+STATIC_ROOT = os.getenv('ASSETS_ROOT', '/static') 
 
 ALLOWED_HOSTS        = ['localhost', 'localhost:85', '127.0.0.1',               env('SERVER', default='127.0.0.1') ]
 CSRF_TRUSTED_ORIGINS = ['http://localhost:85', 'http://127.0.0.1', 'https://' + env('SERVER', default='127.0.0.1') ]
@@ -122,14 +123,16 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
+# STATIC_ROOT = os.path.join(CORE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 MEDIA_ROOT = BASE_DIR / 'apps/static/media'
 MEDIA_URL = '/apps/static/media/'
 # Extra places for collectstatic to find static files.
+print(CORE_DIR)
 STATICFILES_DIRS = (
     os.path.join(CORE_DIR, 'apps/static'),
+    os.path.join(CORE_DIR, 'node_modules'),
 )
 AUTH_USER_MODEL = "home.Researcher" 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

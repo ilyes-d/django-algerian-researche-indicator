@@ -13,8 +13,8 @@ class SignUpForm(UserCreationForm):
     speciality = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Entre votre Specialiy","class": "form-control"}))
     grade = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Entre votre Grade ","class": "form-control"}))
     google_scholar_account = forms.URLField(widget=forms.URLInput(attrs={"placeholder":"https://scholar.google.com/citations", "class":"form-control"}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password","class": "form-control"}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Confirm Password","class": "form-control"}))
+    password1 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Le mot de passe","class": "form-control"}))
+    password2 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Confirmez Le mot de passe","class": "form-control"}))
     class Meta:
         model = Researcher
         fields = ('email', 'first_name','last_name','speciality','grade','password1', 'password2',)

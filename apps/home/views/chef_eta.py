@@ -4,25 +4,33 @@ from django.shortcuts import get_object_or_404, redirect, render
 from apps.home.models import *
 from apps.home.forms import *
 from apps.home.decorators import *
-from apps.home.views.chef_div import *
+from apps.home.views.div import *
 from apps.home.decorators import *
 from apps.home.views.fcts import *
 
-def eta_dash(request):
+
+
+
+def eta_dash(request,eta_id):
+    context = {}    
+    
     context = Dash_Eta_calc(get_etablisement_id(request))
-    return render (request,'home/eta/dashboard.html',context)  
+    return render (request,'home/eta/eta-dash.html',context)  
+# def eta_dash(request,pk):
+#     context = Dash_Eta_calc(get_etablisement_id(request))
+#     return render (request,'home/eta/eta-dash.html',context)  
  
 def eta_divs_dash(request):
     context ={}
-    return render (request,'home/eta/dashboard.html',context)  
+    return render (request,'home/eta/eta-dash.html',context)  
 
 def eta_equipes_dash(request):
     context ={}
-    return render (request,'home/eta/dashboard.html',context)  
+    return render (request,'home/eta/eta-dash.html',context)  
 
 def dash_etablisemnts(request,pk):
     context = Dash_Eta_calc(pk)
-    return render (request,'dashboardEta.html',context)
+    return render (request,'home/eta/eta-dash-pk.html',context)
 
 
 def Liste_division_Eta_aff_list(request):

@@ -5,7 +5,7 @@ from apps.home.views.fcts import *
 
 def only_chef_eta(function):
     def wrapper(request):
-        if not is_chef_eta(request):
+        if not is_chef_eta(request.user):
             raise HttpResponse('you don\'t have access')
         return function(request)
     return wrapper
@@ -19,42 +19,30 @@ def is_superuser(function):
 
 
 
-def redirect_logged_in_user(func):
-    def wrapper(request):
-        if request.user.is_authenticated:
-            if user_role(request) == 'membre':
-                return redirect("/profile/")
-            return redirect("/"+str(user_role(request)+"/dashboard"))
-        else:
-            return func(request)
-    return wrapper
-
-
 # this is only for who can see profile 
-
-def is_chef_eta(request):
+def is_chef_eta(user):
     try:
-        Etablisment.objects.get(chef_etablisement=request.user.id)
+        Etablisment.objects.get(chef_etablisement=user.id)
         return True
     except Etablisment.DoesNotExist:
         return False
 
-def is_chef_div(request):
+def is_chef_div(user):
     try:
-        Division.objects.get(chef_div=request.user.id)
+        Division.objects.get(chef_div=user.id)
         return True
     except Division.DoesNotExist:
         return False
 
-def is_chef_equipe(request):
+def is_chef_equipe(user):
     try:
-        Equipe.objects.get(chef_equipe=request.user.id)
+        Equipe.objects.get(chef_equipe=user.id)
         return True
     except Equipe.DoesNotExist:
         return False
 
 def is_profile_in_your_eta(request,pk):
-    eta_id = Etablisment.objects.get(chef_etablisement=request.user.id)
+    eta_id = Etablisment.objects.get(chef_etablisement=request.user.id).id
     try:
         pk_eta = Etablisment.objects.get(division__chef_div=pk).id
         if eta_id == pk_eta:
@@ -123,28 +111,45 @@ def who_can_see_profile(function):
             if not request.user.is_superuser:
                 if request.user.id == pk:
                     return function(request,pk)
-                if is_chef_eta(request):
+                if is_chef_eta(request.user):
                     if is_profile_in_your_eta(request,pk):
                         return function(request,pk)
-                    raise Http404("you don't have access")
+                    raise Http404("you don't have access chef eta")
                         # HttpResponse("the user you requested is out of your div")
-                if is_chef_div(request):
+                if is_chef_div(request.user):
                     if is_profile_in_your_div(request,pk):
                         return function(request,pk)
                     raise Http404("you don't have access")
                         # HttpResponse("this user out of your division ")
-                if is_chef_equipe(request):
+                if is_chef_equipe(request.user):
                     if is_profile_in_your_equipe(request,pk):
                         return function(request,pk)
                     raise Http404("you don't have access")
                         # HttpResponse("this user out of your equipe ")
-                raise Http404("you don't have access")
-                # HttpResponse('you arent a part of any etablisement or div or equipe')
+                ds = request.user.id == pk
+                raise Http404("you don't have access member"+str(type(request.user.id))+str(type(pk))+str(ds))
             return function(request,pk)
     return wrapper    
+
 def only_chef_eta():
     pass
-    
+
+def redirect_logged_in_user(func):
+    def wrapper(request):
+        if request.user.is_authenticated:
+            if request.user.is_superuser :
+                return redirect('org-carte')
+            if is_chef_eta(request.user):
+                return redirect('eta-dash')
+            if is_chef_div(request.user):
+                return redirect('div-dash')
+            if is_chef_equipe(request.user):
+                return redirect('equipe-dash')
+            if user_role(request) == 'membre':
+                return redirect("researcher_profile",pk =request.user.id)
+        else:
+            return func(request)
+    return wrapper    
     
     
     

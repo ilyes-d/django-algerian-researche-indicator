@@ -6,6 +6,8 @@
 
 {% block content %}
 
+{{rs_citations}}
+
 <div class="page-header">
     <div class="row align-items-center">
       <div class="col">
@@ -225,7 +227,8 @@
             ],
             borderColor: '#3ca0fe',
             maxBarThickness: 30,
-        },{
+        },
+        {
             type :'bar',
             label:'ok',
             data:[{% for key,value in equipe_articles.per_year.items %}{{value.citations}},{%endfor%}],

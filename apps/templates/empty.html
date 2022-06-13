@@ -1,7 +1,49 @@
+{%load tag%}
+{% block content %}
 <br>
-
+{%comment%}
 this is the first_name changed
 {{first_name}}
 <br>
 this is the user 
 {{userd}}
+{%endcomment%}
+
+{{user|eta_id}}
+
+<form method="get" id="equipe-form">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+  </form>
+  <ul>
+  {% for equipe in filter.qs %}
+    <li>{{ equipe.nom }} </li>
+  {% endfor %}
+  </ul>
+{% endblock content %}
+
+{% block javascripts %}
+<script>
+$(document).ready(function(){
+    console.log("worked ");    
+    $.ajax({
+        url:"{% url 'members' %}",
+        type:"GET",
+        dataType: "json",
+        success: (data) => {
+            console.log(data);
+        },
+        error:(error) => {
+            console.log(error)
+        }
+    })
+})
+
+$("#equipe-form").submit(function (e){
+    //e.preventDefault();
+    //var serializedData = $(this).serialize();
+    console.log("worked ");
+});
+
+</script>
+{% endblock javascripts %}  
