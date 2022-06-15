@@ -67,9 +67,7 @@ def graph_articles(gs_id):
                 if article["year"]:
                     year = article["year"]
                     value = article["cited_by"]["value"]
-                    print(graph_article["publications"])
                     if year in graph_article["publications"]:
-                        print("dkhal year")
                         graph_article["publications"][year]["nbr_pub"] += 1
                         if value is not None:
                             graph_article["publications"][year]["citations"] += article["cited_by"]["value"]
@@ -82,7 +80,6 @@ def graph_articles(gs_id):
                         graph_article["publications"][year]["nbr_pub"]= 1
                 nbr_total +=1 
             if "serpapi_pagination" in researcher:
-                print("ok")
                 start += 100
                 researcher = serpapi_author_v2(gs_id,start)
                 articles = researcher["articles"]
@@ -114,7 +111,7 @@ def query_all_etablisements():
 def query_all_divs():
     div_info = {}
     for div in Division.objects.all():
-        div_info[div.__str__()] = {
+        div_info[div] = {
             "chef_div":div.chef_div.__str__(),
             "etablisement":Etablisment.objects.get(division=div.id).__str__(),
             "nbr_equipes":Equipe.objects.filter(division=div.id).count(),
@@ -153,6 +150,21 @@ def all_etas_citations():
 
 
 
+def article_chers_per_year(chers):
+    articles_per_year = {
+        "citations":[
+            {"year": 2015, "articles": 0},
+            {"year": 2016, "articles": 0},
+            {"year": 2017, "articles": 0},
+            {"year": 2018, "articles": 0},
+            {"year": 2019, "articles": 0},
+            {"year": 2020, "articles": 0},
+            {"year": 2021, "articles": 0},
+            {"year": 2022, "articles": 0},
+        ],
+        "citations_total" : 0,
+    }
+    
 
 
 
@@ -201,6 +213,7 @@ def citations_researchers_8years(researchers):
         if not top_researcher == None:
             citations_per_year["top_researcher"] = top_researcher
     return citations_per_year
+
 
 def researchers_citations(researchers):
     context = []

@@ -255,12 +255,16 @@ def redirect_users_after_login(request):
         return redirect('eta-dash' , eta_id=eta.id)
     except Etablisment.DoesNotExist:
         eta=None
-    # if Etablisment.objects.filter(chef_etablisement__id=request.user.id):
-        # return redirect('eta-dash-pk' , pk=1)
-    if Division.objects.filter(chef_div__id=request.user.id):
-        return redirect('div-dash')
-    if Equipe.objects.filter(chef_equipe__id=request.user.id):
-        return redirect('equipe-dash')
+    try:
+       div = Division.objects.get(chef_div__id=request.user.id)
+       return redirect('div-dash' , div_id=div.id)
+    except Division.DoesNotExist:
+        div = None
+    try:
+        equipe = Equipe.objects.get(chef_equipe__id=request.user.id).id
+        return redirect('equipe-dash' , equ_id=equipe)
+    except:
+        equipe = None
     return "membre"
 
 

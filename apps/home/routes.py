@@ -23,7 +23,7 @@ urlpatterns = [
         path('chercheurs/chef-equ/liste/', org.org_chef_equ_liste, name="org-chefequ-liste"),
         
         path('etablisement=<int:eta_id>/dashboard/',eta.eta_dash  , name="org-etas-dash"),
-        path('divisions/dashboard/', org.org_divs_dash, name ="org-divs-dash"),
+        path('division=<int:div_id>/dashboard/',div.div_dash , name ="org-div-dash"),
         path('equipes/dashboard/', org.org_equipes_dash , name = "org-equipes-dash"),
     ])),
     
@@ -38,24 +38,24 @@ urlpatterns = [
 
 
     path('etablisement=<int:eta_id>/' ,include([
-        
-        # path('divisions/dash/' , eta.eta_divs_dash  , name='divisions-of-etablisement'),
-        # path('equipes/dashboard/',eta.eta_equipes_dash  , name='eta-equipes-dash'),
-        # path('chercheurs/card/' , eta.eta_chers_dash  , name='eta-chers-liste'),
-        
-        # path('chercheurs/card/' , eta.Liste_cher_Eta_aff_list  , name='chercheur-list-'),
-        
         path('dashboard/' , eta.eta_dash  , name='eta-dash'),
         path('divisions/liste/' , eta.eta_divs_liste , name='eta-divs-liste'),
+        
+        # """
+        path('divisions/dash/' , eta.eta_divs_dash  , name='divisions-of-etablisement'),
+        path('equipes/dashboard/',eta.eta_equipes_dash  , name='eta-equipes-dash'),
+        path('chercheurs/card/' , eta.eta_chers_dash  , name='eta-chers-liste'),
+        
+        path('chercheurs/card/' , eta.Liste_cher_Eta_aff_list  , name='chercheur-list-'),
+        path('equipes/liste/',eta.eta_equipes_liste  ,    name='eta-equipes-liste'),
+        path('members/' , eta.Liste_cher_Eta_aff_list  , name='eta-members-liste'),
+        path('chef-divs/' , eta.Liste_cher_Eta_aff_list  , name='eta-chefdivs-liste'),
+        path('chef-equipes/' , eta.eta_chers_liste, name='eta-chefequ-liste'),
+        # """
      ])),
     
-    path('equipes/liste/',eta.eta_equipes_liste  ,    name='eta-equipes-liste'),
-    path('members/' , eta.Liste_cher_Eta_aff_list  , name='eta-members-liste'),
-    path('chef-divs/' , eta.Liste_cher_Eta_aff_list  , name='eta-chefdivs-liste'),
-    path('chef-equipes/' , eta.eta_chers_liste, name='eta-chefequ-liste'),
-    
     # chef division
-    path('division/' ,include([   
+    path('division=<int:div_id>/' ,include([   
         path('dashboard/' , div.div_dash  , name='div-dash'),
         path('equipes/liste/' ,div.div_equipe_liste  , name='div-equipes-liste'),
         path('members/',div.div_chers_liste_card , name='div-members-liste'),
@@ -64,7 +64,7 @@ urlpatterns = [
     ])),
     
     #  chef equipe
-    path('equipe/' ,include([    
+    path('equipe=<int:equ_id>/' ,include([    
         path('dashboard/' , equipe.equipe_dash , name='equipe-dash'),
         path('members/' , equipe.equipe_chers_dash, name='equipe-chers-liste'),
         

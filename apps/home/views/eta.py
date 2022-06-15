@@ -22,11 +22,12 @@ def eta_dash(request,eta_id):
     context["nbr_equipes"] = eta_equipes(eta_id).count()
     context["nbr_chers"] = eta_chers(eta_id).count()
     context["citations"] = eta_chers(eta_id).aggregate(Sum("citations"))["citations__sum"]
+    context["articles"] = eta_chers(eta_id).aggregate(Sum("nbr_pubs"))["nbr_pubs__sum"]
     context["eta_divs_citations"] = eta_divs_citations(eta_id)
     context["citations_total_8year"] = citations_researchers_8years(eta_chers(eta_id))
-    context["chers5_citations"]=  top_10_researchers_citations_eta(eta_id)
-    context["chers5_hindex"] = top_10_researchers_hindex_eta(eta_id)
-    context["chers5_i10index"] = top_10_researchers_i10_index_eta(eta_id)
+    context["chers5_citations"]=  top_5_researchers_citations(eta_chers(eta_id))
+    context["chers5_hindex"] = top_5_researchers_hindex(eta_chers(eta_id))
+    context["chers5_i10index"] = top_5_researchers_i10_index(eta_chers(eta_id))
     # context["graph_"]
     # context = Dash_Eta_calc(get_etablisement_id(request))
     return render (request,'home/eta/eta-dash.html',context)
