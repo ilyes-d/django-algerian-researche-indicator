@@ -6651,7 +6651,7 @@ textarea.form-control-lg {
     .bs-tooltip-end .tooltip-arrow::before, .bs-tooltip-auto[data-popper-placement^="right"] .tooltip-arrow::before {
       right: -1px;
       border-width: 0.4rem 0.4rem 0.4rem 0;
-      border-right-color: #1F2937; }
+      border-right-color: #3ca0fe; }
 
 .bs-tooltip-bottom, .bs-tooltip-auto[data-popper-placement^="bottom"] {
   padding: 0.4rem 0; }
@@ -6679,6 +6679,7 @@ textarea.form-control-lg {
   color: #ffffff;
   text-align: center;
   background-color: #1F2937;
+  background-color: #3ca0fe;
   border-radius: 0.5rem; }
 
 .popover {

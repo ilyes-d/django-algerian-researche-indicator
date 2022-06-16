@@ -74,7 +74,11 @@
                     {%for eta,value in etablisements.items %}
                     <tr>
                         <td class=" border-0 rounded-start">
-                            <a href="{%url 'eta-dash' eta_id=eta.id %}">{{eta}}</a>
+                            {% comment %} <button type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="right" title="Tooltip on right">
+                                Tooltip on right
+                            </button> {% endcomment %}
+                            <a href="{%url 'eta-dash' eta_id=eta.id %}" data-bs-toggle="tooltip" data-bs-placement="right" title="{{eta.long_nom}}">{{eta}}</a>
+
                         </td>
                         <td>
                             {{value.chef_eta}}
