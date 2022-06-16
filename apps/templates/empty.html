@@ -1,3 +1,6 @@
+{% extends "layouts/base.html" %} 
+{%load static%} 
+
 {%load tag%}
 {% block content %}
 <br>
@@ -20,6 +23,9 @@ this is the user
     <li>{{ equipe.nom }} </li>
   {% endfor %}
   </ul>
+
+
+  <div >this is my name : <span id="name"></span> </div>
 {% endblock content %}
 
 {% block javascripts %}
@@ -32,6 +38,7 @@ $(document).ready(function(){
         dataType: "json",
         success: (data) => {
             console.log(data);
+            document.getElementById('name').innerHTML = data.nom
         },
         error:(error) => {
             console.log(error)

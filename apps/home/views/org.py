@@ -5,6 +5,7 @@ from apps.home.views.functions import *
 from ..decorators import *
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import *
+from django.db.models import *
 
 
 def refrech_database(request):
@@ -24,6 +25,7 @@ def org_carte(request):
     context["nbr_divisions"] = Division.objects.filter().count()
     context["nbr_equipes"] = Equipe.objects.filter().count()
     context["nbr_researchers"] = Researcher.objects.filter().count()
+    context["total_articles"] = Researcher.objects.all().aggregate(Sum("nbr_pubs"))["nbr_pubs__sum"]
     context["wilaya_etas"] = wilaya_dash()
     context["total_citations_graph"]= final_8years_citations_all_etas()
     total_citations = []

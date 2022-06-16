@@ -48,9 +48,4 @@ def etablisement_list(request):
 
 
 
-class EquipeFiter(django_filters.FilterSet):
-    nom = django_filters.CharFilter(lookup_expr='icontains')
-    class Meta :
-        model = Equipe
-        fields = ['nom']
         

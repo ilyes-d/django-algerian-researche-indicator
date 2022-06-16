@@ -4,9 +4,12 @@
 
 {%block stylesheets%}
 <style>
+  [data-ac-wrapper-id="70"]{
+    visibility : hidden;
+  }
   #container-table {
     width: 100%;
-    height: 80vh;
+    height: 100vh;
     margin: 0;
     padding: 0;
   }
@@ -196,7 +199,7 @@
                 <div class="col-12 col-xl-7 px-xl-0">
                     <div class="d-none d-sm-block">
                         <h2 class="h6 text-gray-400 mb-0">Citations</h2>
-                        <h3 class="fw-extrabold mb-2">{{citations}}16000</h3>
+                        <h3 class="fw-extrabold mb-2" id="nbr-citations">{{total_citations_graph.citations_total}}</h3>
                     </div>
                 </div>
             </div>
@@ -215,7 +218,7 @@
                 <div class="col-12 col-xl-7 px-xl-0">
                     <div class="d-none d-sm-block">
                         <h2 class="h6 text-gray-400 mb-0">Articles</h2>
-                        <h3 class="fw-extrabold mb-2">{{articles}}1209</h3>
+                        <h3 class="fw-extrabold mb-2" id="nbr-articles">{{total_articles}}</h3>
                     </div>
                 </div>
             </div>
@@ -240,284 +243,286 @@
         </div>
         <div id="container-table">
           <div class="toggle-label">
-            <input type="checkbox" name="toggle-label" id="toggleLabels" onclick="toggleLabels()">Toggle labels</div>
+            <input type="checkbox" name="toggle-label" id="toggleLabels" onclick="toggleLabels()">Voir Wilaya Labels</div>
           {% comment %} <button class="toogle-label" onclick='toggleLabels()'>toggle labels</button> {% endcomment %}
         </div>
         </div>
       </div>
     </div>
 </div>
+
+{{total_citations_graph}}
 {% endblock content %} 
 
 {% block javascripts %}
+<script src="{% static 'geomap/js/anychart-base.min.js' %}" ></script>
+<script src="{% static 'geomap/js/anychart-map.min.js' %}" ></script>
+<script src="{% static 'geomap/js/anychart-exports.min.js' %}"></script>
+<script src= "{% static 'geomap/js/anychart-circular-gauge.min.js'%}"></script>
+<script src= "{% static 'geomap/js/anychart-table.min.js'%}"></script>
+<script src= "{% static 'geomap/js/anychart-data-adapter.min.js'%}"></script>
+<script src="{% static 'geomap/js/anychart-ui.min.js' %}"></script> 
+<script src="{% static 'geomap/algeria/algeria.js' %}" ></script>
 <script>
   const nbrEtas = document.getElementById("nbr_etas")
   const nbrDivs = document.getElementById("nbr_divs")
   const nbrEquipes = document.getElementById("nbr_equipes")
   const nbrResearchers = document.getElementById("nbr_researchers")
+  const nbrArticles = document.getElementById("nbr-articles")
+  const nbrCitations = document.getElementById("nbr-citations")
+  const toggleLabels_id = document.getElementById("toggleLabels")
   const dataset = document.getElementById("dataset")
   const citations_data = {{total_citations|safe}};
-  const toggleLabels_id = document.getElementById("toggleLabels")
-  var showLabels =true
   function initdata(){
     nbrEtas.innerHTML = {{nbr_etablisements|safe}},
     nbrDivs.innerHTML = {{nbr_divisions|safe}},
     nbrEquipes.innerHTML = {{nbr_equipes|safe}}
     nbrResearchers.innerHTML = {{nbr_researchers|safe}}
+    nbrCitations.innerHTML ={{total_citations_graph.citations_total}}
+    nbrArticles.innerHTML = {{total_articles}}
     dataset.innerHTML = "Total"
+  }
+  var regionsData =  {{wilaya_etas|safe}};
+  regionsData[01]["label"] =  {x: -30, y: 90, positionMode: "offset"}
+  regionsData[03]["label"] =  {x: 110, y: 80, positionMode: "offset"}
+  regionsData[05]["label"] =  {x: 30, y: 70, positionMode: "offset"}
+  regionsData[11]["label"] =  {x: 110, y: 70, positionMode: "offset"}
+  regionsData[15]["label"] =  {x: 0, y: 50, positionMode: "offset"}
+  regionsData[12]["label"] =  {x: -65, y: 70, positionMode: "offset"}
+  regionsData[21]["label"] =  {x: -95, y: 90, positionMode: "offset"}
+  regionsData[45]["label"] =  {x: -60, y: 70, positionMode: "offset"}
+  regionsData[30]["label"] =  {x: -40, y: 80, positionMode: "offset"}
+  regionsData[26]["label"] =  {x: -30, y: 85, positionMode: "offset"}
+  regionsData[34]["label"] =  {x: 15, y: 70, positionMode: "offset"}
+  regionsData[35]["label"] =  {x: 89, y: 70, positionMode: "offset"}
+  regionsData[22]["label"] =  {x: 80, y: 80, positionMode: "offset"}
+  regionsData[20]["label"] =  {x: 65, y: 80, positionMode: "offset"}
+  regionsData[17]["label"] =  {x: 55, y: 80, positionMode: "offset"}
+  regionsData[18]["label"] =  {x: 3, y: 40, positionMode: "offset"}
+  regionsData[40]["label"] =  {x: 89, y: 90, positionMode: "offset"}
+  regionsData[41]["label"] =  {x: -20, y: 70, positionMode: "offset"}
+  var selectedPoint;
+  var mapChart;
+  var revenueChart;
+  var totalShareChart;
+  var marketShareChart;
+  var drawMapChart = function () {
+    var map = anychart.map();
+    map.geoData(anychart.maps['algeria']);
+    //map.title().enabled(true).useHtml(true).text('<span style="color: #212121;">Données de recherche par wilaya</span>')
+      //.fontSize(18)
+      //.padding([15, 0, 15, 0]);
+    var s1 = map.choropleth();
+    //s1.labels(true);
+    
+    s1.geoIdField('id');
+    //map.labels(true)
+    s1.hovered().fill('#3ca0fe 0.6');
+    s1.selected().fill('#0b49e6');
+    s1.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
+    s1.hovered().fill('#3ca0fe');
+    s1.tooltip().title().fontSize(16);
+    s1.tooltip().titleFormat(function () {
+      return this.name;
+    });
+    s1.tooltip()
+      .useHtml(true)
+      .format(function () {
+        return (
+          '<span style="color:#fff">data:</span> $<br/>' +
+          '<span style="font-size: 12px; color: #d9d9d9">Etablisement: </span>' +
+          parseInt(this.value)+
+          "<br/>" +
+          '<span style="font-size: 12px; color: #d9d9d9">Nbr Divisions: </span>' +
+          parseInt(this.nbr_divs) +
+          "<br/>" +
+          '<span style="font-size: 12px; color: #d9d9d9">Nbr Equipes: </span>' +
+          parseInt(this.nbr_equipes)+
+          "<br/>" +
+          '<span style="font-size: 12px; color: #d9d9d9">Nbr Chercheurs: </span>' +
+          parseInt(this.nbr_researchers) 
+        );
+      });
+    map.padding(0, 30, 5, 0).margin(0);
+    map.getSeries(0).data(regionsData);
+    map.listen('pointsselect', function (e) {
+      selectedPoint = e.currentPoint;
+      if (selectedPoint) {
+        changeContents(selectedPoint.index);
+      }
+    });
+    var zoomController = anychart.ui.zoom();
+    zoomController.target(map);
+    zoomController.render();
+
+    
+    return map;
+  };
+
+  var drawRevenueChart = function (data) {
+    console.log(data)
+    var chart = anychart.column();
+    var series = chart.column(data);
+    chart.title().enabled(true).useHtml(true).padding([0, 0, 15, 0]);
+    chart.xAxis().title("Annees");
+    chart.yAxis().title("Nombre citaitons");
+    return chart 
+  };
+
+  function createSolidChart(max) {
+    var gauge = anychart.gauges.circular();
+    gauge.background(null);
+    gauge.fill(null);
+    gauge.stroke(null);
+    gauge.padding([30, 0, 0, 0]);
+    gauge.title().enabled(true).useHtml(true).padding([0, 0, 15, 0]);
+    var axis = gauge.axis().radius(70).width(1).fill(null);
+    axis
+      .scale()
+      .minimum(0)
+      .maximum(max)
+      .ticks({ interval: 1 })
+      .minorTicks({ interval: 1 });
+    axis.labels().enabled(false);
+    axis.ticks().enabled(false);
+    axis.minorTicks().enabled(false);
+    var stroke = '0.5 #e5e4e4';
+    gauge
+      .bar(0)
+      .dataIndex(0)
+      .radius(70)
+      .width(40)
+      .fill('#64b5f6')
+      .stroke(null)
+      .zIndex(5);
+    gauge
+      .bar(1)
+      .dataIndex(1)
+      .radius(70)
+      .width(40)
+      .fill('#F5F4F4')
+      .stroke(stroke)
+      .zIndex(4);
+    gauge
+      .label()
+      .text('')
+      .fontSize(20)
+      .hAlign('center')
+      .anchor('center')
+      .padding(0)
+      .zIndex(1);
+    return gauge;
+  }
+
+  var changeContents = function (index) {
+    var total_eta = regionsData[index].value/{{nbr_etablisements|safe}};
+    nbrEtas.innerHTML = regionsData[index].value
+    nbrDivs.innerHTML = regionsData[index].nbr_divs
+    nbrEquipes.innerHTML = regionsData[index].nbr_equipes
+    nbrResearchers.innerHTML = regionsData[index].nbr_researchers
+    nbrCitations.innerHTML = regionsData[index].wilaya_citations
+    nbrArticles.innerHTML = regionsData[index].wilaya_articles
+    dataset.innerHTML = Object.values(regionsData[index])[0]
+    
+    console.log(Object.values(regionsData[index])[0])
+    console.log(regionsData[index])
+    
+    totalShareChart.data([regionsData[index].value,{{nbr_etablisements|safe}}]);
+    totalShareChart.label().text((total_eta*100).toFixed(2) + '%');
+    totalShareChart.title().text(
+        'Nombre d\'etablisements dans <br/><span style="color: #212121; text-decoration: underline">' +
+          Object.values(regionsData[index])[0] +
+        '</span> par rapport au pays'
+      );
+    var total_citations = {{total_citations_graph.citations_total|safe}}
+    var wilaya_citations = regionsData[index].wilaya_citations
+    var per = wilaya_citations == 0 ? 0 : wilaya_citations/total_citations*100;
+    marketShareChart.data([wilaya_citations,total_citations]);
+    console.log(per)
+    marketShareChart
+      .label()
+      .text((per).toFixed(2) + '%');
+    marketShareChart
+      .title()
+      .text(
+        'Nombre de citations dans <br/><span style="color: #212121; text-decoration: underline">' +
+          Object.values(regionsData[index])[0] +
+        '</span> par rapport au pays'
+      );
+    revenueChart
+      .title()
+      .text(
+        'Nombre de citations par année dans la wilaya <span style="color: #212121; text-decoration: underline">' +
+          Object.values(regionsData[index])[0] +
+        '</span>'
+      );
+      revenueChart.data(regionsData[index].citations_total_8year)
+  };
+    
+  mapChart = drawMapChart();
+  revenueChart = drawRevenueChart(citations_data);
+  totalShareChart = createSolidChart({{nbr_etablisements|safe}});
+  marketShareChart = createSolidChart({{total_citations_graph.citations_total|safe}});
+    
+  function fillInMainTable(flag) {
+    if (flag === 'wide') {
+      layoutTable.contents(
+        [
+          [mapChart, revenueChart, null],
+          [null, totalShareChart, marketShareChart]
+        ],
+        true
+      );
+      layoutTable.getCell(0, 1).colSpan(2);
+      layoutTable.getCell(0, 0).rowSpan(3);
+      layoutTable.getCol(0).width('50%');
+      layoutTable.getRow(0).height(null);
+    } else {
+      layoutTable.contents(
+        [
+          [mapChart, null],
+          [totalShareChart, marketShareChart],
+          [revenueChart, null],
+        ],
+        true
+      );
+      layoutTable.getCell(0, 0).colSpan(2);
+      layoutTable.getCell(1, 0).colSpan(2);
+      layoutTable.getCol(0).width(null);
+      layoutTable.getRow(0).height(400);
     }
-    function toggleLabels(){
-      if (toggleLabels_id.checked == false ){
-        console.log("false")
-        showLabels  = false
-        return false 
-      }
-      else{
-        console.log("true")
-        showLabels=true
-        return true
-      }
-      
+    layoutTable.draw();
+  }
+
+  var layoutTable = anychart.standalones.table();
+  layoutTable.cellBorder(null);
+  layoutTable.container('container-table');
+
+  if (window.innerWidth > 768) fillInMainTable('wide');
+  else {
+    fillInMainTable('slim');
+  }
+  //mapChart.getSeries(0).select(5);
+  //changeContents(5);
+  // On resize changing layout to mobile version or conversely
+  window.onresize = function () {
+    if (layoutTable.colsCount() === 2 && window.innerWidth > 767) {
+      fillInMainTable('wide');
+    } else if (
+      layoutTable.colsCount() === 3 &&
+      window.innerWidth <= 767
+    ) {
+      fillInMainTable('slim');
     }
-  
-      var regionsData =  {{wilaya_etas|safe}};
-      //console.log(regionsData)
-      if (showLabels){
-        regionsData[01]["label"] =  {x: -30, y: 90, positionMode: "offset"}
-        regionsData[03]["label"] =  {x: 110, y: 80, positionMode: "offset"}
-        regionsData[05]["label"] =  {x: 30, y: 70, positionMode: "offset"}
-        regionsData[11]["label"] =  {x: 110, y: 70, positionMode: "offset"}
-        regionsData[15]["label"] =  {x: 0, y: 50, positionMode: "offset"}
-        regionsData[12]["label"] =  {x: -65, y: 70, positionMode: "offset"}
-        regionsData[21]["label"] =  {x: -95, y: 90, positionMode: "offset"}
-        regionsData[45]["label"] =  {x: -60, y: 70, positionMode: "offset"}
-        regionsData[30]["label"] =  {x: -40, y: 80, positionMode: "offset"}
-        regionsData[26]["label"] =  {x: -30, y: 85, positionMode: "offset"}
-        regionsData[34]["label"] =  {x: 15, y: 70, positionMode: "offset"}
-        regionsData[35]["label"] =  {x: 89, y: 70, positionMode: "offset"}
-        regionsData[22]["label"] =  {x: 80, y: 80, positionMode: "offset"}
-        regionsData[20]["label"] =  {x: 65, y: 80, positionMode: "offset"}
-        regionsData[17]["label"] =  {x: 55, y: 80, positionMode: "offset"}
-        regionsData[18]["label"] =  {x: 3, y: 40, positionMode: "offset"}
-        regionsData[40]["label"] =  {x: 89, y: 90, positionMode: "offset"}
-        regionsData[41]["label"] =  {x: -20, y: 70, positionMode: "offset"}
-      }
-      var selectedPoint;
-      var mapChart;
-      var revenueChart;
-      var totalShareChart;
-      var marketShareChart;
-      var drawMapChart = function () {
-        var map = anychart.map();
-        //var zoomController = anychart.ui.zoom();
-        map.geoData(anychart.maps['algeria']);
-        map.title().enabled(true).useHtml(true).text('<span style="color: #212121;">Données de recherche par wilaya</span>')
-          .fontSize(18)
-          .padding([15, 0, 15, 0]);
-        var s1 = map.choropleth();
-        //s1.labels(true);
-        s1.geoIdField('id');
-        if(toggleLabels()){
-          console.log("kifah lhkaya")
-          map.labels(true)
-        }
-        else{
-          map.labels(false)
-        }
-        s1.hovered().fill('#3ca0fe 0.6');
-        s1.selected().fill('#0b49e6');
-        s1.colorScale(anychart.scales.linearColor('#deebf7', '#3182bd'));
-        s1.hovered().fill('#3ca0fe');
-        s1.tooltip().title().fontSize(16);
-        s1.tooltip().titleFormat(function () {
-          return this.name;
-        });
-        s1.tooltip()
-          .useHtml(true)
-          .format(function () {
-            return (
-              '<span style="color:#fff">data:</span> $<br/>' +
-              '<span style="font-size: 12px; color: #d9d9d9">Etablisement: </span>' +
-              parseInt(this.value)+
-              "<br/>" +
-              '<span style="font-size: 12px; color: #d9d9d9">Nbr Divisions: </span>' +
-              parseInt(this.nbr_divs) +
-              "<br/>" +
-              '<span style="font-size: 12px; color: #d9d9d9">Nbr Equipes: </span>' +
-              parseInt(this.nbr_equipes)+
-              "<br/>" +
-              '<span style="font-size: 12px; color: #d9d9d9">Nbr Chercheurs: </span>' +
-              parseInt(this.nbr_researchers) 
-            );
-          });
-        map.padding(0, 30, 5, 0).margin(0);
-        map.getSeries(0).data(regionsData);
-        map.listen('pointsselect', function (e) {
-          selectedPoint = e.currentPoint;
-          if (selectedPoint) {
-            changeContents(selectedPoint.index);
-          }
-        });
-        var zoomController = anychart.ui.zoom();
-        console.log(zoomController)
-        zoomController.target(map);
-        zoomController.render();
-        return map;
-      };
-
-      var drawRevenueChart = function (data) {
-        var chart = anychart.column();
-        var series = chart.column(data);
-        chart.title().enabled(true).useHtml(true).padding([0, 0, 15, 0]);
-        chart.xAxis().title("Annees");
-        chart.yAxis().title("Nombre citaitons");
-        return chart 
-      };
-
-      function createSolidChart(max) {
-        var gauge = anychart.gauges.circular();
-        gauge.background(null);
-        gauge.fill(null);
-        gauge.stroke(null);
-        gauge.padding([30, 0, 0, 0]);
-        gauge.title().enabled(true).useHtml(true).padding([0, 0, 15, 0]);
-        var axis = gauge.axis().radius(70).width(1).fill(null);
-        axis
-          .scale()
-          .minimum(0)
-          .maximum(max)
-          .ticks({ interval: 1 })
-          .minorTicks({ interval: 1 });
-        axis.labels().enabled(false);
-        axis.ticks().enabled(false);
-        axis.minorTicks().enabled(false);
-        var stroke = '0.5 #e5e4e4';
-        gauge
-          .bar(0)
-          .dataIndex(0)
-          .radius(70)
-          .width(40)
-          .fill('#64b5f6')
-          .stroke(null)
-          .zIndex(5);
-        gauge
-          .bar(1)
-          .dataIndex(1)
-          .radius(70)
-          .width(40)
-          .fill('#F5F4F4')
-          .stroke(stroke)
-          .zIndex(4);
-        gauge
-          .label()
-          .text('')
-          .fontSize(20)
-          .hAlign('center')
-          .anchor('center')
-          .padding(0)
-          .zIndex(1);
-        return gauge;
-      }
-
-      var changeContents = function (index) {
-        var total_eta = regionsData[index].value/{{nbr_etablisements|safe}};
-        nbrEtas.innerHTML = regionsData[index].value
-        nbrDivs.innerHTML = regionsData[index].nbr_divs
-        nbrEquipes.innerHTML = regionsData[index].nbr_equipes
-        nbrResearchers.innerHTML = regionsData[index].nbr_researchers
-        dataset.innerHTML = Object.values(regionsData[index])[0]
-        
-        console.log(Object.values(regionsData[index])[0])
-        console.log(regionsData[index])
-        
-        totalShareChart.data([regionsData[index].value,{{nbr_etablisements|safe}}]);
-        totalShareChart.label().text((total_eta*100).toFixed(2) + '%');
-        totalShareChart.title().text(
-            'Nombre d\'etablisements dans <br/><span style="color: #212121; text-decoration: underline">' +
-              Object.values(regionsData[index])[0] +
-            '</span> par rapport au pays'
-          );
-        var total_citations = {{total_citations_graph.citations_total|safe}}
-        var wilaya_citations = regionsData[index].wilaya_citations
-        var per = wilaya_citations == 0 ? 0 : wilaya_citations/total_citations*100;
-        marketShareChart.data([wilaya_citations,total_citations]);
-        console.log(per)
-        marketShareChart
-          .label()
-          .text((per).toFixed(2) + '%');
-        marketShareChart
-          .title()
-          .text(
-            'Nombre de citations dans <br/><span style="color: #212121; text-decoration: underline">' +
-              Object.values(regionsData[index])[0] +
-            '</span> par rapport au pays'
-          );
-        revenueChart
-          .title()
-          .text(
-            'Nombre de citations par année dans la wilaya <span style="color: #212121; text-decoration: underline">' +
-              Object.values(regionsData[index])[0] +
-            '</span>'
-          );
-          revenueChart.data(regionsData[index].citations_total_8year)
-      };
-      
-      mapChart = drawMapChart();
-      revenueChart = drawRevenueChart(citations_data);
-      totalShareChart = createSolidChart({{nbr_etablisements|safe}});
-      marketShareChart = createSolidChart({{total_citations_graph.citations_total|safe}});
-      
-      function fillInMainTable(flag) {
-        if (flag === 'wide') {
-          layoutTable.contents(
-            [
-              [mapChart, revenueChart, null],
-              [null, totalShareChart, marketShareChart]
-            ],
-            true
-          );
-          layoutTable.getCell(0, 1).colSpan(2);
-          layoutTable.getCell(0, 0).rowSpan(3);
-          layoutTable.getCol(0).width('50%');
-          layoutTable.getRow(0).height(null);
-        } else {
-          layoutTable.contents(
-            [
-              [mapChart, null],
-              [totalShareChart, marketShareChart],
-              [revenueChart, null],
-            ],
-            true
-          );
-          layoutTable.getCell(0, 0).colSpan(2);
-          layoutTable.getCell(1, 0).colSpan(2);
-          layoutTable.getCol(0).width(null);
-          layoutTable.getRow(0).height(400);
-        }
-        layoutTable.draw();
-      }
-
-      var layoutTable = anychart.standalones.table();
-      layoutTable.cellBorder(null);
-      layoutTable.container('container-table');
-
-      if (window.innerWidth > 768) fillInMainTable('wide');
-      else {
-        fillInMainTable('slim');
-      }
-
-      //mapChart.getSeries(0).select(5);
-      //changeContents(5);
-      // On resize changing layout to mobile version or conversely
-      window.onresize = function () {
-        if (layoutTable.colsCount() === 2 && window.innerWidth > 767) {
-          fillInMainTable('wide');
-        } else if (
-          layoutTable.colsCount() === 3 &&
-          window.innerWidth <= 767
-        ) {
-          fillInMainTable('slim');
-        }
-      };
+  };
+  const labelsData = document.querySelector('[data-ac-wrapper-id="70"]')
+  function toggleLabels(){
+    if (toggleLabels_id.checked == true){
+      labelsData.style.visibility = 'visible'
+    }
+    else {
+      labelsData.style.visibility = 'hidden'
+    }
+  }
 </script>
 {% endblock javascripts %}

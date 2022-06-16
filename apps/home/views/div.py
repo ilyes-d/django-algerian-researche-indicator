@@ -76,7 +76,4 @@ def div_equipe_dashboard(request):
     context = {}
     return render(request,'home/',context)
     
-def search(request):
-    equipe_list = Equipe.objects.all()
-    equipe_filter = EquipeFiter(request.GET , queryset=equipe_list)
-    return render(request , 'empty.html',{'filter':equipe_filter})
+

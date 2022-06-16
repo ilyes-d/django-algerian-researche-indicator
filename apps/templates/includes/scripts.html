@@ -20,7 +20,7 @@
 <script src="{{ ASSETS_ROOT }}/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
 <!-- Moment JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> {% endcomment %}
 
 <!-- Vanilla JS Datepicker -->
 <script src="{{ ASSETS_ROOT }}/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
@@ -63,11 +63,17 @@
 <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script> {% endcomment %}
 
 
+
+{% comment %} <script src="https://cdn.anychart.com/releases/v8/js/anychart-circular-gauge.min.js"></script> {% endcomment %}
+{% comment %} <script src="https://cdn.anychart.com/releases/v8/js/anychart-table.min.js"></script> {% endcomment %}
+{% comment %} <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script> {% endcomment %}
+
+
 <script src="{% static 'geomap/js/anychart-base.min.js' %}" ></script>
 <script src="{% static 'geomap/js/anychart-map.min.js' %}" ></script>
 <script src="{% static 'geomap/js/anychart-exports.min.js' %}"></script>
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-circular-gauge.min.js"></script>
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-table.min.js"></script>
-<script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script>
+<script src= "{% static 'geomap/js/anychart-circular-gauge.min.js'%}"></script>
+<script src= "{% static 'geomap/js/anychart-table.min.js'%}"></script>
+<script src= "{% static 'geomap/js/anychart-data-adapter.min.js'%}"></script>
 <script src="{% static 'geomap/js/anychart-ui.min.js' %}"></script> 
 <script src="{% static 'geomap/algeria/algeria.js' %}" ></script>

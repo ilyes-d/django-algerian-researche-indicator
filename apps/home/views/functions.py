@@ -6,6 +6,7 @@ from dotenv import *
 from  django.shortcuts import *
 from .queries import *
 import os
+from django.db.models import *
 
 load_dotenv()
 api_key = os.getenv("api_key")
@@ -344,7 +345,18 @@ def wilaya_dash():
         wilaya["nbr_researchers"] = etas['nbr_researchers']
         wilaya_researchers  = Researcher.objects.filter(Q(etablisment__location=wilaya_nbr)| Q(division__etablisment__location=wilaya_nbr)| Q(equipe__division__etablisment__location=wilaya_nbr)) 
         
-        wilaya["wilaya_citations"] = citations_researchers_8years(wilaya_researchers)["citations_total"]
+        # wilaya["wilaya_citations"] = citations_researchers_8years(wilaya_researchers)["citations_total"]
+        wilaya_citations=Researcher.objects.filter(etablisment__location=wilaya_nbr).aggregate(Sum("citations"))["citations__sum"]
+        if wilaya_citations == None:
+            wilaya['wilaya_citations'] = 0
+        else:
+            wilaya['wilaya_citations'] = wilaya_citations
+        wilaya_articles = Researcher.objects.filter(etablisment__location=wilaya_nbr).aggregate(Sum("nbr_pubs"))["nbr_pubs__sum"]
+        if wilaya_articles == None : 
+            wilaya['wilaya_articles'] = 0
+        else:
+            wilaya['wilaya_articles'] = wilaya_articles
+        
         citations_total_8year = []
         for citation_year in citations_researchers_8years(wilaya_researchers)["citations"]:
             wilaya_array = [str(citation_year["year"]),citation_year["citations"]]

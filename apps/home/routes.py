@@ -1,5 +1,5 @@
 from django.urls import path, include
-from apps.home.views import div, equipe, eta,filters,org,users
+from apps.home.views import div, equipe, eta,filters,org,users,trying
 from .views.users import *
 
 
@@ -27,9 +27,6 @@ urlpatterns = [
         path('equipes/dashboard/', org.org_equipes_dash , name = "org-equipes-dash"),
     ])),
     
-    path('try/', filters.etablisement_list),
-    path('filter/', div.search, name='search'),
-    path('members/',users.member , name='members'),
     
     path('eta=<int:pk>/',eta.dash_etablisemnts,name='eta-dash-pk'),
     
@@ -72,7 +69,14 @@ urlpatterns = [
     
     
     
-    path('profile/user=<int:pk>', researcher_profile , name='researcher_profile')
+    path('profile/user=<int:pk>', researcher_profile , name='researcher_profile'),
+    
+    
+    
+    
+    path('try/', filters.etablisement_list),
+    path('filter/',trying.search , name='search'),
+    path('members/',users.member , name='members'),
 ]
 
 
