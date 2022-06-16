@@ -34,3 +34,4 @@ apps/static/assets/.temp
 # .env
 .env
 data
+.vscode
