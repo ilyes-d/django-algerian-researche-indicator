@@ -102,8 +102,7 @@
                             {{value.nbr_chers}}
                         </td>
                         <td class="rounded-end">
-                            {% comment %} <a class="btn btn-pill btn-outline-info" href="{%url 'eta-id-dash' pk=2 %}">consulter</a> {% endcomment %}
-                            <a class="btn btn-pill btn-outline-info" href="">consulter</a>
+                            <a class="btn btn-pill btn-outline-info" href="{%url 'org-equipe-dash' equ_id=equipe.id %}">consulter</a>
                         </td>
                     </tr>
                     {%endfor%}

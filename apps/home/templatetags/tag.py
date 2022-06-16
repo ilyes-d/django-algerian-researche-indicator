@@ -15,6 +15,7 @@ def user_role(user):
     if is_chef_equipe(user):
         return " ".join(["Chef Equipe",Equipe.objects.get(chef_equipe=user.id).nom])
     return " ".join(["membre de l'equipe",Equipe.objects.get(researcher=user.id).nom])
+
 @register.filter
 def chef_etablisement(user):
     if Etablisment.objects.filter(chef_etablisement__id=user.id):

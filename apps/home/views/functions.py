@@ -123,7 +123,7 @@ def query_all_divs():
 def query_all_equipes():
     equipe_info = {}
     for equipe in Equipe.objects.all():
-        equipe_info[equipe.__str__()] = {
+        equipe_info[equipe] = {
             "nom" : equipe.nom ,
             "chef_equipe" : equipe.chef_equipe.__str__(),
             "etablisement_associe" : Etablisment.objects.get(division__equipe=equipe.id),

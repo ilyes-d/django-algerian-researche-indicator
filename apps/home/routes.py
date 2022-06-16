@@ -24,15 +24,10 @@ urlpatterns = [
         
         path('etablisement=<int:eta_id>/dashboard/',eta.eta_dash  , name="org-etas-dash"),
         path('division=<int:div_id>/dashboard/',div.div_dash , name ="org-div-dash"),
-        path('equipes/dashboard/', org.org_equipes_dash , name = "org-equipes-dash"),
+        path('equipe=<int:equ_id>/dashboard/' , equipe.equipe_dash , name='org-equipe-dash'),
     ])),
-    
-    
+        
     path('eta=<int:pk>/',eta.dash_etablisemnts,name='eta-dash-pk'),
-    
-    
-
-
 
     path('etablisement=<int:eta_id>/' ,include([
         path('dashboard/' , eta.eta_dash  , name='eta-dash'),
@@ -61,21 +56,14 @@ urlpatterns = [
     ])),
     
     #  chef equipe
-    path('equipe=<int:equ_id>/' ,include([    
+    path('equipe=<int:equ_id>/' ,include([
         path('dashboard/' , equipe.equipe_dash , name='equipe-dash'),
         path('members/' , equipe.equipe_chers_dash, name='equipe-chers-liste'),
-        
      ])),    
-    
-    
-    
     path('profile/user=<int:pk>', researcher_profile , name='researcher_profile'),
-    
-    
-    
-    
+
     path('try/', filters.etablisement_list),
-    path('filter/',trying.search , name='search'),
+    path('filter/<int:div_id>',trying.search , name='search'),
     path('members/',users.member , name='members'),
 ]
 

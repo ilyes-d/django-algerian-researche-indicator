@@ -83,8 +83,8 @@
     </nav>
   </div>
 </div>
-
 <div class="container w-100">
+  {%if not user.is_superuser%}
   <div class="row">
     <div class="col me-2 ms-3 card mb-2">
       <div class="card-body">
@@ -92,7 +92,6 @@
           <div class="col mt-0">
             <h5 class="card-title-v2">Indice H</h5>
           </div>
-  
           <div class="col-auto">
             <div class="stat text-primary">
               <svg width="24px" height="24px" viewBox="-32 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 80v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48zm-112 48h-32c-8.837 0-16 7.163-16 16v80H160v-80c0-8.837-7.163-16-16-16h-32c-8.837 0-16 7.163-16 16v224c0 8.837 7.163 16 16 16h32c8.837 0 16-7.163 16-16v-80h128v80c0 8.837 7.163 16 16 16h32c8.837 0 16-7.163 16-16V144c0-8.837-7.163-16-16-16z"/></svg>
@@ -150,7 +149,7 @@
       </div>
     </div>
   </div>
-  
+  {%endif%}  
   <div class="row">
     <div class="col-lg-4">
       <div class="card mb-4">
@@ -204,7 +203,7 @@
             </div>
           </div>
           <hr>
-          
+          {%if not user.is_superuser %}
           <div class="row">
             <div class="col-sm-3">
               <p class="mb-0">Etablisement</p>
@@ -214,18 +213,28 @@
             </div>
           </div>
           <hr>
+          {%endif%}
           <div class="row">
             <div class="col-sm-3">
               <p class="mb-0">Role</p>
             </div>
+            {%if user.is_superuser%}
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">Admin</p>
+            </div>
+            {%else%}
             <div class="col-sm-9">
               <p class="text-muted mb-0">{{researcher|user_role}}</p>
             </div>
+            {%endif%}
           </div>
         </div>
       </div>
     </div>
   </div>
+  {%if user.is_superuser%}
+  super user meskin ma3ndo walo hhahahahah
+  {%else%}
   <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Nombre de citations par année</h6>
@@ -236,7 +245,7 @@
         </div>
     </div>
   </div>
-  {% comment %} pubs-graph {% endcomment %}
+  
   <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
         <h6 class="m-0 font-weight-bold text-primary">Nombre de publications par année</h6>
@@ -247,7 +256,9 @@
         </div>
     </div> 
   </div>
+  {%endif%}
 </div>
+
 <br>
 
 {% for key,value in researcher.graph_pub.items %}'{{key}}',{%endfor%}
