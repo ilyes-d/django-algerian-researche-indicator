@@ -17,10 +17,19 @@
       height: 100vh;
       overflow-y: scroll;
     }
-    
   </style>
   {% endblock stylesheets %}
-
+  <style>
+    .sorting_asc svg{
+      transform: rotate(180deg);
+    }
+  
+    #liste_filter,
+    #liste_info,
+    #liste_paginate{
+        display : none ;
+    }
+  </style>
 </head>
 <body>
   <nav id="sidebarMenu" class="sidebar d-lg-block text-white collapse" data-simplebar>
@@ -53,7 +62,9 @@
     
   </main>
   {% include 'includes/scripts.html' %}
-  {% block javascripts %}{% endblock javascripts %}
+  {% block javascripts %}
+
+  {% endblock javascripts %}
       
 </body>
 </html>

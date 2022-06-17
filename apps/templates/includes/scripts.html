@@ -77,3 +77,17 @@
 <script src= "{% static 'geomap/js/anychart-data-adapter.min.js'%}"></script>
 <script src="{% static 'geomap/js/anychart-ui.min.js' %}"></script>
 <script src="{% static 'geomap/algeria/algeria.js' %}" ></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#search-bar").on("keyup", function(){
+          console.log("fd")
+            var value = $(this).val().toLowerCase();
+            $("#liste tr").filter(function() {
+              
+                $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            });
+        });
+    });
+</script>

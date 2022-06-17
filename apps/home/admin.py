@@ -1,3 +1,4 @@
+from __future__ import division
 from django import forms
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
@@ -65,7 +66,7 @@ class UserAdmin(BaseUserAdmin):
     list_display = ('__str__', 'email', 'first_name', 'is_staff', 'last_name', 'speciality',
                     "h_index",
                     'grade', 'linkedin_account', 'google_scholar_account', 'equipe_researchers')
-    list_filter = ('is_staff',)
+    list_filter = ('is_staff','equipe_researchers','etablisment')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name', 'speciality',
@@ -86,8 +87,43 @@ class UserAdmin(BaseUserAdmin):
     ordering = ('date_joined',)
 
 
+
+class DivisionInline(admin.StackedInline):
+    model = Division
+    extra = 0
+    
+class EtablisementAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None,          {'fields':['nom','site_web']}),
+        ('relationship', {'fields': ['location','chef_etablisement']}),
+    ]
+    inlines = [DivisionInline]
+
+
+class EquipeInline(admin.StackedInline):
+    model= Equipe
+    extra =1 
+
+class ResearcherInline(admin.TabularInline):
+    model = Researcher
+    extra = 0
+
+class EquipeAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None,          {'fields':['nom','site_web']}),
+        ('relationship', {'fields': ['division','chef_equipe']}),
+    ]
+    inlines = [ResearcherInline]
+class DivisionAdmin(admin.ModelAdmin):
+    fieldsets = [
+        (None,          {'fields':['nom','site_web']}),
+        ('relationship', {'fields': ['etablisment','chef_div']}),
+    ]
+    inlines = [EquipeInline]
+    
+
+admin.site.register(Division,DivisionAdmin),
 admin.site.register(Researcher, UserAdmin),
 admin.site.register(Location),
-admin.site.register(Etablisment),
-admin.site.register(Division),
-admin.site.register(Equipe),
+admin.site.register(Etablisment,EtablisementAdmin),
+admin.site.register(Equipe,EquipeAdmin),

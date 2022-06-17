@@ -63,7 +63,8 @@ urlpatterns = [
     path('profile/user=<int:pk>', researcher_profile , name='researcher_profile'),
 
     path('try/', filters.etablisement_list),
-    path('filter/<int:div_id>',trying.search , name='search'),
+    # path('filter/<int:div_id>',trying.search , name='search'),
+    path('filter/',trying.search , name='search'),
     path('members/',users.member , name='members'),
 ]
 

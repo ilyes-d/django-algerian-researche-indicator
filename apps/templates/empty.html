@@ -1,5 +1,5 @@
-{% extends "layouts/base.html" %} 
-{%load static%} 
+{% comment %} {% extends "layouts/base.html" %}  {% endcomment %}
+{% comment %} {%load static%}  {% endcomment %}
 
 {%load tag%}
 {% block content %}
@@ -11,6 +11,7 @@ this is the first_name changed
 this is the user 
 {{userd}}
 {%endcomment%}
+{{eta}}
 
 {{user|eta_id}}
 
@@ -19,10 +20,21 @@ this is the user
     <button type="submit">Search</button>
   </form>
   <ul>
-  {% for equipe in filter.qs %}
-    <li>{{ equipe.nom }} </li>
-    <li>{{ equipe.citations }} </li>
+  {% for cher in filter.qs %}
+    <li>{{ cher }} </li>
+    <li>{{ cher.citations }} </li>
   {% endfor %}
+  
+  <br>
+  <br>
+  <br>
+  <h1>All researchers</h1>
+  {% for cher in researchers %}
+    <li>{{ cher }} </li>
+    <li>{{ cher.citations }} </li>
+  {% endfor %}
+
+
   </ul>
 
 

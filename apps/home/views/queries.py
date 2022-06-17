@@ -3,6 +3,11 @@ from django.db.models import Q,F
 
 from ..models import *
 
+# org 
+def members():
+    return Researcher.objects.filter(equipe_researchers__isnull=False)
+    
+    
 
 # etablisement
 def eta_divs(eta_id):

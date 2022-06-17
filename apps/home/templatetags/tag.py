@@ -1,20 +1,38 @@
 from atexit import register
 from django import template
+from apps.home.admin import EtablisementAdmin
 from apps.home.models import *
-from ..decorators import is_chef_div, is_chef_equipe, is_chef_eta
+# from ..decorators import is_chef_div, is_chef_equipe, is_chef_eta
+from ..views.is_cdt import *
 from django.db.models import *
 register = template.Library()
 
+@register.filter
+def get_item(dict,key):
+    return dict[key]
+
+@register.filter
+def cher_info(cher):
+    context = {}
+    context["eta"] = Etablisment.objects.get(division__equipe__researcher=cher.id)
+    context["equipe"] = Equipe.objects.get(researcher=cher.id)
+    context["div"] = Division.objects.get(equipe__researcher=cher.id)
+    return context
+    
 
 @register.filter
 def user_role(user):
+    roles = []
     if is_chef_eta(user):
-        return " ".join(["Chef Etablisement",Etablisment.objects.get(chef_etablisement=user.id).nom])
+        print("this is so boring")
+        roles.append(" ".join(["Chef Etablisement",Etablisment.objects.get(chef_etablisement=user.id).nom]))
     if is_chef_div(user):
-        return " ".join(["Chef Division",Division.objects.get(chef_div=user.id).nom])
+        roles.append(" ".join(["Chef Division",Division.objects.get(chef_div=user.id).nom]))
     if is_chef_equipe(user):
-        return " ".join(["Chef Equipe",Equipe.objects.get(chef_equipe=user.id).nom])
-    return " ".join(["membre de l'equipe",Equipe.objects.get(researcher=user.id).nom])
+        roles.append(" ".join(["Chef Equipe",Equipe.objects.get(chef_equipe=user.id).nom]))
+    if is_equipe_member(user):
+        roles.append(" ".join(["membre de l'equipe",Equipe.objects.get(researcher=user.id).nom]))
+    return ','.join(roles)
 
 @register.filter
 def chef_etablisement(user):
@@ -63,8 +81,22 @@ def count_percentage(total,value):
 
 
 @register.filter
-def get_eta(user):
-    print(user)
-    return Etablisment.objects.filter(Q(division__equipe__researcher=user.id) | Q(division__chef_div=user.id) | Q(chef_etablisement=user.id)|Q(division__equipe__chef_equipe=user.id))[0]
+def cher_eta(cher):
+    if is_chef_eta(cher):
+        return Etablisment.objects.get(chef_etablisement=cher.id)
+    elif is_equipe_member(cher):
+        return  Etablisment.objects.get(division__equipe__researcher=cher.id)
+
+@register.filter
+def cher_equipe(cher):
+    if is_chef_equipe(cher):
+        return Equipe.objects.get(chef_equipe=cher.id)
+    elif is_equipe_member(cher):
+        return Equipe.objects.get(researcher=cher.id)
+
+@register.filter
+def cher_div(cher):
+    if is_chef_div(cher):
+        return Division.objects.get(chef_division)
 
 

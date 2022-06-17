@@ -58,7 +58,7 @@
     role="list" id="submenu-chers" aria-expanded="false">
     <ul class="flex-column nav">
       <li class="nav-item {% if request.resolver_match.url_name == 'org-members-liste' %} active {% endif %}">
-        <a class="nav-link" href="{%url 'eta-members-liste' eta_id=user|eta_id%}">
+        <a class="nav-link" href="{%url 'eta-members-liste' eta_id=user|eta_id %}">
           <span class="sidebar-text">members</span>
         </a>
       </li>

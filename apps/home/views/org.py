@@ -6,7 +6,7 @@ from ..decorators import *
 from django.views.generic.list import ListView
 from django.contrib.auth.decorators import *
 from django.db.models import *
-
+from .queries import *
 
 def refrech_database(request):
     researchers_list = Researcher.objects.filter(Q(google_scholar_account__isnull=False))
@@ -72,7 +72,7 @@ def org_divs_dash(request):
 
 def org_divs_liste(request):
     context = {}
-    context["divisions"] = query_all_divs()
+    context["divisions"] = query_all_divs()    
     return render(request, 'home/org/org-divs-liste.html',context)
 
 def org_equipes_dash(request):
@@ -89,8 +89,8 @@ def org_chers_dash(request):
     return render(request , 'home/org/org-chers-dash.html',context)
 def org_members_liste(request):
     context = {}
-    # context["researchers"] = query_all_researchers()
-    return render(request , 'home/org/org-chers-liste.html', context)
+    context["researchers"] = members()
+    return render(request , 'home/org/org-members-liste.html', context)
 
 def org_chef_eta_liste(request):
     context = {}

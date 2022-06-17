@@ -24,6 +24,13 @@ def is_chef_equipe(user):
     except Equipe.DoesNotExist:
         return False
 
+def is_equipe_member(user):
+    try:
+        Equipe.objects.get(researcher=user.id)
+        return True
+    except Equipe.DoesNotExist:
+        return False
+    
 def is_profile_in_your_eta(request,pk):
     eta_id = Etablisment.objects.get(chef_etablisement=request.user.id).id
     try:
