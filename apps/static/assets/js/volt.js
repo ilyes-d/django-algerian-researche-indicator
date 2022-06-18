@@ -1,24 +1,8 @@
-/*
-
-=========================================================
-* Volt Pro - Premium Bootstrap 5 Dashboard
-=========================================================
-
-* Product Page: https://themesberg.com/product/admin-dashboard/volt-bootstrap-5-dashboard
-* Copyright 2021 Themesberg (https://www.themesberg.com)
-
-* Designed and coded by https://themesberg.com
-
-=========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. Please contact us to request a removal. Contact us if you want to remove it.
-
-*/
-
 "use strict";
 const d = document;
 d.addEventListener("DOMContentLoaded", function(event) {
-
+    
+    console.log("always");
     const swalWithBootstrapButtons = Swal.mixin({
         customClass: {
             confirmButton: 'btn btn-primary me-3',
@@ -68,6 +52,7 @@ d.addEventListener("DOMContentLoaded", function(event) {
     };
 
     var sidebar = document.getElementById('sidebarMenu')
+    
     if(sidebar && d.body.clientWidth < breakpoints.lg) {
         sidebar.addEventListener('shown.bs.collapse', function () {
             document.querySelector('body').style.position = 'fixed';
@@ -353,5 +338,4 @@ d.addEventListener("DOMContentLoaded", function(event) {
             }
         });
     }
-
 });

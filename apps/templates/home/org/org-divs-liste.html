@@ -1,5 +1,19 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
+<div class="page-header">
+    <div class="row align-items-center">
+      <div class="col">
+    
+        <h3>Liste des établissements dans le territoire national<br></h3>
+    </h3>
+    <ul class="breadcrumb">
+      <li class="breadcrumb-item"><a href="index.html">Etablisment</a></li>
+      <li class="breadcrumb-item active">Tableau de Bord</li>
+    </ul>
+     </div>
+    </div>
+</div>
+
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
@@ -49,14 +63,15 @@
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
-            <table class="table table-centered table-nowrap mb-0 rounded">
-                <thead class="thead-light">
+            <table class="table table-centered table-nowrap mb-0 rounded align-middle   ">
+                <thead class="thead-light align-middle">
                     <tr>
                         <th class="border-0 rounded-start">Nom de Division</th>
                         <th class="border-0">Directeur</th>
                         <th class="border-0">Etablisement assosie</th>
                         <th class="border-0">Nbr Equipe</th>
-                        <th class="border-0 rounded-end">Nbr Chercheurs</th>
+                        <th class="border-0 ">Nbr Chercheurs</th>
+                        <th class="border-0 rounded-end">Tableau de Bord</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -74,8 +89,11 @@
                         <td>
                             {{value.nbr_equipes}}
                         </td>
-                        <td class="h-12 rounded-end">
+                        <td class="h-12">
                             {{value.nbr_chers}}
+                        </td>
+                        <td class="rounded-end">
+                            <a class="btn btn-pill btn-outline-info" href="{%url 'org-div-dash' div_id=div.id%}">consulter</a>
                         </td>
                     </tr>
                     {%endfor%}

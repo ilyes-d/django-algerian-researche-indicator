@@ -2,15 +2,32 @@
 
 {% block title %} Dashboard {% endblock %} 
 
-{% block stylesheets %}{% endblock stylesheets %}
+{% block stylesheets %}
+<style>
+    #chers_citations{
+        height:300px
+    }
+    .equipe-name{
+     
+        color : #000    ; 
+    }
+</style>
+{% endblock stylesheets %}
 
 {% block content %}
+
+{%if user.is_superuser%}
+<a href="{%url 'org-equipes-liste'%}" class="btn btn-info d-inline-flex align-items-center justify-content-center mb-4">
+    <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+    returner a la liste
+</a>
+{%endif%}
 
 <div class="page-header">
     <div class="row align-items-center">
       <div class="col">
         <h2 class="page-title">
-            Tableau de Bord De L'equipe : {{info_equipe.nom}} 
+            Tableau de Bord De L'equipe : <span class="equipe-name">{{equipe.nom}}</span>
         </h2>
         <ul class="breadcrumb">
           <li class="breadcrumb-item"><a href="index.html">Equipe</a></li>
@@ -20,155 +37,57 @@
     </div>
   </div>
 <div class="row">
-    <div class="col-12 mb-4">
-        <div class="card bg-yellow-100 border-0 shadow">
-            <div class="card-header d-sm-flex flex-row align-items-center flex-0">
-                <div class="d-block mb-3 mb-sm-0">
-                    <div class="fs-5 fw-normal mb-2">Sales Value</div>
-                    <h2 class="fs-3 fw-extrabold">$10,567</h2>
-                    <div class="small mt-2"> 
-                        <span class="fw-normal me-2">Yesterday</span>                              
-                        <span class="fas fa-angle-up text-success"></span>                                   
-                        <span class="text-success fw-bold">10.57%</span>
-                    </div>
-                </div>
-                <div class="d-flex ms-auto">
-                    <a href="#" class="btn btn-secondary text-dark btn-sm me-2">Month</a>
-                    <a href="#" class="btn btn-dark btn-sm me-3">Week</a>
-                </div>
-            </div>
-            <div class="card-body p-2">
-                <canvas id="m"></canvas>    
-            </div>
-        </div>
-    </div>
-    <div class="col-12 col-sm-6 col-xl-4 mb-4">
+    <div class="col mb-4">
         <div class="card border-0 shadow">
             <div class="card-body">
                 <div class="row d-block d-xl-flex align-items-center">
                     <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                        <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
-                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                        </div>
-                        <div class="d-sm-none">
-                            <h2 class="fw-extrabold h5">Chercheurs</h2>
-                            <h3 class="mb-1">{{nbr_cher_equipe}}</h3>
+                        <div class="icon-shape icon-shape-success rounded me-4 me-sm-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/></svg>
                         </div>
                     </div>
                     <div class="col-12 col-xl-7 px-xl-0">
                         <div class="d-none d-sm-block">
                             <h2 class="h6 text-gray-400 mb-0">Chercheurs</h2>
-                            <h3 class="fw-extrabold mb-2">{{nbr_cher_equipe}}</h3>
-                        </div>
-                        
-                        <div class="small d-flex mt-1">                               
-                            <div>Since last 24H <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg><span class="text-success fw-bolder">{{nbr_chercheur_24_final}}%</span></div>
+                            <h3 class="fw-extrabold mb-2">{{nbr_chers}}</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-12 col-sm-6 col-xl-4 mb-4">
+    <div class="col mb-4">
         <div class="card border-0 shadow">
             <div class="card-body">
                 <div class="row d-block d-xl-flex align-items-center">
                     <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                        <div class="icon-shape icon-shape-primary rounded me-4 me-sm-0">
-                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
-                        </div>
-                        <div class="d-sm-none">
-                            <h2 class="h5">Indice H</h2>
-                            <h3 class="fw-extrabold mb-1">{{moy_indice_i10}}</h3>
+                        <div class="icon-shape icon-shape-danger rounded me-4 me-sm-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="24" height="24" viewBox="0 0 24 24"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
                         </div>
                     </div>
                     <div class="col-12 col-xl-7 px-xl-0">
                         <div class="d-none d-sm-block">
-                            <h2 class="h6 text-gray-400 mb-0">Indice H</h2>
-                            <h3 class="fw-extrabold mb-2">{{moy_indice_i10}}</h3>
-                        </div>
-                        
-                        <div class="small d-flex mt-1">                               
-                            <div>Since last 24 h <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg><span class="text-success fw-bolder">22%</span></div>
+                            <h2 class="h6 text-gray-400 mb-0">Citations</h2>
+                            <h3 class="fw-extrabold mb-2">{{nbr_citations}}</h3>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-12 col-sm-6 col-xl-4 mb-4">
+    <div class="col mb-4">
         <div class="card border-0 shadow">
             <div class="card-body">
                 <div class="row d-block d-xl-flex align-items-center">
                     <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                        <div class="icon-shape icon-shape-primary rounded me-4 me-sm-0">
-                            <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
-                        </div>
-                        <div class="d-sm-none">
-                            <h2 class="h5">Indice I10</h2>
-                            <h3 class="fw-extrabold mb-1">{{moy_indice_h}}</h3>
+                        <div class="icon-shape icon-shape-warning rounded me-4 me-sm-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
                         </div>
                     </div>
                     <div class="col-12 col-xl-7 px-xl-0">
                         <div class="d-none d-sm-block">
-                            <h2 class="h6 text-gray-400 mb-0">Indice I10</h2>
-                            <h3 class="fw-extrabold mb-2">{{moy_indice_h}}</h3>
-                        </div>
-                        
-                        <div class="small d-flex mt-1">                               
-                            <div>Since last 24 h <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg><span class="text-success fw-bolder">22%</span></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-sm-6 col-xl-4 mb-4">
-            <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="row d-block d-xl-flex align-items-center">
-                        <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                            <div class="icon-shape icon-shape-tertiary rounded me-4 me-sm-0">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-                            </div>
-                            <div class="d-sm-none">
-                                <h2 class="fw-extrabold h5">Citations</h2>
-                                <h3 class="mb-1">{{nbr_Citation}}</h3>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-7 px-xl-0">
-                            <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Citations</h2>
-                                <h3 class="fw-extrabold mb-2">{{nbr_Citation}}</h3>
-                            </div>
-        
-                            <div class="small d-flex mt-1">
-                                <div>Since last 24 h <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg><span class="text-success fw-bolder">4%</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-12 col-sm-6 col-xl-4 mb-4">
-            <div class="card border-0 shadow">
-                <div class="card-body">
-                    <div class="row d-block d-xl-flex align-items-center">
-                        <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
-                            <div class="icon-shape icon-shape-secondary rounded me-4 me-sm-0">
-                                <svg class="icon" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 2a4 4 0 00-4 4v1H5a1 1 0 00-.994.89l-1 9A1 1 0 004 18h12a1 1 0 00.994-1.11l-1-9A1 1 0 0015 7h-1V6a4 4 0 00-4-4zm2 5V6a2 2 0 10-4 0v1h4zm-6 3a1 1 0 112 0 1 1 0 01-2 0zm7-1a1 1 0 100 2 1 1 0 000-2z" clip-rule="evenodd"></path></svg>
-                            </div>
-                            <div class="d-sm-none">
-                                <h2 class="fw-extrabold h5">Articles</h2>
-                                <h3 class="mb-1">{{articles_num}}</h3>
-                            </div>
-                        </div>
-                        <div class="col-12 col-xl-7 px-xl-0">
-                            <div class="d-none d-sm-block">
-                                <h2 class="h6 text-gray-400 mb-0">Articles</h2>
-                                <h3 class="fw-extrabold mb-2">{{articles_num}}</h3>
-                            </div>
+                            <h2 class="h6 text-gray-400 mb-0">Articles</h2>
+                            <h3 class="fw-extrabold mb-2">{{nbr_articles}}</h3>
                         </div>
                     </div>
                 </div>
@@ -176,65 +95,242 @@
         </div>
     </div>
 </div>
+
 <div class="row">
+    <div class="col-12 col-xl-8">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h2 class="fs-5 fw-bold mb-0">Nombre de citations par annees</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="citations-total-graph"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h2 class="fs-5 fw-bold mb-0">Nombre de Publications par annees</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="pubs-total-graph"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            {% comment %} <div class="col-12 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h2 class="fs-5 fw-bold mb-0">another chart here </h2>
+                            </div>
+                            <div class="col text-end">
+                                <a href="{%url 'eta-divs-liste' eta_id=eta.id %}" class="btn btn-outline-info">Liste Division</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="division-chart"></canvas>
+                    </div>
+                </div>
+            </div>  {% endcomment %}
+        </div>
+    </div>
     <div class="col-12 col-xl-4">
-        {% comment %} <div class="col-12 px-0 mb-4">                      
+        <div class="col-12 px-0 mb-4">
             <div class="card border-0 shadow">
                 <div class="card-header d-flex flex-row align-items-center flex-0 border-bottom">
                     <div class="d-block">
-                        <h6>Le Nombre D'article avec leur Citation Des Sept Dernière Annee</h6>
-                        <h2 class="h3 fw-extrabold">452</h2>
-                        <div class="small mt-2">                               
+                        <h2 class="fs-5 fw-bold mb-0">Nombre de citations par chercheurs</h2>
+                    </div>
+                    <div class="col text-end">
+                        {% comment %} <a href="{%url 'eta-divs-liste' eta_id=eta.id %}" class="btn btn-sm btn-info">Liste Divisions</a> {% endcomment %}
+                    </div>
+                </div>
+                <div class="card-body p-2">
+                    <div id="chers_citations" class="w-100"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 px-0 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    {% comment %} <div class="d-flex align-items-center justify-content-between border-bottom pb-3">
+                        <div>
+                            <div class="h6 mb-0 d-flex align-items-center">
+                                <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM4.332 8.027a6.012 6.012 0 011.912-2.706C6.512 5.73 6.974 6 7.5 6A1.5 1.5 0 019 7.5V8a2 2 0 004 0 2 2 0 011.523-1.943A5.977 5.977 0 0116 10c0 .34-.028.675-.083 1H15a2 2 0 00-2 2v2.197A5.973 5.973 0 0110 16v-2a2 2 0 00-2-2 2 2 0 01-2-2 2 2 0 00-1.668-1.973z" clip-rule="evenodd"></path></svg>
+                                Global Rank
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#" class="d-flex align-items-center fw-bold">
+                                #755
+                                <svg class="icon icon-xs text-gray-500 ms-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </a>
+                        </div>
+                    </div> {% endcomment %}
+                    <div class="d-flex align-items-center justify-content-between border-bottom py-3">
+                        <div>
+                            <div class="h6 mb-0 d-flex align-items-center">
+                                <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd"></path></svg>
+                                Classement dans Division
+                            </div>
+                            <div class="small card-stats">
+                                {{eta.location}}
+                                <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#" class="d-flex align-items-center fw-bold">
+                                #4
+                                <svg class="icon icon-xs text-gray-500 ms-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </a>
                         </div>
                     </div>
-                    <div class="d-block ms-auto">
-                        <div class="d-flex align-items-center text-end mb-2">
-                            <span class="dot rounded-circle bg-gray-800 me-2"></span>
-                            <span class="fw-normal small">Article</span>
+                    {% comment %} <div class="d-flex align-items-center justify-content-between pt-3">
+                        <div>
+                            <div class="h6 mb-0 d-flex align-items-center">
+                                <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4l2 2h4a2 2 0 012 2v1H8a3 3 0 00-3 3v1.5a1.5 1.5 0 01-3 0V6z" clip-rule="evenodd"></path><path d="M6 12a2 2 0 012-2h8a2 2 0 012 2v2a2 2 0 01-2 2H2h2a2 2 0 002-2v-2z"></path></svg>
+                                Category Rank
+                            </div>
+                            <div class="small card-stats">
+                                Computers Electronics > Technology
+                                <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+                            </div>
                         </div>
-                        <div class="d-flex align-items-center text-end">
-                            <span class="dot rounded-circle bg-secondary me-2"></span>
-                            <span class="fw-normal small">Citation</span>
+                        <div>
+                            <a href="#" class="d-flex align-items-center fw-bold">
+                                #11
+                                <svg class="icon icon-xs text-gray-500 ms-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </a>
+                        </div>
+                    </div> {% endcomment %}
+                </div>
+            </div>
+        </div>
+        {% comment %} <div class="col-12 px-0">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <h2 class="fs-5 fw-bold mb-1">Acquisition</h2>
+                    <p>Tells you where your visitors originated from, such as search engines, social networks or website referrals.</p>
+                    <div class="d-block">
+                        <div class="d-flex align-items-center me-5">
+                            <div class="icon-shape icon-sm icon-shape-danger rounded me-3">
+                                <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11 4a1 1 0 10-2 0v4a1 1 0 102 0V7zm-3 1a1 1 0 10-2 0v3a1 1 0 102 0V8zM8 9a1 1 0 00-2 0v2a1 1 0 102 0V9z" clip-rule="evenodd"></path></svg>
+                            </div>
+                            <div class="d-block">
+                                <label class="mb-0">Bounce Rate</label>
+                                <h4 class="mb-0">33.50%</h4>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center pt-3">
+                            <div class="icon-shape icon-sm icon-shape-purple rounded me-3">
+                                <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path></svg>                                        </div>
+                            <div class="d-block">
+                                <label class="mb-0">Sessions</label>
+                                <h4 class="mb-0">9,567</h4>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
             </div>
         </div> {% endcomment %}
-        <div class="card-body p-2">
-            <canvas id="m"></canvas>
-        </div>
     </div>
 </div>
 
 
+<div class="col-12 mb-4">
+    <div class="card border-0 shadow">
+        <div class="card-header">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h2 class="fs-5 fw-bold mb-0">Meilleur 5 chercheurs par citations</h2>
+                </div>
+                <div class="col text-end">
+                    <a href="#" class="btn btn-sm btn-info">Liste chercheurs</a>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table align-items-center table-flush">
+                <thead class="thead-light">
+                    <tr>
+                        <th class="border-bottom" scope="col">
+                            nom
+                        </th>
+                        <th class="border-bottom" scope="col">Nombre citations</th>
+                        <th class="border-bottom" scope="col">indice H</th>
+                        <th class="border-bottom" scope="col">indice i10</th>
+                        <th class="border-bottom" scope="col">Nombre d'article</th>
+                        <th class="border-bottom" scope="col">percentage dans etablisement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for cher in chers5_citations%}
+                    <tr>
+                        <th class="text-primary" scope="row">
+                            {{cher}}
+                        </th>
+                        <td class="fw-bolder text-primary">
+                            {{cher.citations}}
+                        </td>
+                        <td class="fw-bolder text-primary">
+                            {{cher.h_index}}
+                        </td>
+                        <td class="fw-bolder text-primary">
+                            {{cher.i10_index}}
+                        </td>
+                        <td class="fw-bolder text-primary">
+                            {{cher.nbr_pubs}}
+                        </td>
+                        <td class="fw-bolder text-info">
+                            {% comment %} {%count_percentage citations cher.citations%}  {% endcomment %}
+                        </td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 {% endblock content %}
 
 {% block javascripts %}
 
 <script>
-    const labels = [{%for  key, value  in equipe_articles.per_year.items %}'{{key}}', {%endfor%}]
+    const labels = [{%for item  in citations_per_year.citations %}'{{item.year}}', {%endfor%}]
     const data = {
         labels: labels, 
         datasets:[{
             type :'bar', 
             label: 'try',
-            data:[{% for key,value in equipe_articles.per_year.items %}{{value.nbr_articles}},{%endfor%}],
-            backgroundColor: [
-            'rgb(255, 99, 132)',
-            ],
-            borderColor: '#3ca0fe',
+            data:[{% for item in citations_per_year.citations %}{{item.citations}},{%endfor%}],
+            backgroundColor : ['rgba(20, 195, 142,0.4)','rgba(184, 241, 176,0.6)','rgba(165, 219, 88,0.4)',],
+            borderColor: ['rgb(20, 195, 142)','rgb(184, 241, 176)','rgb(165, 219, 88)'],
+            borderWidth:1,
             maxBarThickness: 30,
-        },{
-            type :'bar',
-            label:'ok',
-            data:[{% for key,value in equipe_articles.per_year.items %}{{value.citations}},{%endfor%}],
-            backgroundColor: [
-            'rgb(54, 162, 235)',
-            ],
-            borderColor: '#3ca0fe',
-            maxBarThickness: 30,
-        }
+        },
+        //{
+        //    type :'bar',
+        //    label:'ok',
+        //    data:[{% for key,value in equipe_articles.per_year.items %}{{value.citations}},{%endfor%}],
+        //    backgroundColor: [
+        //    'rgb(54, 162, 235)',
+        //    ],
+        //    borderColor: '#3ca0fe',
+        //    maxBarThickness: 30,
+        //}
         ]
     }
     const config ={
@@ -242,8 +338,66 @@
         options : {}
     };
     const mychart = new Chart(
-        document.getElementById('m'),
+        document.getElementById('citations-total-graph'),
         config
     );
+    anychart.onDocumentReady(function () {
+        var color1 = "#5D8BF4";
+        var colorIndex = 0;
+        function colorizer(){
+            var mixColor1 = anychart.color.darken(color1, colorIndex);
+            colorIndex = colorIndex + 0.1;
+            return mixColor1;
+        }
+        var data = [
+            {% for item in citation_chers%}
+            {x : '{{item.cher}}' , value : {{item.citations}},fill:colorizer()},
+            {%endfor%}
+            
+        ];
+        console.log(data)
+        var chart = anychart.pie(data);
+        anychart.color.darken("#FF0000", 0.2)
+        chart.labels().useHtml(true).fontColor("#000")
+        chart.tooltip(true);
+        chart.container("chers_citations");
+        chart.draw();
+    });
+    const artLabels = [{%for item  in citations_per_year.citations %}'{{item.year}}', {%endfor%}]
+    const artData = {
+        labels: artLabels, 
+        datasets:[{
+            type :'line', 
+            label: 'try',
+            data:[{% for item in citations_per_year.citations %}{{item.citations}},{%endfor%}],
+            backgroundColor : ['rgba(20, 195, 142,0.4)','rgba(184, 241, 176,0.6)','rgba(165, 219, 88,0.4)',],
+            borderColor: ['rgb(20, 195, 142)','rgb(184, 241, 176)','rgb(165, 219, 88)'],
+            borderWidth:1,
+            fill:true,
+            tension:0.4,
+            maxBarThickness: 30,
+        },
+        //{
+        //    type :'bar',
+        //    label:'ok',
+        //    data:[{% for key,value in equipe_articles.per_year.items %}{{value.citations}},{%endfor%}],
+        //    backgroundColor: [
+        //    'rgb(54, 162, 235)',
+        //    ],
+        //    borderColor: '#3ca0fe',
+        //    maxBarThickness: 30,
+        //}
+        ]
+    }
+    const artConfig ={
+        data: artData,
+        options : {}
+    };
+    const artChart = new Chart(
+        document.getElementById('pubs-total-graph'),
+        artConfig
+    );
+
+    
 </script>
 {% endblock javascripts %}

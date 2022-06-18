@@ -26,13 +26,13 @@
                                     Log IN
                                 </h1>
                                 <br />
-                                <p>
+                                <span>
                                     {% if msg %}
-                                        {{ msg | safe }}
+                                        <p style="color:red;">{{ msg | safe }}</p>
                                     {% else %}
-                                    Ajoutez vos informations d'identification
+                                    <p> Ajoutez vos informations d'identification</p>
                                     {% endif %}                                     
-                                </p> 
+                                </span> 
                             </div>
                             <form method="post" action="" class="mt-4">
                                 {% csrf_token %}
@@ -41,18 +41,22 @@
                                         <label for="email">Email</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon1">
-                                                <span class="fas fa-user-circle"></span>
+                                                <span class="fas fa-envelope"></span>
                                             </span>
                                             {{ form.email }}
+                                            <br>
+                                         
                                         </div>  
+                                        {{ form.email.errors }}
                                     </div>
                                     <div class="form-group mb-4">
-                                        <label for="password">Your Password</label>
+                                        <label for="password">Votre Mot de pass</label>
                                         <div class="input-group">
                                             <span class="input-group-text" id="basic-addon2">
                                                 <span class="fas fa-unlock-alt"></span>
                                             </span>
                                             {{ form.password }}
+                                            {{ form.password.errors }}
                                         </div>  
                                     </div>
                                 </div>
@@ -62,8 +66,8 @@
                             </form>
                             <div class="d-flex justify-content-center align-items-center mt-4">
                                 <span class="fw-normal">
-                                    Not registered?
-                                    <a href="{% url 'register' %}" class="fw-bold">Create account</a>
+                                    Non enregistré?
+                                    <a href="{% url 'register' %}" class="fw-bold" style="text-decoration:underline">Créer un compte</a>
                                 </span>
                             </div>
                         </div>
@@ -72,7 +76,17 @@
             </div>
         </section>
     </main>
+<style>
+   div h1 p{
+    color:red;
+   }
 
+   .errorlist li {
+    color:red;
+    List-style-type:none;
+}
+
+</style>
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->

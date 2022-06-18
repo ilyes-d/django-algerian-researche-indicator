@@ -1,7 +1,3 @@
-from __future__ import division
-from dataclasses import fields
-
-from django.db import DJANGO_VERSION_PICKLE_KEY
 from ..models import *
 import django_filters
 from django import forms
@@ -48,3 +44,8 @@ def etablisement_list(request):
     # f = DivisionFilter(request.GET)
     f = EquipeFilter(request.GET)
     return render(request, 'empty.html' , {'filter':f})
+
+
+
+
+        

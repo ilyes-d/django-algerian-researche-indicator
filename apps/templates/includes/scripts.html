@@ -1,4 +1,4 @@
-{%load static%}
+{% load static %}
 <!-- Core -->
 <script src="{{ ASSETS_ROOT }}/vendor/@popperjs/core/dist/umd/popper.min.js"></script>
 <script src="{{ ASSETS_ROOT }}/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -20,7 +20,7 @@
 <script src="{{ ASSETS_ROOT }}/vendor/sweetalert2/dist/sweetalert2.all.min.js"></script>
 
 <!-- Moment JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script>
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.27.0/moment.min.js"></script> {% endcomment %}
 
 <!-- Vanilla JS Datepicker -->
 <script src="{{ ASSETS_ROOT }}/vendor/vanillajs-datepicker/dist/js/datepicker.min.js"></script>
@@ -36,17 +36,44 @@
 
 <!-- Volt JS -->
 <script src="{{ ASSETS_ROOT }}/js/volt.js"></script>
+<script src="{{ ASSETS_ROOT }}/js/charts.js"></script>
+
+{%comment%}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
-<script src="{% static 'geomap/algeria/algeria.js' %}" ></script>
+<script src="geomap/algeria/algeria.js' %}" ></script>
+<script src="{{ STATIC_ROOT }}/geomap/js/anychart-base.min.js}" ></script>
+<script src="{{ STATIC_ROOT }}/geomap/js/anychart-map.min.js}" ></script>
+<script src="{{ STATIC_ROOT }}/geomap/js/anychart-exports.min.js}" ></script>
+<script src="{{ STATIC_ROOT }}/geomap/js/anychart-ui.min.js}" ></script>
+<script src="{{ STATIC_ROOT }}/chart.js/dist/chart.min.js"></script>
+<script src="{{ STATIC_ROOT }}/jquery/dist/jquery.min.js"></script>
+{%endcomment%}
+
+<script src="{% static 'chart.js/dist/chart.min.js' %}"></script>
+<script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
+
+{% comment %} <script src="https://cdn.anychart.com/releases/v8/js/anychart-base.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-ui.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-exports.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-circular-gauge.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-map.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-table.min.js"></script>
+<script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script> {% endcomment %}
+
+
+
+{% comment %} <script src="https://cdn.anychart.com/releases/v8/js/anychart-circular-gauge.min.js"></script> {% endcomment %}
+{% comment %} <script src="https://cdn.anychart.com/releases/v8/js/anychart-table.min.js"></script> {% endcomment %}
+{% comment %} <script src="https://cdn.anychart.com/releases/v8/js/anychart-data-adapter.min.js"></script> {% endcomment %}
+
+
 <script src="{% static 'geomap/js/anychart-base.min.js' %}" ></script>
 <script src="{% static 'geomap/js/anychart-map.min.js' %}" ></script>
-<script src="{% static 'geomap/js/anychart-exports.min.js' %}" ></script>
-<script src="{% static 'geomap/js/anychart-ui.min.js' %}" ></script>
-
-
-
-<script src="{% static 'assets/vendor/chart.js/Chart.min.js' %}"></script>
-<script src="{% static 'assets/js/chart/chart-area-demo.js' %}" ></script>  
-<script src="{% static 'assets/js/chart/chart-bar-demo.js' %}" ></script>  
-<script src="{% static 'assets/js/chart/chart-pie-demo.js' %}" ></script>  
-{% comment %} <script src="{% static 'assets/js/chart/datatables-demo.js' %}" ></script>    {% endcomment %}
+<script src="{% static 'geomap/js/anychart-exports.min.js' %}"></script>
+<script src= "{% static 'geomap/js/anychart-circular-gauge.min.js'%}"></script>
+<script src= "{% static 'geomap/js/anychart-table.min.js'%}"></script>
+<script src= "{% static 'geomap/js/anychart-data-adapter.min.js'%}"></script>
+<script src="{% static 'geomap/js/anychart-ui.min.js' %}"></script>
+<script src="{% static 'geomap/algeria/algeria.js' %}" ></script>

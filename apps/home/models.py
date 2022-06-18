@@ -58,7 +58,7 @@ class Researcher(AbstractBaseUser, PermissionsMixin):
     h_index = models.PositiveIntegerField(blank=True, null=True,default=0)
     i10_index = models.PositiveIntegerField(blank=True, null=True,default=0)
     citations = models.PositiveIntegerField(blank=True, null=True,default=0)
-    graph_citation = models.JSONField(null=True,blank=True)
+    graph_citations = models.JSONField(null=True,blank=True)
     nbr_pubs = models.PositiveIntegerField(blank=True, null=True,default=0)
     graph_pub = models.JSONField(null=True,blank=True)
     
@@ -109,7 +109,7 @@ class Equipe(models.Model):
 class Division(models.Model):
     nom = models.CharField(max_length=200, default='')
     site_web=models.URLField(blank=True)
-
+    long_nom = models.CharField(max_length=200,blank=True,null=True)
     # relationshi
     etablisment = models.ForeignKey(
         'Etablisment', on_delete=models.CASCADE, null=True)
@@ -126,6 +126,8 @@ class Etablisment(models.Model):
     location = models.ForeignKey('Location', on_delete=models.CASCADE, null=True)
     chef_etablisement = models.OneToOneField(
         'Researcher', on_delete=models.SET_NULL, null=True, blank=True)
+    
+    long_nom = models.CharField(max_length=250,blank=True,null=True)
     # directions = models.ForeignKey(
     #     'Directions', on_delete=models.SET_NULL, null=True)
 

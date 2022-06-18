@@ -1,5 +1,6 @@
 {%extends 'layouts/base.html'%}
 {%load static %}
+{%load tag%}
 {%block stylesheets%}
 <style>
 .social-link{
@@ -29,21 +30,131 @@
 </style>
 {%endblock stylesheets%}
 {%block content%}
+
+<div class="page-header">
+  <div class="row align-items-center relative-pos">
+    {%if user.id == researcher.id%}
+    <button type="button" class="btn btn-info mb-3 absolute-pos left-button" data-bs-toggle="modal" data-bs-target="#modal-notification">
+      Refrecher
+    </button>
+    {%endif%}
+    <div class="col">
+      {%if user.id == researcher.id%}
+      <h3>Votre Profile<br></h3>
+      {%else%}
+      <h3>Le profile de <strong>{{researcher}}</strong><br></h3>
+      {%endif%}
+   </div>
+  </div>
+</div>
+<div class="col-lg-4">
+  <div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification" aria-hidden="true">
+      <div class="modal-dialog modal-info modal-dialog-centered" role="document">
+          <div class="modal-content bg-gradient-secondary">
+              <button type="button" class="btn-close theme-settings-close fs-6 ms-auto" data-bs-dismiss="modal" aria-label="Close"></button>
+              <div class="modal-header">
+                  <p class="modal-title text-gray-200" id="modal-title-notification">Refrecher la base de donnes</p>
+              </div>
+              <div class="modal-body text-white">
+                  <div class="py-3 text-center">
+                      <span class="modal-icon">
+                          <svg class="icon icon-xl text-gray-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z"></path><path d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path></svg>
+                      </span>
+                      <h2 class="h4 modal-title my-3">Message important!</h2>
+                      <p>êtes-vous sûr de vouloir actualiser la base de données ?</p>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <a class="btn btn-sm btn-white" href="{%url 'refrech' %}" >procéder</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+
 <div class="row">
   <div class="col">
-    <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
+    <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4 ">
       <ol class="breadcrumb mb-0">
         <li class="breadcrumb-item"><a href="#">Home</a></li>
         <li class="breadcrumb-item"><a href="#">User</a></li> <!-- go back to researcher -->
         <li class="breadcrumb-item active" aria-current="page">{{researcher}} Profile</li>
-      </ol>
+        
+        <a href="{% url 'researcher_profile_update' %}"><button id="btnChangeBg" type="button" class="btn btn-outline-secondary merouane">Modifier</button></a>
+      
+    </ol>
     </nav>
   </div>
 </div>
-
-<div class="container">
+<div class="container w-100">
+  {%if not user.is_superuser%}
   <div class="row">
-    <div class="col">
+    <div class="col me-2 ms-3 card mb-2">
+      <div class="card-body">
+        <div class="row">
+          <div class="col mt-0">
+            <h5 class="card-title-v2">Indice H</h5>
+          </div>
+          <div class="col-auto">
+            <div class="stat text-primary">
+              <svg width="24px" height="24px" viewBox="-32 0 512 512" xmlns="http://www.w3.org/2000/svg"><path d="M448 80v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48zm-112 48h-32c-8.837 0-16 7.163-16 16v80H160v-80c0-8.837-7.163-16-16-16h-32c-8.837 0-16 7.163-16 16v224c0 8.837 7.163 16 16 16h32c8.837 0 16-7.163 16-16v-80h128v80c0 8.837 7.163 16 16 16h32c8.837 0 16-7.163 16-16V144c0-8.837-7.163-16-16-16z"/></svg>
+            </div>
+          </div>
+        </div>
+        <h1 class="mt-1 mb-3">{{researcher.h_index}}</h1>
+      </div>
+    </div>
+    <div class="col me-2 ms-3 card mb-2">
+      <div class="card-body">
+        <div class="row">
+          <div class="col mt-0">
+            <h5 class="card-title-v2">Indice i10</h5>
+          </div>
+  
+          <div class="col-auto">
+            <div class="stat text-primary">
+              <svg fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" width="32px" height="32px">    <path d="M 6 4 C 4.895 4 4 4.895 4 6 L 4 24 C 4 25.105 4.895 26 6 26 L 24 26 C 25.105 26 26 25.105 26 24 L 26 6 C 26 4.895 25.105 4 24 4 L 6 4 z M 18.277344 9.203125 C 21.301344 9.203125 22.214844 11.999875 22.214844 14.921875 C 22.214844 17.751875 21.390516 20.796875 18.228516 20.796875 C 15.128516 20.796875 14.25 17.930047 14.25 14.998047 C 14.25 12.092047 15.209344 9.203125 18.277344 9.203125 z M 10.507812 9.3613281 L 11.748047 9.3613281 L 11.748047 20.591797 L 10.046875 20.591797 L 10.046875 11.382812 C 9.499875 11.753813 8.3941563 12.166625 7.7851562 12.265625 L 7.7851562 10.941406 C 8.6851562 10.717406 9.7648125 10.086328 10.507812 9.3613281 z M 18.289062 10.599609 C 16.433062 10.599609 16.007813 12.542141 16.007812 14.994141 C 16.007812 17.108141 16.350141 19.400391 18.244141 19.400391 C 20.143141 19.400391 20.462891 17.226688 20.462891 14.929688 C 20.461891 12.772687 20.112062 10.599609 18.289062 10.599609 z"/></svg>
+            </div>
+          </div>
+        </div>
+        <h1 class="mt-1 mb-3">{{researcher.i10_index}}</h1>
+      </div>
+    </div>
+    <div class="col me-2 ms-3 card mb-2">
+      <div class="card-body">
+        <div class="row">
+          <div class="col mt-0">
+            <h5 class="card-title-v2">Citations</h5>
+          </div>
+          <div class="col-auto">
+            <div class="stat text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
+            </div>
+          </div>
+        </div>
+        <h1 class="mt-1 mb-3">{{researcher.citations}}</h1>
+      </div>
+    </div>
+    <div class="col me-2 ms-3 card mb-2">
+      <div class="card-body">
+        <div class="row">
+          <div class="col mt-0">
+            <h5 class="card-title-v2">Nombre de publication</h5>
+          </div>
+          <div class="col-auto">
+            
+            <div class="stat text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+            </div>
+          </div>
+        </div>
+        <h1 class="mt-1 mb-3">{{researcher.nbr_pubs}}</h1>
+      </div>
+    </div>
+  </div>
+  {%endif%}  
+  <div class="row">
+    <div class="col-lg-4">
       <div class="card mb-4">
         <div class="card-body text-center">
           <img src="{% static 'assets/img/team/profile.png'%}" alt="avatar"
@@ -65,138 +176,200 @@
         </div>
       </div>
     </div>
-    <div class="col">
-      <div class="row">
-        <div class="col-xl-6 col-xxl-5 w-100 d-flex">
-          <div class="w-100">
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="card mb-2">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col mt-0">
-                        <h5 class="card-title-v2">Indice H</h5>
-                      </div>
-    
-                      <div class="col-auto">
-                        <div class="stat text-primary">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-truck align-middle"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
-                        </div>
-                      </div>
-                    </div>
-                    <h1 class="mt-1 mb-3">{{researcher.h_index}}</h1>
-                  </div>
-                </div>
-                <div class="card mb-2">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col mt-0">
-                        <h5 class="card-title-v2">Indice i10</h5>
-                      </div>
-    
-                      <div class="col-auto">
-                        <div class="stat text-primary">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-users align-middle"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                        </div>
-                      </div>
-                    </div>
-                    <h1 class="mt-1 mb-3">{{researcher.i10_index}}</h1>
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="card mb-2">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col mt-0">
-                        <h5 class="card-title-v2">Citations</h5>
-                      </div>
-                      <div class="col-auto">
-                        <div class="stat text-primary">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-dollar-sign align-middle"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-                        </div>
-                      </div>
-                    </div>
-                    <h1 class="mt-1 mb-3">{{researcher.citations}}</h1>
-                  </div>
-                </div>
-                <div class="card">
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col mt-0">
-                        <h5 class="card-title-v2">Nombre de publication</h5>
-                      </div>
-    
-                      <div class="col-auto">
-                        <div class="stat text-primary">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shopping-cart align-middle"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                        </div>
-                      </div>
-                    </div>
-                    <h1 class="mt-1 mb-3">{{researcher.nbr_pubs}}</h1>
-                  </div>
-                </div>
-              </div>
+    <div class="col-lg-8">
+      <div class="card mb-4">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Nom</p>
             </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{researcher.last_name}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Prenom</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{researcher.first_name}}</p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Email</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{researcher.email}}</p>
+            </div>
+          </div>
+          <hr>
+          {%if not user.is_superuser %}
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Etablisement</p>
+            </div>
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{researcher|get_eta}}</p>
+            </div>
+          </div>
+          <hr>
+          {%endif%}
+          <div class="row">
+            <div class="col-sm-3">
+              <p class="mb-0">Role</p>
+            </div>
+            {%if user.is_superuser%}
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">Admin</p>
+            </div>
+            {%else%}
+            <div class="col-sm-9">
+              <p class="text-muted mb-0">{{researcher|user_role}}</p>
+            </div>
+            {%endif%}
           </div>
         </div>
       </div>
-      {% comment %}  {% endcomment %}
     </div>
   </div>
-</div>    
-      
-<div class="row">
-  <div class="card mb-4">
-    <div class="card-body">
-      <div class="row">
-        <div class="col-sm-3">
-          <p class="mb-0">Full Name</p>
-        </div>
-        <div class="col-sm-9">
-          <p class="text-muted mb-0">Johnatan Smith</p>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-sm-3">
-          <p class="mb-0">Email</p>
-        </div>
-        <div class="col-sm-9">
-          <p class="text-muted mb-0">example@example.com</p>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-sm-3">
-          <p class="mb-0">Phone</p>
-        </div>
-        <div class="col-sm-9">
-          <p class="text-muted mb-0">(097) 234-5678</p>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-sm-3">
-          <p class="mb-0">Mobile</p>
-        </div>
-        <div class="col-sm-9">
-          <p class="text-muted mb-0">(098) 765-4321</p>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-sm-3">
-          <p class="mb-0">Address</p>
-        </div>
-        <div class="col-sm-9">
-          <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-        </div>
-      </div>
+  {%if user.is_superuser%}
+  super user meskin ma3ndo walo hhahahahah
+  {%else%}
+  <div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Nombre de citations par année</h6>
     </div>
-  </div> 
+    <div class="card-body">
+        <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+            <canvas id="citations-graph" style="display: block; width: 1037px; height: 320px;" width="1037" height="320" class="chartjs-render-monitor"></canvas>
+        </div>
+    </div>
+  </div>
+  
+  <div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h6 class="m-0 font-weight-bold text-primary">Nombre de publications par année</h6>
+    </div>
+    <div class="card-body">
+        <div class="chart-area"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+            <canvas id="pubs-graph" style="display: block; width: 1037px; height: 320px;" width="1037" height="320" class="chartjs-render-monitor"></canvas>
+        </div>
+    </div> 
+  </div>
+  {%endif%}
 </div>
 
+<br>
+
+{% for key,value in researcher.graph_pub.items %}'{{key}}',{%endfor%}
 
 
 {%endblock content%}
+
+{% block javascripts %}
+<script>
+  const labels = [{% for item in researcher.graph_citations %}'{{item.year}}',{%endfor%}]
+  const data = {
+    labels: labels,
+    datasets: [{
+      label: 'citations',
+      data:[{% for item in researcher.graph_citations %}{{item.citations}},{%endfor%}],
+      backgroundColor : 'rgba(0, 67, 255, 0.51)',
+      borderColor: 'rgb(0, 67, 255)',
+      borderWidth:1,
+    }]
+  }
+  
+  const config = {
+    type : 'bar',
+    data : data,
+    options:{
+      barThickness:23,
+      scales: {
+        y:{
+          beginAtZero:true
+        }
+      },
+      tooltips: {
+        titleMarginBottom: 10,
+        titleFontColor: '#6e707e',
+        titleFontSize: 14,
+        backgroundColor: "rgb(255,255,255)",
+        bodyFontColor: "#858796",
+        borderColor: '#dddfeb',
+        borderWidth: 1,
+        xPadding: 15,
+        yPadding: 15,
+        displayColors: false,
+        caretPadding: 10,
+        callbacks: {
+          label: function(tooltipItem, chart) {
+            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+            return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          }
+        }
+      },
+    },
+  };
+
+  const mychart = new Chart(
+        document.getElementById('citations-graph'),
+        config
+  );
+  
+  
+  const pub_labels = [{% for key,value in researcher.graph_pub.items %}'{{key}}',{%endfor%}]
+  const pubData = {
+    labels: pub_labels,
+    datasets: [
+    {
+      type : 'bar',
+      label: 'articles',
+      data:[{% for key,value in researcher.graph_pub.items %}{{value.nbr_pub}},{%endfor%}],
+      backgroundColor : 'rgba(0, 67, 255, 0.51)',
+      borderColor: 'rgb(0, 67, 255)',
+      borderWidth:1,
+    }
+    ]
+  }
+  const pubConfig = {
+    data : pubData,
+    options:{
+      barThickness:23,
+      scales: {
+        y:{
+          beginAtZero:true
+        }
+      },
+      tooltips: {
+        titleMarginBottom: 10,
+        titleFontColor: '#6e707e',
+        titleFontSize: 14,
+        backgroundColor: "rgb(255,255,255)",
+        bodyFontColor: "#858796",
+        borderColor: '#dddfeb',
+        borderWidth: 1,
+        xPadding: 15,
+        yPadding: 15,
+        displayColors: false,
+        caretPadding: 10,
+        callbacks: {
+          label: function(tooltipItem, chart) {
+            var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
+            return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          }
+        }
+      },
+    },
+  };
+  const pubChart = new Chart(
+        document.getElementById('pubs-graph'),
+        pubConfig
+  );
+
+</script>
+
+{% endblock javascripts %}  

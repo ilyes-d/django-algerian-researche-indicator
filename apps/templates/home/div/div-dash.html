@@ -1,0 +1,338 @@
+{% extends "layouts/base.html" %}
+{%load tag%}
+{% block title %} Dashboard {% endblock %} 
+
+{% block stylesheets %}
+<style>
+    #equipe_citations{
+        height: 300px;
+    }
+
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+{%if user.is_superuser%}
+<a href="{%url 'org-divs-liste'%}" class="btn btn-info d-inline-flex align-items-center justify-content-center mb-4">
+    <svg class="icon icon-xs me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M7.707 14.707a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l2.293 2.293a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+    returner a la liste
+</a>
+{%endif%}
+
+<div class="page-header">
+    <div class="row align-items-center">
+    <div class="row">
+        <div class="col">
+        <h3>Tableau de Bord De La Division : {{division.long_nom}} <br></h3>
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Effectifs</a></li>
+            <li class="breadcrumb-item active">Tableau de Bord</li>
+            
+          </ul>
+    </div>
+   </div>
+</div>
+</div>
+<br>
+<div class="row">
+    <div class="col mb-4">
+        <div class="card border-0 shadow">
+            <div class="card-body">
+                <div class="row d-block d-xl-flex align-items-center">
+                    <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                        <div class="icon-shape icon-shape-info rounded me-4 me-sm-0">
+                            <svg width="30px" height="30px" class="icon" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z"></path></svg>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-7 px-xl-0">
+                        <div class="d-none d-sm-block">
+                            <h2 class="h6 text-gray-400 mb-0">Equipes</h2>
+                            <h3 class="fw-extrabold mb-2">{{nbr_equipes}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card border-0 shadow">
+            <div class="card-body">
+                <div class="row d-block d-xl-flex align-items-center">
+                    <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                        <div class="icon-shape icon-shape-success rounded me-4 me-sm-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M224 256c70.7 0 128-57.31 128-128s-57.3-128-128-128C153.3 0 96 57.31 96 128S153.3 256 224 256zM274.7 304H173.3C77.61 304 0 381.6 0 477.3c0 19.14 15.52 34.67 34.66 34.67h378.7C432.5 512 448 496.5 448 477.3C448 381.6 370.4 304 274.7 304z"/></svg>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-7 px-xl-0">
+                        <div class="d-none d-sm-block">
+                            <h2 class="h6 text-gray-400 mb-0">Chercheurs</h2>
+                            <h3 class="fw-extrabold mb-2">{{nbr_chers}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card border-0 shadow">
+            <div class="card-body">
+                <div class="row d-block d-xl-flex align-items-center">
+                    <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                        <div class="icon-shape icon-shape-danger rounded me-4 me-sm-0">
+                            <svg xmlns="http://www.w3.org/2000/svg"  width="24" height="24" viewBox="0 0 24 24"><path d="M9.983 3v7.391c0 5.704-3.731 9.57-8.983 10.609l-.995-2.151c2.432-.917 3.995-3.638 3.995-5.849h-4v-10h9.983zm14.017 0v7.391c0 5.704-3.748 9.571-9 10.609l-.996-2.151c2.433-.917 3.996-3.638 3.996-5.849h-3.983v-10h9.983z"/></svg>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-7 px-xl-0">
+                        <div class="d-none d-sm-block">
+                            <h2 class="h6 text-gray-400 mb-0">Citations</h2>
+                            <h3 class="fw-extrabold mb-2">{{citations}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col mb-4">
+        <div class="card border-0 shadow">
+            <div class="card-body">
+                <div class="row d-block d-xl-flex align-items-center">
+                    <div class="col-12 col-xl-5 text-xl-center mb-3 mb-xl-0 d-flex align-items-center justify-content-xl-center">
+                        <div class="icon-shape icon-shape-warning rounded me-4 me-sm-0">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35"  height="35" viewBox="0 0 24 24"><path d="M7 16h13v1h-13v-1zm13-3h-13v1h13v-1zm0-6h-5v1h5v-1zm0 3h-5v1h5v-1zm-17-8v17.199c0 .771-1 .771-1 0v-15.199h-2v15.98c0 1.115.905 2.02 2.02 2.02h19.958c1.117 0 2.022-.904 2.022-2.02v-17.98h-21zm19 17h-17v-15h17v15zm-9-12h-6v4h6v-4z"/></svg>
+                        </div>
+                    </div>
+                    <div class="col-12 col-xl-7 px-xl-0">
+                        <div class="d-none d-sm-block">
+                            <h2 class="h6 text-gray-400 mb-0">Articles</h2>
+                            <h3 class="fw-extrabold mb-2">{{articles}}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-xl-8">
+        <div class="row">
+            <div class="col-12 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h2 class="fs-5 fw-bold mb-0">Nombre de citations par annees</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="citations-total-graph"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mb-4">
+                <div class="card border-0 shadow">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col">
+                                <h2 class="fs-5 fw-bold mb-0">Nombre de articles par annees</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <canvas id="article-total-graph"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-xl-4">
+        <div class="col-12 px-0 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-header d-flex flex-row align-items-center flex-0 border-bottom">
+                    <div class="d-block">
+                        <h2 class="fs-5 fw-bold mb-0">Nombre de citations par equipes</h2>
+                    </div>
+                    <div class="col text-end">
+                        {% comment %} <a href="{%url 'eta-divs-liste' eta_id=eta.id %}" class="btn btn-sm btn-info">Liste Divisions</a> {% endcomment %}
+                    </div>
+                </div>
+                <div class="card-body p-2">
+                    <div id="equipe_citations" class="w-100"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 px-0 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-body">
+                    <div class="d-flex align-items-center justify-content-between border-bottom py-3">
+                        <div>
+                            <div class="h6 mb-0 d-flex align-items-center">
+                                <svg class="icon icon-xs text-gray-500 me-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 6a3 3 0 013-3h10a1 1 0 01.8 1.6L14.25 8l2.55 3.4A1 1 0 0116 13H6a1 1 0 00-1 1v3a1 1 0 11-2 0V6z" clip-rule="evenodd"></path></svg>
+                                Classement dans l'etablisement
+                            </div>
+                            <div class="small card-stats">
+                                {{eta.location}}
+                                <svg class="icon icon-xs text-success" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clip-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="#" class="d-flex align-items-center fw-bold">
+                                #1
+                                <svg class="icon icon-xs text-gray-500 ms-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 0l-2 2a1 1 0 101.414 1.414L8 10.414l1.293 1.293a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 px-0 mb-4">
+            <div class="card border-0 shadow">
+                <div class="card-header">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <h2 class="fs-5 fw-bold mb-0">Meilleur 5 chercheurs dans Division</h2>
+                        </div>
+                        <div class="col text-end">
+                            <a href="#" class="btn btn-sm btn-success">Liste chercheurs</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table align-items-center table-flush">
+                        <thead class="thead-light">
+                        <tr>
+                            <th class="border-bottom" scope="col">nom</th>
+                            <th class="border-bottom" scope="col">Nombre citations</th>
+                            <th class="border-bottom" scope="col">percentage dans Division</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            {%for cher in chers5_citations%}
+                            <tr>
+                                <th class="fw-bolder text-tertiary" scope="row">
+                                    <a href="{%url 'researcher_profile' pk=cher.id%}">{{cher}}</a>
+                                </th>
+                                <td class="fw-bolder text-primary">
+                                    {{cher.citations}}
+                                </td>
+                                <td class="fw-bolder text-info">
+                                    {%count_percentage citations cher.citations%} 
+                                </td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
+{% block javascripts %}
+<script>
+    const citLabels = [{%for item in citations_total_8year.citations%}'{{item.year}}',{%endfor%}]
+    const citData ={
+        labels: citLabels,
+        datasets: [{
+            axis: 'y',
+            label: 'citations',
+            categoryPercentage:0.5,
+            barPercentage:2,
+            barThickness: 35,
+            maxBarThickness: 30,
+            minBarLength: 2,
+            data:[{% for item in citations_total_8year.citations %}{{item.citations}},{%endfor%}],
+            fill: true,
+            backgroundColor : ['rgba(20, 195, 142,0.4)','rgba(184, 241, 176,0.6)','rgba(165, 219, 88,0.4)',],
+            borderColor: ['rgb(20, 195, 142)','rgb(184, 241, 176)','rgb(165, 219, 88)'],
+            borderWidth:1,
+        }]
+    }
+    const citConfig={
+        type : 'bar',
+        data : citData,
+        options:{
+            barPercentage: 0.5,
+            scales: {
+                y:{
+                    beginAtZero:true,
+                }
+            },
+        },
+    }
+    const citChart = new Chart(
+        document.getElementById('citations-total-graph'),
+        citConfig
+    );
+    
+    const artLabels = [{%for item in citations_total_8year.citations%}'{{item.year}}',{%endfor%}]
+    const artData ={
+        labels: citLabels,
+        datasets: [{
+            axis: 'y',
+            label: 'articles',
+            categoryPercentage:0.5,
+            barPercentage:2,
+            barThickness: 35,
+            maxBarThickness: 30,
+            minBarLength: 2,
+            data:[{% for item in citations_total_8year.citations %}{{item.citations}},{%endfor%}],
+            fill: true,
+            backgroundColor : ['rgb(45, 49, 250,0.4)',],
+            borderColor: ['rgb(20, 195, 142)','rgb(184, 241, 176)','rgb(165, 219, 88)'],
+            borderWidth:1,
+            tension: 0.5
+        }]
+    }
+    const artConfig={
+        type : 'line',
+        data : artData,
+        options:{
+            barPercentage: 0.5,
+            scales: {
+                y:{
+                    beginAtZero:true,
+                }
+            },
+        },
+    }
+    
+    const articleChart = new Chart(
+        document.getElementById('article-total-graph'),
+        artConfig
+    );
+
+    
+    const equipe_citations_total = [{% for equipe in div_equipes_citations %}{{equipe.citations}},{%endfor%}].reduce((partialSum, a)=> partialSum+a, 0)
+    const dif = {{citations|safe}}-equipe_citations_total
+    anychart.onDocumentReady(function () {
+        var color1 = "#2D31FA";
+        var colorIndex = 0;
+        function colorizer(){
+            var mixColor1 = anychart.color.lighten(color1, colorIndex);
+            colorIndex = colorIndex + 0.4;
+            return mixColor1;
+        }
+
+        var data = [
+            {% for equipe in div_equipes_citations %}
+                {x: '{{equipe.equipe}}' , value: {{equipe.citations|safe}} , fill: (colorizer()) } ,
+            {%endfor%}
+            //{x : 'autre', value: dif ,normal:  {fill: "rgba(71, 181, 255,0.7)"},}
+            {x : 'autre', value: dif ,fill: (colorizer())}
+        ];
+        console.log(data)
+        var chart = anychart.pie(data);
+        chart.labels().useHtml(true).fontColor("#000")
+        chart.tooltip(true);
+        chart.container("equipe_citations");
+        chart.draw();
+    });
+</script>
+{% endblock javascripts %}
