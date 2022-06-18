@@ -60,6 +60,9 @@
         </div>
     </div>
 </div>
+
+<a type="button" href="{% url 'org-divs-add' %}" class=" bj bjj btn btn-pill btn-outline-primary " type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Division</a>
+
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
@@ -72,6 +75,9 @@
                         <th class="border-0">Nbr Equipe</th>
                         <th class="border-0 ">Nbr Chercheurs</th>
                         <th class="border-0 rounded-end">Tableau de Bord</th>
+                        {% if  user.is_superuser %}
+                        <th class="border-0 " colspan="2">Action</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
@@ -95,6 +101,14 @@
                         <td class="rounded-end">
                             <a class="btn btn-pill btn-outline-info" href="{%url 'org-div-dash' div_id=div.id%}">consulter</a>
                         </td>
+                        {% if  user.is_superuser %}
+                        <td>
+                            <i class="bi bi-box-arrow-up-right"></i>Modifier
+                        </td>
+                        <td>
+                           <a  href="{% url 'org-divs-delete' div.id  %}" type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer la division \{{div}} ');"> <i  class="bi bi-trash3"></i> Supprimer</a>
+                        </td>
+                        {% endif %}
                     </tr>
                     {%endfor%}
                 </tbody>
@@ -102,4 +116,25 @@
         </div>
     </div>
 </div>
+<script>
+    <style>
+
+        @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+        .bj{
+            margin-bottom: 2%;
+            vertical-align: middle;
+            width: 300px;
+            font-size: 17px;
+        }
+        i{
+            vertical-align: middle;
+        }
+        
+        
+        .cc{
+            padding-bottom: 7px;
+        }
+        
+        </style>
+</script>
 {% endblock content %}
