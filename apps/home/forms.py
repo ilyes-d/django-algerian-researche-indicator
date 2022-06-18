@@ -1,9 +1,10 @@
 
 
 
+from __future__ import division
 from django import forms
 from django.forms import ModelForm
-from apps.home.models import Division, Etablisment, Location, Researcher
+from apps.home.models import Division, Equipe, Etablisment, Location, Researcher
 
 
 class EtablismentForm  (ModelForm):
@@ -30,3 +31,15 @@ class DivisionForm  (ModelForm):
       class Meta:
           model = Division
           fields = ('nom','site_web','etablisment','chef_div','long_nom')
+          
+class EquipeForm  (ModelForm):
+      nom=forms.CharField(widget=forms.TextInput( attrs={ "placeholder": "Entre le nom de l'équipe", "class": "form-control"}))
+    #   logo=
+      site_web= forms.URLField(widget=forms.URLInput(attrs={"placeholder":"Le lien du site de l'équipe", "class":"form-control"}))
+      division= forms.ModelChoiceField(queryset=Division.objects.all(), empty_label="Enter  la division de l'équipe " )
+      chef_equipe= forms.ModelChoiceField(queryset=Researcher.objects.all(), empty_label="Le chef de l'équipe" )
+    #   long_nom=
+      long_nom=forms.CharField(widget=forms.TextInput( attrs={ "placeholder": "Entre le nom complet de l'équipe", "class": "form-control"}))
+      class Meta:
+          model = Equipe
+          fields = ('nom','site_web','division','chef_equipe','long_nom')

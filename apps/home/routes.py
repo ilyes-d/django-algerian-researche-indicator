@@ -1,6 +1,6 @@
 from django.urls import path, include
 from apps.home.views import div, equipe, eta,filters,org,users,trying
-from apps.home.views.crud import Delete_Division_views, Delete_Etablisment_views, creat_Etablisment_views, creat_division_views
+from apps.home.views.crud import *
 from core import settings
 from .views.users import *
 from django.conf.urls.static import static
@@ -22,6 +22,8 @@ urlpatterns = [
         path('division/add/', creat_division_views, name="org-divs-add"),
         path('division/delete/<str:pk>',Delete_Division_views, name="org-divs-delete"),
         path('equipe/liste/', org.org_equipes_liste, name="org-equipes-liste"),
+        path('equipe/add/', creat_equipe_views, name="org-equipes-add"),
+        path('equipe/delete/<str:pk>',Delete_Equipe_views, name="org-equipes-delete"),
         
         path('chercheurs/members/liste/', org.org_members_liste, name="org-members-liste"),
         path('chercheurs/chef-eta/liste/', org.org_etas_liste, name="org-chefeta-liste"),
