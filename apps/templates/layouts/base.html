@@ -23,11 +23,11 @@
     .sorting_asc svg{
       transform: rotate(180deg);
     }
-  
     #liste_filter,
     #liste_info,
+    #liste_length,
     #liste_paginate{
-        display : none ;
+      display : none ;
     }
   </style>
 </head>
@@ -62,9 +62,12 @@
     
   </main>
   {% include 'includes/scripts.html' %}
-  {% block javascripts %}
-
-  {% endblock javascripts %}
+  <script>
+    $(document).ready(function () {
+        $('#liste').DataTable();
+    });
+  </script>
+  {% block javascripts %}{% endblock javascripts %}
       
 </body>
 </html>

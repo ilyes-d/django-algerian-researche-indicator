@@ -1,5 +1,8 @@
 from django.urls import path, include
-from apps.home.views import div, equipe, eta,filters,org,users,trying
+
+from apps.home.views import div, equipe, eta,org,users
+from .views.users import *
+from apps.home.views import div, equipe, eta,org,users
 from apps.home.views.crud import *
 from core import settings
 from .views.users import *
@@ -9,8 +12,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     
     path('', users.index, name='index'),
-    
-    #  those only for the superuser MESRS
     path('refrech-database/', org.refrech_database , name='refrech'),
     path('organisation/' ,include([
         path('carte/' , org.org_carte, name="org-carte"),
@@ -60,8 +61,8 @@ urlpatterns = [
         # """
      ])),
     
-    # chef division
-    path('division=<int:div_id>/' ,include([   
+    
+    path('division=<int:div_id>/' ,include([
         path('dashboard/' , div.div_dash  , name='div-dash'),
         path('equipes/liste/' ,div.div_equipe_liste  , name='div-equipes-liste'),
         path('members/',div.div_chers_liste_card , name='div-members-liste'),
@@ -74,13 +75,15 @@ urlpatterns = [
         path('dashboard/' , equipe.equipe_dash , name='equipe-dash'),
         path('members/' , equipe.equipe_chers_dash, name='equipe-chers-liste'),
      ])),    
+    
     path('profile/user=<int:pk>', researcher_profile , name='researcher_profile'),
+
+
+    path('ajax/load_etas',org.load_etas , name='eta-options'),
+    # path('ajax/get_divs',eta.get_div_liste , name='divs-liste'),
+
     path('profile/update/', researcher_profile_update , name='researcher_profile_update'),
     
-    path('try/', filters.etablisement_list),
-    # path('filter/<int:div_id>',trying.search , name='search'),
-    path('filter/',trying.search , name='search'),
-    path('members/',users.member , name='members'),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -90,3 +93,4 @@ def handler404(request, exception=None):
     return render(request,'404.html')
     
 handler404 = handler404
+

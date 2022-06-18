@@ -25,12 +25,11 @@ def researcher_profile(request, pk):
         researcher = Researcher.objects.get(id = pk)
     except Researcher.DoesNotExist:
         return render(request,'404.html',context)
-    # load_reseacher_gs_data(researcher)
     context['researcher'] = researcher
     return render(request,'home/profile.html',context)
 
 
-
+# this is 
 
 def researcher_profile_update(request):
     context = {}

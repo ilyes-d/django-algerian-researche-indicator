@@ -66,6 +66,8 @@ def see_user_data(request):
     user = Researcher.objects.get(id=request.user.id)
     user.first_name = "ana howa"
     user.save()
+    context['wilayas'] = Location.objects.all()
+    context['etas'] = Etablisment.objects.all()
     context["first_name"] = request.user.first_name
     context["userd"] = user
     return render(request , 'empty.html',context)

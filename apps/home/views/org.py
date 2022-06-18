@@ -7,6 +7,7 @@ from django.views.generic.list import ListView
 from django.contrib.auth.decorators import *
 from django.db.models import *
 from .queries import *
+from .filters import * 
 
 def refrech_database(request):
     researchers_list = Researcher.objects.filter(Q(google_scholar_account__isnull=False))
@@ -61,7 +62,9 @@ def org_etas_dash(request):
 @login_required
 def org_etas_liste(request):
     context = {}
+    f = EtablismentFilter(request.GET, queryset=Etablisment.objects.all())
     context["etablisements"] = query_all_etablisements()
+    context['filter'] = f
     return render(request, 'home/org/org-etas-liste.html' , context)
 
 
@@ -72,7 +75,8 @@ def org_divs_dash(request):
 
 def org_divs_liste(request):
     context = {}
-    context["divisions"] = query_all_divs()    
+    context['filter'] = DivisionFilter(request.GET , queryset=Division.objects.all())
+    context["divisions"] = query_all_divs()
     return render(request, 'home/org/org-divs-liste.html',context)
 
 def org_equipes_dash(request):
@@ -111,3 +115,12 @@ class EtablisementListView(ListView):
         context = super().get_context_data(**kwargs)
 
         return context
+def load_etas(request):
+    context={}
+    
+    wilaya_id = request.GET.get('id_wilaya')
+    if wilaya_id:
+        context["etas"]=  Etablisment.objects.filter(location=wilaya_id)
+    else:
+        context["etas"]=  Etablisment.objects.all()
+    return render(request, 'home/eta-options.html', context)
