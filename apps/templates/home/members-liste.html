@@ -1,0 +1,31 @@
+{%load static %}
+{%load tag%}
+{%for cher in researchers  %}
+<tr>
+    <td class="rounded-start">
+        {{cher}}
+    </td>
+    <td>
+        {{cher|cher_equipe}}
+    </td>
+    <td>
+        {{cher|cher_info|get_item:"eta"}}
+    </td>
+    <td>
+        {{cher|cher_info|get_item:"div"}}
+        {{cher.div}}
+    </td>
+    <td>
+        {{cher.citations}}
+    </td>
+    <td class="h-12">
+        {{cher.h_index}}
+    </td>
+    <td class="h-12">
+        {{cher.i10_index}}
+    </td>
+    <td class="rounded-end">
+        <a class="btn btn-pill btn-outline-info" href="{%url 'researcher_profile' pk=cher.id %}">consulter</a>
+    </td>
+</tr>
+{%endfor%}

@@ -84,8 +84,7 @@
         $("#search-bar").on("keyup", function(){
           console.log("fd")
             var value = $(this).val().toLowerCase();
-            $("#liste tr").filter(function() {
-              
+            $("#liste tr").filter(function() {  
                 $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
             });
         });

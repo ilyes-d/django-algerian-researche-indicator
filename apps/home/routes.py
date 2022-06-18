@@ -76,9 +76,10 @@ urlpatterns = [
 
     path('ajax/divs-liste/', org.org_divs_liste_v2, name="div-ajax-liste"),
     path('ajax/load-etas',org.load_etas , name='eta-options'),
+    path('ajax/load-divs',org.load_divs , name='div-options'),
     path('ajax/eta-liste',org.wilaya_etas_liste , name='eta-liste'),
+    path('ajax/members-liste',org.members_liste , name='members-ajax-liste'),
     # path('ajax/get_divs',eta.get_div_liste , name='divs-liste'),
-
     path('profile/update/', researcher_profile_update , name='researcher_profile_update'),
     
 ]

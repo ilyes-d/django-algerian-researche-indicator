@@ -63,8 +63,8 @@ def org_etas_dash(request):
 @login_required
 def org_etas_liste(request):
     context = {}
-    context['wilayas'] = Location.objects.all()
-    qs = Etablisment.objects.all()
+    context['wilayas'] = all_wilayas()
+    qs = all_etas()
     context["etablisements"] = query_etablisements(qs)    
     return render(request, 'home/org/org-etas-liste.html' , context)
 
@@ -72,7 +72,7 @@ def wilaya_etas_liste(request):
     context = {}
     wilaya_id = request.GET.get('wilaya_id')
     if wilaya_id == '0' :
-        qs = Etablisment.objects.all()
+        qs = all_etas()
         etas = query_etablisements(qs)    
     else:
         qs = Etablisment.objects.filter(location=wilaya_id)
@@ -90,8 +90,8 @@ def org_divs_liste(request):
     context = {}
     
     qs = Division.objects.all()
-    context["wilayas"] =Location.objects.all()
-    context["etas"] = Etablisment.objects.all()
+    context["wilayas"] =all_wilayas()
+    context["etas"] = all_etas()
     context["divisions"] = query_divs(qs)
     return render(request, 'home/org/org-divs-liste.html',context)
 
@@ -114,24 +114,51 @@ def org_divs_liste_v2(request):
     return render(request,'home/div-liste.html',context)
 
 
-def org_equipes_dash(request):
-    context = {}
-    return render(request , 'home/org/org-equipes-dash.html',context)
-
 def org_equipes_liste(request):
     context = {}
-    context["equipes"] = query_all_equipes()
+    qs = Equipe.objects.all()
+    context["wilayas"] = all_wilayas()
+    context["etas"] = all_etas()
+    context["divs"] = all_divs()
+    context["equipes"] = query_equipes(qs)
     return render(request , 'home/org/org-equipes-liste.html',context)
 
-def org_chers_dash(request):
-    context = {}
-    return render(request , 'home/org/org-chers-dash.html',context)
+
 def org_members_liste(request):
     context = {}
-    context['wilayas']=Location.objects.all()
-    context["researchers"] = members()
+    qs = Researcher.objects.filter(equipe_researchers__isnull=False)
+    context['wilayas']=all_wilayas()
+    context['etas'] = all_etas()
+    context['divs'] = all_divs()
+    context['equipes']=all_equipes()
+    context["researchers"] = qs
     return render(request , 'home/org/org-members-liste.html', context)
 
+
+def members_liste_filter(id_wilaya,id_eta,id_div,id_equipe):
+    qs = Researcher.objects.filter(equipe_researchers__isnull=False)
+    if id_wilaya != '0':
+        qs = qs.filter(equipe_researchers__division__etablisment__location=id_wilaya)
+    if id_eta != '0':
+        qs = qs.filter(equipe_researchers__division__etablisment=id_eta)
+    if id_div != '0':
+        qs = qs.filter(equipe_researcher__equipe__division=id_div)
+    if id_equipe!='0':
+        qs = qs.filter(equipe_researcher=id_equipe)            
+    return qs
+        
+def members_liste(request):
+    context = {}
+    id_wilaya = request.GET.get('id_wilaya')
+    id_eta = request.GET.get('id_eta')
+    id_div = request.GET.get('id_div')
+    id_equipe = request.GET.get('id_equipe')
+    context['researchers'] = members_liste_filter(id_wilaya,id_eta,id_div,id_equipe)
+    return render(request , 'home/members-liste.html', context)
+    
+            
+
+        
 def org_chef_eta_liste(request):
     context = {}
     return render(request ,'home/chers/chef-eta.html',context)
@@ -146,8 +173,28 @@ def org_chef_equ_liste(request):
 def load_etas(request):
     context={}
     id_wilaya = request.GET.get('id_wilaya')
-    if id_wilaya=='0':
-        context["etas"]=  Etablisment.objects.all()
-    else:
-        context["etas"]=  Etablisment.objects.filter(location=id_wilaya)
+    qs =  all_etas()
+    if id_wilaya!='0':
+        qs =  Etablisment.objects.filter(location=id_wilaya)
+    
+    context["etas"]=  qs
     return render(request, 'home/eta-options.html', context)
+
+
+def load_divs(request):
+    context = {}
+    id_eta = request.GET.get('id_eta')
+    id_wilaya = request.GET.get('id_wilaya')
+    print("fel dfas")
+    qs = all_divs()
+    print(qs)
+    if id_wilaya != '0':
+        print("hahad")
+        qs = qs.filter(etablisment__location=id_wilaya)
+        print(qs)
+    if id_eta != '0':
+        print("this is")
+        qs = qs.filter(etablisment=id_eta)
+    print(qs)
+    context['divs'] = qs
+    return render(request,'home/divs-options.html',context)

@@ -1,59 +1,75 @@
 {%extends 'layouts/base.html'%}
 {%load static %}
 {%load tag%}
+{% block stylesheets %}
+<style>
+    #div option:hover {
+        background-color:red;
+    }
+</style>
+{% endblock stylesheets %}
+
 {% block content %}
-<div class="card border-0 shadow mb-4">
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-centered table-nowrap mb-0 rounded">
-                <thead class="thead-light">
-                    <tr>
-                        <div class="mb-4">
-                            <form class="navbar-search pull-left">
-                                <th class="border-0 rounded-start">
-                                    <label for="exampleInputIconLeft">Nom equipe</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text" id="basic-addon1">
-                                            <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>  
-                                        </span>
-                                        <input type="text" class="form-control" id="search-bar" placeholder="Tapez le Nom de division" aria-label="Search">
-                                    </div>
-                                </th>
-                                <th class="border-0">
-                                    <label class="my-1 me-2" for="country">Wilaya</label>                                    
-                                    <select class="form-select" id="wilaya">
-                                        <option selected>------</option>
-                                        {%for wilaya in wilayas%}
-                                        <option value="{{wilaya.id}}">{{wilaya}}</option>
-                                        {%endfor%}
-                                    </select>
-                                </th> 
-                                <th class="border-0">
-                                    <label class="my-1 me-2" for="country">Etablisement</label>
-                                    <select class="form-select" id="eta">
-                                        <option selected>-----</option>
-                                        {%for eta in etas%}
-                                        <option value="{{eta.id}}">{{eta}}</option>
-                                        {%endfor%}
-                                    </select>
-                                </th>
-                                <th class="border-0">
-                                    <label class="my-1 me-2" for="country">Division</label>
-                                    <select class="form-select" id="div">
-                                        <option selected>----</option>
-                                        {%for div in divs%}
-                                        <option value="{{div.id}}">{{div}}</option>
-                                        {%endfor%}
-                                    </select>
-                                </th>
-                            </form>
-                        </div>
-                    <th class="border-0 rounded-end">
-                        <button class="btn btn-pill btn-outline-info" type="submit">Chercher</button>
-                    </th>
-                    </tr>
-                </thead>
-            </table>
+<div class="container">
+    <div class="card border-0 shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-centered table-nowrap mb-0 rounded">
+                    <thead class="thead-light">
+                        <tr>
+                            <div class="mb-4">
+                                <form class="navbar-search pull-left">
+                                    <th class="border-0 rounded-start">
+                                        <label for="exampleInputIconLeft">Nom equipe</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                                            </span>
+                                            <input type="text" class="form-control" id="search-bar" placeholder="Tapez le Nom de division" aria-label="Search">
+                                        </div>
+                                    </th>
+                                    <th class="border-0">
+                                        <label class="my-1 me-2" for="country">Wilaya</label>
+                                        <select class="form-select" id="wilaya">
+                                            <option value='0' selected>Tous</option>
+                                            {%for wilaya in wilayas%}
+                                            <option value="{{wilaya.id}}">{{wilaya}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </th>
+                                    <th class="border-0">
+                                        <label class="my-1 me-2" for="country">Etablisement</label>
+                                        <select class="form-select" id="eta">
+                                            <option value='0' selected>Tous</option>
+                                            {%for eta in etas%}
+                                            <option value="{{eta.id}}">{{eta}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </th>
+                                    <th class="border-0">
+                                        <label class="my-1 me-2" for="country">Division</label>
+                                        <select class="form-select" id="div">
+                                            <option value='0' selected>Tous</option>
+                                            {%for div in divs%}
+                                            <option value="{{div.id}}">{{div}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </th>
+                                    <th class="border-0">
+                                        <label class="my-1 me-2" for="country">Equipe</label>
+                                        <select class="form-select" id="equipe">
+                                            <option value='0' selected>Tous</option>
+                                            {%for equipe in equipes%}
+                                            <option value="{{equipe.id}}">{{equipe}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </th>
+                                </form>
+                            </div>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
     </div>
 </div>
@@ -89,7 +105,7 @@
 
                     </tr>
                 </thead>
-                <tbody id='eta-liste'>
+                <tbody id='members-liste'>
                     {%for cher in researchers  %}
                     <tr>
                         <td class="rounded-start">
@@ -127,4 +143,82 @@
 {% endblock content %} 
 
 
-{% block javascripts %}{% endblock javascripts %}  
+{% block javascripts %}
+<script>
+    $( window ).on( "load",function(){
+        $('#wilaya').val('0')
+        $('#eta').val('0')
+        $('#div').val('0')
+        $('#equipe').val('0')
+    });
+
+    $('#wilaya').change(function(){
+        console.log("changed")
+        $('#eta').val('0')
+        $('#div').val('0')
+        $('#equipe').val('0')
+        $.ajax({
+            url:"{%url 'members-ajax-liste'%}",
+            data: {
+                'id_wilaya': $(this).val(),
+                'id_eta': $('#eta').val(),
+                'id_div':$('#div').val(),
+                'id_equipe':$('#equipe').val()
+            },
+            success: function(data){
+                console.log(data)
+                $('#members-liste').html(data)
+            }
+        });
+        $.ajax({
+            url:"{% url 'eta-options'%}",
+            data:{
+                'id_wilaya': $(this).val()
+            },
+            success: function(data){
+                console.log(data);
+                $('#eta').html(data)
+            }
+        })
+        $.ajax({
+            url:"{% url 'div-options'%}",
+            data:{
+                'id_wilaya': $(this).val(),
+                'id_eta': $('#eta').val(),
+            },
+            success: function(data){
+                console.log(data);
+                $('#div').html(data)
+            }
+        })
+    })
+    $('#eta').change(function(){  
+        console.log(typeof($(this).val()))
+        $('#div').val('0')
+        $('#equipe').val('0')
+        $.ajax({
+            url:"{%url 'div-ajax-liste'%}",
+            data:{
+                'id_wilaya': $('#wilaya').val(),
+                'id_eta': $(this).val(),
+                'id_div':$('#div').val(),
+                'id_equipe':$('#equipe').val()
+            },
+            success: function(data){
+                 console.log(data)
+                $('#members-liste').html(data)
+            }
+        });
+        $.ajax({
+            url:"{% url 'div-options'%}",
+            data:{
+                'id_eta': $(this).val()
+            },
+            success: function(data){
+                console.log(data);
+                $('#div').html(data)
+            }
+        })
+    })
+</script>
+{% endblock javascripts %}  

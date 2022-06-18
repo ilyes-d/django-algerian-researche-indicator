@@ -3,10 +3,7 @@ from django.db.models import Q,F
 
 from ..models import *
 
-# org 
-def members():
-    return Researcher.objects.filter(equipe_researchers__isnull=False)
-    
+# org     
     
 
 # etablisement
@@ -43,3 +40,13 @@ def div_chers(div_id):
 # equipe
 def equipe_chers(equipe_id):
     return Researcher.objects.filter(Q(equipe_researchers=equipe_id) | Q(equipe=equipe_id))
+
+
+def all_wilayas():
+    return Location.objects.all()
+def all_etas():
+    return Etablisment.objects.all()
+def all_divs():
+    return Division.objects.all()
+def all_equipes():
+    return Equipe.objects.all()

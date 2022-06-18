@@ -131,9 +131,9 @@ def query_divs(qs):
         }
     return div_info
 
-def query_all_equipes():
+def query_equipes(qs):
     equipe_info = {}
-    for equipe in Equipe.objects.all():
+    for equipe in qs:
         equipe_info[equipe] = {
             "nom" : equipe.nom ,
             "chef_equipe" : equipe.chef_equipe.__str__(),
