@@ -115,7 +115,14 @@
                             {{cher.i10_index}}
                         </td>
                         <td class="rounded-end">
+<<<<<<< HEAD
                             <a class="btn btn-pill btn-outline-info" href="{%url 'researcher_profile' pk=cher.id %}">consulter</a>
+=======
+                            <a href="{% url 'researcher_profile' cher.id %}"
+                            ><button type="button" class="btn btn-outline-secondary">
+                              Consulter </button
+                          ></a>
+>>>>>>> e6d19d5f590f5b2bd23ae942d3271f220009e9ae
                         </td>
                     </tr>
                     {%endfor%}

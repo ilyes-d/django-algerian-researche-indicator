@@ -1,6 +1,13 @@
 from django.urls import path, include
+
 from apps.home.views import div, equipe, eta,org,users
 from .views.users import *
+from apps.home.views import div, equipe, eta,org,users
+from apps.home.views.crud import *
+from core import settings
+from .views.users import *
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     
@@ -10,8 +17,17 @@ urlpatterns = [
         path('carte/' , org.org_carte, name="org-carte"),
         path('dashboard/' , org.org_dashboard, name="org-dashboard"),
         path('etablisements/liste/', org.org_etas_liste, name="org-etas-liste"),
+        path('etablisements/add/', creat_Etablisment_views, name="org-etas-add"),
+        path('etablisements/delete/<str:pk>', Delete_Etablisment_views, name="org-etas-delete"),
+        
         path('division/liste/', org.org_divs_liste, name="org-divs-liste"),
+        path('division/add/', creat_division_views, name="org-divs-add"),
+        path('division/delete/<str:pk>',Delete_Division_views, name="org-divs-delete"),
+        
         path('equipe/liste/', org.org_equipes_liste, name="org-equipes-liste"),
+        path('equipe/add/', creat_equipe_views, name="org-equipes-add"),
+        path('equipe/upadate/<str:pk>', update_equipe_views, name="org-equipes-update"),
+        path('equipe/delete/<str:pk>',Delete_Equipe_views, name="org-equipes-delete"),
         
         path('chercheurs/members/liste/', org.org_members_liste, name="org-members-liste"),
         path('chercheurs/chef-eta/liste/', org.org_etas_liste, name="org-chefeta-liste"),
@@ -59,6 +75,19 @@ urlpatterns = [
     
     path('profile/user=<int:pk>', researcher_profile , name='researcher_profile'),
 
+
     path('ajax/load_etas',org.load_etas , name='eta-options'),
     # path('ajax/get_divs',eta.get_div_liste , name='divs-liste'),
+
+    path('profile/update/', researcher_profile_update , name='researcher_profile_update'),
+    
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# for handling 404 errors
+def handler404(request, exception=None):
+    return render(request,'404.html')
+    
+handler404 = handler404
+

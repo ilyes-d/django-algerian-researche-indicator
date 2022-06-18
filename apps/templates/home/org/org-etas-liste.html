@@ -46,7 +46,9 @@
         </div>
     </div>
 </div>
+<a type="button" href="{% url 'org-etas-add' %}" class="btn btn-pill btn-outline-primary bj bjj" type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Établissement</a>
 
+                     
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
@@ -60,6 +62,9 @@
                         <th class="border-0">Nbr Equipe</th>
                         <th class="border-0 ">Nbr Chercheurs</th>
                         <th class="border-0 rounded-end">Tableau de bord</th>
+                      {% if  user.is_superuser %}
+                        <th class="border-0 " colspan="2">Action</th>
+                        {% endif %}
                     </tr>
                 </thead>
                 <tbody>
@@ -90,6 +95,14 @@
                         <td class="rounded-end">
                             <a class="btn btn-pill btn-outline-info" href="{%url 'org-etas-dash' eta_id=eta.id %}">consulter</a>
                         </td>
+                        {% if  user.is_superuser %}
+                        <td>
+                            <i class="bi bi-box-arrow-up-right"></i>Modifier
+                        </td>
+                        <td>
+                           <a href="{% url 'org-etas-delete' eta.id  %}"  type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer l \'établissement {{eta}}');"> <i  class="bi bi-trash3"></i> Supprimer</a>
+                        </td>
+                        {% endif %}
                     </tr>
                     {%endfor%}
                 </tbody>
@@ -97,7 +110,25 @@
         </div>
     </div>
 </div>
+<style>
 
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+.bj{
+    margin-bottom: 2%;
+    vertical-align: middle;
+    width: 300px;
+    font-size: 17px;
+}
+i{
+    vertical-align: middle;
+}
+
+
+.cc{
+    padding-bottom: 7px;
+}
+
+</style>
 {%endblock%}
 {% block javascripts %}
 

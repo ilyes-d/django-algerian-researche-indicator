@@ -1,4 +1,11 @@
 {% extends 'layouts/base.html' %}
+<<<<<<< HEAD
+=======
+{% block stylesheets %}
+
+{% endblock stylesheets %} 
+
+>>>>>>> e6d19d5f590f5b2bd23ae942d3271f220009e9ae
 {% block content %}
 <div class="page-header">
     <div class="row align-items-center">
@@ -11,6 +18,8 @@
      </div>
     </div>
 </div>
+
+
 
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
@@ -68,6 +77,9 @@
         </div>
     </div>
 </div>
+<a type="button" href="{% url 'org-equipes-add' %}" class="btn btn-pill btn-outline-primary bj bjj" type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Equipe</a>
+
+
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
@@ -85,6 +97,9 @@
                             </div>
                         </th>
                         <th class="border-0 rounded-end">Tableau de bord</th>
+                        {% if  user.is_superuser %}
+                        <th class="border-0 " colspan="2">Action</th>
+                        {% endif %}
 
                     </tr>
                 </thead>
@@ -109,6 +124,16 @@
                         <td class="rounded-end">
                             <a class="btn btn-pill btn-outline-info" href="{%url 'org-equipe-dash' equ_id=equipe.id %}">consulter</a>
                         </td>
+                        {% if  user.is_superuser %}
+                        <td>
+                       
+                            <a  type="button"  href="{% url 'org-equipes-update' equipe.id  %}"> <i class="bi bi-box-arrow-up-right"></i> Modifier</a>
+
+                        </td>
+                        <td>
+                           <a  type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer l\'équipe {{equipe}} ');"  href="{% url 'org-equipes-update' equipe.id  %}"> <i  class="bi bi-trash3"></i> Supprimer</a>
+                        </td>
+                        {% endif %}
                     </tr>
                     {%endfor%}
                 </tbody>
@@ -116,4 +141,37 @@
         </div>
     </div>
 </div>
+<<<<<<< HEAD
+=======
+{% comment %} <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/> {% endcomment %}
+ 
+
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        $('#liste').DataTable();
+    });
+</script>
+<style>
+
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+    .bj{
+        margin-bottom: 2%;
+        vertical-align: middle;
+        width: 270px;
+        font-size: 17px;
+    }
+    i{
+        vertical-align: middle;
+    }
+    
+    
+    .cc{
+        padding-bottom: 7px;
+    }
+    
+    </style>
+{% endblock javascripts %}
+>>>>>>> e6d19d5f590f5b2bd23ae942d3271f220009e9ae
 {% endblock content %}

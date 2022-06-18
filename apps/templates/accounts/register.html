@@ -150,7 +150,7 @@
                             </span>
                         </div>
                         {% for message in messages %}
-                        <p id="messages" style="margin-bottom: -91px; margin-right: 263px; text-align:left; color: red;">{{message}}</p>
+                        <p id="messages" style="margin-bottom: -91px; color:red; margin-right: 263px; text-align:left; color: red;">{{message}}</p>
                         {% endfor %}
                     </div>
                 </div>
@@ -158,6 +158,17 @@
         </div>
     </section>
 </main>
+<style>
+.errorlist li {
+    color:red;
+    List-style-type:none;
+}
+
+.errorlist{
+
+}
+
+</style>
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
