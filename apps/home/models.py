@@ -105,7 +105,7 @@ class Equipe(models.Model):
 
     def __str__(self):
         return self.nom+" "+str(self.id)
-
+    
 class Division(models.Model):
     nom = models.CharField(max_length=200, default='')
     site_web=models.URLField(blank=True)

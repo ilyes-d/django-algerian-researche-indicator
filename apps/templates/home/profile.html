@@ -3,30 +3,30 @@
 {%load tag%}
 {%block stylesheets%}
 <style>
-.social-link{
-  cursor: pointer;
-}    
+  .social-link{
+    cursor: pointer;
+  }    
 
-.stat {
-  align-items: center;
-  background: #d3e2f7;
-  border-radius: 50%;
-  display: flex;
-  height: 40px;
-  justify-content: center;
-  width: 40px;
-}
-.stat svg {
-  stroke-width: 1.5;
-  color: #3b7ddd !important;
-  height: 18px;
-  width: 18px;
-}
-.card-title-v2{
-  color: #939ba2;
-  font-size: .975rem;
-  font-weight: 600;
-}
+  .stat {
+    align-items: center;
+    background: #d3e2f7;
+    border-radius: 50%;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    width: 40px;
+  }
+  .stat svg {
+    stroke-width: 1.5;
+    color: #3b7ddd !important;
+    height: 18px;
+    width: 18px;
+  }
+  .card-title-v2{
+    color: #939ba2;
+    font-size: .975rem;
+    font-weight: 600;
+  }
 </style>
 {%endblock stylesheets%}
 {%block content%}
@@ -87,7 +87,7 @@
   </div>
 </div>
 <div class="container w-100">
-  {%if not user.is_superuser%}
+  {%if not researcher.is_superuser%}
   <div class="row">
     <div class="col me-2 ms-3 card mb-2">
       <div class="card-body">
@@ -212,7 +212,7 @@
               <p class="mb-0">Etablisement</p>
             </div>
             <div class="col-sm-9">
-              <p class="text-muted mb-0">{{researcher|get_eta}}</p>
+              <p class="text-muted mb-0">{{researcher|cher_eta}}</p>
             </div>
           </div>
           <hr>
@@ -221,7 +221,7 @@
             <div class="col-sm-3">
               <p class="mb-0">Role</p>
             </div>
-            {%if user.is_superuser%}
+            {%if researcher.is_superuser%}
             <div class="col-sm-9">
               <p class="text-muted mb-0">Admin</p>
             </div>
@@ -235,7 +235,7 @@
       </div>
     </div>
   </div>
-  {%if user.is_superuser%}
+  {%if researcher.is_superuser%}
   super user meskin ma3ndo walo hhahahahah
   {%else%}
   <div class="card shadow mb-4">
@@ -263,8 +263,6 @@
 </div>
 
 <br>
-
-{% for key,value in researcher.graph_pub.items %}'{{key}}',{%endfor%}
 
 
 {%endblock content%}

@@ -1,5 +1,6 @@
 from django.urls import path, include
 from apps.home.views import div, equipe, eta,filters,org,users,trying
+from apps.home.views.crud import creat_Etablisment_views
 from core import settings
 from .views.users import *
 from django.conf.urls.static import static
@@ -15,6 +16,7 @@ urlpatterns = [
         path('carte/' , org.org_carte, name="org-carte"),
         path('dashboard/' , org.org_dashboard, name="org-dashboard"),
         path('etablisements/liste/', org.org_etas_liste, name="org-etas-liste"),
+        path('etablisements/add/', creat_Etablisment_views, name="org-etas-add"),
         path('division/liste/', org.org_divs_liste, name="org-divs-liste"),
         path('equipe/liste/', org.org_equipes_liste, name="org-equipes-liste"),
         
@@ -65,7 +67,8 @@ urlpatterns = [
     path('profile/update/', researcher_profile_update , name='researcher_profile_update'),
     
     path('try/', filters.etablisement_list),
-    path('filter/<int:div_id>',trying.search , name='search'),
+    # path('filter/<int:div_id>',trying.search , name='search'),
+    path('filter/',trying.search , name='search'),
     path('members/',users.member , name='members'),
 ]
 

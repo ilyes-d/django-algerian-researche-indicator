@@ -1,80 +1,10 @@
-{% extends 'layouts/base.html' %}
-{% block stylesheets %}
-{% comment %} <style>
-    table.dataTable thead > tr > th.sorting:before,
-    table.dataTable thead > tr > th.sorting:after,
-    table.dataTable thead > tr > th.sorting_asc:before,
-    table.dataTable thead > tr > th.sorting_asc:after,
-    table.dataTable thead > tr > th.sorting_desc:before,
-    table.dataTable thead > tr > th.sorting_desc:after,
-    table.dataTable thead > tr > th.sorting_asc_disabled:before,
-    table.dataTable thead > tr > th.sorting_asc_disabled:after,
-    table.dataTable thead > tr > th.sorting_desc_disabled:before,
-    table.dataTable thead > tr > th.sorting_desc_disabled:after,
-    table.dataTable thead > tr > td.sorting:before,
-    table.dataTable thead > tr > td.sorting:after,
-    table.dataTable thead > tr > td.sorting_asc:before,
-    table.dataTable thead > tr > td.sorting_asc:after,
-    table.dataTable thead > tr > td.sorting_desc:before,
-    table.dataTable thead > tr > td.sorting_desc:after,
-    table.dataTable thead > tr > td.sorting_asc_disabled:before,
-    table.dataTable thead > tr > td.sorting_asc_disabled:after,
-    table.dataTable thead > tr > td.sorting_desc_disabled:before,
-    table.dataTable thead > tr > td.sorting_desc_disabled:after {
-    position: absolute;
-    display: block;
-    opacity: 0.125;
-    right: 10px;
-    line-height: 9px;
-    font-size: 0.9em;
-    }
-    table.dataTable thead > tr > th.sorting:before,
-    table.dataTable thead > tr > th.sorting_asc:before,
-    table.dataTable thead > tr > th.sorting_desc:before,
-    table.dataTable thead > tr > th.sorting_asc_disabled:before,
-    table.dataTable thead > tr > th.sorting_desc_disabled:before,
-    table.dataTable thead > tr > td.sorting:before,
-    table.dataTable thead > tr > td.sorting_asc:before,
-    table.dataTable thead > tr > td.sorting_desc:before,
-    table.dataTable thead > tr > td.sorting_asc_disabled:before,
-    table.dataTable thead > tr > td.sorting_desc_disabled:before {
-    bottom: 50%;
-    content: "▴";
-    }
-    table.dataTable thead > tr > th.sorting:after,
-    table.dataTable thead > tr > th.sorting_asc:after,
-    table.dataTable thead > tr > th.sorting_desc:after,
-    table.dataTable thead > tr > th.sorting_asc_disabled:after,
-    table.dataTable thead > tr > th.sorting_desc_disabled:after,
-    table.dataTable thead > tr > td.sorting:after,
-    table.dataTable thead > tr > td.sorting_asc:after,
-    table.dataTable thead > tr > td.sorting_desc:after,
-    table.dataTable thead > tr > td.sorting_asc_disabled:after,
-    table.dataTable thead > tr > td.sorting_desc_disabled:after {
-    top: 50%;
-    content: "▾";
-    }
-    .sorting_asc{
-        background-color : red;
-    }
-</style> {% endcomment %}
-<style>
-</style>
-{% endblock stylesheets %} 
+{%extends 'layouts/base.html'%}
+{%load static %}
+{%load tag%}
 
 {% block content %}
-<div class="page-header">
-    <div class="row align-items-center">
-      <div class="col">
-        <h3>La liste total d'equipes de L'organisation <b>MESRS</b><br></h3>
-        <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{%url 'org-carte'%}">Organisation</a></li>
-        <li class="breadcrumb-item active">Liste d'equipes</li>
-        </ul>
-     </div>
-    </div>
-</div>
-
+{{researchers}}
+members  liste 
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <h5 class="card-title">Filtrer les resultas</h5>
@@ -137,41 +67,62 @@
             <table class="table table-centered table-nowrap mb-0 rounded" id="liste">
                 <thead class="thead-light align-middle">
                     <tr>
-                        <th class="border-0 rounded-start">Nom d'Equipe</th>
-                        <th class="border-0">chef</th>
+                        <th class="border-0 rounded-start">Nom</th>
+                        <th class="border-0">Equipe</th>
                         <th class="border-0">Etablisement assosie</th>
                         <th class="border-0">divisions associe</th>
                         <th class="border-0 ">
                             <div class="d-flex flex-row">
-                                Nbr Chercheurs
+                                Citations
                                 <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12px"><path d="M311.9 335.1l-132.4 136.8C174.1 477.3 167.1 480 160 480c-7.055 0-14.12-2.702-19.47-8.109l-132.4-136.8C-9.229 317.8 3.055 288 27.66 288h264.7C316.9 288 329.2 317.8 311.9 335.1z"/></svg>
                             </div>
-                            {% comment %} <i class="fa-solid fa-sort-down"></i> {% endcomment %}
                         </th>
-                        <th class="border-0 rounded-end">Tableau de bord</th>
+                        <th class="border-0 ">
+                            <div class="d-flex flex-row">
+                                Indice H
+                                <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12px"><path d="M311.9 335.1l-132.4 136.8C174.1 477.3 167.1 480 160 480c-7.055 0-14.12-2.702-19.47-8.109l-132.4-136.8C-9.229 317.8 3.055 288 27.66 288h264.7C316.9 288 329.2 317.8 311.9 335.1z"/></svg>
+                            </div>
+                        </th>
+                        <th class="border-0 ">
+                            <div class="d-flex flex-row">
+                                Indice i10
+                                <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12px"><path d="M311.9 335.1l-132.4 136.8C174.1 477.3 167.1 480 160 480c-7.055 0-14.12-2.702-19.47-8.109l-132.4-136.8C-9.229 317.8 3.055 288 27.66 288h264.7C316.9 288 329.2 317.8 311.9 335.1z"/></svg>
+                            </div>
+                        </th>
+                        <th class="border-0 rounded-end">Profile</th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    {%for equipe,value in equipes.items %}
+                    {%for cher in researchers  %}
                     <tr>
                         <td class="rounded-start">
-                            {{equipe}}
+                            {{cher}}
                         </td>
                         <td>
-                            {{value.chef_equipe}}
+                            {{cher|cher_equipe}}
                         </td>
                         <td>
-                            {{value.etablisement_associe}}
+                            {{cher|cher_info|get_item:"eta"}}
                         </td>
                         <td>
-                            {{value.division_associe}}
+                            {{cher|cher_info|get_item:"div"}}
+                            {{cher.div}}
+                        </td>
+                        <td>
+                            {{cher.citations}}
                         </td>
                         <td class="h-12">
-                            {{value.nbr_chers}}
+                            {{cher.h_index}}
+                        </td>
+                        <td class="h-12">
+                            {{cher.i10_index}}
                         </td>
                         <td class="rounded-end">
-                            <a class="btn btn-pill btn-outline-info" href="{%url 'org-equipe-dash' equ_id=equipe.id %}">consulter</a>
+                            <a href="{% url 'researcher_profile' cher.id %}"
+                            ><button type="button" class="btn btn-outline-secondary">
+                              Consulter </button
+                          ></a>
                         </td>
                     </tr>
                     {%endfor%}
@@ -180,15 +131,7 @@
         </div>
     </div>
 </div>
-{% comment %} <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/> {% endcomment %}
- 
+{% endblock content %} 
 
-{% block javascripts %}
 
-<script>
-    $(document).ready(function () {
-        $('#liste').DataTable();
-    });
-</script>
-{% endblock javascripts %}
-{% endblock content %}
+{% block javascripts %}{% endblock javascripts %}  
