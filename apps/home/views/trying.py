@@ -1,4 +1,5 @@
 from __future__ import division
+from cProfile import label
 from dataclasses import fields
 from tabnanny import verbose
 from django.http import Http404
@@ -32,13 +33,17 @@ def div(request):
     return eta.division_set.all()
 
 class CherFitler(django_filters.FilterSet):
-    f = django_filters.CharFilter(field_name='first_name',lookup_expr='contains')
+    f = django_filters.CharFilter(field_name='first_name',lookup_expr='contains',label='fd')
     
     # first_name = django_filters.ModelChoiceFilter(field_name='first_name',queryset=Researcher.objects.values_list('first_name',flat=True))
     # equipe_researchers__division__etablisment = django_filters.CharFilter(field_name='etablisment')
-    etab = django_filters.ModelChoiceFilter(field_name='equipe_researchers__division__etablisment__location',queryset=Location.objects.all(),label='haha')
-    etab = django_filters.ModelChoiceFilter(field_name='equipe_researchers__division__etablisment',queryset=Etablisment.objects.all())
+    etab = django_filters.ModelChoiceFilter(field_name='equipe_researchers__division__etablisment__location',queryset=Location.objects.all(),label='ha')
+    etab = django_filters.ModelChoiceFilter(field_name='equipe_researchers__division__etablisment',queryset=Etablisment.objects.all(),label='df')
     # division = django_filters.ModelChoiceFilter(queryset=div)
+    field_labels ={
+        'equipe_researchers__division__etablisment': 'haha',
+    }
+    
     class Meta:
         model = Researcher
         fields=['first_name',

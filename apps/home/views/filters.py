@@ -20,10 +20,10 @@ def divs_of_eta(request):
 
 class EtablismentFilter(django_filters.FilterSet):
     # nom = django_filters.MultipleChoiceFilter
-    division = django_filters.ModelChoiceFilter(queryset=divs_of_eta)
+    # division = django_filters.ModelChoiceFilter(queryset=divs_of_eta)
     class Meta:
         model = Etablisment
-        fields = ['nom','location','division']
+        fields = ['location']
         # form = EtablisementForm
       
 class DivisionFilter(django_filters.FilterSet):

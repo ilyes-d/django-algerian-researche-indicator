@@ -7,6 +7,7 @@ from django.views.generic.list import ListView
 from django.contrib.auth.decorators import *
 from django.db.models import *
 from .queries import *
+from .filters import * 
 
 def refrech_database(request):
     researchers_list = Researcher.objects.filter(Q(google_scholar_account__isnull=False))
@@ -61,7 +62,9 @@ def org_etas_dash(request):
 @login_required
 def org_etas_liste(request):
     context = {}
+    f = EtablismentFilter(request.GET, queryset=Etablisment.objects.all())
     context["etablisements"] = query_all_etablisements()
+    context['filter'] = f
     return render(request, 'home/org/org-etas-liste.html' , context)
 
 

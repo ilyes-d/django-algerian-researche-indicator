@@ -1,13 +1,9 @@
 {%extends 'layouts/base.html'%}
 {%load static %}
 {%load tag%}
-
 {% block content %}
-{{researchers}}
-members  liste 
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
-        <h5 class="card-title">Filtrer les resultas</h5>
         <div class="table-responsive">
             <table class="table table-centered table-nowrap mb-0 rounded">
                 <thead class="thead-light">
@@ -24,7 +20,7 @@ members  liste
                                     </div>
                                 </th>
                                 <th class="border-0">
-                                    <label class="my-1 me-2" for="country">Wilaya</label>
+                                    <label class="my-1 me-2" for="country">Wilaya</label>                                    
                                     <select class="form-select" id="country" aria-label="Default select example">
                                         <option selected>------</option>
                                         <option value="1">One</option>
@@ -119,7 +115,7 @@ members  liste
                             {{cher.i10_index}}
                         </td>
                         <td class="rounded-end">
-                            <a class="btn btn-pill btn-outline-info" href="{%url 'profile' pk=.id %}">consulter</a>
+                            <a class="btn btn-pill btn-outline-info" href="{%url 'researcher_profile' pk=cher.id %}">consulter</a>
                         </td>
                     </tr>
                     {%endfor%}
