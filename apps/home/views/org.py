@@ -75,7 +75,8 @@ def org_divs_dash(request):
 
 def org_divs_liste(request):
     context = {}
-    context["divisions"] = query_all_divs()    
+    context['filter'] = DivisionFilter(request.GET , queryset=Division.objects.all())
+    context["divisions"] = query_all_divs()
     return render(request, 'home/org/org-divs-liste.html',context)
 
 def org_equipes_dash(request):
@@ -114,3 +115,12 @@ class EtablisementListView(ListView):
         context = super().get_context_data(**kwargs)
 
         return context
+def load_etas(request):
+    context={}
+    
+    wilaya_id = request.GET.get('id_wilaya')
+    if wilaya_id:
+        context["etas"]=  Etablisment.objects.filter(location=wilaya_id)
+    else:
+        context["etas"]=  Etablisment.objects.all()
+    return render(request, 'home/eta-options.html', context)

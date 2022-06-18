@@ -1,69 +1,20 @@
-{% comment %} {% extends "layouts/base.html" %}  {% endcomment %}
-{% comment %} {%load static%}  {% endcomment %}
-
-{%load tag%}
-{% block content %}
-<br>
-{%comment%}
-this is the first_name changed
-{{first_name}}
-<br>
-this is the user 
-{{userd}}
-{%endcomment%}
-{{eta}}
-
-{{user|eta_id}}
-
-<form method="get" id="equipe-form">
-    {{ filter.form.as_p }}
-    <button type="submit">Search</button>
-  </form>
-  <ul>
-  {% for cher in filter.qs %}
-    <li>{{ cher }} </li>
-    <li>{{ cher.citations }} </li>
-  {% endfor %}
-  
-  <br>
-  <br>
-  <br>
-  <h1>All researchers</h1>
-  {% for cher in researchers %}
-    <li>{{ cher }} </li>
-    <li>{{ cher.citations }} </li>
-  {% endfor %}
+hello 
 
 
-  </ul>
+<form action="{%url 'eta-options'%}" method="get">
 
+    <label class="my-1 me-2" for="country">Wilaya</label>
+    <select name="wilaya" id="id_wilaya" >
+        <option value="" disabled>Choisir un wilaya</option>
+        {%for wilaya in wilayas%}
+        <option value="{{wilaya.id}}">{{wilaya}}</option>
+        {%endfor%}
+    </select>
+    <label class="my-1 me-2" for="country">Etablisement</label>
+    {{filter.form.etablisment}}
+</form>
 
-  <div >this is my name : <span id="name"></span> </div>
-{% endblock content %}
-
-{% block javascripts %}
 <script>
-$(document).ready(function(){
-    console.log("worked ");    
-    $.ajax({
-        url:"{% url 'members' %}",
-        type:"GET",
-        dataType: "json",
-        success: (data) => {
-            console.log(data);
-            document.getElementById('name').innerHTML = data.nom
-        },
-        error:(error) => {
-            console.log(error)
-        }
-    })
-})
 
-$("#equipe-form").submit(function (e){
-    //e.preventDefault();
-    //var serializedData = $(this).serialize();
-    console.log("worked ");
-});
 
 </script>
-{% endblock javascripts %}  

@@ -316,14 +316,14 @@
   );
   
   
-  const pub_labels = [{% for key,value in researcher.graph_pub.items %}'{{key}}',{%endfor%}]
+  const pub_labels = [{% for key,value in researcher.graph_pub.items %}'{{key}}',{%endfor%}].reverse()
   const pubData = {
     labels: pub_labels,
     datasets: [
     {
       type : 'bar',
       label: 'articles',
-      data:[{% for key,value in researcher.graph_pub.items %}{{value.nbr_pub}},{%endfor%}],
+      data:[{% for key,value in researcher.graph_pub.items %}{{value.nbr_pub}},{%endfor%}].reverse(),
       backgroundColor : 'rgba(0, 67, 255, 0.51)',
       borderColor: 'rgb(0, 67, 255)',
       borderWidth:1,
