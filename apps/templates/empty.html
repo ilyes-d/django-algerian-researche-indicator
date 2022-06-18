@@ -5,13 +5,18 @@ hello
 
     <label class="my-1 me-2" for="country">Wilaya</label>
     <select name="wilaya" id="id_wilaya" >
-        <option value="" disabled>Choisir un wilaya</option>
+        <option selected>Choisir un wilaya</option>
         {%for wilaya in wilayas%}
         <option value="{{wilaya.id}}">{{wilaya}}</option>
         {%endfor%}
     </select>
     <label class="my-1 me-2" for="country">Etablisement</label>
-    {{filter.form.etablisment}}
+    <select name="wilaya" id="id_wilaya" >
+        <option selected>Choisir un etablisement</option>
+        {%for eta in etas%}
+        <option value="{{eta.id}}">{{eta}}</option>
+        {%endfor%}
+    </select>
 </form>
 
 <script>
