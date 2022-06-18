@@ -12,10 +12,9 @@ def creat_Etablisment_views(request):
     if request.method =="POST":     
         if form.is_valid() :
              form.save()
-             messages.success(request, 'Etablisment a été ajouté avec succée')
-             return redirect("creatEtablisment")
-        return render(request,"creatEtablisment.html",{"form":form})
+             return redirect("org-etas-liste")
+        return render(request,"crud/creatEtablisment.html",{"form":form})
 
     else:
            form=EtablismentForm
-           return render(request,'creatEtablisment.html',{"form":form})
+           return render(request,'crud/creatEtablisment.html',{"form":form})
