@@ -15,13 +15,16 @@ urlpatterns = [
     path('organisation/' ,include([
         path('carte/' , org.org_carte, name="org-carte"),
         path('dashboard/' , org.org_dashboard, name="org-dashboard"),
+        
         path('etablisements/liste/', org.org_etas_liste, name="org-etas-liste"),
         path('etablisements/add/', creat_Etablisment_views, name="org-etas-add"),
         path('etablisements/delete/<str:pk>', Delete_Etablisment_views, name="org-etas-delete"),
+        path('etablisements/update/<str:pk>', update_Etablisment_views, name="org-etas-update"),
         
         path('division/liste/', org.org_divs_liste, name="org-divs-liste"),
         path('division/add/', creat_division_views, name="org-divs-add"),
         path('division/delete/<str:pk>',Delete_Division_views, name="org-divs-delete"),
+        path('division/update/<str:pk>',update_Division_views, name="org-divs-update"),
         
         path('equipe/liste/', org.org_equipes_liste, name="org-equipes-liste"),
         path('equipe/add/', creat_equipe_views, name="org-equipes-add"),

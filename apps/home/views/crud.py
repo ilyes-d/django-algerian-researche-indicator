@@ -19,7 +19,17 @@ def creat_Etablisment_views(request):
     else:
            form=EtablismentForm
            return render(request,'crud/creatEtablisment.html',{"form":form})
-       
+
+def update_Etablisment_views(request,pk):
+    bj = get_object_or_404(Etablisment,pk=pk)
+    form =EtablismentForm(instance = bj)
+    if request.method =="POST":   
+        form =EtablismentForm(request.POST,instance=bj)
+        if form.is_valid():
+             form.save()
+             return redirect('org-etas-liste')
+    
+    return render(request,'crud/updateEta.html',{'form':form ,'bj':bj})       
        
 #supprimer etablissment
 def Delete_Etablisment_views (request,pk):
@@ -39,7 +49,17 @@ def creat_division_views(request):
    else:
         form= DivisionForm
         return render(request,'crud/creatDiv.html',{"form":form})
-       
+   
+def update_Division_views(request,pk):
+    bj = get_object_or_404(Division,pk=pk)
+    form =DivisionForm(instance = bj)
+    if request.method =="POST":   
+        form =DivisionForm(request.POST,instance=bj)
+        if form.is_valid():
+             form.save()
+             return redirect('org-divs-liste')
+    
+    return render(request,'crud/updateDiv.html',{'form':form ,'bj':bj})          
        
 def Delete_Division_views (request,pk):
     Etu=Division.objects.get(id=pk)
