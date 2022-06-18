@@ -21,29 +21,29 @@
                                 </th>
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Wilaya</label>                                    
-                                    <select class="form-select" id="country" aria-label="Default select example">
+                                    <select class="form-select" id="wilaya">
                                         <option selected>------</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        {%for wilaya in wilayas%}
+                                        <option value="{{wilaya.id}}">{{wilaya}}</option>
+                                        {%endfor%}
                                     </select>
                                 </th> 
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Etablisement</label>
-                                    <select class="form-select" id="country" aria-label="Default select example">
+                                    <select class="form-select" id="eta">
                                         <option selected>-----</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        {%for eta in etas%}
+                                        <option value="{{eta.id}}">{{eta}}</option>
+                                        {%endfor%}
                                     </select>
                                 </th>
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Division</label>
-                                    <select class="form-select" id="country" aria-label="Default select example">
+                                    <select class="form-select" id="div">
                                         <option selected>----</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                        {%for div in divs%}
+                                        <option value="{{div.id}}">{{div}}</option>
+                                        {%endfor%}
                                     </select>
                                 </th>
                             </form>
@@ -89,7 +89,7 @@
 
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id='eta-liste'>
                     {%for cher in researchers  %}
                     <tr>
                         <td class="rounded-start">
@@ -115,14 +115,7 @@
                             {{cher.i10_index}}
                         </td>
                         <td class="rounded-end">
-<<<<<<< HEAD
                             <a class="btn btn-pill btn-outline-info" href="{%url 'researcher_profile' pk=cher.id %}">consulter</a>
-=======
-                            <a href="{% url 'researcher_profile' cher.id %}"
-                            ><button type="button" class="btn btn-outline-secondary">
-                              Consulter </button
-                          ></a>
->>>>>>> e6d19d5f590f5b2bd23ae942d3271f220009e9ae
                         </td>
                     </tr>
                     {%endfor%}

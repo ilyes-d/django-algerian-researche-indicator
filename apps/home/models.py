@@ -103,6 +103,7 @@ class Equipe(models.Model):
     chef_equipe = models.OneToOneField(
         'Researcher', on_delete=models.SET_NULL, null=True, blank=True)
     long_nom = models.CharField(max_length=250,blank=True,null=True)
+    
     def __str__(self):
         return self.nom+" "+str(self.id)
     

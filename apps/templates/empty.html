@@ -1,26 +1,109 @@
-hello 
+{%load static%}
 
 
 <form action="{%url 'eta-options'%}" method="get">
 
     <label class="my-1 me-2" for="country">Wilaya</label>
     <select name="wilaya" id="id_wilaya" >
-        <option selected>Choisir un wilaya</option>
+        <option value='0'>Tous</option>
         {%for wilaya in wilayas%}
         <option value="{{wilaya.id}}">{{wilaya}}</option>
         {%endfor%}
     </select>
     <label class="my-1 me-2" for="country">Etablisement</label>
-    <select name="wilaya" id="id_wilaya" >
-        <option selected>Choisir un etablisement</option>
+    <select name="wilaya" id="id_etablisment" >
+        <option value='0' selected>Tous</option>
         {%for eta in etas%}
         <option value="{{eta.id}}">{{eta}}</option>
-        {%endfor%}
+        {%endfor%} 
     </select>
 </form>
 
+<div class="card border-0 shadow mb-4">
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-centered table-nowrap mb-0 rounded align-middle" id="liste">
+                <thead class="thead-light align-middle">
+                    <tr>
+                        <th class="border-0 rounded-start">Nom de Division</th>
+                        <th class="border-0">Directeur</th>
+                        <th class="border-0">Etablisement assosie</th>
+                        <th class="border-0">Nbr Equipe</th>
+                        <th class="border-0 ">Nbr Chercheurs</th>
+                        <th class="border-0 rounded-end">Tableau de Bord</th>
+                        {% if  user.is_superuser %}
+                        <th class="border-0 " colspan="2">Action</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody id="div-liste">
 
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<p ></p>
+
+
+
+{% include 'includes/scripts.html' %}
 <script>
+    const all_eta = $("#id_etablisment").html()
+    $( window ).on( "load",function(){
+        $('#id_wilaya').val('0')
+        $('#id_etablisment').val('0')
+    });
 
+    $('#id_wilaya').change(function(){
+        var divs_url= '{%url 'div-ajax-liste'%}';
+        $('#id_etablisment').val('0')
+        var data = {
+            'id_wilaya': $(this).val(),
+            'id_etablisment': $('#id_etablisment').val()
+        }
+        $.ajax({
+            url:divs_url,
+            data: data,
+            success: function(data){
+                $('#div-liste').html(data)
+            }
+
+        })
+        var url = "{% url 'eta-options'%}";
+            var id_wiliya = $(this).val();
+            if (id_wilaya){
+                $.ajax({
+                    url:url,
+                    data:{
+                        'id_wilaya': id_wiliya
+                    },
+                    success: function(data){
+                        $('#id_etablisment').html(data);
+                    }
+                })
+            }
+            else{
+                $('#id_etablisment').html(all_eta);
+            }
+    })
+    
+    $('#id_etablisment').change(function(){
+        var divs_url= '{%url 'div-ajax-liste'%}';
+        console.log(typeof($(this).val()))
+        $.ajax({
+            url:divs_url,
+            data:{
+                'id_wilaya': $('#id_wilaya').val(),
+                'id_etablisment': $(this).val(),
+            },
+            success: function(data){
+                console.log(data)
+                $('#div-liste').html(data)
+            }
+
+        })
+    })
 
 </script>

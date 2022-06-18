@@ -33,10 +33,12 @@
                                 </th>
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Wilaya</label>
-                                    {{filter.form.location}}
-                                </th>
-                                <th class="border-0 rounded-end">
-                                    <button class="btn btn-pill btn-outline-info" type="submit">Chercher</button>
+                                    <select class="form-select" id="wilaya" aria-label="Default select example">
+                                        <option value='0' selected>Tous</option>
+                                        {%for wilaya in wilayas%}
+                                        <option value="{{wilaya.id}}">{{wilaya}}</option>
+                                        {%endfor%}
+                                    </select>
                                 </th>
                             </form>
                         </div>
@@ -48,6 +50,7 @@
 </div>
 <a type="button" href="{% url 'org-etas-add' %}" class="btn btn-pill btn-outline-primary bj bjj" type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Établissement</a>
 
+{% comment %} <div id="eta-liste"></div> {% endcomment %}
                      
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
@@ -67,7 +70,7 @@
                         {% endif %}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="eta-liste">
                     {%for eta,value in etablisements.items %}
                     <tr>
                         <td class=" border-0 rounded-start">
@@ -110,6 +113,7 @@
         </div>
     </div>
 </div>
+
 <style>
 
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
@@ -131,5 +135,24 @@ i{
 </style>
 {%endblock%}
 {% block javascripts %}
+<script>
+    $( window ).on( "load",function(){
+        $('#wilaya').val('0')
+    });
+    $('#wilaya').change(function(){
+        console.log('change')
+        console.log($(this).val())
+        $.ajax({
+            url : "{%url 'eta-liste'%}",
+            data:{
+                'wilaya_id': $(this).val(),
+            },
+            success: function(data){
+                console.log(data)
+                $('#eta-liste').html(data)
+            },
+        });
+    })
 
+</script>
 {% endblock javascripts %}

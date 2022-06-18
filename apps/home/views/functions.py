@@ -96,9 +96,9 @@ def graph_articles(gs_id):
 
 # Organisation
 # Queries
-def query_all_etablisements():  
+def query_etablisements(qs):
     etablisements_info = {}
-    for etablisement in Etablisment.objects.all():
+    for etablisement in qs:
         etablisements_info[etablisement] = {
             "logo":etablisement.logo,
             "chef_eta": etablisement.chef_etablisement.__str__() , 
@@ -109,9 +109,20 @@ def query_all_etablisements():
         }
     return etablisements_info
 
-def query_all_divs():
+def query_all_eta_divs(eta_id):
+    div_info ={}
+    for div in Division.objects.filter(etablisment=eta_id):
+        div_info[div] = {
+            "chef_div":div.chef_div.__str__(),
+            "etablisement":Etablisment.objects.get(division=div.id).__str__(),
+            "nbr_equipes":Equipe.objects.filter(division=div.id).count(),
+            "nbr_chers": Researcher.objects.filter(Q(equipe__division=div.id)|Q(equipe_researchers__division=div.id)).count()
+        }
+    return div_info
+
+def query_divs(qs):
     div_info = {}
-    for div in Division.objects.all():
+    for div in qs:
         div_info[div] = {
             "chef_div":div.chef_div.__str__(),
             "etablisement":Etablisment.objects.get(division=div.id).__str__(),

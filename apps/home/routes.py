@@ -37,8 +37,7 @@ urlpatterns = [
         path('etablisement=<int:eta_id>/dashboard/',eta.eta_dash  , name="org-etas-dash"),
         path('division=<int:div_id>/dashboard/',div.div_dash , name ="org-div-dash"),
         path('equipe=<int:equ_id>/dashboard/' , equipe.equipe_dash , name='org-equipe-dash'),
-    ])),
-        
+    ])),        
     path('eta=<int:pk>/',eta.dash_etablisemnts,name='eta-dash-pk'),
 
     path('etablisement=<int:eta_id>/' ,include([
@@ -75,8 +74,9 @@ urlpatterns = [
     
     path('profile/user=<int:pk>', researcher_profile , name='researcher_profile'),
 
-
-    path('ajax/load_etas',org.load_etas , name='eta-options'),
+    path('ajax/divs-liste/', org.org_divs_liste_v2, name="div-ajax-liste"),
+    path('ajax/load-etas',org.load_etas , name='eta-options'),
+    path('ajax/eta-liste',org.wilaya_etas_liste , name='eta-liste'),
     # path('ajax/get_divs',eta.get_div_liste , name='divs-liste'),
 
     path('profile/update/', researcher_profile_update , name='researcher_profile_update'),

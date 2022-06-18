@@ -41,15 +41,22 @@
                                 </th>
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Wilaya</label>
-                                    {{filter.form.wilaya}}
+                                    <select class="form-select" id="wilaya">
+                                        <option value='0' selected>Tous</option>
+                                        {%for wilaya in wilayas%}
+                                        <option value="{{wilaya.id}}">{{wilaya}}</option>
+                                        {%endfor%}
+                                    </select>
                                 </th> 
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Etablisement</label>
-                                    {{filter.form.etablisment}}
+                                    <select class="form-select" id="eta">
+                                        <option value='0' selected>Tous</option>
+                                        {%for eta in etas%}
+                                        <option value="{{eta.id}}">{{eta}}</option>
+                                        {%endfor%} 
+                                    </select>
                                 </th>
-                                <th class="border-0 rounded-end">
-                                    <button class="btn btn-pill btn-outline-info" type="submit">Chercher</button>
-                                </th>  
                             </form>
                         </div>
                     </tr>
@@ -58,21 +65,11 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-<ul>
-{%for obj in filter.qs %}
-    <li>{{obj}}</li>
-    <li>{{obj.chef_div}}</li>
 
-{%endfor%}
-</ul>
-{% comment %} <div class="card border-0 shadow mb-4">
-=======
-
-<a type="button" href="{% url 'org-divs-add' %}" class=" bj bjj btn btn-pill btn-outline-primary " type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Division</a>
 
 <div class="card border-0 shadow mb-4">
->>>>>>> e6d19d5f590f5b2bd23ae942d3271f220009e9ae
+<a type="button" href="{% url 'org-divs-add' %}" class=" bj bjj btn btn-pill btn-outline-primary " type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Division</a>
+<div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-centered table-nowrap mb-0 rounded align-middle" id="liste">
@@ -89,7 +86,7 @@
                         {% endif %}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="div-liste">
                     {%for div,value in divisions.items %}
                     <tr>
                         <td class="rounded-start">
@@ -124,78 +121,59 @@
             </table>
         </div>
     </div>
-<<<<<<< HEAD
-</div> {% endcomment %}
+
+</div> 
 
 
 
 {% endblock content %}
 {% block javascripts %}
 <script>
-    var all_eta = $("#id_etablisment").html()
-    $('#id_wilaya').change(function(){
-        console.log('chenged');
-        console.log($(this).val());
-        var url = "{% url 'eta-options'%}";
-        var id_wiliya = $(this).val();
-        if (id_wilaya){
-            $.ajax({
-                url:url,
-                data:{
-                    'id_wilaya': id_wiliya
-                },
-                success: function(data){
-                    console.log(data);
-                    $('#id_etablisment').html(data);
-                }
-            })
-        }
-        else{
-            $('#id_etablisment').html(all_eta);
-        }
-        
+    $( window ).on( "load",function(){
+        $('#wilaya').val('0')
+        $('#eta').val('0')
+    });
 
+    $('#wilaya').change(function(){
+        console.log("changed")
+        $('#eta').val('0')
+        $.ajax({
+            url:"{%url 'div-ajax-liste'%}",
+            data: {
+                'id_wilaya': $(this).val(),
+                'id_eta': $('#eta').val()
+            },
+            success: function(data){
+                console.log(data)
+                $('#div-liste').html(data)
+            }
+        });
+        $.ajax({
+            url:"{% url 'eta-options'%}",
+            data:{
+                'id_wilaya': $(this).val()
+            },
+            success: function(data){
+                console.log(data)
+                $('#eta').html(data)
+            }
+        })
     })
-    {% comment %} //$('#division-filter').submit(function(){
-    //  console.log("submited");
-    //  var url =  "{%url 'divs-liste'%}"
-    //  $.ajax({
-    //    url:url ,
-    //    data:{
-    //        'id_wilaya' :$('#id_wilaya').val(),
-    //        'id_eta' : $('#id_etablisment').val()
-    //    },
-    //    success:function(data){
-    //        console.log(data);
-    //        $('#puther').html(data)
-    //    }
-    //  })
-    //}) {% endcomment %}
+    $('#eta').change(function(){
+        
+        console.log(typeof($(this).val()))
+        $.ajax({
+            url:"{%url 'div-ajax-liste'%}",
+            data:{
+                'id_eta': $(this).val(),
+                'id_wilaya': $('#wilaya').val(),
+            },
+            success: function(data){
+                 console.log(data)
+                $('#div-liste').html(data)
+            }
+        })
+    })
 </script>
 {% endblock javascripts %}
-=======
-</div>
-<script>
-   
-</script>
-<style>
 
-    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
-    .bj{
-        margin-bottom: 2%;
-        vertical-align: middle;
-        width: 280px;
-        font-size: 17px;
-    }
-    i{
-        vertical-align: middle;
-    }
-    
-    
-    .cc{
-        padding-bottom: 7px;
-    }
-    
-    </style>
-{% endblock content %}
->>>>>>> e6d19d5f590f5b2bd23ae942d3271f220009e9ae

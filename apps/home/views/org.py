@@ -1,3 +1,4 @@
+from multiprocessing import context
 from django.shortcuts import render
 from requests import request
 from apps.home.models import *
@@ -62,11 +63,23 @@ def org_etas_dash(request):
 @login_required
 def org_etas_liste(request):
     context = {}
-    f = EtablismentFilter(request.GET, queryset=Etablisment.objects.all())
-    context["etablisements"] = query_all_etablisements()
-    context['filter'] = f
+    context['wilayas'] = Location.objects.all()
+    qs = Etablisment.objects.all()
+    context["etablisements"] = query_etablisements(qs)    
     return render(request, 'home/org/org-etas-liste.html' , context)
 
+def wilaya_etas_liste(request):
+    context = {}
+    wilaya_id = request.GET.get('wilaya_id')
+    if wilaya_id == '0' :
+        qs = Etablisment.objects.all()
+        etas = query_etablisements(qs)    
+    else:
+        qs = Etablisment.objects.filter(location=wilaya_id)
+        etas = query_etablisements(qs)
+    print(etas)
+    context['etas'] = etas
+    return render(request,'home/eta-liste.html',context)
 
 @login_required
 def org_divs_dash(request):
@@ -75,9 +88,31 @@ def org_divs_dash(request):
 
 def org_divs_liste(request):
     context = {}
-    context['filter'] = DivisionFilter(request.GET , queryset=Division.objects.all())
-    context["divisions"] = query_all_divs()
+    
+    qs = Division.objects.all()
+    context["wilayas"] =Location.objects.all()
+    context["etas"] = Etablisment.objects.all()
+    context["divisions"] = query_divs(qs)
     return render(request, 'home/org/org-divs-liste.html',context)
+
+def org_divs_liste_v2(request):
+    context = {}
+    id_wilaya = request.GET.get('id_wilaya')
+    id_etablisment = request.GET.get('id_eta')
+    if id_wilaya=='0':
+        if id_etablisment=='0':
+            qs = Division.objects.all()
+        else:    
+            qs = Division.objects.filter(etablisment=id_etablisment)
+        context["divisions"] = query_divs(qs)
+    if id_wilaya!='0':
+        if id_etablisment =='0':
+            qs = Division.objects.filter(etablisment__location=id_wilaya)
+        else:
+            qs = Division.objects.filter(Q(etablisment=id_etablisment) & Q(etablisment__location=id_wilaya))
+        context["divisions"] = query_divs(qs)
+    return render(request,'home/div-liste.html',context)
+
 
 def org_equipes_dash(request):
     context = {}
@@ -93,6 +128,7 @@ def org_chers_dash(request):
     return render(request , 'home/org/org-chers-dash.html',context)
 def org_members_liste(request):
     context = {}
+    context['wilayas']=Location.objects.all()
     context["researchers"] = members()
     return render(request , 'home/org/org-members-liste.html', context)
 
@@ -107,20 +143,11 @@ def org_chef_equ_liste(request):
     context = {}
     return render(request ,'home/chers/chef-equ.html',context)
 
-# Try 
-class EtablisementListView(ListView):
-    model= Etablisment
-    
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        return context
 def load_etas(request):
     context={}
-    
-    wilaya_id = request.GET.get('id_wilaya')
-    if wilaya_id:
-        context["etas"]=  Etablisment.objects.filter(location=wilaya_id)
-    else:
+    id_wilaya = request.GET.get('id_wilaya')
+    if id_wilaya=='0':
         context["etas"]=  Etablisment.objects.all()
+    else:
+        context["etas"]=  Etablisment.objects.filter(location=id_wilaya)
     return render(request, 'home/eta-options.html', context)

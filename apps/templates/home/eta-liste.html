@@ -1,0 +1,36 @@
+hrllo
+
+{%for eta,value in etas.items %}
+<tr>
+    <td class=" border-0 rounded-start">
+        <a href="{%url 'eta-dash' eta_id=eta.id %}" data-bs-toggle="tooltip" data-bs-placement="right" title="{{eta.long_nom}}">{{eta}}</a>
+    </td>
+    ok
+    <td>
+        {{value.chef_eta}}
+    </td>
+    <td>
+        {{value.location}}
+    </td>
+    <td>
+        {{value.nbr_divisions}}
+    </td>
+    <td>
+        {{value.nbr_equipes}}
+    </td>
+    <td>
+        {{value.nbr_researchers}}
+    </td>
+    <td class="rounded-end">
+        <a class="btn btn-pill btn-outline-info" href="{%url 'org-etas-dash' eta_id=eta.id %}">consulter</a>
+    </td>
+    {% if  user.is_superuser %}
+    <td>
+        <i class="bi bi-box-arrow-up-right"></i>Modifier
+    </td>
+    <td>
+        <a href="{% url 'org-etas-delete' eta.id  %}"  type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer l \'établissement {{eta}}');"> <i  class="bi bi-trash3"></i> Supprimer</a>
+    </td>
+    {% endif %}
+</tr>
+{%endfor%}
