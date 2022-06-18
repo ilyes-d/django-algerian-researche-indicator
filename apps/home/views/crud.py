@@ -2,7 +2,7 @@
 
 
 from pyexpat.errors import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 
 from apps.home.forms import *
 from apps.home.models import Division, Equipe, Etablisment
@@ -58,6 +58,17 @@ def creat_equipe_views(request):
    else:
         form=  EquipeForm
         return render(request,'crud/creatEquipe.html',{"form":form})
+   
+def update_equipe_views(request,pk):
+    bj = get_object_or_404(Equipe,pk=pk)
+    form =EquipeForm(instance = bj)
+    if request.method =="POST":   
+        form =EquipeForm(request.POST,instance=bj)
+        if form.is_valid():
+             form.save()
+             return redirect('org-equipes-liste')
+    
+    return render(request,'crud/updateEquipe.html',{'form':form ,'bj':bj})
        
        
 def Delete_Equipe_views (request,pk):

@@ -1,0 +1,66 @@
+{% extends 'layouts/base.html' %}
+{% block stylesheets %}
+
+{% endblock stylesheets %} 
+
+{% block content %}
+
+<div class="page-header">
+    <div class="row align-items-center">
+      <div class="col">
+        <h3>Modifier les information de l'équipe {{bj.nom}}</h3>
+        <ul class="breadcrumb">
+        <li class="breadcrumb-item"><a href="{%url 'org-carte'%}">Organisation</a></li>
+        <li class="breadcrumb-item active">Equipes</li>
+        <li class="breadcrumb-item active">update</li>
+        </ul>
+     </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-xl-12">
+        <div class="card card-body border-0 shadow mb-4">
+			<form action="" method="POST">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div>
+                            {% csrf_token %}
+
+
+{{form.as_p}}
+                {% csrf_token %}
+                <input type="submit" value="Ajouter" class="btn btn-gray-800 mt-3 animate-up-3 cc" name="Submit" />
+                <a href="{% url 'org-equipes-liste'  %}"><button id="btnChangeBg" type="button" class="btn mt-3 animate-up-3 btn-outline-danger">Annuler</button></a>
+
+                      </div>
+                    </div>
+                </div>
+             
+			</form>
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<style>
+    .cc{
+      width:203px;
+    }
+</style>
+{% block javascripts %}
+
+    <script>
+        var drop = document.getElementById("id_division");
+        var drop1 = document.getElementById("id_chef_equipe");
+        drop.className += "form-select mb-0";
+        drop1.className += "form-select mb-0";
+      </script>
+
+{% endblock javascripts %}
+{% endblock content %}

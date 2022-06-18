@@ -18,11 +18,14 @@ urlpatterns = [
         path('etablisements/liste/', org.org_etas_liste, name="org-etas-liste"),
         path('etablisements/add/', creat_Etablisment_views, name="org-etas-add"),
         path('etablisements/delete/<str:pk>', Delete_Etablisment_views, name="org-etas-delete"),
+        
         path('division/liste/', org.org_divs_liste, name="org-divs-liste"),
         path('division/add/', creat_division_views, name="org-divs-add"),
         path('division/delete/<str:pk>',Delete_Division_views, name="org-divs-delete"),
+        
         path('equipe/liste/', org.org_equipes_liste, name="org-equipes-liste"),
         path('equipe/add/', creat_equipe_views, name="org-equipes-add"),
+        path('equipe/upadate/<str:pk>', update_equipe_views, name="org-equipes-update"),
         path('equipe/delete/<str:pk>',Delete_Equipe_views, name="org-equipes-delete"),
         
         path('chercheurs/members/liste/', org.org_members_liste, name="org-members-liste"),
