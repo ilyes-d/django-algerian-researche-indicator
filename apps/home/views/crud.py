@@ -97,7 +97,7 @@ def Delete_Equipe_views (request,pk):
     return redirect('org-equipes-liste')
 
 
-def Delete_chercheur_views (request,pk):
-    Etu=Equipe.objects.get(id=pk)
+def Delete_Chercheur_views (request,pk):
+    Etu=Researcher.objects.get(id=pk)
     Etu.delete()
-    return redirect('org-equipes-liste')
+    return redirect('org-membres-liste')
