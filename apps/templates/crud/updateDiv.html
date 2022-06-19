@@ -11,7 +11,7 @@
         <h3>Modifier les information de l'équipe {{bj.nom}}</h3>
         <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{%url 'org-carte'%}">Organisation</a></li>
-        <li class="breadcrumb-item active">Equipes</li>
+        <li class="breadcrumb-item active">divisions</li>
         <li class="breadcrumb-item active">update</li>
         </ul>
      </div>
@@ -29,8 +29,8 @@
 
 {{form.as_p}}
                 {% csrf_token %}
-                <input type="submit" value="Ajouter" class="btn btn-gray-800 mt-3 animate-up-3 cc" name="Submit" />
-                <a href="{% url 'org-equipes-liste'  %}"><button id="btnChangeBg" type="button" class="btn mt-3 animate-up-3 btn-outline-danger">Annuler</button></a>
+                <input type="submit" value="Modifier" class="btn btn-gray-800 mt-3 animate-up-3 cc" name="Submit" />
+                <a href="{% url 'org-divs-liste'  %}"><button id="btnChangeBg" type="button" class="btn mt-3 animate-up-3 btn-outline-danger">Annuler</button></a>
 
                       </div>
                     </div>
@@ -56,8 +56,8 @@
 {% block javascripts %}
 
     <script>
-        var drop = document.getElementById("id_division");
-        var drop1 = document.getElementById("id_chef_equipe");
+        var drop = document.getElementById("id_etablisment");
+        var drop1 = document.getElementById("id_chef_div");
         drop.className += "form-select mb-0";
         drop1.className += "form-select mb-0";
       </script>

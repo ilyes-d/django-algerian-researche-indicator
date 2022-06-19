@@ -23,7 +23,7 @@ def login_view(request):
                     return redirect('profile/user='+request.user.id)
                 return redirect_users_after_login(request)
             else:
-                msg = 'Invalid credentials'
+                msg = 'les informations d\'identification sont invalides'
         else:
             msg = 'Error validating the form'
 

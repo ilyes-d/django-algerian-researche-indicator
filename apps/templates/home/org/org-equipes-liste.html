@@ -1,11 +1,8 @@
 {% extends 'layouts/base.html' %}
-<<<<<<< HEAD
-=======
 {% block stylesheets %}
 
 {% endblock stylesheets %} 
 
->>>>>>> e6d19d5f590f5b2bd23ae942d3271f220009e9ae
 {% block content %}
 <div class="page-header">
     <div class="row align-items-center">
@@ -127,11 +124,11 @@
                         {% if  user.is_superuser %}
                         <td>
                        
-                            <a  type="button"  href="{% url 'org-equipes-update' equipe.id  %}"> <i class="bi bi-box-arrow-up-right"></i> Modifier</a>
+                            <a class="btn btn-outline-tertiary"  type="button"  href="{% url 'org-equipes-update' equipe.id  %}"> <i class="bi bi-box-arrow-up-right"></i> Modifier</a>
 
                         </td>
                         <td>
-                           <a  type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer l\'équipe {{equipe}} ');"  href="{% url 'org-equipes-update' equipe.id  %}"> <i  class="bi bi-trash3"></i> Supprimer</a>
+                           <a class="btn btn-outline-danger"  type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer l\'équipe {{equipe.nom}} ');"  href="{% url 'org-equipes-update' equipe.id  %}"> <i  class="bi bi-trash3"></i> Supprimer</a>
                         </td>
                         {% endif %}
                     </tr>
@@ -141,8 +138,6 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-=======
 {% comment %} <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/> {% endcomment %}
  
 
@@ -173,5 +168,4 @@
     
     </style>
 {% endblock javascripts %}
->>>>>>> e6d19d5f590f5b2bd23ae942d3271f220009e9ae
 {% endblock content %}

@@ -30,7 +30,9 @@
                                 {% endif %}
                             </p>
                         </div>
-                        <form method="post" action="" class="mt-4">
+                       
+
+                        <form id="form" method="post" action="" class="mt-4">
                             {% csrf_token %}
                             <div class="form-group mb-4">
                                 <div class="row">
@@ -42,7 +44,7 @@
                                             </span> {% endcomment %}
                                             {{ form.last_name }}
                                         </div>
-                                        <span class="text-error">{{ form.last_name.errors }}</span>
+                                      
                                     </div>
                                     <div class="col">
                                         <label for="first_name">Prénom</label>
@@ -52,17 +54,21 @@
                                             </span> {% endcomment %}
                                         {{ form.first_name }}
                                         </div>
-                                        <span class="text-error">{{ form.first_name.errors }}</span>
+                                       
                                     </div>
                                     <div class="col">
                                         <label for="speciality">spécialité</label>
                                         <div class="input-group">
-                                            {% comment %} <span class="input-group-text" id="basic-addon1">
-                                                <span class="fas fa-user-circle"></span>
-                                            </span> {% endcomment %}
                                             {{ form.speciality }}
                                         </div>
-                                        <span class="text-error">{{ form.speciality.errors }}</span>
+                                       
+                                    </div>
+                                    <div class="col">
+                                        <label for="role">Role</label>
+                                        <div class="input-group">
+                                            {{ form.role }}
+                                        </div>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -76,7 +82,7 @@
                                             </span> {% endcomment %}
                                             {{ form.grade }}
                                         </div>
-                                        <span class="text-error">{{ form.grade.errors }}</span>
+                                      
                                     </div>
                                     <div class="col">
                                         <label for="google_scholar_account">Compte Google Scholar </label>
@@ -86,7 +92,7 @@
                                             </span> {% endcomment %}
                                             {{ form.google_scholar_account }}
                                         </div>
-                                        <span class="text-error">{{ form.google_scholar_account.errors }}</span>
+                                       
                                         {%if messages %}
                                         {% for message in messages %} {{message}} {%endfor%}
                                         {% endif %}
@@ -99,7 +105,7 @@
                                             </span>
                                             {{ form.email }}
                                         </div>
-                                        <span class="text-error">{{ form.email.errors }}</span>
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -114,7 +120,7 @@
                                                 </span>
                                                 {{ form.password1 }}
                                             </div>
-                                            <span class="text-error">{{ form.password1.errors }}</span>
+                                           
                                         </div>
                                     </div>
                                     <div class="col">
@@ -126,7 +132,7 @@
                                                 </span>
                                                 {{ form.password2 }}
                                             </div>
-                                            <span class="text-error">{{ form.password2.errors }}</span>
+                                            
                                         </div>
                                     </div>
                                 </div>
@@ -139,6 +145,19 @@
                                     </div>
                                 </div>
                             </div>
+
+
+                            <span class="text-error">{{ form.last_name.errors }}</span>
+                            <span class="text-error">{{ form.first_name.errors }}</span>
+                            <span class="text-error">{{ form.speciality.errors }}</span>
+                            <span class="text-error">{{ form.grade.errors }}</span>
+                            <span class="text-error">{{ form.google_scholar_account.errors }}</span>
+                            <span class="text-error">{{ form.email.errors }}</span>
+                            <span class="text-error">{{ form.password1.errors }}</span>
+                            <span class="text-error">{{ form.password2.errors }}</span>
+                            {% if form.google_scholar_account.errors %}
+                             ok 
+                            {%endif%}
                             <div class="d-grid">
                                 <button type="submit" name="register" class="btn btn-gray-800">Sign UP</button>
                             </div>
@@ -149,15 +168,19 @@
                                 <a href="{% url 'login' %}" class="fw-bold" style="text-decoration:underline;">S'identifier</a>
                             </span>
                         </div>
-                        {% for message in messages %}
+                        {% comment %} {% for message in messages %}
                         <p id="messages" style="margin-bottom: -91px; color:red; margin-right: 263px; text-align:left; color: red;">{{message}}</p>
-                        {% endfor %}
+                        {% endfor %} {% endcomment %}
                     </div>
                 </div>
             </div>
         </div>
     </section>
 </main>
+
+
+
+
 <style>
 .errorlist li {
     color:red;
@@ -167,27 +190,57 @@
 .errorlist{
 
 }
-
 </style>
+<script>
+    var drop = document.getElementById("id_role");
+    drop.className += "form-select mb-0";
+  </script>
+<script>
+    const  = document.getElementById('name')
+    const password = document.getElementById('id_password1')
+    const password2 = document.getElementById('id_password2')
+    const form = document.getElementById('form')
+    const errorElement = document.getElementById('error')
+    
+    form.addEventListener('submit', (e) => {
+        let messages = []
+        if (password.value.length >= 20) {
+            password.className += " is-invalid";
+          }
+          if (password.value != password2.value) {
+            messages.push('veuillez confirmer le meme mot de pass');
+            password.className += " is-invalid";
+            password2.className += " is-invalid";
+          }
+         
+          if (messages.length > 0) {
+            e.preventDefault()
+            errorElement.innerText = messages.join(', ')
+          }
+      }
+    ) </script>
+   
+    <script>
+        function showHide(){
+            var passwordToggle= document.getElementById("passwordToggle");
+            var x = document.getElementById("id_password1");
+            var y = document.getElementById("id_password2");
+            if (passwordToggle.checked){
+                console.log("hello 1")
+                x.type = 'text';
+                y.type = 'text';
+            }
+            else{
+                console.log("hello 2")
+                x.type = 'password';
+                y.type = 'password';
+            }
+        }
+    </script>
 {% endblock content %}
 
 <!-- Specific Page JS goes HERE  -->
 {% block javascripts %}
-<script>
-    function showHide(){
-        var passwordToggle= document.getElementById("passwordToggle");
-        var x = document.getElementById("id_password1");
-        var y = document.getElementById("id_password2");
-        if (passwordToggle.checked){
-            console.log("hello 1")
-            x.type = 'text';
-            y.type = 'text';
-        }
-        else{
-            console.log("hello 2")
-            x.type = 'password';
-            y.type = 'password';
-        }
-    }
-</script>
+
+
 {% endblock javascripts %}

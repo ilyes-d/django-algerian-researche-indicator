@@ -4,7 +4,7 @@
 from __future__ import division
 from django import forms
 from django.forms import ModelForm
-from apps.home.models import Division, Equipe, Etablisment, Location, Researcher
+from apps.home.models import *
 
 
 class EtablismentForm  (ModelForm):

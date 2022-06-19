@@ -20,16 +20,16 @@ class UserCreationForm(forms.ModelForm):
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Confirm Password","class": "form-control"}))
     class Meta:
         model = Researcher
-        fields = ('email', 'first_name', 'last_name', 'speciality','grade', 'google_scholar_account')
+        fields = ('email', 'first_name','role', 'last_name', 'speciality','grade', 'google_scholar_account')
         
-    # def clean_google_scholar_account(self):
-    #     cleaned_data = super().clean()
-    #     google_scholar_account = cleaned_data.get("google_scholar_account") 
-    #     domain = urlparse(google_scholar_account).netloc
-    #     if not domain == 'scholar.google.com' :
-    #         self.add_error('google_scholar_account' , "format du compte google scholar  fournit non valide")
-    #     elif not check_gs_id(get_gs_id(google_scholar_account)):
-    #         raise forms.ValidationError(" Le compte google scholar n\'est pas valide , prier de le vérifier !")
+    def clean_google_scholar_account(self):
+        cleaned_data = super().clean()
+        google_scholar_account = cleaned_data.get("google_scholar_account") 
+        domain = urlparse(google_scholar_account).netloc
+        if not domain == 'scholar.google.com' :
+            self.add_error('google_scholar_account' , "format du compte google scholar  fournit non valide")
+        elif not check_gs_id(get_gs_id(google_scholar_account)):
+            raise forms.ValidationError(" Le compte google scholar n\'est pas valide , prier de le vérifier !")
         
 
     def clean_password2(self):
