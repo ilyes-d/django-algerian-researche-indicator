@@ -83,7 +83,7 @@
                         <th class="border-0">Action</th>
                     </tr>
                 </thead>
-                <tbody id='members-liste'>
+                <tbody id='attente-liste'>
                     {%for cher in researchers  %}
                     <tr>
                         <td class="rounded-start">
@@ -126,7 +126,6 @@
     });
 
     $('#wilaya').change(function(){
-        console.log("changed")
         $('#eta').val('0')
         $('#div').val('0')
         $('#equipe').val('0')
@@ -162,18 +161,6 @@
                 $('#equipe').html(data)
             }
         })
-        $.ajax({
-            url:"{%url 'members-ajax-liste' %}",
-            data: {
-                'id_wilaya': $(this).val(),
-                'id_eta': $('#eta').val(),
-                'id_div':$('#div').val(),
-                'id_equipe':$('#equipe').val()
-            },
-            success: function(data){
-                $('#members-liste').html(data)
-            }
-        });
     })
     $('#eta').change(function(){
         $('#div').val('0')
@@ -200,19 +187,6 @@
                 $('#equipe').html(data)
             }
         });
-        $.ajax({
-            url:"{%url 'members-ajax-liste' %}",
-            data:{
-                'id_wilaya': $('#wilaya').val(),
-                'id_eta': $(this).val(),
-                'id_div':$('#div').val(),
-                'id_equipe':$('#equipe').val()
-            },
-            success: function(data){
-                 console.log(data)
-                $('#members-liste').html(data)
-            }
-        });
     })
     $('#div').change(function(){
         $('#equipe').val('0')
@@ -227,24 +201,10 @@
                 $('#equipe').html(data)
             }
         });
-        $.ajax({
-            url:"{%url 'members-ajax-liste' %}",
-            data:{
-                'id_wilaya': $('#wilaya').val(),
-                'id_eta': $('#eta').val(),
-                'id_div':$('#div').val(),
-                'id_equipe':$('#equipe').val()
-            },
-            success: function(data){
-                 console.log(data)
-                $('#members-liste').html(data)
-            }
-        });
-
     })
     $('#equipe').change(function(){
         $.ajax({
-            url:"{%url 'members-ajax-liste' %}",
+            url:"{%url 'attente-ajax-liste' %}",
             data:{
                 'id_wilaya': $('#wilaya').val(),
                 'id_eta': $('#eta').val(),
@@ -253,7 +213,7 @@
             },
             success: function(data){
                  console.log(data)
-                $('#members-liste').html(data)
+                $('#attente-liste').html(data)
             }
         });
     })

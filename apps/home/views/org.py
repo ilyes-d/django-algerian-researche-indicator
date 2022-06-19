@@ -242,6 +242,24 @@ def org_liste_attente(request):
     context['researchers'] = qs
     return render(request,'home/liste-attente.html',context)
 
+def attente_liste(request):
+    context = {}
+    id_wilaya = request.GET.get('id_wilaya')
+    id_eta = request.GET.get('id_eta')
+    id_div = request.GET.get('id_div')
+    id_equipe = request.GET.get('id_equipe')
+    qs = Researcher.objects.filter(Q(equipe_researchers__isnull=True) & Q(is_authorized=False))
+    # if id_wilaya != '0':
+    #     qs = qs.filter(division__etablisment__location=id_wilaya)
+    # if id_eta != '0':
+    #     qs = qs.filter(equipe_researchers__division__etablisment=id_eta)
+    # if id_div != '0':
+    #     qs = qs.filter(equipe_researchers__division=id_div)
+    if id_equipe!='0':
+        qs = qs.filter(equipe_id=id_equipe)
+    context['researchers'] = qs
+    return render(request,'home/attente-ajax-liste.html',context)
+
 def load_etas(request):
     context={}
     id_wilaya = request.GET.get('id_wilaya')

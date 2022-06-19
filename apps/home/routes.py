@@ -89,6 +89,7 @@ urlpatterns = [
     path('ajax/chefeta-liste',org.chefeta_liste , name='chefeta-ajax-liste'),
     path('ajax/chefdiv-liste',org.chefdiv_liste , name='chefdiv-ajax-liste'),
     path('ajax/chefequipe-liste',org.chefequipe_liste , name='chefequipe-ajax-liste'),
+    path('ajax/attente-liste',org.attente_liste , name='attente-ajax-liste'),
     
     path('profile/update/', researcher_profile_update , name='researcher_profile_update'),
     
