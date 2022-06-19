@@ -142,9 +142,9 @@ def members_liste_filter(id_wilaya,id_eta,id_div,id_equipe):
     if id_eta != '0':
         qs = qs.filter(equipe_researchers__division__etablisment=id_eta)
     if id_div != '0':
-        qs = qs.filter(equipe_researcher__equipe__division=id_div)
+        qs = qs.filter(equipe_researchers__division=id_div)
     if id_equipe!='0':
-        qs = qs.filter(equipe_researcher=id_equipe)            
+        qs = qs.filter(equipe_researchers=id_equipe)
     return qs
         
 def members_liste(request):
@@ -155,12 +155,11 @@ def members_liste(request):
     id_equipe = request.GET.get('id_equipe')
     context['researchers'] = members_liste_filter(id_wilaya,id_eta,id_div,id_equipe)
     return render(request , 'home/members-liste.html', context)
-    
-            
 
-        
 def org_chef_eta_liste(request):
     context = {}
+    qs = Researcher.objects.filter(etablisment__isnull=False)
+    context['researchers'] = qs
     return render(request ,'home/chers/chef-eta.html',context)
 def org_chef_div_liste(request):
     context = {}
@@ -198,3 +197,19 @@ def load_divs(request):
     print(qs)
     context['divs'] = qs
     return render(request,'home/divs-options.html',context)
+
+def load_equipes(request):
+    context = {}
+    id_eta = request.GET.get('id_eta')
+    id_wilaya = request.GET.get('id_wilaya')
+    id_div = request.GET.get('id_div')
+    qs = all_equipes()
+    if id_wilaya != '0':
+        qs = qs.filter(division__etablisment__location=id_wilaya)
+    if id_eta != '0':
+        qs = qs.filter(division__etablisment=id_eta)
+    if id_div != '0':
+        qs = qs.filter(division=id_div)
+    context['equipes'] = qs
+    return render(request,'home/equipes-options.html',context)
+    

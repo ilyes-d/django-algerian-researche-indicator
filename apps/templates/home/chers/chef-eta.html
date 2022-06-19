@@ -1,10 +1,109 @@
-{% extends "layouts/base.html" %} 
-{%load static%} 
-{% load tag %} 
+{%extends 'layouts/base.html'%}
+{%load static %}
+{% load tag %}
 
-{% block stylesheets %}
-{%endblock stylesheets%}
+{% block content %}
+    <div class="card border-0 shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-centered table-nowrap mb-0 rounded">
+                    <thead class="thead-light">
+                        <tr>
+                            <div class="mb-4">
+                                <form class="navbar-search pull-left">
+                                    <th class="border-0 rounded-start">
+                                        <label for="exampleInputIconLeft">Nom equipe</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text" id="basic-addon1">
+                                                <svg class="icon icon-xs text-gray-600" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                                            </span>
+                                            <input type="text" class="form-control" id="search-bar" placeholder="Tapez le Nom de division" aria-label="Search">
+                                        </div>
+                                    </th>
+                                    <th class="border-0">
+                                        <label class="my-1 me-2" for="country">Wilaya</label>
+                                        <select class="form-select" id="wilaya">
+                                            <option value='0' selected>Tous</option>
+                                            {%for wilaya in wilayas%}
+                                            <option value="{{wilaya.id}}">{{wilaya}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </th>
+                                    <th class="border-0">
+                                        <label class="my-1 me-2" for="country">Etablisement</label>
+                                        <select class="form-select" id="eta">
+                                            <option value='0' selected>Tous</option>
+                                            {%for eta in etas%}
+                                            <option value="{{eta.id}}">{{eta}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </th>
+                                </form>
+                            </div>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
 
-{% block content %} 
+    <div class="card border-0 shadow mb-4">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-centered table-nowrap mb-0 rounded" id="liste">
+                    <thead class="thead-light align-middle">
+                        <tr>
+                            <th class="border-0 rounded-start">Nom</th>
+                            <th class="border-0">Etablisement assosie</th>
+                            <th class="border-0 ">
+                                <div class="d-flex flex-row">
+                                    Citations
+                                    <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12px"><path d="M311.9 335.1l-132.4 136.8C174.1 477.3 167.1 480 160 480c-7.055 0-14.12-2.702-19.47-8.109l-132.4-136.8C-9.229 317.8 3.055 288 27.66 288h264.7C316.9 288 329.2 317.8 311.9 335.1z"/></svg>
+                                </div>
+                            </th>
+                            <th class="border-0 ">
+                                <div class="d-flex flex-row">
+                                    Indice H
+                                    <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12px"><path d="M311.9 335.1l-132.4 136.8C174.1 477.3 167.1 480 160 480c-7.055 0-14.12-2.702-19.47-8.109l-132.4-136.8C-9.229 317.8 3.055 288 27.66 288h264.7C316.9 288 329.2 317.8 311.9 335.1z"/></svg>
+                                </div>
+                            </th>
+                            <th class="border-0 ">
+                                <div class="d-flex flex-row">
+                                    Indice i10
+                                    <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12px"><path d="M311.9 335.1l-132.4 136.8C174.1 477.3 167.1 480 160 480c-7.055 0-14.12-2.702-19.47-8.109l-132.4-136.8C-9.229 317.8 3.055 288 27.66 288h264.7C316.9 288 329.2 317.8 311.9 335.1z"/></svg>
+                                </div>
+                            </th>
+                            <th class="border-0 rounded-end">Profile</th>
 
-{%endblock content%}
+                        </tr>
+                    </thead>
+                    <tbody id='members-liste'>
+                        {%for cher in researchers  %}
+                        <tr>
+                            <td class="rounded-start">
+                                {{cher}}
+                            </td>
+                            <td>
+                                {{cher|cher_info|get_item:"eta"}}
+                            </td>
+                            <td>
+                                {{cher.citations}}
+                            </td>
+                            <td class="h-12">
+                                {{cher.h_index}}
+                            </td>
+                            <td class="h-12">
+                                {{cher.i10_index}}
+                            </td>
+                            <td class="rounded-end">
+                                <a class="btn btn-pill btn-outline-info" href="{%url 'researcher_profile' pk=cher.id %}">consulter</a>
+                            </td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock content %} 
+
