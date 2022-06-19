@@ -6,7 +6,7 @@ from apps.home.views.fcts import *
 from apps.home.decorators import *
 from django.contrib import messages
 from apps.home.admin import UserCreationForm
-
+from apps.home.views.queries import *
 
 @redirect_logged_in_user
 def login_view(request):
@@ -32,21 +32,28 @@ def login_view(request):
 
 @redirect_logged_in_user
 def register_user(request):
+    context = {}
     msg = None
     success = False
-
+    context['wilayas'] =all_wilayas()
+    context['etas'] = all_etas()
+    context['divs'] = all_divs()
+    context['equipes']=all_equipes()
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             email = form.cleaned_data.get("email")
             raw_password = form.cleaned_data.get("password1")
-            google_scholar_account = form.cleaned_data.get("google_scholar_account")
-            user = authenticate(email=email, password=raw_password , google_scholar_account = google_scholar_account)
+            equipe_id = request.POST.get('equipe_id')
+            user = authenticate(email=email, password=raw_password)
+            user.equipe_id= equipe_id 
+            user.is_authorized = False
+            user.save()
             if user is not None :
                 login(request, user)
                 if user_role(request) == 'membre':
-                    return redirect('/profile/')
+                    return redirect('researcher_profile', pk=user.id)
                 return redirect("/"+str(user_role(request))+"/dashboard")
             else:
                 msg = 'Invalid credentials'   
@@ -57,8 +64,11 @@ def register_user(request):
             msg = 'Form is not valid'
     else:
         form = UserCreationForm()
-
-    return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+    context['form'] =form
+    context['msg'] = msg
+    context['success'] = success
+    # return render(request, "accounts/register.html", {"form": form, "msg": msg, "success": success})
+    return render(request, "accounts/register.html", context)
 
 
 def see_user_data(request):

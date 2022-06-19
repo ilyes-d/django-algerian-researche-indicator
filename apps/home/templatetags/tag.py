@@ -84,6 +84,8 @@ def count_percentage(total,value):
 def cher_eta(cher):
     if is_chef_eta(cher):
         return Etablisment.objects.get(chef_etablisement=cher.id)
+    if is_chef_div(cher):
+        return Etablisment.objects.get(division__chef_div=cher.id)
     elif is_equipe_member(cher):
         return  Etablisment.objects.get(division__equipe__researcher=cher.id)
 
@@ -95,8 +97,20 @@ def cher_equipe(cher):
         return Equipe.objects.get(researcher=cher.id)
 
 @register.filter
+def equipe_request(cher):
+    return Equipe.objects.get(id=cher.equipe_id)
+
+@register.filter
+def eta_request(cher):
+    return Etablisment.objects.get(division__equipe=cher.equipe_id)
+
+@register.filter
+def div_request(cher):
+    return Division.objects.get(equipe=cher.equipe_id)
+    
+@register.filter
 def cher_div(cher):
     if is_chef_div(cher):
-        return Division.objects.get(chef_division)
+        return Division.objects.get(chef_div=cher.id)
 
 

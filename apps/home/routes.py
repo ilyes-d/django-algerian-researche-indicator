@@ -13,6 +13,7 @@ urlpatterns = [
     
     path('', users.index, name='index'),
     path('refrech-database/', org.refrech_database , name='refrech'),
+    path('refrech-profile/', org.refrech_profile , name='refrech-profile'),
     path('organisation/' ,include([
         path('carte/' , org.org_carte, name="org-carte"),
         path('dashboard/' , org.org_dashboard, name="org-dashboard"),
@@ -37,7 +38,7 @@ urlpatterns = [
         path('chercheurs/chef-eta/liste/', org.org_chef_eta_liste, name="org-chefeta-liste"),
         path('chercheurs/chef-div/liste/', org.org_chef_div_liste, name="org-chefdiv-liste"),
         path('chercheurs/chef-equ/liste/', org.org_chef_equ_liste, name="org-chefequ-liste"),
-        path('chercheurs/liste-attente/', org.org_liste_attente, name="org-chefequ-liste"),
+        path('chercheurs/liste-attente/', org.org_liste_attente, name="liste-attente"),
         
         path('etablisement=<int:eta_id>/dashboard/',eta.eta_dash  , name="org-etas-dash"),
         path('division=<int:div_id>/dashboard/',div.div_dash , name ="org-div-dash"),
@@ -85,7 +86,10 @@ urlpatterns = [
     path('ajax/load-equipes',org.load_equipes , name='equipe-options'),
     path('ajax/eta-liste',org.wilaya_etas_liste , name='eta-liste'),
     path('ajax/members-liste',org.members_liste , name='members-ajax-liste'),
-    # path('ajax/get_divs',eta.get_div_liste , name='divs-liste'),
+    path('ajax/chefeta-liste',org.chefeta_liste , name='chefeta-ajax-liste'),
+    path('ajax/chefdiv-liste',org.chefdiv_liste , name='chefdiv-ajax-liste'),
+    path('ajax/chefequipe-liste',org.chefequipe_liste , name='chefequipe-ajax-liste'),
+    
     path('profile/update/', researcher_profile_update , name='researcher_profile_update'),
     
 ]

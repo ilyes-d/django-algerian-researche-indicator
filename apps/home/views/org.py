@@ -10,6 +10,10 @@ from django.db.models import *
 from .queries import *
 from .filters import * 
 
+def refrech_profile(request):
+    load_reseacher_gs_data(request.user)
+    return redirect('researcher_profile' ,pk=request.user.id)
+
 def refrech_database(request):
     researchers_list = Researcher.objects.filter(Q(google_scholar_account__isnull=False))
     if researchers_list:
@@ -163,11 +167,59 @@ def org_chef_eta_liste(request):
     qs = Researcher.objects.filter(etablisment__isnull=False)
     context['researchers'] = qs
     return render(request ,'home/chers/chef-eta.html',context)
+
+def chefeta_liste(request):
+    context ={}
+    id_wilaya = request.GET.get('id_wilaya')
+    id_eta = request.GET.get('id_eta')
+    qs = Researcher.objects.filter(etablisment__isnull=False)
+    if id_wilaya != '0':
+        qs =qs.filter(etablisment__location=id_wilaya)
+    if id_eta != '0':
+        qs=qs.filter(etablisment=id_eta)
+    context['researchers']=qs
+    return render(request,'home/chef-eta-liste.html',context)
+
+def chefdiv_liste(request):
+    context ={}
+    id_wilaya = request.GET.get('id_wilaya')
+    id_eta = request.GET.get('id_eta')
+    id_div = request.GET.get('id_div')
+    qs = Researcher.objects.filter(division__isnull=False)
+    if id_wilaya != '0':
+        qs = qs.filter(division__etablisment__location=id_wilaya)
+    if id_eta != '0':
+        qs = qs.filter(division__etablisment=id_eta)
+    if id_div != '0':
+        qs = qs.filter(division=id_div)
+    context['researchers']= qs
+    return render(request,'home/chef-div-liste.html',context)
+    
+def chefequipe_liste(request):
+    context ={}
+    id_wilaya = request.GET.get('id_wilaya')
+    id_eta = request.GET.get('id_eta')
+    id_div = request.GET.get('id_div')
+    id_equipe = request.GET.get('id_equipe')
+    qs = Researcher.objects.filter(equipe__isnull=False)
+    if id_wilaya != '0':
+        qs = qs.filter(equipe__division__etablisment__location=id_wilaya)
+    if id_eta != '0':
+        qs = qs.filter(equipe__division__etablisment=id_eta)
+    if id_div != '0':
+        qs = qs.filter(equipe__division=id_div)
+    if id_equipe!='0':
+        qs = qs.filter(equipe=id_equipe)
+    context['researchers']= qs
+    return render(request,'home/chef-equipe-liste.html',context)
+
 def org_chef_div_liste(request):
     context = {}
     context['wilayas']=all_wilayas()
     context['etas'] = all_etas()
     context['divs'] = all_divs()
+    qs = Researcher.objects.filter(division__isnull=False)
+    context['researchers'] = qs
     return render(request ,'home/chers/chef-div.html',context)
 
 def org_chef_equ_liste(request):
@@ -176,7 +228,19 @@ def org_chef_equ_liste(request):
     context['etas'] = all_etas()
     context['divs'] = all_divs()
     context['equipes']=all_equipes()
+    qs = Researcher.objects.filter(equipe__isnull=False)
+    context['researchers'] = qs
     return render(request ,'home/chers/chef-equ.html',context)
+
+def org_liste_attente(request):
+    context = {}
+    context['wilayas']=all_wilayas()
+    context['etas'] = all_etas()
+    context['divs'] = all_divs()
+    context['equipes']=all_equipes()
+    qs = Researcher.objects.filter(Q(equipe_researchers__isnull=True) & Q(is_authorized=False))
+    context['researchers'] = qs
+    return render(request,'home/liste-attente.html',context)
 
 def load_etas(request):
     context={}
@@ -184,7 +248,6 @@ def load_etas(request):
     qs =  all_etas()
     if id_wilaya!='0':
         qs =  Etablisment.objects.filter(location=id_wilaya)
-    
     context["etas"]=  qs
     return render(request, 'home/eta-options.html', context)
 
@@ -217,5 +280,5 @@ def load_equipes(request):
     return render(request,'home/equipes-options.html',context)
     
     
-def org_liste_attente(request):
-    pass
+
+    

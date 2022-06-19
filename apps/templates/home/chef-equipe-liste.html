@@ -1,0 +1,34 @@
+{%load tag%}
+{%for cher in researchers  %}
+<tr>
+    <td class="rounded-start">
+        {{cher}}
+    </td>
+    <td>
+        {{cher|cher_equipe}}
+    </td>
+    <td>
+        {{cher|cher_eta}}
+    </td>
+    <td>
+        {{cher|cher_div}}
+    </td>
+    <td>
+        {{cher.citations}}
+    </td>
+    <td class="h-12">
+        {{cher.h_index}}
+    </td>
+    <td class="h-12">
+        {{cher.i10_index}}
+    </td>
+    <td class="rounded-end">
+        <a class="btn btn-pill btn-outline-info" href="{%url 'researcher_profile' pk=cher.id %}">consulter</a>
+    </td>
+    {% if  user.is_superuser %}
+    <td>
+        <a class="btn btn-outline-danger"  type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer le chercheur {{cher.first_name}} {{cher.last_name}}  ');"  href="{% url 'org-members-delete' cher.id %}"> <i  class="bi bi-trash3"></i> Supprimer</a>
+    </td>
+    {% endif %}
+</tr>
+{%endfor%}

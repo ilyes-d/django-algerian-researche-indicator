@@ -68,12 +68,16 @@ class Researcher(AbstractBaseUser, PermissionsMixin):
     google_scholar_account = models.URLField(blank=True,unique=True, null=True)
     date_joined = models.DateTimeField(auto_now_add=True)
     
+    equipe_id = models.IntegerField(blank=True,null=True)
+    
+    is_authorized = models.BooleanField(default=True,blank=False,null=False)
     #hola
     Niv=(('un membre d\'equipe','un membre d\'equipe'),
          ('Chef d\'une equipe ','Chef d\'une equipe'),
          ('chefdivsio','chefdiv'),
          ('chefeta','chefeta'))
-    role=models.CharField(max_length=100,null=True,choices=Niv)
+    
+    role = models.CharField(max_length=100,null=True,choices=Niv,blank=True)
     
     # Relationship between Database tables
     equipe_researchers = models.ForeignKey(

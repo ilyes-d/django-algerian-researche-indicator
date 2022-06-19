@@ -16,22 +16,24 @@ class UserCreationForm(forms.ModelForm):
     speciality = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Entre votre Specialiy","class": "form-control"}))
     grade = forms.CharField(widget=forms.TextInput(attrs={"placeholder": "Entre votre Grade ","class": "form-control"}))
     google_scholar_account = forms.URLField(widget=forms.URLInput(attrs={"placeholder":"https://scholar.google.com/citations", "class":"form-control"}))
+    # equipe_researchers = forms.ModelChoiceField(queryset=Equipe.objects.all(),widget=forms.Select(attrs={"class": "form-control"}))
     password1 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Password","class": "form-control"}))
     password2 = forms.CharField(widget=forms.PasswordInput(attrs={"placeholder": "Confirm Password","class": "form-control"}))
     class Meta:
         model = Researcher
-        fields = ('email', 'first_name','role', 'last_name', 'speciality','grade', 'google_scholar_account')
+        fields = ('email', 'first_name','role', 'last_name', 'speciality','grade', 'google_scholar_account',
+                #   'equipe_researchers'
+                  )
         
     def clean_google_scholar_account(self):
         cleaned_data = super().clean()
-        google_scholar_account = cleaned_data.get("google_scholar_account") 
+        google_scholar_account = cleaned_data.get("google_scholar_account")
         domain = urlparse(google_scholar_account).netloc
-        if not domain == 'scholar.google.com' :
-            self.add_error('google_scholar_account' , "format du compte google scholar  fournit non valide")
-            self.fields['google_scholar_account'].widget.attrs["class"]='is-invalid'
+        if not domain == 'scholar.google.com':
+            raise forms.ValidationError("format du compte google scholar  fournit non valide")
         elif not check_gs_id(get_gs_id(google_scholar_account)):
             raise forms.ValidationError(" Le compte google scholar n\'est pas valide , prier de le vérifier !")
-        
+        return google_scholar_account
 
     def clean_password2(self):
         password1 = self.cleaned_data["password1"]
@@ -64,13 +66,7 @@ class UserChangeForm(forms.ModelForm):
 class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
-    list_display = ('__str__', 'email', 'first_name', 'is_staff', 'last_name', 'speciality',
-
-                    # 'citations','h_index','i10_index',"graph_citation",'nbr_pubs','graph_pub',
-
-                    "h_index",
-
-                    'grade', 'linkedin_account', 'google_scholar_account', 'equipe_researchers')
+    list_display = ('__str__', 'email',"h_index",'google_scholar_account', 'equipe_researchers')
     list_filter = ('is_staff','equipe_researchers','etablisment')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
@@ -78,7 +74,7 @@ class UserAdmin(BaseUserAdmin):
                                       'citations','h_index','i10_index',"graph_citations",'nbr_pubs','graph_pub',
                                       'grade', 'linkedin_account', 'google_scholar_account',)}),
         ('Permissions', {'fields': ('is_active', 'is_staff',
-         'is_superuser', 'groups', 'user_permissions',)}),
+         'is_superuser', 'groups', 'user_permissions','is_authorized','equipe_id')}),
         ('Relations', {'fields': ('equipe_researchers',)}),
     )
 
@@ -90,9 +86,7 @@ class UserAdmin(BaseUserAdmin):
     )
     search_fields = ('email',)
     ordering = ('date_joined',)
-
-
-
+    
 class DivisionInline(admin.StackedInline):
     model = Division
     extra = 0

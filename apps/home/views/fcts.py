@@ -2,10 +2,13 @@ from pickle import NONE
 from traceback import print_tb
 from django.shortcuts import redirect
 from serpapi import GoogleSearch
-from stripe import api_key 
 from  apps.home.models import *
 from datetime import datetime, timezone
+from dotenv import *
+import os
 
+load_dotenv()
+api_key = os.getenv("api_key")
 
 def serpapi_author(researcher_id):
     params = {

@@ -49,9 +49,6 @@
                                     <div class="col">
                                         <label for="first_name">Prénom</label>
                                         <div class="input-group">
-                                            {% comment %} <span class="input-group-text" id="basic-addon1">
-                                                <span class="fas fa-user-circle"></span>
-                                            </span> {% endcomment %}
                                         {{ form.first_name }}
                                         </div>
                                        
@@ -61,14 +58,6 @@
                                         <div class="input-group">
                                             {{ form.speciality }}
                                         </div>
-                                       
-                                    </div>
-                                    <div class="col">
-                                        <label for="role">Role</label>
-                                        <div class="input-group">
-                                            {{ form.role }}
-                                        </div>
-                                       
                                     </div>
                                 </div>
                             </div>
@@ -77,24 +66,15 @@
                                     <div class="col">
                                         <label for="grade">Grade</label>
                                         <div class="input-group">
-                                            {% comment %} <span class="input-group-text" id="basic-addon1">
-                                                <span class="fas fa-user-circle"></span>
-                                            </span> {% endcomment %}
                                             {{ form.grade }}
                                         </div>
-                                      
                                     </div>
                                     <div class="col">
                                         <label for="google_scholar_account">Compte Google Scholar </label>
                                         <div class="input-group">
-                                            {% comment %} <span class="input-group-text" id="basic-addon1">
-                                                <span class="fas fa-user-circle"></span>
-                                            </span> {% endcomment %}
-                                            
                                             <div class="is-invalid">{{ form.google_scholar_account }}</div>
                                             <span class="text-error">{{ form.google_scholar_account.errors }}</span>
                                         </div>
-                                       
                                         {%if messages %}
                                         {% for message in messages %} {{message}} {%endfor%}
                                         {% endif %}
@@ -107,7 +87,50 @@
                                             </span>
                                             {{ form.email }}
                                         </div>
-                                       
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group mb-4">
+                                <div class="row">
+                                    <div class="col">
+                                        <label for="wilaya">Wilaya</label>
+                                        <select class="form-select" id="wilaya" >
+                                            <option value='0' selected>Tous</option>
+                                            {%for wilaya in wilayas%}
+                                            <option value="{{wilaya.id}}">{{wilaya}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="eta">Etablisment</label>
+                                        <select class="form-select" id="eta">
+                                            <option value='0' selected>Tous</option>
+                                            {%for eta in etas%}
+                                            <option value="{{eta.id}}">{{eta}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="div">Division</label>
+                                        <select class="form-select" id="div">
+                                            <option value='0' selected>Tous</option>
+                                            {%for div in divs%}
+                                            <option value="{{div.id}}">{{div}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="email">Equipe</label>
+                                        <select class="form-select" id="id_equipe_id" name="equipe_id">
+                                            <option value='0' selected>Tous</option>
+                                            {%for equipe in equipes%}
+                                            <option value="{{equipe.id}}">{{equipe}}</option>
+                                            {%endfor%}
+                                        </select>
+                                    </div>
+                                    <div class="col">
+                                        <label for="email">Equipe R</label>
+                                        {{form.equipe_researchers}}
                                     </div>
                                 </div>
                             </div>
@@ -134,7 +157,6 @@
                                                 </span>
                                                 {{ form.password2 }}
                                             </div>
-                                            
                                         </div>
                                     </div>
                                 </div>
@@ -246,8 +268,89 @@
         $('#id_google_scholar_account').addClass(ok)
     });
 
-
-    
+    $( window ).on( "load",function(){
+        $('#wilaya').val('0')
+        $('#eta').val('0')
+        $('#div').val('0')
+        $('#id_equipe_id').val('0')
+    });
+    $('#wilaya').change(function(){
+        $('#eta').val('0')
+        $('#div').val('0')
+        $('#id_equipe_id').val('0')
+        $.ajax({
+            url:"{% url 'eta-options'%}",
+            data:{
+                'id_wilaya': $(this).val()
+            },
+            success: function(data){
+                console.log(data);
+                $('#eta').html(data)
+            }
+        })
+        $.ajax({
+            url:"{% url 'div-options' %}",
+            data:{
+                'id_wilaya': $(this).val(),
+                'id_eta': $('#eta').val(),
+            },
+            success: function(data){
+                console.log(data);
+                $('#div').html(data)
+            }
+        });
+        $.ajax({
+            url:"{% url 'equipe-options'%}",
+            data:{
+                'id_wilaya': $(this).val(),
+                'id_eta': $('#eta').val(),
+                'id_div': $('#div').val()
+            },
+            success: function(data){
+                $('#id_equipe_id').html(data)
+            }
+        })
+    })
+    $('#eta').change(function(){
+        $('#div').val('0')
+        $('#id_equipe_id').val('0')
+        
+        $.ajax({
+            url:"{% url 'div-options'%}",
+            data:{
+                'id_wilaya': $('#wilaya').val(),
+                'id_eta': $(this).val()
+            },
+            success: function(data){
+                $('#div').html(data)
+            }
+        });
+        $.ajax({
+            url:"{% url 'equipe-options'%}",
+            data:{
+                'id_wilaya': $('#wilaya').val(),
+                'id_eta': $(this).val(),
+                'id_div': $('#div').val()
+            },
+            success: function(data){
+                $('#id_equipe_id').html(data)
+            }
+        });
+    })
+    $('#div').change(function(){
+        $('#id_equipe_id').val('0')
+        $.ajax({
+            url:"{% url 'equipe-options'%}",
+            data:{
+                'id_wilaya': $('#wilaya').val(),
+                'id_eta': $('#eta').val(),
+                'id_div': $('#div').val()
+            },
+            success: function(data){
+                $('#id_equipe_id').html(data)
+            }
+        });
+    })
 </script>
 
 {% endblock javascripts %}

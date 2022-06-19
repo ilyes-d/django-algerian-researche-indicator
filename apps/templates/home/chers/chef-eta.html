@@ -77,7 +77,7 @@
 
                         </tr>
                     </thead>
-                    <tbody id='members-liste'>
+                    <tbody id='chef-eta-liste'>
                         {%for cher in researchers  %}
                         <tr>
                             <td class="rounded-start">
@@ -106,4 +106,57 @@
         </div>
     </div>
 {% endblock content %} 
+{% block javascripts %}
+<script>
+    $( window ).on( "load",function(){
+        $('#wilaya').val('0')
+        $('#eta').val('0')
+        $('#div').val('0')
+        $('#equipe').val('0')
+    });
+
+    $('#wilaya').change(function(){
+        console.log("changed")
+        $('#eta').val('0')
+        $('#div').val('0')
+        $('#equipe').val('0')
+        $.ajax({
+            url:"{% url 'eta-options'%}",
+            data:{
+                'id_wilaya': $(this).val(),
+            },
+            success: function(data){
+                console.log(data);
+                $('#eta').html(data)
+            }
+        })
+        $.ajax({
+            url:"{% url 'chefeta-ajax-liste'%}",
+            data:{
+                'id_wilaya': $(this).val(),
+                'id_eta': $('#eta').val()
+            },
+            success: function(data){
+                console.log(data);
+                $('#chef-eta-liste').html(data)
+            }
+        })
+
+    });
+    $('#eta').change(function(){
+        $.ajax({
+            url:"{% url 'chefeta-ajax-liste'%}",
+            data:{
+                'id_wilaya': $('#wilaya').val(),
+                'id_eta': $('#eta').val()
+            },
+            success: function(data){
+                console.log(data);
+                $('#chef-eta-liste').html(data)
+            }
+        })
+    })
+</script>
+{% endblock javascripts %}
+
 

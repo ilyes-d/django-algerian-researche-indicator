@@ -5,7 +5,7 @@
 <head> 
   {% include 'includes/links.html'%}
   {% block stylesheets %}
-  <style>
+  {% comment %} <style>
     .sidebar-inner {
       height:95vh;
       /*overflow-y: scroll ;*/
@@ -17,7 +17,7 @@
       height: 100vh;
       overflow-y: scroll;
     }
-  </style>
+  </style> {% endcomment %}
   {% endblock stylesheets %}
   <style>
     .sorting_asc svg{
@@ -49,9 +49,9 @@
             {% include 'includes/equ_sidebar.html' %}
           {%endif%}
         {%endif%}
-        {% if user|membre_simple == True %}
+        {% comment %} {% if user|membre_simple == True %}
         {% include 'includes/sidebar.html' %}
-        {%endif%}
+        {%endif%} {% endcomment %}
       </ul>
     </div>
   </nav>
