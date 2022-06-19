@@ -1,0 +1,30 @@
+{%for div,value in divisions.items %}
+    <tr>
+        <td class="rounded-start">
+            {{div}}
+        </td>
+        <td>
+            {{value.chef_div}}
+        </td>
+        <td>
+            {{value.etablisement}}
+        </td>
+        <td>
+            {{value.nbr_equipes}}
+        </td>
+        <td class="h-12">
+            {{value.nbr_chers}}
+        </td>
+        <td class="rounded-end">
+            <a class="btn btn-pill btn-outline-info" href="{%url 'org-div-dash' div_id=div.id%}">consulter</a>
+        </td>
+        {% if  user.is_superuser %}
+        <td>
+            <i class="bi bi-box-arrow-up-right"></i>Modifier
+        </td>
+        <td>
+            <a  href="{% url 'org-divs-delete' div.id  %}" type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer la division {{div}} ');"> <i  class="bi bi-trash3"></i> Supprimer</a>
+        </td>
+        {% endif %}
+    </tr>
+{%endfor%}

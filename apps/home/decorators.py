@@ -12,7 +12,7 @@ def redirect_logged_in_user(func):
             if is_chef_eta(request.user):
                 return redirect('eta-dash',eta_id=Etablisment.objects.get(chef_etablisement=request.user.id).id)
             if is_chef_div(request.user):
-                return redirect('div-dash')
+                return redirect('div-dash', div_id=Division.objects.get(chef_div=request.user.id).id)
             if is_chef_equipe(request.user):
                 return redirect('equipe-dash')
             if user_role(request) == 'membre':

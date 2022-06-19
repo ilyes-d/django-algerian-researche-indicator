@@ -41,15 +41,22 @@
                                 </th>
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Wilaya</label>
-                                    {{filter.form.wilaya}}
+                                    <select class="form-select" id="wilaya">
+                                        <option value='0' selected>Tous</option>
+                                        {%for wilaya in wilayas%}
+                                        <option value="{{wilaya.id}}">{{wilaya}}</option>
+                                        {%endfor%}
+                                    </select>
                                 </th> 
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Etablisement</label>
-                                    {{filter.form.etablisment}}
+                                    <select class="form-select" id="eta">
+                                        <option value='0' selected>Tous</option>
+                                        {%for eta in etas%}
+                                        <option value="{{eta.id}}">{{eta}}</option>
+                                        {%endfor%} 
+                                    </select>
                                 </th>
-                                <th class="border-0 rounded-end">
-                                    <button class="btn btn-pill btn-outline-info" type="submit">Chercher</button>
-                                </th>  
                             </form>
                         </div>
                     </tr>
@@ -59,9 +66,16 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <a type="button" href="{% url 'org-divs-add' %}" class=" bj bjj btn btn-pill btn-outline-primary " type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Division</a>
 
 <div class="card border-0 shadow mb-4">
+=======
+
+<div class="card border-0 shadow mb-4">
+<a type="button" href="{% url 'org-divs-add' %}" class=" bj bjj btn btn-pill btn-outline-primary " type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Division</a>
+<div class="card border-0 shadow mb-4">
+>>>>>>> 98d8620174b111259296270a3f64c46290fb4395
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-centered table-nowrap mb-0 rounded align-middle" id="liste">
@@ -78,7 +92,7 @@
                         {% endif %}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="div-liste">
                     {%for div,value in divisions.items %}
                     <tr>
                         <td class="rounded-start">
@@ -114,6 +128,7 @@
             </table>
         </div>
     </div>
+<<<<<<< HEAD
 </div>
 <script>
    
@@ -138,3 +153,61 @@
     
     </style>
 {% endblock content %}
+=======
+
+</div> 
+
+
+
+{% endblock content %}
+{% block javascripts %}
+<script>
+    $( window ).on( "load",function(){
+        $('#wilaya').val('0')
+        $('#eta').val('0')
+    });
+
+    $('#wilaya').change(function(){
+        console.log("changed")
+        $('#eta').val('0')
+        $.ajax({
+            url:"{%url 'div-ajax-liste'%}",
+            data: {
+                'id_wilaya': $(this).val(),
+                'id_eta': $('#eta').val()
+            },
+            success: function(data){
+                console.log(data)
+                $('#div-liste').html(data)
+            }
+        });
+        $.ajax({
+            url:"{% url 'eta-options'%}",
+            data:{
+                'id_wilaya': $(this).val()
+            },
+            success: function(data){
+                console.log(data)
+                $('#eta').html(data)
+            }
+        })
+    })
+    $('#eta').change(function(){
+        
+        console.log(typeof($(this).val()))
+        $.ajax({
+            url:"{%url 'div-ajax-liste'%}",
+            data:{
+                'id_eta': $(this).val(),
+                'id_wilaya': $('#wilaya').val(),
+            },
+            success: function(data){
+                 console.log(data)
+                $('#div-liste').html(data)
+            }
+        })
+    })
+</script>
+{% endblock javascripts %}
+
+>>>>>>> 98d8620174b111259296270a3f64c46290fb4395

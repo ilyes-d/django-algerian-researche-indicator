@@ -1,6 +1,23 @@
 {% extends 'layouts/base.html' %}
 {% block stylesheets %}
+<style>
 
+    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+    .bj{
+        margin-bottom: 2%;
+        vertical-align: middle;
+        width: 270px;
+        font-size: 17px;
+    }
+    i{
+        vertical-align: middle;
+    }
+    
+    
+    .cc{
+        padding-bottom: 7px;
+    }
+</style>
 {% endblock stylesheets %} 
 
 {% block content %}
@@ -15,8 +32,6 @@
      </div>
     </div>
 </div>
-
-
 
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
@@ -38,36 +53,33 @@
                                 </th>
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Wilaya</label>
-                                    <select class="form-select" id="country" aria-label="Default select example">
-                                        <option selected>------</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select class="form-select" id="wilaya">
+                                        <option value='0' selected>Tous</option>
+                                        {%for wilaya in wilayas%}
+                                        <option value="{{wilaya.id}}">{{wilaya}}</option>
+                                        {%endfor%}
                                     </select>
                                 </th> 
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Etablisement</label>
-                                    <select class="form-select" id="country" aria-label="Default select example">
-                                        <option selected>-----</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select class="form-select" id="eta">
+                                        <option value='0' selected>Tous</option>
+                                        {%for eta in etas%}
+                                        <option value="{{eta.id}}">{{eta}}</option>
+                                        {%endfor%} 
                                     </select>
                                 </th>
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Division</label>
-                                    <select class="form-select" id="country" aria-label="Default select example">
-                                        <option selected>----</option>
-                                        <option value="1">One</option>
-                                        <option value="2">Two</option>
-                                        <option value="3">Three</option>
+                                    <select class="form-select" id="div">
+                                        <option value='0' selected>Tous</option>
+                                        {%for div in divs%}
+                                        <option value="{{div.id}}">{{div}}</option>
+                                        {%endfor%} 
                                     </select>
                                 </th>
                             </form>
                         </div>
-                    <th class="border-0 rounded-end">
-                        <button class="btn btn-pill btn-outline-info" type="submit">Chercher</button>
-                    </th>
                     </tr>
                 </thead>
             </table>
@@ -123,9 +135,13 @@
                         </td>
                         {% if  user.is_superuser %}
                         <td>
+<<<<<<< HEAD
                        
                             <a class="btn btn-outline-tertiary"  type="button"  href="{% url 'org-equipes-update' equipe.id  %}"> <i class="bi bi-box-arrow-up-right"></i> Modifier</a>
 
+=======
+                            <a  type="button"  href="{% url 'org-equipes-update' equipe.id  %}"> <i class="bi bi-box-arrow-up-right"></i> Modifier</a>
+>>>>>>> 98d8620174b111259296270a3f64c46290fb4395
                         </td>
                         <td>
                            <a class="btn btn-outline-danger"  type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer l\'équipe {{equipe.nom}} ');"  href="{% url 'org-equipes-update' equipe.id  %}"> <i  class="bi bi-trash3"></i> Supprimer</a>
@@ -139,17 +155,21 @@
     </div>
 </div>
 {% comment %} <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/> {% endcomment %}
+{% endblock content %}
  
 
 {% block javascripts %}
-
 <script>
     $(document).ready(function () {
         $('#liste').DataTable();
     });
-</script>
-<style>
+    
+    $( window ).on( "load",function(){
+        $('#wilaya').val('0')
+        $('#eta').val('0')
+    });
 
+<<<<<<< HEAD
     @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
     .bj{
         margin-bottom: 2%;
@@ -169,3 +189,46 @@
     </style>
 {% endblock javascripts %}
 {% endblock content %}
+=======
+    $('#wilaya').change(function(){
+        console.log("changed")
+        $('#eta').val('0')
+        $.ajax({
+            url:"{%url 'div-ajax-liste'%}",
+            data: {
+                'id_wilaya': $(this).val(),
+                'id_eta': $('#eta').val()
+            },
+            success: function(data){
+                console.log(data)
+                $('#div-liste').html(data)
+            }
+        });
+        $.ajax({
+            url:"{% url 'eta-options'%}",
+            data:{
+                'id_wilaya': $(this).val()
+            },
+            success: function(data){
+                console.log(data)
+                $('#eta').html(data)
+            }
+        })
+    })
+    $('#eta').change(function(){  
+        console.log(typeof($(this).val()))
+        $.ajax({
+            url:"{%url 'div-ajax-liste'%}",
+            data:{
+                'id_eta': $(this).val(),
+                'id_wilaya': $('#wilaya').val(),
+            },
+            success: function(data){
+                 console.log(data)
+                $('#div-liste').html(data)
+            }
+        })
+    })
+</script>
+{% endblock javascripts %}
+>>>>>>> 98d8620174b111259296270a3f64c46290fb4395

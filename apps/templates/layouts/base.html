@@ -59,12 +59,11 @@
     {% include 'includes/navigation.html' %}
     {% block content %}{% endblock content %} 
     {% include 'includes/footer.html' %}
-    
   </main>
   {% include 'includes/scripts.html' %}
   <script>
     $(document).ready(function () {
-        $('#liste').DataTable();
+      $('#liste').DataTable();
     });
   </script>
   {% block javascripts %}{% endblock javascripts %}

@@ -33,15 +33,14 @@ urlpatterns = [
         path('equipe/delete/<str:pk>',Delete_Equipe_views, name="org-equipes-delete"),
         
         path('chercheurs/members/liste/', org.org_members_liste, name="org-members-liste"),
-        path('chercheurs/chef-eta/liste/', org.org_etas_liste, name="org-chefeta-liste"),
+        path('chercheurs/chef-eta/liste/', org.org_chef_eta_liste, name="org-chefeta-liste"),
         path('chercheurs/chef-div/liste/', org.org_chef_div_liste, name="org-chefdiv-liste"),
         path('chercheurs/chef-equ/liste/', org.org_chef_equ_liste, name="org-chefequ-liste"),
         
         path('etablisement=<int:eta_id>/dashboard/',eta.eta_dash  , name="org-etas-dash"),
         path('division=<int:div_id>/dashboard/',div.div_dash , name ="org-div-dash"),
         path('equipe=<int:equ_id>/dashboard/' , equipe.equipe_dash , name='org-equipe-dash'),
-    ])),
-        
+    ])),        
     path('eta=<int:pk>/',eta.dash_etablisemnts,name='eta-dash-pk'),
 
     path('etablisement=<int:eta_id>/' ,include([
@@ -78,10 +77,13 @@ urlpatterns = [
     
     path('profile/user=<int:pk>', researcher_profile , name='researcher_profile'),
 
-
-    path('ajax/load_etas',org.load_etas , name='eta-options'),
+    path('ajax/divs-liste/', org.org_divs_liste_v2, name="div-ajax-liste"),
+    path('ajax/load-etas',org.load_etas , name='eta-options'),
+    path('ajax/load-divs',org.load_divs , name='div-options'),
+    path('ajax/load-equipes',org.load_equipes , name='equipe-options'),
+    path('ajax/eta-liste',org.wilaya_etas_liste , name='eta-liste'),
+    path('ajax/members-liste',org.members_liste , name='members-ajax-liste'),
     # path('ajax/get_divs',eta.get_div_liste , name='divs-liste'),
-
     path('profile/update/', researcher_profile_update , name='researcher_profile_update'),
     
 ]
