@@ -28,6 +28,7 @@ class UserCreationForm(forms.ModelForm):
         domain = urlparse(google_scholar_account).netloc
         if not domain == 'scholar.google.com' :
             self.add_error('google_scholar_account' , "format du compte google scholar  fournit non valide")
+            self.fields['google_scholar_account'].widget.attrs["class"]='is-invalid'
         elif not check_gs_id(get_gs_id(google_scholar_account)):
             raise forms.ValidationError(" Le compte google scholar n\'est pas valide , prier de le vérifier !")
         

@@ -33,6 +33,7 @@ urlpatterns = [
         path('equipe/delete/<str:pk>',Delete_Equipe_views, name="org-equipes-delete"),
         
         path('chercheurs/members/liste/', org.org_members_liste, name="org-members-liste"),
+        path('chercheurs/members/delete/<str:pk>', org.org_members_liste, name="org-members-delete"),
         path('chercheurs/chef-eta/liste/', org.org_chef_eta_liste, name="org-chefeta-liste"),
         path('chercheurs/chef-div/liste/', org.org_chef_div_liste, name="org-chefdiv-liste"),
         path('chercheurs/chef-equ/liste/', org.org_chef_equ_liste, name="org-chefequ-liste"),

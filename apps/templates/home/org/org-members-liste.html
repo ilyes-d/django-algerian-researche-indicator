@@ -102,6 +102,9 @@
                             </div>
                         </th>
                         <th class="border-0 rounded-end">Profile</th>
+                        {% if  user.is_superuser %}
+                        <th class="border-0">Action</th>
+                        {% endif %}
 
                     </tr>
                 </thead>
@@ -133,6 +136,12 @@
                         <td class="rounded-end">
                             <a class="btn btn-pill btn-outline-info" href="{%url 'researcher_profile' pk=cher.id %}">consulter</a>
                         </td>
+                        {% if  user.is_superuser %}
+                      
+                        <td>
+                           <a class="btn btn-outline-danger"  type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer le chercheur {{cher.first_name}} {{cher.last_name}}  ');"  href="{% url 'org-members-delete' cher.id  %}"> <i  class="bi bi-trash3"></i> Supprimer</a>
+                        </td>
+                        {% endif %}
                     </tr>
                     {%endfor%}
                 </tbody>
