@@ -158,15 +158,24 @@ def members_liste(request):
 
 def org_chef_eta_liste(request):
     context = {}
+    context['wilayas']=all_wilayas()
+    context['etas'] = all_etas()
     qs = Researcher.objects.filter(etablisment__isnull=False)
     context['researchers'] = qs
     return render(request ,'home/chers/chef-eta.html',context)
 def org_chef_div_liste(request):
     context = {}
+    context['wilayas']=all_wilayas()
+    context['etas'] = all_etas()
+    context['divs'] = all_divs()
     return render(request ,'home/chers/chef-div.html',context)
 
 def org_chef_equ_liste(request):
     context = {}
+    context['wilayas']=all_wilayas()
+    context['etas'] = all_etas()
+    context['divs'] = all_divs()
+    context['equipes']=all_equipes()
     return render(request ,'home/chers/chef-equ.html',context)
 
 def load_etas(request):
@@ -184,17 +193,11 @@ def load_divs(request):
     context = {}
     id_eta = request.GET.get('id_eta')
     id_wilaya = request.GET.get('id_wilaya')
-    print("fel dfas")
     qs = all_divs()
-    print(qs)
     if id_wilaya != '0':
-        print("hahad")
         qs = qs.filter(etablisment__location=id_wilaya)
-        print(qs)
     if id_eta != '0':
-        print("this is")
         qs = qs.filter(etablisment=id_eta)
-    print(qs)
     context['divs'] = qs
     return render(request,'home/divs-options.html',context)
 
@@ -213,3 +216,6 @@ def load_equipes(request):
     context['equipes'] = qs
     return render(request,'home/equipes-options.html',context)
     
+    
+def org_liste_attente(request):
+    pass

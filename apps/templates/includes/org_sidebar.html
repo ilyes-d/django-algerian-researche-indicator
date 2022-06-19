@@ -93,19 +93,24 @@
           <span class="sidebar-text">members</span>
         </a>
       </li>
-      <li class="nav-item {% if request.resolver_match.url_name == 'org-chers-liste' %} active {% endif %}">
+      <li class="nav-item {% if 'organisation/chercheurs/chef-eta' in request.path %} active {% endif %}">
         <a class="nav-link" href="{%url 'org-chefeta-liste'%}">
           <span class="sidebar-text">chef etablisements</span>
         </a>
       </li>
-      <li class="nav-item {% if request.resolver_match.url_name == 'org-chers-liste' %} active {% endif %}">
+      <li class="nav-item {% if 'organisation/chercheurs/chef-div' in request.path %} active {% endif %}">
         <a class="nav-link" href="{%url 'org-chefdiv-liste'%}">
           <span class="sidebar-text">chef divisions</span>
         </a>
       </li>
-      <li class="nav-item {% if request.resolver_match.url_name == 'org-chers-liste' %} active {% endif %}">
+      <li class="nav-item {% if '/chef-equipe' in request.path %} active {% endif %}">
         <a class="nav-link" href="{%url 'org-chefequ-liste'%}">
           <span class="sidebar-text">chef equipes</span>
+        </a>
+      </li>
+      <li class="nav-item {% if '/liste-attente' in request.path %} active {% endif %}">
+        <a class="nav-link" href="{%url 'org-chefequ-liste'%}">
+          <span class="sidebar-text">Liste d'attente</span>
         </a>
       </li>
     </ul>
