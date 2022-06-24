@@ -93,9 +93,9 @@ def org_divs_dash(request):
 def org_divs_liste(request):
     context = {}
     
-    qs = Division.objects.all()
     context["wilayas"] =all_wilayas()
     context["etas"] = all_etas()
+    qs = Division.objects.all()
     context["divisions"] = query_divs(qs)
     return render(request, 'home/org/org-divs-liste.html',context)
 
@@ -103,18 +103,12 @@ def org_divs_liste_v2(request):
     context = {}
     id_wilaya = request.GET.get('id_wilaya')
     id_etablisment = request.GET.get('id_eta')
-    if id_wilaya=='0':
-        if id_etablisment=='0':
-            qs = Division.objects.all()
-        else:    
-            qs = Division.objects.filter(etablisment=id_etablisment)
-        context["divisions"] = query_divs(qs)
+    qs = Division.objects.all()
     if id_wilaya!='0':
-        if id_etablisment =='0':
-            qs = Division.objects.filter(etablisment__location=id_wilaya)
-        else:
-            qs = Division.objects.filter(Q(etablisment=id_etablisment) & Q(etablisment__location=id_wilaya))
-        context["divisions"] = query_divs(qs)
+        qs = qs.filter(etablisment__location=id_wilaya)
+    if id_etablisment!='0':
+        qs = qs.filter(etablisment=id_etablisment)
+    context["divisions"] = query_divs(qs)
     return render(request,'home/div-liste.html',context)
 
 
@@ -122,8 +116,8 @@ def org_equipes_liste(request):
     context = {}
     qs = Equipe.objects.all()
     context["wilayas"] = all_wilayas()
-    context["etas"] = all_etas()
     context["divs"] = all_divs()
+    context["etas"] = all_etas()
     context["equipes"] = query_equipes(qs)
     return render(request , 'home/org/org-equipes-liste.html',context)
 

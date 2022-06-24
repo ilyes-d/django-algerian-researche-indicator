@@ -44,6 +44,8 @@ def eta_divs_citations(eta_id):
 
 def eta_divs_liste(request, eta_id):
     context = {}
+    qs = Division.objects.filter(etablisment=eta_id)
+    context["divisions"] =query_divs(qs)
     return render(request,'home/eta/eta-divs-liste.html',context)
     
 
@@ -72,13 +74,38 @@ def Liste_division_Eta_aff_list(request):
     context["info_etablisment"] = info_etablisment
     return render (request,'home/eta/liste_div.html',context)
 
-def eta_equipes_liste(request):
-    inter=get_etablisement_id(request)
-    liste = EquipeList_Eta(inter)
-    info_etablisment = Etablisment.objects.get(pk = inter)
-    context ={'liste':liste}
-    context["info_etablisment"] = info_etablisment
+def eta_equipes_liste(request,eta_id):
+    context = {}
+    # inter=get_etablisement_id(request)
+    # liste = EquipeList_Eta(inter)
+    # info_etablisment = Etablisment.objects.get(pk = inter)
+    # context ={'liste':liste}
+    # context["info_etablisment"] = info_etablisment
+    qs = Equipe.objects.filter(division__etablisment=eta_id)
+    context["equipes"] = query_equipes(qs)
     return render (request,'home/eta/liste_equipe.html',context)
+
+def eta_members_liste(request,eta_id):
+    context = {}
+    qs = Researcher.objects.filter(equipe_researchers__division__etablisment=eta_id)
+    context["researchers"] = qs
+    return render(request , 'home/eta/eta-members-liste.html',context)
+
+
+def eta_chefdiv(request,eta_id):
+    context = {}
+    qs = Researcher.objects.filter(division__etablisment=eta_id)
+    context['researchers'] = qs
+    return render(request , 'home/eta/eta-chefdiv-liste.html',context)
+    
+
+def eta_chefequ(request,eta_id):
+    context = {}
+    qs = Researcher.objects.filter(equipe__division__etablisment=eta_id)
+    context['researchers'] = qs
+    return render(request , 'home/eta/eta-chefequ-liste.html',context)
+
+
 
 
 def eta_chers_dash(request):

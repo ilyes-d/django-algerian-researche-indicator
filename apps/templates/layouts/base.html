@@ -25,8 +25,8 @@
     }
     #liste_filter,
     #liste_info,
-    #liste_length,
-    #liste_paginate{
+    #liste_paginate
+    {
       display : none ;
     }
   </style>
@@ -49,9 +49,9 @@
             {% include 'includes/equ_sidebar.html' %}
           {%endif%}
         {%endif%}
-        {% comment %} {% if user|membre_simple == True %}
+        {% if user|equipe_member == True %}
         {% include 'includes/sidebar.html' %}
-        {%endif%} {% endcomment %}
+        {%endif%}
       </ul>
     </div>
   </nav>

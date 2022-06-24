@@ -2,7 +2,20 @@
 {% block stylesheets %}
 <style>
 
-
+    bj{
+        margin-bottom: 2%;
+        vertical-align: middle;
+        width: 300px;
+        font-size: 17px;
+    }
+    i{
+        vertical-align: middle;
+    }
+    
+    
+    .cc{
+        padding-bottom: 7px;
+    }
 </style>
 {% endblock stylesheets %}
 
@@ -65,10 +78,10 @@
         </div>
     </div>
 </div>
-
+<a type="button" href="{% url 'org-divs-add' %}" class=" bj bjj btn btn-pill btn-outline-primary " type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Division</a>
 
 <div class="card border-0 shadow mb-4">
-<a type="button" href="{% url 'org-divs-add' %}" class=" bj bjj btn btn-pill btn-outline-primary " type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Division</a>
+
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">

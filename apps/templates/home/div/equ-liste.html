@@ -25,9 +25,9 @@
 <div class="page-header">
     <div class="row align-items-center">
       <div class="col">
-        <h3>La liste total d'equipes de L'organisation <b>MESRS</b><br></h3>
+        <h3>La liste total d'equipes de La division </h3>
         <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{%url 'org-carte'%}">Organisation</a></li>
+        <li class="breadcrumb-item"><a href="{%url 'org-carte'%}">Division</a></li>
         <li class="breadcrumb-item active">Liste d'equipes</li>
         </ul>
      </div>
@@ -51,24 +51,6 @@
                                         </span>
                                         <input type="text" class="form-control" id="search-bar" placeholder="Tapez le Nom de division" aria-label="Search">
                                     </div>
-                                </th>
-                                <th class="border-0">
-                                    <label class="my-1 me-2" for="country">Wilaya</label>
-                                    <select class="form-select" id="wilaya">
-                                        <option value='0' selected>Tous</option>
-                                        {%for wilaya in wilayas%}
-                                        <option value="{{wilaya.id}}">{{wilaya}}</option>
-                                        {%endfor%}
-                                    </select>
-                                </th> 
-                                <th class="border-0">
-                                    <label class="my-1 me-2" for="country">Etablisement</label>
-                                    <select class="form-select" id="eta">
-                                        <option value='0' selected>Tous</option>
-                                        {%for eta in etas%}
-                                        <option value="{{eta.id}}">{{eta}}</option>
-                                        {%endfor%} 
-                                    </select>
                                 </th>
                                 <th class="border-0">
                                     <label class="my-1 me-2" for="country">Division</label>
@@ -97,7 +79,6 @@
                     <tr>
                         <th class="border-0 rounded-start">Nom d'Equipe</th>
                         <th class="border-0">chef</th>
-                        <th class="border-0">divisions associe</th>
                         <th class="border-0 ">
                             <div class="d-flex flex-row">
                                 Nbr Chercheurs
@@ -119,9 +100,6 @@
                         </td>
                         <td>
                             {{value.chef_equipe}}
-                        </td>
-                        <td>
-                            {{value.division_associe}}
                         </td>
                         <td class="h-12">
                             {{value.nbr_chers}}

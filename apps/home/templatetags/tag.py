@@ -54,6 +54,8 @@ def div_id(user):
 def equipe_id(user):
     if is_chef_equipe(user):
         return Equipe.objects.get(chef_equipe=user.id).id
+    else:
+        return Equipe.objects.get(researcher=user.id).id
 
 @register.filter
 def chef_division(user):
@@ -66,6 +68,13 @@ def chef_equipe(user):
     if Equipe.objects.filter(chef_equipe__id=user.id):
         return True
     return False
+
+@register.filter
+def equipe_member(user):
+    if user.equipe_researchers == None:
+        return False
+    return True
+        
 
 @register.filter
 def membre_simple(user):

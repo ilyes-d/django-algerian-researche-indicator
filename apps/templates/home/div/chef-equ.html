@@ -2,6 +2,11 @@
 {%load static %}
 {%load tag%}
 {% block stylesheets %}
+<style>
+    #div option:hover {
+        background-color:red;
+    }
+</style>
 {% endblock stylesheets %}
 
 {% block content %}
@@ -75,38 +80,66 @@
                 <thead class="thead-light align-middle">
                     <tr>
                         <th class="border-0 rounded-start">Nom</th>
-                        <th class="border-0">Equipe demandée</th>
-                        <th class="border-0">Etablisement associé</th>
-                        <th class="border-0">divisions associé</th>
-
+                        <th class="border-0">Equipe</th>
+                        <th class="border-0">Etablisement assosie</th>
+                        <th class="border-0">divisions associe</th>
+                        <th class="border-0 ">
+                            <div class="d-flex flex-row">
+                                Citations
+                                <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12px"><path d="M311.9 335.1l-132.4 136.8C174.1 477.3 167.1 480 160 480c-7.055 0-14.12-2.702-19.47-8.109l-132.4-136.8C-9.229 317.8 3.055 288 27.66 288h264.7C316.9 288 329.2 317.8 311.9 335.1z"/></svg>
+                            </div>
+                        </th>
+                        <th class="border-0 ">
+                            <div class="d-flex flex-row">
+                                Indice H
+                                <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12px"><path d="M311.9 335.1l-132.4 136.8C174.1 477.3 167.1 480 160 480c-7.055 0-14.12-2.702-19.47-8.109l-132.4-136.8C-9.229 317.8 3.055 288 27.66 288h264.7C316.9 288 329.2 317.8 311.9 335.1z"/></svg>
+                            </div>
+                        </th>
+                        <th class="border-0 ">
+                            <div class="d-flex flex-row">
+                                Indice i10
+                                <svg class="ms-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" width="12px"><path d="M311.9 335.1l-132.4 136.8C174.1 477.3 167.1 480 160 480c-7.055 0-14.12-2.702-19.47-8.109l-132.4-136.8C-9.229 317.8 3.055 288 27.66 288h264.7C316.9 288 329.2 317.8 311.9 335.1z"/></svg>
+                            </div>
+                        </th>
                         <th class="border-0 rounded-end">Profile</th>
+                        {% if  user.is_superuser %}
                         <th class="border-0">Action</th>
+                        {% endif %}
+
                     </tr>
                 </thead>
-                <tbody id='attente-liste'>
+                <tbody id='chefequ-liste'>
                     {%for cher in researchers  %}
                     <tr>
                         <td class="rounded-start">
                             {{cher}}
                         </td>
                         <td>
-                            {{cher|equipe_request}}
+                            {{cher|cher_equipe}}
                         </td>
                         <td>
-                            {{cher|eta_request}}
+                            {{cher|cher_eta}}
                         </td>
                         <td>
-                            {{cher|div_request}}
+                            {{cher|cher_div}}
+                        </td>
+                        <td>
+                            {{cher.citations}}
+                        </td>
+                        <td class="h-12">
+                            {{cher.h_index}}
+                        </td>
+                        <td class="h-12">
+                            {{cher.i10_index}}
                         </td>
                         <td class="rounded-end">
                             <a class="btn btn-pill btn-outline-info" href="{%url 'researcher_profile' pk=cher.id %}">consulter</a>
                         </td>
+                        {% if  user.is_superuser %}
                         <td>
-                            <a class="btn btn-outline-danger" type="button" onclick="return confirm( 'vous etes sur de vouloir accepter le chercheur {{cher.first_name}} {{cher.last_name}}  ');"  href="{% url 'org-members-accept' cher.id %}"> 
-                            <i class="bi bi-trash3"></i>Accepter</a>
-                            <a class="btn btn-outline-danger" type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer le chercheur {{cher.first_name}} {{cher.last_name}}  ');"  href="{% url 'org-members-delete' cher.id %}"> 
-                            <i class="bi bi-trash3"></i> Supprimer</a>
+                           <a class="btn btn-outline-danger"  type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer le chercheur {{cher.first_name}} {{cher.last_name}}  ');"  href="{% url 'org-members-delete' cher.id %}"> <i  class="bi bi-trash3"></i> Supprimer</a>
                         </td>
+                        {% endif %}
                     </tr>
                     {%endfor%}
                 </tbody>
@@ -116,7 +149,6 @@
 </div>
 
 {% endblock content %} 
-
 
 {% block javascripts %}
 <script>
@@ -128,6 +160,7 @@
     });
 
     $('#wilaya').change(function(){
+        console.log("changed")
         $('#eta').val('0')
         $('#div').val('0')
         $('#equipe').val('0')
@@ -163,6 +196,18 @@
                 $('#equipe').html(data)
             }
         })
+        $.ajax({
+            url:"{%url 'chefequipe-ajax-liste' %}",
+            data: {
+                'id_wilaya': $(this).val(),
+                'id_eta': $('#eta').val(),
+                'id_div':$('#div').val(),
+                'id_equipe':$('#equipe').val()
+            },
+            success: function(data){
+                $('#chefequ-liste').html(data)
+            }
+        });
     })
     $('#eta').change(function(){
         $('#div').val('0')
@@ -189,6 +234,19 @@
                 $('#equipe').html(data)
             }
         });
+        $.ajax({
+            url:"{%url 'chefequipe-ajax-liste' %}",
+            data:{
+                'id_wilaya': $('#wilaya').val(),
+                'id_eta': $(this).val(),
+                'id_div':$('#div').val(),
+                'id_equipe':$('#equipe').val()
+            },
+            success: function(data){
+                 console.log(data)
+                $('#chefequ-liste').html(data)
+            }
+        });
     })
     $('#div').change(function(){
         $('#equipe').val('0')
@@ -203,10 +261,8 @@
                 $('#equipe').html(data)
             }
         });
-    })
-    $('#equipe').change(function(){
         $.ajax({
-            url:"{%url 'attente-ajax-liste' %}",
+            url:"{%url 'chefequipe-ajax-liste' %}",
             data:{
                 'id_wilaya': $('#wilaya').val(),
                 'id_eta': $('#eta').val(),
@@ -215,7 +271,23 @@
             },
             success: function(data){
                  console.log(data)
-                $('#attente-liste').html(data)
+                $('#chefequ-liste').html(data)
+            }
+        });
+
+    })
+    $('#equipe').change(function(){
+        $.ajax({
+            url:"{%url 'chefequipe-ajax-liste' %}",
+            data:{
+                'id_wilaya': $('#wilaya').val(),
+                'id_eta': $('#eta').val(),
+                'id_div':$('#div').val(),
+                'id_equipe':$('#equipe').val()
+            },
+            success: function(data){
+                 console.log(data)
+                $('#chefequ-liste').html(data)
             }
         });
     })

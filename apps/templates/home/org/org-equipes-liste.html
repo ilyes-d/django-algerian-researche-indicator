@@ -1,7 +1,8 @@
 {% extends 'layouts/base.html' %}
+{%load static %}
+{%load tag%}
 {% block stylesheets %}
 <style>
-
     @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
     .bj{
         margin-bottom: 2%;
@@ -88,7 +89,6 @@
 </div>
 <a type="button" href="{% url 'org-equipes-add' %}" class="btn btn-pill btn-outline-primary bj bjj" type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Equipe</a>
 
-
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
@@ -148,16 +148,11 @@
         </div>
     </div>
 </div>
-{% comment %} <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.12.1/datatables.min.css"/> {% endcomment %}
+
 {% endblock content %}
- 
 
 {% block javascripts %}
 <script>
-    $(document).ready(function () {
-        $('#liste').DataTable();
-    });
-    
     $( window ).on( "load",function(){
         $('#wilaya').val('0')
         $('#eta').val('0')
@@ -166,6 +161,26 @@
     $('#wilaya').change(function(){
         console.log("changed")
         $('#eta').val('0')
+        $.ajax({
+            url:"{% url 'eta-options'%}",
+            data:{
+                'id_wilaya': $(this).val()
+            },
+            success: function(data){
+                console.log(data)
+                $('#eta').html(data)
+            }
+        });
+        $.ajax({
+            url:"{% url 'div-options' %}",
+            data:{
+                'id_wilaya': $(this).val(),
+                'id_eta': $('#eta').val(),
+            },
+            success: function(data){
+                $('#div').html(data)
+            }
+        });
         $.ajax({
             url:"{%url 'div-ajax-liste'%}",
             data: {
@@ -177,19 +192,18 @@
                 $('#div-liste').html(data)
             }
         });
+    })
+    $('#eta').change(function(){
         $.ajax({
-            url:"{% url 'eta-options'%}",
+            url:"{% url 'div-options'%}",
             data:{
-                'id_wilaya': $(this).val()
+                'id_wilaya': $('#wilaya').val(),
+                'id_eta': $(this).val()
             },
             success: function(data){
-                console.log(data)
-                $('#eta').html(data)
+                $('#div').html(data)
             }
-        })
-    })
-    $('#eta').change(function(){  
-        console.log(typeof($(this).val()))
+        });
         $.ajax({
             url:"{%url 'div-ajax-liste'%}",
             data:{

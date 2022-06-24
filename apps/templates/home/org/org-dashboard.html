@@ -110,7 +110,7 @@
   </div>  
 </div>
 
-<div class="card shadow mb-4">
+{% comment %} <div class="card shadow mb-4">
   <a class="d-block card-header py-3" 
       role="button" data-bs-toggle="collapse" data-bs-target="#collapseCardExample" aria-expanded="true" aria-controls="collapseCardExample">
       <h6 class="m-0 font-weight-bold text-primary">Les Divisions</h6>
@@ -255,10 +255,10 @@
       </div>
     </div>
   </div>  
-</div>
+</div> {% endcomment %}
 
 
-{{total_citations}}
+{% comment %} {{total_citations}}
 
 <h3>Top Etablisement Citations</h3>
 
@@ -266,7 +266,7 @@
 
 <h3>Top equipe Citations</h3>
 
-<h3>Top researcher citations</h3>
+<h3>Top researcher citations</h3> {% endcomment %}
 
 {% endblock content %} 
 {% block javascripts %}

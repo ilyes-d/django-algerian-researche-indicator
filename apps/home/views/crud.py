@@ -97,7 +97,15 @@ def Delete_Equipe_views (request,pk):
     return redirect('org-equipes-liste')
 
 
-def Delete_chercheur_views (request,pk):
-    Etu=Equipe.objects.get(id=pk)
+def Delete_Chercheur_views(request,pk):
+    Etu=Researcher.objects.get(id=pk)
     Etu.delete()
-    return redirect('org-equipes-liste')
+    return redirect('org-members-liste')
+
+def accepter_cher(request,pk):
+    cher = Researcher.objects.get(id=pk)
+    cher.equipe_researchers_id = cher.equipe_id
+    cher.is_authorized = True
+    cher.save()
+    return redirect('liste-attente')
+    

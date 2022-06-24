@@ -1,6 +1,7 @@
 from django.urls import path, include
 
 from apps.home.views import div, equipe, eta,org,users
+from apps.home.views import crud
 from .views.users import *
 from apps.home.views import div, equipe, eta,org,users
 from apps.home.views.crud import *
@@ -34,11 +35,12 @@ urlpatterns = [
         path('equipe/delete/<str:pk>',Delete_Equipe_views, name="org-equipes-delete"),
         
         path('chercheurs/members/liste/', org.org_members_liste, name="org-members-liste"),
-        path('chercheurs/members/delete/<str:pk>', org.org_members_liste, name="org-members-delete"),
+        path('chercheurs/members/delete/<str:pk>', crud.Delete_Chercheur_views, name="org-members-delete"),
         path('chercheurs/chef-eta/liste/', org.org_chef_eta_liste, name="org-chefeta-liste"),
         path('chercheurs/chef-div/liste/', org.org_chef_div_liste, name="org-chefdiv-liste"),
         path('chercheurs/chef-equ/liste/', org.org_chef_equ_liste, name="org-chefequ-liste"),
         path('chercheurs/liste-attente/', org.org_liste_attente, name="liste-attente"),
+        path('chercheurs/members/accept/<str:pk>', crud.accepter_cher, name="org-members-accept"),
         
         path('etablisement=<int:eta_id>/dashboard/',eta.eta_dash  , name="org-etas-dash"),
         path('division=<int:div_id>/dashboard/',div.div_dash , name ="org-div-dash"),
@@ -57,9 +59,12 @@ urlpatterns = [
         
         path('chercheurs/card/' , eta.Liste_cher_Eta_aff_list  , name='chercheur-list-'),
         path('equipes/liste/',eta.eta_equipes_liste  ,    name='eta-equipes-liste'),
-        path('members/' , eta.Liste_cher_Eta_aff_list  , name='eta-members-liste'),
-        path('chef-divs/' , eta.Liste_cher_Eta_aff_list  , name='eta-chefdivs-liste'),
-        path('chef-equipes/' , eta.eta_chers_liste, name='eta-chefequ-liste'),
+        # path('members/' , eta.Liste_cher_Eta_aff_list  , name='eta-members-liste'),
+        path('members/' , eta.eta_members_liste  , name='eta-members-liste'),
+        # path('chefdiv/' , eta.Liste_cher_Eta_aff_list  , name='eta-chefdivs-liste'),
+        path('chefdiv/' , eta.eta_chefdiv , name='eta-chefdivs-liste'),
+        # path('chefequ/' , eta.eta_chers_liste, name='eta-chefequ-liste'),
+        path('chefequ/' , eta.eta_chefequ, name='eta-chefequ-liste'),
         # """
      ])),
     
@@ -67,8 +72,10 @@ urlpatterns = [
     path('division=<int:div_id>/' ,include([
         path('dashboard/' , div.div_dash  , name='div-dash'),
         path('equipes/liste/' ,div.div_equipe_liste  , name='div-equipes-liste'),
-        path('members/',div.div_chers_liste_card , name='div-members-liste'),
-        path('chef-equipe/',div.div_chers_liste, name='div-chefequ-liste'),
+        # path('members/',div.div_chers_liste_card , name='div-members-liste'),
+        path('chercheur/members/',div.div_members , name='div-members-liste'),
+        # path('chercheur/chefequ/',div.div_chers_liste, name='div-chefequ-liste'),
+        path('chercheur/chefequ/',div.div_chef_equ, name='div-chefequ-liste'),
         
     ])),
     
@@ -80,7 +87,9 @@ urlpatterns = [
     
     path('profile/user=<int:pk>', researcher_profile , name='researcher_profile'),
 
-    path('ajax/divs-liste/', org.org_divs_liste_v2, name="div-ajax-liste"),
+    path('ajax/divs-liste/', org.org_divs_liste_v2, name="div-ajax-liste"), # this is an append from nvim 
+    # this is an O command from
+    
     path('ajax/load-etas',org.load_etas , name='eta-options'),
     path('ajax/load-divs',org.load_divs , name='div-options'),
     path('ajax/load-equipes',org.load_equipes , name='equipe-options'),

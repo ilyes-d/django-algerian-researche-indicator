@@ -42,13 +42,16 @@ def DivsionList_Eta(pk):
     i = Division.objects.filter(etablisment = pk)
     return i
 
-def div_equipe_liste(request):
-    inter=get_division_id(request)
-    liste = EquipeList_Div(inter)
-    info_division= Division.objects.get(pk = inter)
-    context ={'liste':liste}
-    context["info_division"] = info_division
-    return render (request,'home/division/liste_equipe.html',context)
+def div_equipe_liste(request, div_id):
+    # inter=get_division_id(request)
+    # liste = EquipeList_Div(inter)
+    # info_division= Division.objects.get(pk = inter)
+    # context ={'liste':liste}
+    # context["info_division"] = info_division
+    context = {}
+    qs = Equipe.objects.filter(division=div_id)
+    context["equipes"] = query_equipes(qs)
+    return render (request,'home/div/equ-liste.html',context)
 
 
 def div_chers_liste(request):
@@ -61,13 +64,27 @@ def div_chers_liste(request):
 
 # card profiles
 def div_chers_liste_card(request):
-    inter=get_division_id(request)
-    liste = CherList_div (inter)
-    info_division = Division.objects.get(pk = inter)
-    context ={'liste':liste}
-    context["info_division"] = info_division
+    # inter=get_division_id(request)
+    # liste = CherList_div (inter)
+    # info_division = Division.objects.get(pk = inter)
+    # context ={'liste':liste}
+    # context["info_division"] = info_division
+    context = {}
+    
     return render (request,'home/division/liste_chercheur_card.html',context)
 
+def div_members(request,div_id):
+    context = {}
+    qs = Researcher.objects.filter(equipe_researchers__division=div_id)
+    context["researchers"] = qs
+    return render(request , 'home/div/members-liste.html', context)
+
+def div_chef_equ(request,div_id):
+    context = {}
+    qs = Researcher.objects.filter(Q(equipe__isnull=False) & Q(division=div_id))
+    context['researchers'] = qs
+    return render(request , 'home/div/chef-equ.html', context)
+    
 def div_chers_dash(request):
     context = {}
     return render(request,'home/',context)

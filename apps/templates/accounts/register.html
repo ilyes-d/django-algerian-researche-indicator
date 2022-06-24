@@ -179,6 +179,9 @@
                             <span class="text-error">{{ form.password1.errors }}</span>
                             <span class="text-error">{{ form.password2.errors }}</span>
                             
+                            {% if  form.google_scholar_account.errors %}
+                             ok 
+                            {% endif %}
                             <div class="d-grid">
                                 <button type="submit" name="register" class="btn btn-gray-800">Sign UP</button>
                             </div>

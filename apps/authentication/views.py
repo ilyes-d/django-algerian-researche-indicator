@@ -4,9 +4,9 @@ from django.contrib.auth import authenticate, login
 from .forms import LoginForm
 from apps.home.views.fcts import *
 from apps.home.decorators import *
-from django.contrib import messages
 from apps.home.admin import UserCreationForm
 from apps.home.views.queries import *
+from ..home.views.functions import *
 
 @redirect_logged_in_user
 def login_view(request):
@@ -20,7 +20,7 @@ def login_view(request):
             if user is not None:
                 login(request, user)
                 if user_role(request) == 'membre':
-                    return redirect('profile/user='+request.user.id)
+                    return redirect('researcher_profile', pk=request.user.id)
                 return redirect_users_after_login(request)
             else:
                 msg = 'les informations d\'identification sont invalides'
@@ -49,6 +49,7 @@ def register_user(request):
             user = authenticate(email=email, password=raw_password)
             user.equipe_id= equipe_id 
             user.is_authorized = False
+            load_reseacher_gs_data(user)
             user.save()
             if user is not None :
                 login(request, user)

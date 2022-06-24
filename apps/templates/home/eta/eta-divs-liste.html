@@ -46,7 +46,6 @@
         </div>
     </div>
 </div>
-{{divisions}}
 
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
@@ -56,13 +55,15 @@
                     <tr>
                         <th class="border-0 rounded-start">Nom de Division</th>
                         <th class="border-0">Directeur</th>
-                        <th class="border-0">Etablisement assosie</th>
                         <th class="border-0">Nbr Equipe</th>
                         <th class="border-0 ">Nbr Chercheurs</th>
                         <th class="border-0 rounded-end">Tableau de Bord</th>
+                        {% if  user.is_superuser %}
+                        <th class="border-0 " colspan="2">Action</th>
+                        {% endif %}
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="div-liste">
                     {%for div,value in divisions.items %}
                     <tr>
                         <td class="rounded-start">
@@ -72,22 +73,29 @@
                             {{value.chef_div}}
                         </td>
                         <td>
-                            {{value.etablisement}}
-                        </td>
-                        <td>
                             {{value.nbr_equipes}}
                         </td>
                         <td class="h-12">
                             {{value.nbr_chers}}
                         </td>
                         <td class="rounded-end">
-                            <a class="btn btn-pill btn-outline-info" href="{%url 'eta-dash' eta_id=2 %}">consulter</a>
+                            <a class="btn btn-pill btn-outline-info" href="{%url 'org-div-dash' div_id=div.id%}">consulter</a>
                         </td>
+                        {% if  user.is_superuser %}
+                        <td>
+                   
+                            <a class="btn btn-outline-tertiary"  href="{% url 'org-divs-update' div.id  %}" type="button">  Modifier <i class="bi bi-box-arrow-up-right"></i> </a>
+                        </td>
+                        <td>
+                            <a class="btn btn-outline-danger" href="{% url 'org-divs-delete' div.id  %}" type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer la division {{div}} ');"> <i  class="bi bi-trash3"></i> Supprimer</a>
+                        </td>
+                        {% endif %}
                     </tr>
                     {%endfor%}
                 </tbody>
             </table>
         </div>
     </div>
-</div>
+
+</div> 
 {% endblock content %}
