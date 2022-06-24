@@ -2,23 +2,6 @@
 {%load static %}
 {%load tag%}
 {% block stylesheets %}
-<style>
-    @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
-    .bj{
-        margin-bottom: 2%;
-        vertical-align: middle;
-        width: 270px;
-        font-size: 17px;
-    }
-    i{
-        vertical-align: middle;
-    }
-    
-    
-    .cc{
-        padding-bottom: 7px;
-    }
-</style>
 {% endblock stylesheets %} 
 
 {% block content %}
@@ -36,7 +19,6 @@
 
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
-        <h5 class="card-title">Filtrer les resultas</h5>
         <div class="table-responsive">
             <table class="table table-centered table-nowrap mb-0 rounded">
                 <thead class="thead-light">
@@ -87,7 +69,13 @@
         </div>
     </div>
 </div>
-<a type="button" href="{% url 'org-equipes-add' %}" class="btn btn-pill btn-outline-primary bj bjj" type="button"><i class="bi bi-plus-circle cc"> </i>  Ajouter Equipe</a>
+<a type="button" href="{% url 'org-equipes-add' %}" class="btn btn-pill btn-outline-primary" type="button">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+    </svg>
+    Ajouter Equipe
+</a>
 
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
@@ -112,7 +100,7 @@
 
                     </tr>
                 </thead>
-                <tbody>
+                <tbody id="equipe-liste">
                     {%for equipe,value in equipes.items %}
                     <tr>
                         <td class="rounded-start">
@@ -156,6 +144,7 @@
     $( window ).on( "load",function(){
         $('#wilaya').val('0')
         $('#eta').val('0')
+        $('#div').val('0')
     });
 
     $('#wilaya').change(function(){
@@ -182,14 +171,15 @@
             }
         });
         $.ajax({
-            url:"{%url 'div-ajax-liste'%}",
+            url:"{%url 'equipe-ajax-liste'%}",
             data: {
                 'id_wilaya': $(this).val(),
-                'id_eta': $('#eta').val()
+                'id_eta': $('#eta').val(),
+                'id_div': $('#div').val()
             },
             success: function(data){
                 console.log(data)
-                $('#div-liste').html(data)
+                $('#equipe-liste').html(data)
             }
         });
     })
@@ -205,16 +195,31 @@
             }
         });
         $.ajax({
-            url:"{%url 'div-ajax-liste'%}",
+            url:"{%url 'equipe-ajax-liste'%}",
             data:{
                 'id_eta': $(this).val(),
                 'id_wilaya': $('#wilaya').val(),
+                'id_div': $('#div').val()
             },
             success: function(data){
-                 console.log(data)
-                $('#div-liste').html(data)
+                console.log(data)
+                $('#equipe-liste').html(data)
             }
         })
+    })
+    $('#div').change(function(){
+        $.ajax({
+            url:"{%url 'equipe-ajax-liste'%}",
+            data:{
+                'id_eta': $(this).val(),
+                'id_wilaya': $('#wilaya').val(),
+                'id_div': $('#div').val()
+            },
+            success: function(data){
+                console.log(data)
+                $('#equipe-liste').html(data)
+            }
+        })    
     })
 </script>
 {% endblock javascripts %}

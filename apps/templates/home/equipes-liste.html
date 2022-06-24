@@ -1,0 +1,31 @@
+There is no equipe in this 
+{%for equipe,value in equipes.items %}
+<tr>
+    <td class="rounded-start">
+        {{equipe.nom}}
+    </td>
+    <td>
+        {{value.chef_equipe}}
+    </td>
+    <td>
+        {{value.etablisement_associe}}
+    </td>
+    <td>
+        {{value.division_associe}}
+    </td>
+    <td class="h-12">
+        {{value.nbr_chers}}
+    </td>
+    <td class="rounded-end">
+        <a class="btn btn-pill btn-outline-info" href="{%url 'org-equipe-dash' equ_id=equipe.id %}">consulter</a>
+    </td>
+    {% if  user.is_superuser %}
+    <td>
+        <a class="btn btn-outline-tertiary" type="button"  href="{% url 'org-equipes-update' equipe.id  %}">  Modifier</a>
+    </td>
+    <td>
+        <a class="btn btn-outline-danger"  type="button" onclick="return confirm( 'vous etes sur de vouloir supprimer l\'équipe {{equipe.nom}} ');"  href="{% url 'org-equipes-update' equipe.id  %}"> <i  class="bi bi-trash3"></i> Supprimer</a>
+    </td>
+    {% endif %}
+</tr>
+{%endfor%}

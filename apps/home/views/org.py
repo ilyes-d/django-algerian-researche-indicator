@@ -1,4 +1,5 @@
 from multiprocessing import context
+from subprocess import IDLE_PRIORITY_CLASS
 from django.shortcuts import render
 from requests import request
 from apps.home.models import *
@@ -120,6 +121,21 @@ def org_equipes_liste(request):
     context["etas"] = all_etas()
     context["equipes"] = query_equipes(qs)
     return render(request , 'home/org/org-equipes-liste.html',context)
+
+def org_equipes_liste_v2(request):
+    context = {}
+    qs = Equipe.objects.all()
+    id_wilaya = request.GET.get('id_wilaya')
+    id_eta = request.GET.get('id_eta')
+    id_div = request.GET.get('id_div')
+    if id_wilaya != '0':
+        qs = qs.filter(division__etablisment__location=id_wilaya)
+    if id_eta != '0':
+        qs = qs.filter(division__etablisment=id_eta)
+    if id_div != '0':
+        qs =qs.filter(division=id_div)
+    context["equipes"] = query_equipes(qs)
+    return render(request , 'home/equipes-liste.html',context)
 
 
 def org_members_liste(request):

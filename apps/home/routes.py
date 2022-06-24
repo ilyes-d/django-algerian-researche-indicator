@@ -87,13 +87,15 @@ urlpatterns = [
     
     path('profile/user=<int:pk>', researcher_profile , name='researcher_profile'),
 
+    path('ajax/eta-liste',org.wilaya_etas_liste , name='eta-liste'),
     path('ajax/divs-liste/', org.org_divs_liste_v2, name="div-ajax-liste"), # this is an append from nvim 
-    # this is an O command from
+    path('ajax/equipe-liste/', org.org_equipes_liste_v2, name="equipe-ajax-liste"), 
+    
     
     path('ajax/load-etas',org.load_etas , name='eta-options'),
     path('ajax/load-divs',org.load_divs , name='div-options'),
     path('ajax/load-equipes',org.load_equipes , name='equipe-options'),
-    path('ajax/eta-liste',org.wilaya_etas_liste , name='eta-liste'),
+    
     path('ajax/members-liste',org.members_liste , name='members-ajax-liste'),
     path('ajax/chefeta-liste',org.chefeta_liste , name='chefeta-ajax-liste'),
     path('ajax/chefdiv-liste',org.chefdiv_liste , name='chefdiv-ajax-liste'),
