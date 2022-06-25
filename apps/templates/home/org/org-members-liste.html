@@ -7,10 +7,16 @@
         background-color:red;
     }
 </style>
+{%if researchers.count < 5 %}
+<style>
+    #liste_length{
+        display:none;
+    }
+</style>
+{%endif%}
 {% endblock stylesheets %}
 
 {% block content %}
-
 <div class="card border-0 shadow mb-4">
     <div class="card-body">
         <div class="table-responsive">
@@ -150,7 +156,6 @@
 </div>
 
 {% endblock content %} 
-
 
 {% block javascripts %}
 <script>

@@ -1,4 +1,3 @@
-from pickle import NONE
 from traceback import print_tb
 from django.shortcuts import redirect
 from serpapi import GoogleSearch

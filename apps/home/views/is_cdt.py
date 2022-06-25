@@ -1,5 +1,5 @@
 """
-a True\False based functions,
+a True\False condition functions 
 """
 from ..models import *
 

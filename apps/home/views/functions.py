@@ -40,6 +40,10 @@ def serpapi_author_v2(gs_id,start):
 
 
 def load_reseacher_gs_data(researcher):
+    """
+    this function load a single researcher data from google scholar using SerpApi.
+    The Data is : H-index, i10-index, citations, citation-graph, article-graph.
+    """
     gs_id = researcher.get_google_id()
     gs_data = serpapi_author_v2(gs_id,0)
     if "cited_by" in gs_data:
