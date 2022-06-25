@@ -1,3 +1,4 @@
 # Algerian Research Indicators 
 
-- [ ] filter etablisement 
+- [x] SIG dashboard
+- [x] add filters
