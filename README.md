@@ -9,7 +9,7 @@
 
 |Login Page|
 |---|
-||
+|![login](./screenshots/login.png)|
 
 |Register page |
 |-|
