@@ -1,6 +1,11 @@
 <!-- # Table of contents  -->
 
 # How to run it 
+> You need to create a virtualenv to install the requirement on it 
+
+```
+virtualenv .venv 
+```
 1. first clone it 
 ```bash
 git clone https://github.com/ilyes-d/django-algerian-researche-indicator.git
